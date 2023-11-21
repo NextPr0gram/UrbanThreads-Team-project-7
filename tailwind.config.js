@@ -10,6 +10,12 @@ export default {
     ],
 
     theme: {
+        colors: {
+            'bluish-purple': '#323377',
+            'snow-white': '#D6F2FF',
+            'light-gray': '#A1A1A1',
+            'dark-gray': '#1A1A1A',
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
