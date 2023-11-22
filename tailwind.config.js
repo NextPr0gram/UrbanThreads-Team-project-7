@@ -32,7 +32,10 @@ export default {
                 '5xl': '3rem',      // 5 Extra Large
                 '6xl': '4rem',      // 6 Extra Large
                 // Add more custom sizes as needed
-              },
+            },
+            maxWidth: {
+                '8xl': '112.5rem' // 1800px
+            }
         },
     },
 
