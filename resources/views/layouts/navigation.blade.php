@@ -1,3 +1,9 @@
+<nav class="flex justify-end h-9 items-center">
+    <a class="px-1" href="">Store locator</a>
+    <div class="w-1 h-5 bg-bluish-purple"></div>
+    <a class="px-1" href="">Help</a>
+</nav>
+
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
