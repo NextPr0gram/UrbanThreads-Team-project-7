@@ -1,12 +1,14 @@
-<nav class="flex justify-end h-9 items-center">
-    <a class="px-1" href="">Store locator</a>
+{{-- Secondary nav bar on top of the header --}}
+<nav class="flex justify-end h-9 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-base">
+    <a class="pr-2 " href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
-    <a class="px-1" href="">Help</a>
+    <a class="pl-2" href="">Help</a>
 </nav>
 
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+{{-- Sain header --}}
+<nav x-data="{ open: false }" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -16,13 +18,16 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                <!-- Searchbar -->
+                <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
+                    <x-text-input>
+                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                    </x-text-input>
+                </form>
 
+                {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                        {{ __('Dashboard') }}
+                                    </x-nav-link> --}}
             </div>
 
             <!-- Settings Dropdown -->
@@ -125,3 +130,14 @@
         </div>
     </div>
 </nav>
+
+{{-- Secondary nav bar at the bottom of the header --}}
+<div class="bg-navy-blue">
+    <nav class=" flex justify-center h-9 items-center text-base ">
+        <a class="h-full flex items-center px-10 text-snow-white border-rose-500 transition-all duration-100 ease-in-out" href="">Women</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Men</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Kids</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Limited</a>
+    </nav>
+</div>
+
