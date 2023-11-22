@@ -60,12 +60,14 @@
                 </x-dropdown>
 
                 {{-- Wishlist button --}}
-                <button class="inline-flex items-center text-base px-2 hover:underline ">
+                <button title="hello" class="inline-flex items-center text-base px-2 hover:underline ">
+                    <div class="tooltip" title=""></div>
                     <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
                 </button>
 
                 {{-- Shopping cart button --}}
-                
+
+
 
             </div>
 
