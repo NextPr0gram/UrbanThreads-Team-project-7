@@ -18,12 +18,7 @@
                     </a>
                 </div>
 
-                <!-- Searchbar -->
-                <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                    <x-text-input>
-                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
-                    </x-text-input>
-                </form>
+
 
                 {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                         {{ __('Dashboard') }}
@@ -32,7 +27,19 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <!-- Searchbar -->
+                <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
+                    <x-text-input>
+                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                    </x-text-input>
+                </form>
                 <x-dropdown align="right" width="48">
+                    <!-- Searchbar -->
+                    <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
+                        <x-text-input>
+                            <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                        </x-text-input>
+                    </form>
                     <x-slot name="trigger">
                         <button class="inline-flex items-center text-base  hover:underline pr-2">
                             <div class="px-1">{{ Auth::user()->name }}</div>
@@ -72,17 +79,19 @@
 
                 {{-- Wishlist button --}}
                 <button title="Wishlist" class="inline-flex items-center text-base px-2 hover:underline ">
-                    <div class="tooltip" title=""></div>
                     <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
                 </button>
 
                 {{-- Shopping cart button --}}
                 <button title="Cart" class="inline-flex items-center text-base px-2 hover:underline ">
-                    <div class="tooltip" title=""></div>
                     <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
                 </button>
+                <x-primary-button title="Checkout">
+                    Checkout
+                </x-primary-button>
 
             </div>
+
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
