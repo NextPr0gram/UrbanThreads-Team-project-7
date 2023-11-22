@@ -15,6 +15,8 @@ export default {
             'snow-white': '#D6F2FF',
             'light-gray': '#A1A1A1',
             'dark-gray': '#1A1A1A',
+            'navy-blue': '#1B2836',
+
         },
         extend: {
             fontFamily: {
