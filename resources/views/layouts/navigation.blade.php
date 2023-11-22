@@ -23,7 +23,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center text-base  hover:underline">
+                        <button class="inline-flex items-center text-base  hover:underline pr-2">
                             <div class="px-1">{{ Auth::user()->name }}</div>
                             <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
 
@@ -60,14 +60,16 @@
                 </x-dropdown>
 
                 {{-- Wishlist button --}}
-                <button title="hello" class="inline-flex items-center text-base px-2 hover:underline ">
+                <button title="Wishlist" class="inline-flex items-center text-base px-2 hover:underline ">
                     <div class="tooltip" title=""></div>
                     <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
                 </button>
 
                 {{-- Shopping cart button --}}
-
-
+                <button title="Cart" class="inline-flex items-center text-base px-2 hover:underline ">
+                    <div class="tooltip" title=""></div>
+                    <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
+                </button>
 
             </div>
 
