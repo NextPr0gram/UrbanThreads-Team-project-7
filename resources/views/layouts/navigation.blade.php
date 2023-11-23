@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9" />
                     </a>
                 </div>
 
@@ -27,16 +27,16 @@
 
             {{-- right side nav-items account, wishlist, cart buttons...--}}
             <div class="flex flex-grow justify-between items-center ms-6">
-                <div>
-                    {{-- Searchbar --}}
-                    <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                        <x-text-input class="hidden md:block "></x-text-input>
-                        <button title="Search" class="px-2 flex-none">
-                            <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
-                        </button>
 
-                    </form>
-                </div>
+                {{-- Searchbar --}}
+                <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
+                    <x-text-input class="hidden md:block w-full"></x-text-input>
+                    <button title="Search" class="px-2 flex-none">
+                        <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
+                    </button>
+
+                </form>
+
 
 
                 {{-- account dropdown button with icon and text --}}
@@ -59,7 +59,7 @@
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class="mx-2">
+                    <x-primary-button title="Checkout" class="mx-2 hidden md:block">
                         Checkout
                     </x-primary-button>
                 </div>
