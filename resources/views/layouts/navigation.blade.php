@@ -28,18 +28,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Searchbar -->
-                <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                    <x-text-input>
-                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
-                    </x-text-input>
-                </form>
+                
                 <x-dropdown align="right" width="48">
-                    <!-- Searchbar -->
-                    <form class="my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                        <x-text-input>
-                            <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
-                        </x-text-input>
-                    </form>
+
                     <x-slot name="trigger">
                         <button class="inline-flex items-center text-base  hover:underline pr-2">
                             <div class="px-1">{{ Auth::user()->name }}</div>
