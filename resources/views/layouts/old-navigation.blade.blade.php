@@ -30,7 +30,9 @@
                 <div>
                     {{-- Searchbar --}}
                     <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                        <x-text-input class="hidden md:block "></x-text-input>
+                        <x-text-input>
+                            <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                        </x-text-input>
                         <button title="Search" class="px-2 flex-none">
                             <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
                         </button>
@@ -41,11 +43,44 @@
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
-                    {{-- Account button --}}
-                    <button title="Account" class="px-2 flex items-center flex-shrink-0">
-                        <div class="pr-2">{{ Auth::user()->name }}</div>
-                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
-                    </button>
+                    <x-dropdown align="right" width="48">
+
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center text-base  hover:underline pr-2">
+                                <div class="px-1">{{ Auth::user()->name }}</div>
+                                <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+
+                                {{-- dropdown icon, uncomment to show--}}
+                                {{-- <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div> --}}
+                            </button>
+                        </x-slot>
+
+
+
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+
+
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
 
                     {{-- Wishlist button --}}
                     <button title="Wishlist" class="px-2 flex-none">
