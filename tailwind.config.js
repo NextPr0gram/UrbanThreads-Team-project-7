@@ -36,7 +36,10 @@ export default {
             },
             maxWidth: {
                 '8xl': '112.5rem' // 1800px
-            }
+            },
+            borderWidth: {
+                '3': '3px',
+              },
         },
     },
 

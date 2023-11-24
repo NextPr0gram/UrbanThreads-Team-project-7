@@ -6,7 +6,7 @@
 </nav>
 
 {{-- Main header --}}
-<nav x-data="{ open: false }" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
+<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9" />
+                        <x-application-logo class="block h-9 mx-2" />
                     </a>
                 </div>
 
@@ -22,15 +22,16 @@
 
                 {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                         {{ __('Dashboard') }}
-                                    </x-nav-link> --}}
+                                    </x-nav-
+                                    .0> --}}
             </div>
 
             {{-- right side nav-items account, wishlist, cart buttons...--}}
-            <div class="flex flex-grow justify-between items-center ms-6">
+            <div class="flex flex-grow justify-end md:justify-between items-center">
 
                 {{-- Searchbar --}}
-                <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
-                    <x-text-input class="hidden md:block w-full"></x-text-input>
+                <form class="flex my-auto px-0 md:px-8" method="POST" action="{{-- add route for search --}}">
+                    <x-text-input class="hidden md:block w-full "></x-text-input>
                     <button title="Search" class="px-2 flex-none">
                         <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
                     </button>
@@ -42,24 +43,24 @@
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
                     {{-- Account button --}}
-                    <button title="Account" class="px-2 flex items-center flex-shrink-0">
-                        <div class="pr-2">{{ Auth::user()->name }}</div>
+                    <button @click="open = ! open" title="Account" class="px-2 flex items-center flex-shrink-0">
+                        <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
                         <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
                     </button>
 
                     {{-- Wishlist button --}}
-                    <button title="Wishlist" class="px-2 flex-none">
+                    <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
                         <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
                     </button>
 
 
                     {{-- Shopping cart button --}}
-                    <button title="Cart" class="px-2 flex-none">
+                    <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
                         <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class="mx-2 hidden md:block">
+                    <x-primary-button title="Checkout" class="flex-shrink-0 mx-2 hidden md:block">
                         Checkout
                     </x-primary-button>
                 </div>
@@ -78,6 +79,18 @@
                 </button>
             </div> --}}
         </div>
+    </div>
+    <div x-show="showMenu" @click.away="showMenu = false" class="md:hidden mt-2">
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Home</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">About</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Services</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Contact</a>
+    </div>
+    <div x-show="showCart" @click.away="showCart = false" class="md:hidden mt-2">
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">1</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">2</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">3</a>
+        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">4</a>
     </div>
 
 
