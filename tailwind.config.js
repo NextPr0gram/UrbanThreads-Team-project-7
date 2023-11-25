@@ -22,6 +22,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            borderWidth: {
+                '3': '3px',
+              },
         },
     },
 
