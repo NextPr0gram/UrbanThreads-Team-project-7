@@ -1,9 +1,9 @@
 {{-- Secondary nav bar on top of the header --}}
-<nav class="flex justify-end h-9 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-base">
+{{-- <nav class="flex justify-end h-9 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-base">
     <a class="pr-2 " href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
     <a class="pl-2" href="">Help</a>
-</nav>
+</nav> --}}
 
 {{-- Main header --}}
 <nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
@@ -27,16 +27,16 @@
             </div>
 
             {{-- right side nav-items account, wishlist, cart buttons...--}}
-            <div class="flex flex-grow justify-end md:justify-between items-center">
+            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
 
                 {{-- Searchbar --}}
-                <form class="flex my-auto px-0 md:px-8" method="POST" action="{{-- add route for search --}}">
+                {{-- <form class="flex my-auto px-0 md:px-8" method="POST" action="">
                     <x-text-input class="hidden md:block w-full "></x-text-input>
                     <button title="Search" class="px-2 flex-none">
                         <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
                     </button>
 
-                </form>
+                </form> --}}
 
 
 
@@ -49,9 +49,9 @@
                     </button>
 
                     {{-- Wishlist button --}}
-                    <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
+                    {{-- <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
                         <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
-                    </button>
+                    </button> --}}
 
 
                     {{-- Shopping cart button --}}
