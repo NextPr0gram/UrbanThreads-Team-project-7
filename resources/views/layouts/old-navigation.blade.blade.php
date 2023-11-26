@@ -1,12 +1,12 @@
 {{-- Secondary nav bar on top of the header --}}
-{{-- <nav class="flex justify-end h-9 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-base">
+<nav class="flex justify-end h-9 items-center max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-base">
     <a class="pr-2 " href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
     <a class="pl-2" href="">Help</a>
-</nav> --}}
+</nav>
 
 {{-- Main header --}}
-<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
+<nav x-data="{ open: false }" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 mx-2" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
@@ -22,36 +22,31 @@
 
                 {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                         {{ __('Dashboard') }}
-                                    </x-nav-
-                                    .0> --}}
+                                    </x-nav-link> --}}
             </div>
 
             {{-- right side nav-items account, wishlist, cart buttons...--}}
-            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
+            <div class="flex flex-grow justify-between items-center ms-6">
+                <div>
+                    {{-- Searchbar --}}
+                    <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
+                        <x-text-input>
+                            <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                        </x-text-input>
+                        <button title="Search" class="px-2 flex-none">
+                            <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
+                        </button>
 
-                {{-- Searchbar --}}
-                {{-- <form class="flex my-auto px-0 md:px-8" method="POST" action="">
-                    <x-text-input class="hidden md:block w-full "></x-text-input>
-                    <button title="Search" class="px-2 flex-none">
-                        <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
-                    </button>
-
-                </form> --}}
-
+                    </form>
+                </div>
 
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
-                    {{-- Account button mobile--}}
-                    <button @click="open = ! open" title="Account" class="md:hidden px-2 flex items-center flex-shrink-0">
-                        <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
-                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
-                    </button>
-                    {{-- Account button--}}
-                    <x-dropdown align="right" width="48" class="">
+                    <x-dropdown align="right" width="48">
 
                         <x-slot name="trigger">
-                            <button class="hidden md:inline-flex items-center text-base  hover:underline pr-2">
+                            <button class="inline-flex items-center text-base  hover:underline pr-2">
                                 <div class="px-1">{{ Auth::user()->name }}</div>
                                 <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
 
@@ -88,18 +83,18 @@
                     </x-dropdown>
 
                     {{-- Wishlist button --}}
-                    {{-- <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
+                    <button title="Wishlist" class="px-2 flex-none">
                         <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
-                    </button> --}}
+                    </button>
 
 
                     {{-- Shopping cart button --}}
-                    <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
+                    <button title="Cart" class="px-2 flex-none">
                         <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <x-primary-button title="Checkout" class="mx-2">
                         Checkout
                     </x-primary-button>
                 </div>
@@ -119,27 +114,15 @@
             </div> --}}
         </div>
     </div>
-    <div x-show="showMenu" @click.away="showMenu = false" class="md:hidden mt-2">
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Home</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">About</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Services</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Contact</a>
-    </div>
-    <div x-show="showCart" @click.away="showCart = false" class="md:hidden mt-2">
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">1</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">2</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">3</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">4</a>
-    </div>
 
 
-    <!-- Responsive account navigation menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden overflow-hidden transition-all ease-in-out duration-300">
-        {{-- <div class="pt-2 pb-3 space-y-1">
+    <!-- Responsive Navigation Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div> --}}
+        </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
@@ -169,12 +152,12 @@
 </nav>
 
 {{-- Secondary nav bar at the bottom of the header --}}
-<div class="bg-navy-blue font-lexend-deca">
+<div class="bg-navy-blue">
     <nav class=" flex justify-center h-9 items-center text-base ">
-        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Women</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Men</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Kids</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Limited</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Women</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Men</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Kids</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Limited</a>
     </nav>
 </div>
 
