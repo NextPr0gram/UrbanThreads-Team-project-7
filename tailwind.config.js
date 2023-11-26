@@ -17,11 +17,13 @@ export default {
             'navy-blue': '#1B2836',
             'transparent': 'transparent'
 
+
+        },
+        fontFamily: {
+            'sans': ['lexend-deca', 'formula1'],
         },
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
+
             fontSize: {
                 'xs': '0.75rem',    // Extra Small
                 'sm': '0.875rem',   // Small

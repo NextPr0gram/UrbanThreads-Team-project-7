@@ -42,11 +42,50 @@
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
-                    {{-- Account button --}}
-                    <button @click="open = ! open" title="Account" class="px-2 flex items-center flex-shrink-0">
+                    {{-- Account button mobile--}}
+                    <button @click="open = ! open" title="Account" class="md:hidden px-2 flex items-center flex-shrink-0">
                         <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
                         <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
                     </button>
+                    {{-- Account button--}}
+                    <x-dropdown align="right" width="48" class="">
+
+                        <x-slot name="trigger">
+                            <button class="hidden md:inline-flex items-center text-base  hover:underline pr-2">
+                                <div class="px-1">{{ Auth::user()->name }}</div>
+                                <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+
+                                {{-- dropdown icon, uncomment to show--}}
+                                {{-- <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div> --}}
+                            </button>
+                        </x-slot>
+
+
+
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+
+
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
 
                     {{-- Wishlist button --}}
                     {{-- <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
@@ -60,7 +99,7 @@
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class="flex-shrink-0 mx-2 hidden md:block">
+                    <x-primary-button title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
                     </x-primary-button>
                 </div>
@@ -94,13 +133,13 @@
     </div>
 
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+    <!-- Responsive account navigation menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden overflow-hidden transition-all ease-in-out duration-300">
+        {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
+        </div> --}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
@@ -130,12 +169,12 @@
 </nav>
 
 {{-- Secondary nav bar at the bottom of the header --}}
-<div class="bg-navy-blue">
+<div class="bg-navy-blue font-lexend-deca">
     <nav class=" flex justify-center h-9 items-center text-base ">
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Women</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Men</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Kids</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all duration-100 ease-in-out" href="">Limited</a>
+        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Women</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Men</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Kids</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Limited</a>
     </nav>
 </div>
 
