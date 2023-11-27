@@ -20,7 +20,9 @@ export default {
 
         },
         fontFamily: {
-            'sans': ['lexend-deca', 'formula1'],
+            'lexend': ['Lexend Deca', 'sans-serif'],
+            'lexend-bold': ['Lexend Deca Bold', 'sans-serif'],
+            'formula1': ['Formula1 Display Bold', 'sans-serif'],
         },
         extend: {
 

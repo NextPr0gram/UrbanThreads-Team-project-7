@@ -1,23 +1,22 @@
-
 @font-face {
-    font-family: 'lexend-deca';
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Lexend Deca';
     src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-font-family: 'lexend-deca';
-font-style: normal;
-font-weight: bold;
-src: url('/fonts/LexendDeca-Bold.ttf') format('truetype');
+    font-family: 'Lexend Deca Bold';
+    src: url('/fonts/LexendDeca-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {
-font-family: 'formula1';
-font-style: normal;
-font-weight: normal;
-src: url('/fonts/Formula1-Bold_web_0.ttf') format('truetype');
+    font-family: 'Formula1 Display Bold';
+    src: url('/fonts/Formula1-Bold_web_0.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
 @tailwind base;
