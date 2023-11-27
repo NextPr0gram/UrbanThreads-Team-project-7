@@ -58,15 +58,15 @@
               <h2 class="mb-6 text-lg font-formula1 text-snow-white">Our Apps</h2>
               <ul class="text-snow-white ">
                   <li class="mb-4">
-                      <a href="#" class="hover:underline">iOS</a>
+                      <a href="#" class="hover:underline"><img class="h-9" src="{{asset('images/playstore-app.svg')}}" alt=""></a>
                   </li>
                   <li class="mb-4">
-                      <a href="#" class="hover:underline">Android</a>
+                      <a href="#" class="hover:underline"><img class="h-9" src="{{asset('images/appstore-app.svg')}}" alt=""></a>
                   </li>
               </ul>
           </div>
       </div>
-    <hr class="my-6 border-black sm:mx-auto lg:my-8" />
+    <hr class="my-6 mx-4 border-bluish-purple border-2 lg:my-8" />
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class=" sm:flex sm:items-center sm:justify-between">
             <div class="flex justify-center items-center pb-4 sm:pb-0">

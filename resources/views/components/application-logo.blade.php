@@ -1,1 +1,1 @@
-<img src="{{asset('icons/urbanthreads-logo-dark.svg')}}" alt="">
+<img src="{{asset('images/urbanthreads-logo-dark.svg')}}" alt="">
