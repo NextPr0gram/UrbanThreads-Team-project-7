@@ -1,1 +1,4 @@
-<img src="{{asset('images/urbanthreads-logo-dark.svg')}}" alt="">
+
+@props(['dark' => true])
+
+<img src="{{ asset($dark ? 'images/urbanthreads-logo-dark.svg' : 'images/urbanthreads-logo-light.svg') }}" alt="">

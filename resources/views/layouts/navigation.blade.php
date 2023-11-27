@@ -33,7 +33,7 @@
                 {{-- <form class="flex my-auto px-0 md:px-8" method="POST" action="">
                     <x-text-input class="hidden md:block w-full "></x-text-input>
                     <button title="Search" class="px-2 flex-none">
-                        <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
                     </button>
 
                 </form> --}}
@@ -44,16 +44,25 @@
                 <div class="flex items-center">
                     {{-- Account button mobile--}}
                     <button @click="open = ! open" title="Account" class="md:hidden px-2 flex items-center flex-shrink-0">
-                        <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
-                        <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                        @auth
+                            <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
+                        @else
+                            <div class="pr-2 hidden md:block text-base">Account</div>
+                        @endauth
+
+                        <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
                     </button>
                     {{-- Account button--}}
                     <x-dropdown align="right" width="48" class="">
 
                         <x-slot name="trigger">
                             <button class="hidden md:inline-flex items-center text-base  hover:underline pr-2">
+                                @auth
                                 <div class="px-1">{{ Auth::user()->name }}</div>
-                                <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                                @else
+                                <div class="px-1 text-base">Account</div>
+                                @endauth
+                                <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
 
                                 {{-- dropdown icon, uncomment to show--}}
                                 {{-- <div class="ms-1">
@@ -68,34 +77,47 @@
 
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
-
-
-
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                            @auth
+                                <!-- Show profile and logout for authenticated users -->
+                                <x-dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
                                 </x-dropdown-link>
-                            </form>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            @else
+                                <!-- Show login and register for guests (not authenticated users) -->
+                                <x-dropdown-link :href="route('login')">
+                                    {{ __('Login') }}
+                                </x-dropdown-link>
+
+                                @if (Route::has('register'))
+                                    <x-dropdown-link :href="route('register')">
+                                        {{ __('Register') }}
+                                    </x-dropdown-link>
+                                @endif
+                            @endauth
                         </x-slot>
+
                     </x-dropdown>
 
                     {{-- Wishlist button --}}
                     {{-- <button @click="showMenu = !showMenu" title="Wishlist" class="px-2 flex-none">
-                        <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
                     </button> --}}
 
 
                     {{-- Shopping cart button --}}
                     <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
-                        <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
                     </button>
 
                     {{-- Checkout button --}}

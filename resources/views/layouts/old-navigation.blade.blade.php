@@ -31,10 +31,10 @@
                     {{-- Searchbar --}}
                     <form class="flex my-auto px-8" method="POST" action="{{-- add route for search --}}">
                         <x-text-input>
-                            <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                            <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
                         </x-text-input>
                         <button title="Search" class="px-2 flex-none">
-                            <img src="{{asset('icons/search-icon-dark.svg')}}" alt="">
+                            <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
                         </button>
 
                     </form>
@@ -48,7 +48,7 @@
                         <x-slot name="trigger">
                             <button class="inline-flex items-center text-base  hover:underline pr-2">
                                 <div class="px-1">{{ Auth::user()->name }}</div>
-                                <img src="{{asset('icons/account-icon-dark.svg')}}" alt="">
+                                <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
 
                                 {{-- dropdown icon, uncomment to show--}}
                                 {{-- <div class="ms-1">
@@ -84,13 +84,13 @@
 
                     {{-- Wishlist button --}}
                     <button title="Wishlist" class="px-2 flex-none">
-                        <img src="{{asset('icons/wishlist-icon-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
                     </button>
 
 
                     {{-- Shopping cart button --}}
                     <button title="Cart" class="px-2 flex-none">
-                        <img src="{{asset('icons/shopping-cart-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
                     </button>
 
                     {{-- Checkout button --}}
