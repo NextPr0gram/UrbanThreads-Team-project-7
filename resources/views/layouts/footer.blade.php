@@ -1,6 +1,6 @@
 
 
-<footer class=sticky-bottom">
+<footer class="sticky top-[100vh]">
     <div class="flex justify-center py-16">
         <div class="px-8"><a  href="#"><img class="p-" src="{{asset('icons/social-media/pinterest-icon-dark.svg')}}" alt=""></a></div>
         <div class="px-8"><a  href="#"><img class="p-" src="{{asset('icons/social-media/facebook-icon-dark.svg')}}" alt=""></a></div>

@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-lexend antialiased">
-        <div class="flex flex-col h-screen  bg-white">
+        <div class="flex flex-col h-screen bg-white">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -28,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="flex-grow">
+            <main class=" text-base text-lexend">
                 {{ $slot }}
             </main>
 
