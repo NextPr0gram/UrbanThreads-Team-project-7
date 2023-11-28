@@ -31,7 +31,3 @@ return new class extends Migration
         Schema::dropIfExists('personal_access_tokens');
     }
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> backend

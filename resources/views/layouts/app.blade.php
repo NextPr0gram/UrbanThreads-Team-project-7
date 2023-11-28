@@ -14,13 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-<<<<<<< HEAD
     <body class="font-lexend antialiased">
         <div class="flex flex-col h-screen bg-white">
-=======
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
->>>>>>> backend
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -33,18 +28,12 @@
             @endif
 
             <!-- Page Content -->
-<<<<<<< HEAD
             <main class=" text-base text-lexend">
                 {{ $slot }}
             </main>
 
             <!-- Footer -->
             @include('layouts.footer')
-=======
-            <main>
-                {{ $slot }}
-            </main>
->>>>>>> backend
         </div>
     </body>
 </html>
