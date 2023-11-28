@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
     font-family: 'Lexend Deca';
     src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
@@ -19,6 +20,8 @@
     font-style: normal;
 }
 
+=======
+>>>>>>> backend
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

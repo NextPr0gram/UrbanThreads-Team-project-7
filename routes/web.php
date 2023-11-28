@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('home');
 });
 
 Route::get('/home', function () {
     return view('home');
+=======
+    return view('welcome');
+>>>>>>> backend
 });
 
 Route::get('/dashboard', function () {
