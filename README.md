@@ -48,4 +48,3 @@ Open XAMPP and start the Apache server and the MySQL server.
 
 - Anaf Ibn Karim - [@NextPr0gram](https://www.github.com/NextPr0gram)
 
-![UrbanTheads](https://imgur.com/nJpemNp)
