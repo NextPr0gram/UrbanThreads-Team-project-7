@@ -31,3 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::mailPreview();
 
 require __DIR__.'/auth.php';
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
