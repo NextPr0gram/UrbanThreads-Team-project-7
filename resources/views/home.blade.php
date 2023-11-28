@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <x-app-layout>
 
 <!DOCTYPE html>
@@ -19,3 +20,9 @@
 </html>
 
 </x-app-layout>
+=======
+{{-- example-page.blade.php --}}
+<x-app-layout>
+    {{-- enter you code here --}}
+</x-app-layout>
+>>>>>>> 4795190611724d2415781131bbc7d45439f91413
