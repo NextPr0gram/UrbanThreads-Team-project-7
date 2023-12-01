@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-lexend antialiased">
-        <div class="flex flex-col h-screen bg-white">
+        <div class="flex flex-col h-screen bg-white bg-background-image bg-right-top bg-cover">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

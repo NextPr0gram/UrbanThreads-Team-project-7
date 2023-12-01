@@ -26,7 +26,9 @@ export default {
             'formula1': ['Formula1 Display Bold', 'sans-serif'],
         },
         extend: {
-
+            backgroundImage: {
+                'background-image': "url('/images/topography-background.svg')",
+              },
             fontSize: {
                 'xs': '0.75rem',    // Extra Small
                 'sm': '0.875rem',   // Small

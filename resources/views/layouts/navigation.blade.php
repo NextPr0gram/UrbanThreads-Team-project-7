@@ -6,7 +6,7 @@
 </nav> --}}
 
 {{-- Main header --}}
-<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
+<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-transparent dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -47,10 +47,10 @@
                         @auth
                             <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
                         @else
-                            <div class="pr-2 hidden md:block text-base">Account</div>
+                            <div class="pr-2 hidden md:block text-base ">Account</div>
                         @endauth
 
-                        <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
                     </button>
                     {{-- Account button--}}
                     <x-dropdown align="right" width="48" class="">
@@ -60,9 +60,9 @@
                                 @auth
                                 <div class="px-1">{{ Auth::user()->name }}</div>
                                 @else
-                                <div class="px-1 text-base">Account</div>
+                                    <div class="px-1 text-base text-snow-white">Account</div>
                                 @endauth
-                                <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
+                                <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
 
                                 {{-- dropdown icon, uncomment to show--}}
                                 {{-- <div class="ms-1">
@@ -117,13 +117,13 @@
 
                     {{-- Shopping cart button --}}
                     <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
-                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
-                    </x-primary-button>
+                    </x-primary-button-light>
                 </div>
 
 
