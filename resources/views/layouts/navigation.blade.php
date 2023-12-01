@@ -43,7 +43,7 @@
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
                     {{-- Account button mobile--}}
-                    <button @click="open = ! open" title="Account" class="md:hidden px-2 flex items-center flex-shrink-0">
+                    <button @click="open = ! open" title="Account" class="sm:hidden px-2 flex items-center flex-shrink-0">
                         @auth
                             <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
                         @else
@@ -56,7 +56,7 @@
                     <x-dropdown align="right" width="48" class="">
 
                         <x-slot name="trigger">
-                            <button class="hidden md:inline-flex items-center text-base  hover:underline pr-2">
+                            <button class="hidden sm:inline-flex items-center text-base  hover:underline pr-2">
                                 @auth
                                 <div class="px-1">{{ Auth::user()->name }}</div>
                                 @else
