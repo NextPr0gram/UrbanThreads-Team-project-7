@@ -40,6 +40,9 @@ export default {
                 '4xl': '2.25rem',   // 4 Extra Large
                 '5xl': '3rem',      // 5 Extra Large
                 '6xl': '4rem',      // 6 Extra Large
+                '7xl': '4.5rem',    // 7 Extra Large
+                '8xl': '6rem',      // 8 Extra Large
+                '9xl': '8rem',      // 9 Extra Large
                 // Add more custom sizes as needed
             },
             maxWidth: {
