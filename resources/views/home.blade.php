@@ -1,6 +1,8 @@
-{{-- example-page.blade.php --}}
 
 <x-app-layout>
-    {{-- enter you code here --}}
-    <div class=""></div>
+    <x-slot name="header">
+        <h2 class="">
+            Home
+        </h2>
+    </x-slot>
 </x-app-layout>
