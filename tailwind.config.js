@@ -17,6 +17,7 @@ export default {
             'navy-blue': '#1B2836',
             'transparent': 'transparent',
             'white': '#FFFFFF',
+            'red': "#b91c1c"
 
 
         },
