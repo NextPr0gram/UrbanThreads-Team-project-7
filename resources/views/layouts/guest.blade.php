@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class=" flex sm:justify-center items-center sm:pt">
-        <div class="">
+    <div class="flex sm:justify-center items-center sm:pt">
+        <div class="h-[50rem]">
             <img src="images/auth/lady-image-auth.png" alt="">
         </div>
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 b bg-white bg-opacity-40 shadow-md backdrop-blur-sm overflow-hidden border-2 border-navy-blue">
@@ -11,7 +11,7 @@
             </div>
             {{ $slot }}
         </div>
-        <div class="">
+        <div class="h-[50rem]">
             <img src="images/auth/man-image-auth.png" alt="">
         </div>
     </div>
