@@ -203,7 +203,7 @@
 {{-- Secondary nav bar at the bottom of the header --}}
 <div class="bg-navy-blue font-lexend-deca">
     <nav class=" flex justify-center h-9 items-center text-base ">
-        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Women</a>
+        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('layouts.products') }}">Women</a>
         <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Men</a>
         <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Kids</a>
         <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Limited</a>
