@@ -94,9 +94,9 @@
                     </button>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class="mx-2">
+                    <x-primary-button-dark title="Checkout" class="mx-2">
                         Checkout
-                    </x-primary-button>
+                    </x-primary-button-dark>
                 </div>
 
 

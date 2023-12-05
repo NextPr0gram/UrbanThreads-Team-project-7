@@ -36,7 +36,7 @@ switch ($width) {
             class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
             style="display: none;"
             @click="open = false">
-        <div class=" border-3 border-bluish-purple  bg-snow-white{{ $contentClasses }}">
+        <div class="hidden sm:block border-3 border-x-navy-blue  bg-snow-white{{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>

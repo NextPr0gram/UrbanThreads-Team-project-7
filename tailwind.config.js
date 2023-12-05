@@ -17,6 +17,7 @@ export default {
             'navy-blue': '#1B2836',
             'transparent': 'transparent',
             'white': '#FFFFFF',
+            'red': "#b91c1c"
 
 
         },
@@ -26,7 +27,9 @@ export default {
             'formula1': ['Formula1 Display Bold', 'sans-serif'],
         },
         extend: {
-
+            backgroundImage: {
+                'background-image': "url('/images/topography-background.svg')",
+              },
             fontSize: {
                 'xs': '0.75rem',    // Extra Small
                 'sm': '0.875rem',   // Small
@@ -38,6 +41,9 @@ export default {
                 '4xl': '2.25rem',   // 4 Extra Large
                 '5xl': '3rem',      // 5 Extra Large
                 '6xl': '4rem',      // 6 Extra Large
+                '7xl': '4.5rem',    // 7 Extra Large
+                '8xl': '6rem',      // 8 Extra Large
+                '9xl': '8rem',      // 9 Extra Large
                 // Add more custom sizes as needed
             },
             maxWidth: {
