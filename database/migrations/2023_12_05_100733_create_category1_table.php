@@ -12,14 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('category1', function (Blueprint $table) {
+            /**
+             * * Category 1 is the table that contains these categories:
+             * * - Men
+             * * - Women
+             * * - Kids
+             * ? These could be linked to a product in the products table for filtering purposes
+            */
+
             $table->id();
-            $table->string('name');
+            $table->string('name'); //? Category name
             $table->string('slug');
-            $table->longText('description');
-           // $table->string('image');
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->longText('description'); //? Category description
+            $table->string('image')->default(""); //? Category image
+            $table->string('meta_title'); //? Category meta title
+            $table->string('meta_description'); //? Category meta description
+            $table->string('meta_keywords'); //? Category meta keywords
             $table->timestamps();
         });
     }
