@@ -34,7 +34,7 @@
         </div>
 
         <!-- Cart Summary Container -->
-        <div class="w-[414px] h-56 px-4 py-[15px] bg-white bg-opacity-40 border-2 border-neutral-400 backdrop-blur-[18px] flex-col justify-start items-center inline-flex">
+        <div class="w-[414px] h-56 px-4 py-[15px] bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px] flex-col justify-start items-center inline-flex">
             <!-- Subtotal, Discount, Total -->
             <div class="self-stretch h-12 px-[21px] justify-between items-center inline-flex">
                 <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
@@ -62,10 +62,8 @@
             </div>
 
             <!-- Checkout Button -->
-            <div class="self-stretch justify-center items-center inline-flex mt-4">
-                <button class="grow shrink basis-0 h-[46px] px-[26px] py-3.5 border-2 border-indigo-900 justify-center items-center gap-2.5 flex">
-                    <div class="text-indigo-900 text-sm font-normal font-['Lexend Deca']">Checkout</div>
-                </button>
+            <div class="self-stretch justify-center mt-4">
+                <a href="{{ route('checkout') }}"><x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark></a>
             </div>
         </div>
 

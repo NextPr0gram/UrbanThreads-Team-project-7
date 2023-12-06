@@ -13,7 +13,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 mx-2" />
                     </a>
                 </div>
@@ -116,14 +116,14 @@
 
 
                     {{-- Shopping cart button --}}
-                    <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
+                    <a href="{{ route('cart') }}"><button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
                         <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
-                    </button>
+                    </button></a>
 
                     {{-- Checkout button --}}
-                    <x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <a href="{{ route('checkout') }}"><x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
-                    </x-primary-button-light>
+                    </x-primary-button-light></a>
                 </div>
 
 
