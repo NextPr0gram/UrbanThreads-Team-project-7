@@ -21,7 +21,7 @@ class Category2TableSeeder extends Seeder
                     'description' => 'High-quality hoodies for all occasions.',
                     'status' => 1,
                     'popular' => 1,
-                    //'image' => 
+                    //'image' => assets,
                     'meta_title' => 'Hoodies Collection',
                     'meta_description' => 'Explore our trendy hoodie collection.',
                     'meta_keywords' => 'hoodies, fashion, comfortable',
@@ -34,7 +34,7 @@ class Category2TableSeeder extends Seeder
                     'description' => 'Stylish and comfortable T-shirts for every style.',
                     'status' => 1,
                     'popular' => 1,
-                    //'image' => 
+                    //'image' => assets,
                     'meta_title' => 'T-shirts Collection',
                     'meta_description' => 'Discover our diverse T-shirt collection.',
                     'meta_keywords' => 't-shirts, casual, fashion',
@@ -47,7 +47,7 @@ class Category2TableSeeder extends Seeder
                     'description' => 'Stay warm and stylish with our jacket collection.',
                     'status' => 1,
                     'popular' => 1,
-                    //'image' => 
+                //'image' => assets,
                     'meta_title' => 'Jackets Collection',
                     'meta_description' => 'Explore our latest jacket styles.',
                     'meta_keywords' => 'jackets, outerwear, fashion',
@@ -60,7 +60,7 @@ class Category2TableSeeder extends Seeder
                     'description' => 'Comfortable and trendy trousers for any occasion.',
                     'status' => 1,
                     'popular' => 0,
-                    //'image' => 
+                    //'image' => assets,
                     'meta_title' => 'Trousers Collection',
                     'meta_description' => 'Discover our stylish trouser options.',
                     'meta_keywords' => 'trousers, pants, fashion',
@@ -73,7 +73,7 @@ class Category2TableSeeder extends Seeder
                     'description' => 'Enhance your style with our fashionable accessories.',
                     'status' => 1,
                     'popular' => 0,
-                    //'image' => 
+                   // 'image' => assets,
                     'meta_title' => 'Accessories Collection',
                     'meta_description' => 'Complete your look with our stylish accessories.',
                     'meta_keywords' => 'accessories, fashion, style',
