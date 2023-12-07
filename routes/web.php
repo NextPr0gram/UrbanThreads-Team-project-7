@@ -48,4 +48,8 @@ Route::get('/home', function () {
 
 Route::get('/cart', function () {
     return view('cart');
-})->name('cart.index');
+})->name('cart');
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
