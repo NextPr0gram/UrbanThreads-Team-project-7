@@ -13,10 +13,15 @@
         <!-- Heading 2 "Elevate Your Style. Discover the latest trends in fashion" -->
        
         <div class="mb-4 ml-4 sm:ml-20 flex flex-wrap py-3">
-        <h2>
+        <h2 class="sm:hidden">
             <span class="absolute left-0 inline-block px-0.5 ml-1 h-12 bg-bluish-purple sm:ml-20"></span>
             <div class="pt-1 pr-1">Elevate Your Style. Discover the latest</div>
             <div class="-pt-4">trends in fashion.</div>
+            </h2>
+
+            <h2 class="hidden sm:flex">
+            <span class="absolute left-0 inline-block px-0.5 ml-1 h-8 bg-bluish-purple sm:ml-20"></span>
+            <div class="pt-1 pl-2">Elevate Your Style. Discover the latest trends in fashion.</div>
             </h2>
         </div>
 
