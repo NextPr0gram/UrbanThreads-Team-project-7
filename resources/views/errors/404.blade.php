@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="flex justify-center py-20" >
-        <div class="flex flex-col sm:flex-row justify-center py-16 w-fit bg-white bg-opacity-40 backdrop-blur border-3 border-navy-blue">
+        <div class="flex flex-col sm:flex-row justify-center py-16 w-fit bg-white bg-opacity-40 backdrop-blur border-3 border-navy-blue rounded-xg">
             <div class="px-8" ><img src="\images\errors\sad-pepe-404.svg" alt=""></div>
             <div class="block self-center px-8">
                 <h1 class="font-formula1 text-6xl text-bluish-purple " >404</h1>
