@@ -4,20 +4,24 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AllBasicProductsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * 
+     *
      * To add all basic products for MVP
      * made by @Neha - to be finished by @KJ
-     * 
+     *
      */
+
+     // TODO - add 5 products for each category (hoodies, tshirts, jackets, trousers, accessories)
     public function run(): void
     {
         //
         DB::table('products')->insert([
+            [
             'c1_id' => 1, //MALE PRODUCT
             'c2_id' => 1, //Hoodie
             'name' => 'Cool Hoodie 2',
@@ -67,6 +71,6 @@ class AllBasicProductsSeeder extends Seeder
             'meta_keywords' => '',
             'created_at' => now(),
             'updated_at' => now(),
-    ]);
+    ]]);
     }
 }

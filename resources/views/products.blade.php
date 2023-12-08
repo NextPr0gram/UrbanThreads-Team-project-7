@@ -1,16 +1,16 @@
 {{-- products.blade.php --}}
 
 <x-app-layout>
-<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-x-2 sm:gap-y-20 md:gap-x-26 md:gap-y-20 lg:gap-x-26 lg:gap-y-20 gap-y-4 my-52">
-       <div><x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-
-       <div> <x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-       <div> <x-products-image></x-products-image></div>
-       </div>
-
+    <div class="">
+        <h1 class="mt-5 ml-20 font-formula1 text-6xl">{{ $category }}</h1> <!-- This is the category title fetched by the product controller -->
+        <div class="grid grid-cols-3 mt-5 place-items-center justify-center content-center gap-y-5">
+            @foreach ($products as $product) <!-- This is the products array fetched by the product controller for all products in the category -->
+                <div>
+                    <a href="{{ route('show', ['slug' => $product->slug]) }}"> <!-- This is the route to the page for each individual product -->
+                        <x-products-card title='{{ $product->name }}' price='£{{ $product->selling_price }}'></x-products-card></a>
+                        <!-- This is the products image component, which is a card with the product name and price -->
+                </div>
+            @endforeach
+        </div>
+    </div>
 </x-app-layout>

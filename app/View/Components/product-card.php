@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ProductImage extends Component
+class ProductCard extends Component
 {
     public $title; // ** This is the title of the product
     public $image; // ** This is the image of the product
@@ -26,6 +26,6 @@ class ProductImage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.products-image');
+        return view('components.products-card');
     }
 }
