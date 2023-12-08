@@ -203,11 +203,11 @@
 {{-- Secondary nav bar at the bottom of the header --}}
 <div class="bg-navy-blue font-lexend-deca">
     <nav class=" flex justify-center h-9 items-center text-base ">
-        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Hoodies</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Shirts</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Trousers</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Hats</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Accessories</a>
+        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('hoodies') }}">Hoodies</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('tshirts') }}">T-Shirts</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('trousers') }}">Trousers</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('jackets') }}">Jackets</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('accessories') }}">Accessories</a>
     </nav>
 </div>
 

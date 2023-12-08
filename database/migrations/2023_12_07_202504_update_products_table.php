@@ -22,6 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('c2_id')->nullable()->before('c1_id');
             $table->foreign('c2_id')->references('id')->on('category2');
         });
+
+        // 3. Add slug column after 'name
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('slug')->nullable()->after('name');
+        });
     }
 
     /**
@@ -39,6 +44,11 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['c2_id']);
             $table->dropColumn('c2_id');
+        });
+
+        // 3. Remove 'slug' column
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('slug');
         });
     }
 };
