@@ -33,9 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/layouts/products', function(){
-    return view('layouts.products');
-})->name('layouts.products');
+Route::get('/hoodies', function () {
+    return view('hoodies');
+});
 
 
 Route::mailPreview();
