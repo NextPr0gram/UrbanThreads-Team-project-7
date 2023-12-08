@@ -27,12 +27,10 @@ return new class extends Migration
             $table->mediumText('meta_title'); //? The title that appears in the browser (for the page of the specific product)
             $table->mediumText('meta_description');
             $table->mediumText('meta_keywords');
-            $table->unsignedBigInteger('c1_id'); //? The foreign key id of the category1 table - used to link a product to a category
-            $table->unsignedBigInteger('c2_id'); //? The foreign key id of the category2 table - used to link a product to a products category
             $table->timestamps();
 
             // $table->foreign('c1_id')->references('id')->on('category1'); //* The foreign key of the category1 table
-           $table->foreign('c2_id')->references('id')->on('category2'); //* The foreign key of the category2 table
+           // $table->foreign('c2_id')->references('id')->on('category2'); //* The foreign key of the category2 table
         });
     }
 

@@ -16,8 +16,9 @@ class ProductsTableSeeder extends Seeder
             // Insert sample data into the products table
             DB::table('products')->insert([
                 'c1_id' => 1,
-                'c2_id' => 1,
-                'name' => 'Cool Hoodie',
+                'c2_id' => 3,
+                'name' => 'Cool Jacket',
+                'slug' => 'cool-jacket',
                 'description' => 'This is a sample product description.',
                 'original_price' => '50.00',
                 'selling_price' => '40.00',
