@@ -32,9 +32,9 @@
             class="float-right w-2/3 h-2/3" />
     </div>
 
-    <!-- Container for the product cards -->
+    <!-- Container for the product category cards -->
     <div class="flex flex-col sm:flex-row items-center justify-evenly mt-36 sm:mt-80 mb-12 sm:mb-24">
-        <!-- Container for first product -->
+        <!-- Container for first product category -->
         <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
             <a href="{{ route('hoodies') }}">
                 <img src="" alt="" class="" />
@@ -44,7 +44,7 @@
             </a>
         </div>
 
-        <!-- Container for second product -->
+        <!-- Container for second product category -->
         <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
             <a href="{{ route('tshirts') }}">
                 <img src="" alt="" class="" />
@@ -54,7 +54,7 @@
             </a>
         </div>
 
-        <!-- Container for third product -->
+        <!-- Container for third product category -->
         <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
             <a href="{{ route('trousers') }}">
                 <img src="" alt="" class="" />
@@ -64,7 +64,7 @@
             </a>
         </div>
 
-        <!-- Container for fourth product -->
+        <!-- Container for fourth product category -->
         <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
             {{-- soon to be changed to hats --}}
             <a href="{{ route('jackets') }}">
@@ -75,7 +75,7 @@
             </a>
         </div>
 
-        <!-- Container for fifth product -->
+        <!-- Container for fifth product category-->
         <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
             {{-- soon to be changed to hats --}}
             <a href="{{ route('accessories') }}">
