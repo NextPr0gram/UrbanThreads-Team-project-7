@@ -27,7 +27,7 @@
 
     <!-- Container for "Shop now" button component -->
     <div class="mt-3 sm:mt-4 ml-16 sm:ml-28 pl-2">
-        <a href="{{ route('layouts.products') }}">
+        <a href="{{ route('products') }}">
             <x-primary-button-dark> Shop now </x-primary-button-dark>
         </a>
     </div>
@@ -52,7 +52,7 @@
         <div
             class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9"
         >
-            <a href="{{ route('layouts.products') }}">
+            <a href="{{ route('products') }}">
                 <img src="" alt="" class="" />
                 <h3
                     class="text-black font-formula1 leading-normal font-medium px-6 py-6"
@@ -66,7 +66,7 @@
         <div
             class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9"
         >
-            <a href="{{ route('layouts.products') }}">
+            <a href="{{ route('products') }}">
                 <img src="" alt="" class="" />
                 <h3
                     class="text-black font-formula1 leading-normal font-medium px-6 py-6"
@@ -80,7 +80,7 @@
         <div
             class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9"
         >
-            <a href="{{ route('layouts.products') }}">
+            <a href="{{ route('products') }}">
                 <img src="" alt="" class="" />
                 <h3
                     class="text-black font-formula1 leading-normal font-medium px-6 py-6"
@@ -94,7 +94,7 @@
         <div
             class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9"
         >
-            <a href="{{ route('layouts.products') }}">
+            <a href="{{ route('products') }}">
                 <img src="" alt="" class="" />
                 <h3
                     class="text-black font-formula1 leading-normal font-medium px-6 py-6"
