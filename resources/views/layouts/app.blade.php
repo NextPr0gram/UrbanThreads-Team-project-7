@@ -28,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class=" text-base text-lexend bg-transparent">
+            <main class=" text-base text-lexend bg-transparent sm:mx-12 lg:mx-28">
                 {{ $slot }}
             </main>
 
