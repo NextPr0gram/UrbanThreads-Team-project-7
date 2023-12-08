@@ -24,7 +24,7 @@
     </div> --}}
 
     {{-- hero section --}}
-    <div class="flex justify-evenly">
+    <div class="flex justify-evenly items-center my-10">
         {{-- hero text --}}
         <div class="pl-4 py-10">
             <h1 class="px-2 my-5 text-bluish-purple text-3xl font-formula1">
@@ -37,15 +37,15 @@
 
         {{-- hero image --}}
         <div>
-            <img src="" alt="">
+            <img src="images/home-page-hero-image.png" alt="" class="hidden sm:block max-h-[35rem]">
         </div>
     </div>
 
     <!-- Container for the people representing UrbanThreads -->
-    <div class="hidden xl:block absolute top-28 ml-12 right-4" style="top: 100px">
+    {{-- <div class="hidden xl:block absolute top-28 ml-12 right-4" style="top: 100px">
         <img src="images/home-page-hero-image.png" alt="Image of people representing UrbanThreads"
             class="float-right w-2/3 h-2/3" />
-    </div>
+    </div> --}}
 
     <!-- Container for the product category cards -->
     <div class="flex flex-col sm:flex-row items-center justify-evenly mt-36 sm:mt-80 mb-12 sm:mb-24">
