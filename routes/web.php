@@ -38,6 +38,8 @@ Route::get('/hoodies', function () {
 });
 
 
+
+
 Route::mailPreview();
 
 require __DIR__.'/auth.php';
