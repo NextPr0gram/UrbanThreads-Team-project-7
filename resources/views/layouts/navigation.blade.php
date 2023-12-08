@@ -6,14 +6,14 @@
 </nav> --}}
 
 {{-- Main header --}}
-<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
+<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-transparent dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 mx-2" />
                     </a>
                 </div>
@@ -43,26 +43,26 @@
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
                     {{-- Account button mobile--}}
-                    <button @click="open = ! open" title="Account" class="md:hidden px-2 flex items-center flex-shrink-0">
+                    <button @click="open = ! open" title="Account" class="sm:hidden px-2 flex items-center flex-shrink-0 text-snow-white">
                         @auth
-                            <div class="pr-2 hidden md:block">{{ Auth::user()->name }}</div>
+                            <div class="pr-2 hidden md:block text-base">{{ Auth::user()->name }}</div>
                         @else
                             <div class="pr-2 hidden md:block text-base">Account</div>
                         @endauth
 
-                        <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
                     </button>
                     {{-- Account button--}}
                     <x-dropdown align="right" width="48" class="">
 
                         <x-slot name="trigger">
-                            <button class="hidden md:inline-flex items-center text-base  hover:underline pr-2">
+                            <button class="hidden sm:inline-flex items-center text-base text-snow-white  hover:underline pr-2">
                                 @auth
-                                <div class="px-1">{{ Auth::user()->name }}</div>
+                                <div class="px-1 text-snow-white">{{ Auth::user()->name }}</div>
                                 @else
-                                <div class="px-1 text-base">Account</div>
+                                    <div class="px-1 text-base text-snow-white">Account</div>
                                 @endauth
-                                <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
+                                <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
 
                                 {{-- dropdown icon, uncomment to show--}}
                                 {{-- <div class="ms-1">
@@ -116,14 +116,14 @@
 
 
                     {{-- Shopping cart button --}}
-                    <button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
-                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
-                    </button>
+                    <a href="{{ route('cart') }}"><button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
+                        <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
+                    </button></a>
 
                     {{-- Checkout button --}}
-                    <x-primary-button title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <a href="{{ route('checkout') }}"><x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
-                    </x-primary-button>
+                    </x-primary-button-light></a>
                 </div>
 
 
@@ -164,7 +164,7 @@
         </div> --}}
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1  border-gray-200 dark:border-gray-600">
             @auth
                 <div class="px-4">
                     <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -203,10 +203,11 @@
 {{-- Secondary nav bar at the bottom of the header --}}
 <div class="bg-navy-blue font-lexend-deca">
     <nav class=" flex justify-center h-9 items-center text-base ">
-        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Women</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Men</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Kids</a>
-        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="">Limited</a>
+        <a class="font-lexend-deca h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('hoodies') }}">Hoodies</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('tshirts') }}">T-Shirts</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('trousers') }}">Trousers</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('jackets') }}">Jackets</a>
+        <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('accessories') }}">Accessories</a>
     </nav>
 </div>
 
