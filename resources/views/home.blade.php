@@ -24,7 +24,7 @@
     </div> --}}
 
     {{-- hero section --}}
-    <div class="flex justify-evenly items-center my-10">
+    <div class="flex justify-evenly items-center">
         {{-- hero text --}}
         <div class="pl-4 py-10">
             <h1 class="px-2 my-5 text-bluish-purple text-3xl font-formula1">
@@ -37,7 +37,7 @@
 
         {{-- hero image --}}
         <div>
-            <img src="images/home-page-hero-image.png" alt="" class="hidden sm:block max-h-[35rem]">
+            <img src="images/hero-image.png" alt="" class="hidden sm:block max-h-[40rem]">
         </div>
     </div>
 
