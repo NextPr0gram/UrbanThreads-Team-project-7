@@ -1,34 +1,49 @@
 <x-app-layout>
     <!-- Container for "Welcome to UrbanThreads" -->
-    <div class="ml-16 sm:ml-6 mt-16 sm:pl-1 justify-center gap-y-2.5">
-        <h1 class="px-2 py-3 text-bluish-purple text-3xl font-formula1 sm:text-5xl sm:ml-20">
-            <div class="block">Welcome to</div>
-            <div class="block">UrbanThreads</div>
-        </h1>
-    </div>
+    {{-- <div class="ml-16 sm:ml-6 mt-16 sm:pl-1 justify-center gap-y-2.5">
 
-    <div class="flex mt-3 ml-16 text-black text-sm font-medium font-lexend leading-normal relative">
+    </div> --}}
+
+    {{-- <div class="flex mt-3 ml-16 text-black text-sm font-medium font-lexend leading-normal relative"> --}}
         <!-- Heading 2 "Elevate Your Style. Discover the latest trends in fashion" -->
 
-        <div class="float-left w-2/3">
+        {{-- <div class="float-left w-2/3"> --}}
             <!-- Pruple line to the left of the text (heading 2) -->
-            <span class="absolute left-0 inline-block px-0.5 h-10 sm:h-8 bg-bluish-purple ml-2 sm:ml-14"></span>
-            <h2 class="mb-6 ml-4 sm:ml-16 sm:pt-1">
+            {{-- <span class="absolute left-0 inline-block px-0.5 h-10 sm:h-8 bg-bluish-purple ml-2 sm:ml-14"></span> --}}
+            {{-- <h2 class="">
                 Elevate Your Style. Discover the latest trends in fashion.
             </h2>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Container for "Shop now" button component -->
-    <div class="mt-3 sm:mt-4 ml-16 sm:ml-28 pl-2">
+    {{-- <div class="mt-3 sm:mt-4 ml-16 sm:ml-28 pl-2">
         <a href="{{ route('products') }}">
             <x-primary-button-dark> Shop now </x-primary-button-dark>
         </a>
+    </div> --}}
+
+    {{-- hero section --}}
+    <div class="flex justify-evenly">
+        {{-- hero text --}}
+        <div class="pl-4 py-10">
+            <h1 class="px-2 my-5 text-bluish-purple text-3xl font-formula1">
+                Welcome to <br>
+                UrbanThreads
+            </h1>
+            <p class="border-l-3 border-bluish-purple px-2 mx-2 my-5">Elevate Your Style. Discover the latest trends in fashion.</p>
+            <div class="px-2 my-5"><x-primary-button-dark> Shop now </x-primary-button-dark></div>
+        </div>
+
+        {{-- hero image --}}
+        <div>
+            <img src="" alt="">
+        </div>
     </div>
 
     <!-- Container for the people representing UrbanThreads -->
     <div class="hidden xl:block absolute top-28 ml-12 right-4" style="top: 100px">
-        <img src="icons/utility/home-page-hero-image.png" alt="Image of people representing UrbanThreads"
+        <img src="images/home-page-hero-image.png" alt="Image of people representing UrbanThreads"
             class="float-right w-2/3 h-2/3" />
     </div>
 
