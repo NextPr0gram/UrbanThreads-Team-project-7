@@ -25,6 +25,8 @@
                     </h2>
                 </div>
 
+                <!-- div width smaller, text wrap around apply on div -->
+
                     <!-- Container for "Shop now" component -->
                     <div class="mt-7 ml-1 sm:ml-16">
                         <a href="{{ route('layouts.products') }}">
@@ -37,9 +39,9 @@
                 </div>
 
             <!-- Container for the people representing UrbanThreads -->
-            <div class="hidden sm:block absolute top-28 right-10" style="top: 100px;">
+            <div class="hidden lg:block absolute top-28 ml-12 right-4" style="top: 100px;">
                 <img src="icons/utility/home-page-hero-image.png" alt="Image of people representing UrbanThreads"
-                    class="float-right w-2/3 h-2/3 shrink-0" />
+                    class="float-right w-2/3 h-2/3" />
             </div>
 
             <!-- Container for the product cards -->
@@ -50,7 +52,7 @@
             
                     <a href="{{ route('layouts.products') }}">
                         <img src="" alt="" class=""/>
-                        <h3 class="text-black font-formula13xl leading-normal font-medium px-6 py-6">Product 1</h3>
+                        <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">Hoodies</h3>
                     </a>
                     </div>
 
@@ -59,7 +61,7 @@
                 
                     <a href="{{ route('layouts.products') }}">
                         <img src="" alt="" class=""/>
-                        <h3 class="text-black font-formula13xl leading-normal font-medium px-6 py-6">Product 2</h3>
+                        <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">Shirts</h3>
                     </a>
                     </div>
 
@@ -68,7 +70,7 @@
                 
                     <a href="{{ route('layouts.products') }}">
                         <img src="" alt="" class=""/>
-                        <h3 class="text-black font-formula13xl leading-normal font-medium px-6 py-6">Product 3</h3>
+                        <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">Trousers</h3>
                     </a>
                     </div>
 
@@ -77,7 +79,7 @@
                 
                     <a href="{{ route('layouts.products') }}">
                         <img src="" alt="" class=""/>
-                        <h3 class="text-black font-formula13xl leading-normal font-medium px-6 py-6">Product 4</h3>
+                        <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">Hats</h3>
                     </a>
 
                     </div>
