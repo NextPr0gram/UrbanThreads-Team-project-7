@@ -7,42 +7,23 @@
 
     <!-- Main Container -->
     <div class="flex flex-col items-center mt-8 space-y-8 md:space-x-4 md:flex-row md:justify-center">
-
-        <!-- Product Cards Container -->
+        <!-- Cart items container -->
         <div class="w-full md:w-[1037px]">
-            <!-- Sample Product Card -->
-            <div class="CartItem w-full h-135 p-4 bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px] justify-between items-center flex"
-                 data-price="123">
-
-                <!-- Product Image -->
-                <div class="ProductImage w-28 h-28 bg-blue-200"></div>
-
-                <!-- Product Name -->
-                <div class="BoldText flex items-center gap-4">
-                    <div class="text-black text-base font-bold font-lexend-deca break-words">Product name</div>
-                </div>
-
-                <!-- Quantity Control Buttons  -->
-                <div class="Counter flex items-center gap-6">
-                    <button class="QuantityButton PlusIcon w-10 h-10 bg-blue-200 flex items-center justify-center">
-                        <div class="text-2xl text-blue-700">+</div>
-                    </button>
-                    <div class="QuantityValue text-black text-base font-medium font-lexend-deca">1</div>
-                    <button class="QuantityButton MinusIcon w-10 h-10 bg-blue-200 flex items-center justify-center">
-                        <div class="text-2xl text-blue-700">-</div>
-                    </button>
-                </div>
-
-                <!-- Price -->
-                <div class="BodyText ProductPrice flex items-center gap-4">
-                    <div class="text-black text-base font-medium font-lexend-deca">£123</div>
-                </div>
-
-                <!-- Remove button -->
-                <button class="RemoveButton w-6 h-6 p-1 flex items-center justify-center">
-                    <div class="RemoveIcon text-red-500 text-base">X</div>
-                </button>
-            </div>
+            {{-- TODO: backend code --}}
+            <x-basket-item>
+                <x-slot name="productName">
+                    Hoodie {{-- TODO: backend code, fetch name --}}
+                </x-slot>
+                <x-slot name="price">
+                    $420 {{-- TODO: backend code, fetch price --}}
+                </x-slot>
+                <x-slot name="size">
+                    Large {{-- TODO: backend code, fetch size --}}
+                </x-slot>
+                <x-slot name="colour">
+                    Blue {{-- TODO: backend code, fetch colour --}}
+                </x-slot>
+            </x-basket-item>
         </div>
 
         <!-- Gap between Product Cards and Cart Summary (visible only on larger screens) -->

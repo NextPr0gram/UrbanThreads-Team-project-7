@@ -116,7 +116,7 @@
 
 
                     {{-- Shopping cart button --}}
-                    <a href="{{ route('cart') }}" class="px-2 flex-none">
+                    <a href="{{ route('basket') }}" class="px-2 flex-none">
                         <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
                     </a>
 
