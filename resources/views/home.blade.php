@@ -1,3 +1,4 @@
+{{-- home page --}}
 <x-app-layout>
     {{-- hero section --}}
     <div class="flex justify-between items-center lg:px-10">
