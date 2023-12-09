@@ -1,12 +1,12 @@
 <div class="flex items-center border-b-2 border-bluish-purple ">
-    <img class="m-2 h-24 w-28 border-2 border-bluish-purple object-cover object-center"
+    <img class="m-2 h-16 sm:h-24 aspect-square border-3 border-bluish-purple object-cover object-center"
         src="https://ih1.redbubble.net/image.339900741.3490/ssrco,triblend_tee,mens,navy_triblend,front,square_product,x600-bg,f8f8f8.u4.jpg"
         alt=""
     />
     <div class="flex w-full flex-col p-4">
         <div class="flex justify-between items-center max-w-lg lg:max-w-full">
             <div class="flex justify-between flex-col">
-                <h2 class="text-lg font-formula1">{{ $productName }}</h2>
+                <h2 class="text-md sm:text-lg font-formula1">{{ $productName }}</h2>
                 <p class="text-base font-formula1">{{ $price }}</p>
             </div>
             {{-- counter --}}

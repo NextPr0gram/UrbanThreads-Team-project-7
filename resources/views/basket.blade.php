@@ -8,7 +8,7 @@
     <!-- Main Container -->
     <div class="flex flex-col items-center mt-8 space-y-8 md:space-x-4 md:flex-row md:justify-center">
         <!-- Cart items container -->
-        <div class="w-full md:w-[1037px]">
+        <div class="w-full gap-10 md:w-[1037px] p-3 sm:p-10 border-3 border-bluish-purple bg-white bg-opacity-40 backdrop-blur-sm">
             {{-- TODO: backend code --}}
             <x-basket-item>
                 <x-slot name="productName">
