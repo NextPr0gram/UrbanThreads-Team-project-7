@@ -4,24 +4,31 @@
         alt=""
     />
     <div class="flex w-full flex-col p-4">
-        <div class="flex justify-between items-center max-w-lg">
-            <h2 class="text-lg font-formula1">{{ $productName }}</h2>
-            <p class="text-lg font-formula1">{{ $price }}</p>
+        <div class="flex justify-between items-center max-w-lg lg:max-w-full">
+            <div class="flex justify-between flex-col">
+                <h2 class="text-lg font-formula1">{{ $productName }}</h2>
+                <p class="text-base font-formula1">{{ $price }}</p>
+            </div>
             {{-- counter --}}
-            <div class="flex">
+            <div class="flex ">
                 <button id="decrement" class="hover:bg-bluish-purple hover:text-snow-white transition-colors ease-in-out duration-300 p-3 h-12 border-l-2 border-t-2 border-b-2 border-bluish-purple focus:outline-none">
                     -
                 </button>
-                <input style="-webkit-appearance: none; margin: 0; -moz-appearance: textfield;" class=" w-24 h-12 text-center bg-transparent border-2 border-bluish-purple " type="number" value="1" id="quantity" oninput="validity.valid||(value='1');" >
+                <input style="-webkit-appearance: none; margin: 0; -moz-appearance: textfield;" class="w-12 md:w-24 h-12 text-center bg-transparent border-2 border-bluish-purple " type="number" value="1" id="quantity" oninput="validity.valid||(value='1');" >
                 <button id="increment" class="hover:bg-bluish-purple hover:text-snow-white transition-colors ease-in-out duration-300 p-3 h-12 border-r-2 border-t-2 border-b-2 border-bluish-purple focus:outline-none">
                     +
                 </button>
             </div>
             {{-- TODO: implement remove product --}}
-            <a href="" class="text-red" >Remove</a>
+            <div x-data="{ showRemoveText: window.innerWidth > 768 }" x-init="() => { window.addEventListener('resize', () => { showRemoveText = window.innerWidth > 768 }); }">
+                <a href="#" class="text-red" x-show="showRemoveText">Remove</a>
+                <a href="#" class="text-red text-2xl font-formula1" x-show="!showRemoveText"><img src="{{asset('icons/utility/cancel-icon.png')}}" alt=""></a>
+            </div>
         </div>
     </div>
 </div>
+
+{{-- script for working product counter --}}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var quantityInput = document.getElementById("quantity");
