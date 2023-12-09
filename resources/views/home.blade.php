@@ -13,63 +13,49 @@
 
         {{-- hero image --}}
         <div>
-            <img src="images/hero-image.png" alt="" class="hidden sm:block max-h-[40rem]">
+            <img src="images/home-page/hero-image.png" alt="" class="hidden sm:block max-h-[40rem]">
         </div>
     </div>
 
 
     <!-- Container for the product category cards -->
-    <div class="flex flex-col sm:flex-row items-center justify-evenly mt-36 sm:mt-80 mb-12 sm:mb-24">
+    <div class="flex flex-wrap justify-center mt-3 mb-12 sm:mb-24 min-h-[30rem]">
         <!-- Container for first product category -->
-        <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
-            <a href="{{ route('hoodies') }}">
-                <img src="" alt="" class="" />
-                <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">
-                    Hoodies
-                </h3>
-            </a>
-        </div>
+        <a class="text-2xl hover:text-5xl bg-[url('/images/home-page/hoodie-category-image.png')] bg-cover bg-center inline-flex justify-center items-center md:mx-5 w-full  md:w-64 h-[25rem] bg-snow-white mb-9 md:hover:w-80 md:hover:h-[27rem] transition- ease-in-out duration-300 border-3 border-light-gray hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray" href="{{ route('hoodies') }}">
+            <h2 class="text-white mix-blend-difference font-formula1">
+                Hoodies
+            </h2>
+        </a>
+
 
         <!-- Container for second product category -->
-        <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
-            <a href="{{ route('tshirts') }}">
-                <img src="" alt="" class="" />
-                <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">
-                    T-Shirts
-                </h3>
-            </a>
-        </div>
+        <a class="text-2xl hover:text-5xl bg-[url('/images/home-page/tshirt-category-image.png')] bg-cover bg-center inline-flex justify-center items-center md:mx-5 w-full  md:w-64 h-[25rem] bg-snow-white mb-9 md:hover:w-80 md:hover:h-[27rem] transition- ease-in-out duration-300 border-3 border-light-gray hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray" href="{{ route('tshirts') }}">
+            <h3 class="text-white mix-blend-difference font-formula1 text-2xl">
+                T-Shirts
+            </h3>
+        </a>
 
         <!-- Container for third product category -->
-        <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
-            <a href="{{ route('trousers') }}">
-                <img src="" alt="" class="" />
-                <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">
-                    Trousers
-                </h3>
-            </a>
-        </div>
+        <a class="text-2xl hover:text-5xl bg-[url('/images/home-page/trousers-category-image.png')] bg-cover bg-center inline-flex justify-center items-center md:mx-5 w-full  md:w-64 h-[25rem] bg-snow-white mb-9 md:hover:w-80 md:hover:h-[27rem] transition- ease-in-out duration-300 border-3 border-light-gray hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray" href="{{ route('trousers') }}">
+            <h3 class="text-white mix-blend-difference font-formula1 text-2xl">
+                Trousers
+            </h3>
+        </a>
 
         <!-- Container for fourth product category -->
-        <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
-            {{-- soon to be changed to hats --}}
-            <a href="{{ route('jackets') }}">
-                <img src="" alt="" class="" />
-                <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">
-                    jackets
-                </h3>
-            </a>
-        </div>
+        <a class="text-2xl hover:text-5xl bg-[url('/images/home-page/jacket-category-image.png')] bg-cover bg-center inline-flex justify-center items-center md:mx-5 w-full  md:w-64 h-[25rem] bg-snow-white mb-9 md:hover:w-80 md:hover:h-[27rem] transition- ease-in-out duration-300 border-3 border-light-gray hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray" href="{{ route('jackets') }}">
+            {{-- TODO: soon to be changed to hats --}}
+            <h3 class="text-white mix-blend-difference font-formula1 text-2xl">
+                jackets
+            </h3>
+        </a>
 
         <!-- Container for fifth product category-->
-        <div class="inline-flex justify-center items-center w-56 h-72 bg-snow-white mb-9">
-            {{-- soon to be changed to hats --}}
-            <a href="{{ route('accessories') }}">
-                <img src="" alt="" class="" />
-                <h3 class="text-black font-formula1 leading-normal font-medium px-6 py-6">
-                    Accessories
-                </h3>
-            </a>
-        </div>
+        <a class="text-2xl hover:text-5xl bg-[url('/images/home-page/accessories-category-image.png')] bg-cover bg-center inline-flex justify-center items-center md:mx-5 w-full  md:w-64 h-[25rem] bg-snow-white mb-9 md:hover:w-80 md:hover:h-[27rem] transition- ease-in-out duration-300 border-3 border-light-gray hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray" href="{{ route('accessories') }}">
+                {{-- soon to be changed to hats --}}
+            <h3 class="text-white mix-blend-difference font-formula1 text-2xl">
+                Accessories
+            </h3>
+        </a>
     </div>
 </x-app-layout>
