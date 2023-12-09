@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //? Route to show the user's basket
-Route::get('/basket', [BasketController::class, 'show'])->name('basket.show');
+Route::get('/basket/show', [BasketController::class, 'show'])->name('basket.show');
 //? Route to delete the user's basket (to be done when the user checks out)
 Route::delete('/basket', [BasketController::class, 'destroy'])->name('basket.destroy');
 //? Route to add a product to the user's basket
