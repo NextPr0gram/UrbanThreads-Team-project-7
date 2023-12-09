@@ -25,6 +25,7 @@ class AllBasicProductsSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Cool Hoodie',
+                'slug' => 'cool-hoodie',
                 'description' => 'This is a cool hoodie.',
                 'original_price' => '50.00',
                 'selling_price' => '40.00',
@@ -42,6 +43,7 @@ class AllBasicProductsSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Comfy Hoodie',
+                'slug' => 'comfy-hoodie',
                 'description' => 'This is a comfy hoodie with fleece.',
                 'original_price' => '75.00',
                 'selling_price' => '55.00',
@@ -59,6 +61,7 @@ class AllBasicProductsSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Sporty Hoodie',
+                'slug' => 'sporty-hoodie',
                 'description' => 'This is a sporty hoodie.',
                 'original_price' => '45.00',
                 'selling_price' => '30.00',

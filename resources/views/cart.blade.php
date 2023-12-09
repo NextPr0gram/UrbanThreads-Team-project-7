@@ -5,67 +5,143 @@
         <h1 class="text-white text-3xl font-formula1">My Basket</h1>
     </div>
 
-    <!-- Product Cards Container -->
-    <div class="flex flex-wrap justify-start mt-8 pl-4">
+    <!-- Main Container -->
+    <div class="flex flex-col items-center mt-8 space-y-8 md:space-x-4 md:flex-row md:justify-center">
 
-        <!-- Sample Product Card -->
-        <div class="w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 border-2 border-gray-300 shadow-md" style="width: 1000px; height: 150px; display: flex; align-items: center; background-color: #f0f0f0;">
+        <!-- Product Cards Container -->
+        <div class="w-full md:w-[1037px]">
+            <!-- Sample Product Card -->
+            <div class="CartItem w-full h-135 p-4 bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px] justify-between items-center flex"
+                 data-price="123">
 
-            <!-- Product Image -->
-            <img src="path/to/product-image.jpg" alt="Product Image" class="w-1/5 h-full object-cover object-center mb-4">
+                <!-- Product Image -->
+                <div class="ProductImage w-28 h-28 bg-blue-200"></div>
 
-            <!-- Product Details -->
-            <div class="w-4/5 pl-4 flex items-center justify-between">
-
-                <!-- Product Name and Quantity Controls -->
-                <div class="flex items-center space-x-4">
-                    <h2 class="text-black font-bold text-lg mr-4">Product Name</h2>
-                    <div class="flex items-center space-x-4">
-                        <button class="bg-black text-black w-8 h-8 squared border border-black font-bold">-</button>
-                        <span class="text-black font-bold">1</span>
-                        <button class="bg-black text-black w-8 h-8 squared border border-black font-bold">+</button>
-                    </div>
+                <!-- Product Name -->
+                <div class="BoldText flex items-center gap-4">
+                    <div class="text-black text-base font-bold font-lexend-deca break-words">Product name</div>
                 </div>
 
-                <!-- Price and Remove Button -->
-                <p class="text-black font-bold text-lg mr-2">$19.99</p>
-                <button class="bg-red-500 text-red px-3 py-2 rounded-full font-bold">X</button>
+                <!-- Quantity Control Buttons  -->
+                <div class="Counter flex items-center gap-6">
+                    <button class="QuantityButton PlusIcon w-10 h-10 bg-blue-200 flex items-center justify-center">
+                        <div class="text-2xl text-blue-700">+</div>
+                    </button>
+                    <div class="QuantityValue text-black text-base font-medium font-lexend-deca">1</div>
+                    <button class="QuantityButton MinusIcon w-10 h-10 bg-blue-200 flex items-center justify-center">
+                        <div class="text-2xl text-blue-700">-</div>
+                    </button>
+                </div>
+
+                <!-- Price -->
+                <div class="BodyText ProductPrice flex items-center gap-4">
+                    <div class="text-black text-base font-medium font-lexend-deca">£123</div>
+                </div>
+
+                <!-- Remove button -->
+                <button class="RemoveButton w-6 h-6 p-1 flex items-center justify-center">
+                    <div class="RemoveIcon text-red-500 text-base">X</div>
+                </button>
             </div>
         </div>
 
+        <!-- Gap between Product Cards and Cart Summary (visible only on larger screens) -->
+        <div class="hidden md:w-8 md:block"></div>
+
         <!-- Cart Summary Container -->
-        <div class="w-[414px] h-56 px-4 py-[15px] bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px] flex-col justify-start items-center inline-flex">
+        <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px]">
             <!-- Subtotal, Discount, Total -->
-            <div class="self-stretch h-12 px-[21px] justify-between items-center inline-flex">
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-['Lexend Deca']">Subtotal</div>
+            <div class="self-stretch h-12 px-4 justify-between items-center flex">
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-medium font-lexend-deca">Subtotal</div>
                 </div>
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-['Lexend Deca']">£123</div>
-                </div>
-            </div>
-            <div class="self-stretch h-12 px-[21px] justify-between items-center inline-flex">
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-['Lexend Deca']">Discount</div>
-                </div>
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-['Lexend Deca']">-£0</div>
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-medium font-lexend-deca subtotal-value">£123</div>
                 </div>
             </div>
-            <div class="self-stretch h-12 px-[21px] justify-between items-center inline-flex">
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-bold font-['Lexend Deca']">Total</div>
+            <div class="self-stretch h-12 px-4 justify-between items-center flex">
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-medium font-lexend-deca">Discount</div>
                 </div>
-                <div class="px-2 py-[9px] justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-bold font-['Lexend Deca']">£123</div>
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-medium font-lexend-deca">-£0</div>
+                </div>
+            </div>
+            <div class="self-stretch h-12 px-4 justify-between items-center flex">
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-bold font-lexend-deca">Total</div>
+                </div>
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+                    <div class="text-black text-sm font-bold font-lexend-deca total-value">£123</div>
                 </div>
             </div>
 
             <!-- Checkout Button -->
             <div class="self-stretch justify-center mt-4">
-                <a href="{{ route('checkout') }}"><x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark></a>
+                <a href="{{ route('checkout') }}">
+                    <x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark>
+                </a>
             </div>
         </div>
-
     </div>
 </x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Get the elements
+    const quantityElement = document.querySelector('.QuantityValue');
+    const plusButton = document.querySelector('.PlusIcon');
+    const minusButton = document.querySelector('.MinusIcon');
+    const removeButton = document.querySelector('.RemoveIcon');
+    const productPriceElement = document.querySelector('.ProductPrice');
+    const subtotalElement = document.querySelector('.subtotal-value');
+    const totalElement = document.querySelector('.total-value');
+
+    // Initial quantity value
+    let quantity = 1;
+
+    // Function to update the quantity display and calculate total price
+    function updateQuantityAndPrice() {
+        const productCard = document.querySelector('.CartItem');
+        if (!productCard) {
+            // No items in the cart, update subtotal and total to 0
+            subtotalElement.textContent = '£0.00';
+            totalElement.textContent = '£0.00';
+            return;
+        }
+
+        const productPrice = parseFloat(productCard.dataset.price); // Get the actual product price
+
+        quantityElement.textContent = quantity;
+        const totalPrice = quantity * productPrice;
+        productPriceElement.textContent = `£${totalPrice.toFixed(2)}`;
+
+        // Update subtotal and total in the cart summary
+        subtotalElement.textContent = `£${totalPrice.toFixed(2)}`;
+        totalElement.textContent = `£${totalPrice.toFixed(2)}`;
+    }
+
+    // Event listener for the plus button
+    plusButton.addEventListener('click', function () {
+        quantity++;
+        updateQuantityAndPrice();
+    });
+
+    // Event listener for the minus button
+    minusButton.addEventListener('click', function () {
+        if (quantity > 1) {
+            quantity--;
+            updateQuantityAndPrice();
+        }
+    });
+
+    // Event listener for the remove button
+    removeButton.addEventListener('click', function () {
+        // Assuming your sample product is the parent div with class "CartItem"
+        const cartItem = removeButton.closest('.CartItem');
+        cartItem.remove();
+        updateQuantityAndPrice(); // Update price after removing the item
+    });
+});
+
+</script>
