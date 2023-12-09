@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-x-2 sm:gap-y-20 md:gap-x-26 md:gap-y-20 lg:gap-x-26 lg:gap-y-20 gap-y-4 my-52">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {{ $slot }}
     </div>
 </x-app-layout>
