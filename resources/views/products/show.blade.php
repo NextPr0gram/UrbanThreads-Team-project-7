@@ -1,8 +1,8 @@
 <x-app-layout>
 
-<div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 bg-white bg-opacity-60 mb-5 mt-8">
+<div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 bg-white bg-opacity-60 mb-5 mt-8 w-fit">
     <div class="px-4 pt-8">
-        <div class="mt-2 space-y-3 px-2 py-4 sm:px-6 bg-snow-white max-sm:text-center box-content h-80 w-3/5 p-4"></div>
+        <div class="mt-2 space-y-3 px-2 py-4 sm:px-6 bg-snow-white max-sm:text-center box-content h-80 w-72 p-4 w-px"></div>
         <!-- Image will go here -->
     </div>
     <div class="max-sm:px-4">
