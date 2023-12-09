@@ -41,7 +41,7 @@
 
 
                 {{-- account dropdown button with icon and text --}}
-                <div class="flex items-center">
+                <div class="flex items-center ">
                     {{-- Account button mobile--}}
                     <button @click="open = ! open" title="Account" class="sm:hidden px-2 flex items-center flex-shrink-0 text-snow-white">
                         @auth
@@ -116,9 +116,9 @@
 
 
                     {{-- Shopping cart button --}}
-                    <a href="{{ route('cart') }}"><button @click="showCart = !showCart" title="Cart" class="px-2 flex-none">
+                    <a href="{{ route('cart') }}" class="px-2 flex-none">
                         <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
-                    </button></a>
+                    </a>
 
                     {{-- Checkout button --}}
                     <a href="{{ route('checkout') }}"><x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
@@ -147,13 +147,6 @@
         <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Services</a>
         <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">Contact</a>
     </div>
-    <div x-show="showCart" @click.away="showCart = false" class="md:hidden mt-2">
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">1</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">2</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">3</a>
-        <a href="#" class="block text-white hover:bg-gray-700 py-2 px-4">4</a>
-    </div>
-
 
     <!-- Responsive account navigation menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden overflow-hidden transition-all ease-in-out duration-300">
@@ -210,4 +203,7 @@
         <a class="h-full flex items-center px-10 text-snow-white hover:border-b-4 transition-all ease-in-out duration-150" href="{{ route('accessories') }}">Accessories</a>
     </nav>
 </div>
+
+
+
 
