@@ -1,4 +1,4 @@
-<div class="flex items-center border-b-2 border-bluish-purple ">
+<div class="flex items-center border-b-2 border-snow-white ">
     <img class="m-2 h-16 sm:h-24 aspect-square border-3 border-bluish-purple object-cover object-center"
         src="https://ih1.redbubble.net/image.339900741.3490/ssrco,triblend_tee,mens,navy_triblend,front,square_product,x600-bg,f8f8f8.u4.jpg"
         alt=""
