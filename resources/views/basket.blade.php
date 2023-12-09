@@ -17,13 +17,8 @@
                 <x-slot name="price">
                     $420 {{-- TODO: backend code, fetch price --}}
                 </x-slot>
-                <x-slot name="size">
-                    Large {{-- TODO: backend code, fetch size --}}
-                </x-slot>
-                <x-slot name="colour">
-                    Blue {{-- TODO: backend code, fetch colour --}}
-                </x-slot>
             </x-basket-item>
+
         </div>
 
         <!-- Gap between Product Cards and Cart Summary (visible only on larger screens) -->
