@@ -33,8 +33,7 @@
         <div>
             <h1 class="font-formula1 text-xl text-bluish-purple">Description</h1>
             <p>
-                {{-- TODO --}}
-                {{-- {{ $product->selling_price }} --}}
+                {{ $product->description }}
             </p>
         </div>
         <div class="text-center">
