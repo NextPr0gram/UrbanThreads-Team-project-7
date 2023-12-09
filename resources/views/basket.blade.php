@@ -27,7 +27,7 @@
         <!-- Cart Summary Container -->
         <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px]">
             <!-- Subtotal, Discount, Total -->
-            <div class="self-stretch h-12 px-4 justify-between items-center flex">
+            <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
                 <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
                     <div class="text-black text-sm font-medium font-lexend-deca">Subtotal</div>
                 </div>
@@ -35,12 +35,12 @@
                     <div class="text-black text-sm font-medium font-lexend-deca subtotal-value">£123</div>
                 </div>
             </div>
-            <div class="self-stretch h-12 px-4 justify-between items-center flex">
-                <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
+            <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
+                <div class="px-2 py-2 justify-center items-center gap-2.5 flex ">
                     <div class="text-black text-sm font-medium font-lexend-deca">Discount</div>
                 </div>
                 <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-lexend-deca">-£0</div>
+                    <div class="text-black text-sm font-medium font-lexend-deca">£0</div>
                 </div>
             </div>
             <div class="self-stretch h-12 px-4 justify-between items-center flex">
