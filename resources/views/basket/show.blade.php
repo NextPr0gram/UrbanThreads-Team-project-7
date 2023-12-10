@@ -115,6 +115,11 @@
                 <a href="{{ route('checkout') }}">
                     <x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark>
                 </a>
+                <form method="POST" action="{{ route('basket.destroy') }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red text-2xl font-formula1 mt-5 w-full">Clear Basket</button>
+                </form>
             </div>
         </div>
     </div>

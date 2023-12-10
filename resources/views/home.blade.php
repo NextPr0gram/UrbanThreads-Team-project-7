@@ -1,10 +1,5 @@
 {{-- home page --}}
 <x-app-layout>
-    @if (session('success'))
-        <div class="text-md font-lexend bg-green bg-opacity-80 rounded-md text-center my-5 justify-center">
-            {{ session('success') }}
-        </div>
-    @endif
     {{-- hero section --}}
     <div class="flex justify-between items-center lg:px-10">
         {{-- hero text --}}
