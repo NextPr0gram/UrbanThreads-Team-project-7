@@ -29,15 +29,34 @@
         @endif
 
         @if (session('success'))
-            <div class="py-1 text-base text-white font-lexend bg-green bg-opacity-80 text-center mb-5 justify-center">
+            <div id="successMessage" class="py-1 text-base text-white font-lexend bg-green bg-opacity-80 text-center mb-5 justify-center">
                 {{ session('success') }}
             </div>
         @endif
         @if (session('error'))
-            <div class="py-1 text-base text-white font-lexend bg-red bg-opacity-80 text-center mb-5 justify-center">
+            <div id="errorMessage" class="py-1 text-base text-white font-lexend bg-red bg-opacity-80 text-center mb-5 justify-center">
                 {{ session('error') }}
             </div>
         @endif
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Set timeout to hide the success message after 5 seconds
+                setTimeout(function () {
+                    var successMessage = document.getElementById('successMessage');
+                    if (successMessage) {
+                        successMessage.style.display = 'none';
+                    }
+
+                    // Set timeout to hide the error message after 5 seconds
+                    var errorMessage = document.getElementById('errorMessage');
+                    if (errorMessage) {
+                        errorMessage.style.display = 'none';
+                    }
+                }, 5000);
+            });
+        </script>
+
 
         <!-- Page Content -->
         <main class=" text-base text-lexend bg-transparent sm:mx-12 lg:mx-40 ">
