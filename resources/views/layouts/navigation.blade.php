@@ -6,7 +6,7 @@
 </nav> --}}
 
 {{-- Main header --}}
-<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg-transparent dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
+<nav x-data="{ open: false, showMenu: false, showCart: false}" class="max-h bg- dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-base">
     <!-- Primary Navigation Menu -->
     <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -50,19 +50,19 @@
                             <div class="pr-2 hidden md:block text-base ">Account</div>
                         @endauth
 
-                        <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
                     </button>
                     {{-- Account button--}}
                     <x-dropdown align="right" width="48" class="">
 
                         <x-slot name="trigger">
-                            <button class="hidden sm:inline-flex items-center text-base text-snow-white  hover:underline pr-2">
+                            <button class="hidden sm:inline-flex items-center text-base text-bluish-purple  hover:underline pr-2">
                                 @auth
-                                <div class="px-1 text-snow-white">{{ Auth::user()->name }}</div>
+                                <div class="px-1 text-bluish-purple">{{ Auth::user()->name }}</div>
                                 @else
-                                    <div class="px-1 text-base text-snow-white">Account</div>
+                                    <div class="px-1 text-base text-bluish-purple">Account</div>
                                 @endauth
-                                <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
+                                <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
 
                                 {{-- dropdown icon, uncomment to show--}}
                                 {{-- <div class="ms-1">
@@ -117,13 +117,13 @@
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="px-2 flex-none">
-                        <img src="{{asset('icons/utility/shopping-cart-light.svg')}}" alt="">
+                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
                     </a>
 
                     {{-- Checkout button --}}
-                    <a href="{{ route('checkout') }}"><x-primary-button-light title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
-                    </x-primary-button-light></a>
+                    </x-primary-button-dark></a>
                 </div>
 
 
