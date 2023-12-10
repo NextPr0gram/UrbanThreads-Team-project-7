@@ -48,11 +48,6 @@ Route::post('/basket/increment/{productId}', [BasketItemController::class,'incre
 Route::post('/basket/decrement/{productId}', [BasketItemController::class,'decrementQuantity'])
     ->name('decrementQuantity');
 
-Route::get('/products', function () {
-    return view('layouts.products');
-})->name('products');
-
-
 Route::mailPreview();
 
 require __DIR__ . '/auth.php';
@@ -65,13 +60,8 @@ Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
 
-
-Route::get('/checkout', function () {
-    return view('checkout');
-})->middleware(['auth'])->name('checkout');
-
 //? Route to show the checkout page with the basket items
-Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout.show');
+Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
 
 
 Route::get('auth.not-authenticated', function () {
