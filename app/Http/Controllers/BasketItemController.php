@@ -75,6 +75,9 @@ class BasketItemController extends Controller
         // Find the basket for the user
         $basket = Basket::where('user_id', $user->id)->first();
 
+        // Optionally get the basket items of the basket if the basket exists
+        $basketItems = optional($basket)->items;
+
         // Find the product
         $product = Product::findOrFail($productId);
 
@@ -83,11 +86,19 @@ class BasketItemController extends Controller
             ->where('product_id', $product->id)
             ->first();
 
-        // Removes the item from the basket
-        $basketItem->delete();
-
-        // Redirect to the basket page with a success message to reflect changes
-        return redirect()->back()->with('success', 'Item(s) removed from the basket.');
+        if (count($basketItems) == 1) {
+            // Removes the item from the basket
+            $basketItem->delete();
+            // Deletes the basket
+            $basket->delete();
+            // Redirect to the homepage with a success alert saying that all items have been removed from the basket
+            return redirect()->route('home')->with('success', 'All items removed from the basket.');
+        } else {
+            // Removes the item from the basket
+            $basketItem->delete();
+            // Otherwise, redirect back to the basket page with a success alert saying that an item has been removed from the basket
+            return redirect()->route('basket.show')->with('success', 'Item(s) removed from basket.');
+        }
     }
 
     public function incrementQuantity(Request $request, $productId)
@@ -115,7 +126,8 @@ class BasketItemController extends Controller
         return redirect()->back()->with('success', 'Quantity updated');
     }
 
-    public function decrementQuantity($productId) {
+    public function decrementQuantity($productId)
+    {
         // Get the authenticated user
         $user = auth()->user();
 
@@ -130,12 +142,28 @@ class BasketItemController extends Controller
             ->where('product_id', $product->id)
             ->first();
 
-        // Update the quantity of the basket item
-        $basketItem->quantity -= 1;
-        // Save the basket item
-        $basketItem->save();
+        if ($basketItem) {
+            // Update the quantity of the basket item
+            $basketItem->quantity -= 1;
 
-        // Redirect to the basket page with a success message to reflect changes
-        return redirect()->back()->with('success', 'Quantity updated');
+            if ($basketItem->quantity <= 0) {
+                // Remove the item from the basket if the quantity is zero or negative
+                $basketItem->delete();
+
+                if (count($basket->items) == 0) {
+                    // Redirect to the home page if the basket is empty
+                    return redirect()->route('home')->with('success', 'All items removed from the basket.');
+                }
+
+                // Redirect to the basket page with a success message to reflect changes
+                return redirect()->route('basket.show')->with('success', 'Item removed from the basket.');
+            }
+
+            // Save the basket item
+            $basketItem->save();
+
+            // Redirect to the basket page with a success message to reflect changes
+            return redirect()->route('basket.show')->with('success', 'Quantity updated');
+        }
     }
 }
