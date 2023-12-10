@@ -9,16 +9,16 @@
 <x-app-layout>
 
     <!-- Header Container -->
-    <div class="flex justify-center items-center h-20 bg-gray-100">
-        <h1 class="text-white text-3xl font-formula1">My Basket</h1>
-    </div>
+    <x-slot name="header">
+        Basket
+    </x-slot>
 
     <!-- Main Container -->
     <div class="flex flex-col items-center mt-4 space-y-8 md:space-x-4 md:flex-row md:justify-center">
         @if ($basketItems)
             <!-- Basket items container -->
             <div
-                class="w-full gap-10 md:w-[1037px] p-3 sm:p-10 border-3 border-bluish-purple bg-white bg-opacity-40 backdrop-blur-sm">
+                class="w-full gap-10 md:w-[1037px] p-3 sm:p-10 border-2 border-navy-blue bg-white bg-opacity-40 backdrop-blur-sm">
                 {{-- * Loops through all basket items in the user's basket --}}
 
                 @foreach ($basketItems as $item)
@@ -85,7 +85,7 @@
             <div class="hidden md:w-8 md:block"></div>
 
             <!-- Cart Summary Container -->
-            <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-3 border-navy-blue backdrop-blur-[18px]">
+            <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-2 border-navy-blue backdrop-blur-[18px]">
                 <!-- Subtotal, Discount, Total -->
                 <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
                     <div class="px-2 py-2 justify-center items-center gap-2.5 flex">

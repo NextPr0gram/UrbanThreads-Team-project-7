@@ -1,11 +1,13 @@
 {{-- resources/views/checkout.blade.php --}}
 <x-app-layout>
+    <x-slot name="header">
+        Checkout
+    </x-slot>
     @auth
-        <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+        <div class="sm:grid lg:grid-cols-2 lg:px-20 xl:px-32">
             {{-- Order summary --}}
-            <div class="px-4 pt-8">
-                <div class="mt-2 space-y-3 px-2 py-4 sm:px-6 bg-white bg-opacity-60 border-3 border-navy-blue max-sm:text-center">
-                    <h1 class="text-4xl font-formula1 text-bluish-purple">Items</h1>
+            <div class="sm:px-4 sm:pt-8">
+                <div class="w-full mt-2 space-y-3 p-3 sm:px-6 bg-white bg-opacity-60 border-2 border-navy-blue max-sm:text-center">
 
                     {{-- basket items --}}
                     @foreach ($basketItems as $item)
@@ -32,8 +34,8 @@
                     @endforeach
                 </div>
 
-                <div class="bg-white bg-opacity-60 p-3 mt-5 border-navy-blue border-3 text-bluish-purple">
-                    <h1 class="text-4xl font-formula1 text-bluish-purple">Delivery Information</h1>
+                <div class="bg-white bg-opacity-60 p-3 mt-5 border-navy-blue border-2">
+                    <h1 class="text-lg font-bold">Delivery Information</h1>
                     <div class="mt-2 flex flex-col sm:flex-row gap-5">
                         <div class="w-full">
                             <x-input-label for="first_name">First Name</x-input-label>
@@ -76,8 +78,8 @@
                 </div>
 
                 {{-- Payment information form --}}
-                <div class="bg-white bg-opacity-60 p-3 mt-5 border-navy-blue border-3 text-bluish-purple">
-                    <h1 class="text-4xl font-formula1 text-bluish-purple">Payment Information</h1>
+                <div class="bg-white bg-opacity-60 p-3 mt-5 border-navy-blue border-2 text-bluish-purple">
+                    <h1 class="text-lg font-bold">Payment Information</h1>
                     <div class="relative mt-2 w-full">
                         <x-input-label for="card_number">Card Number</x-input-label>
                         <x-text-input type="text" id="card_number" name="card_number"
@@ -104,8 +106,8 @@
             </div>
 
             <div class="max-sm:px-4">
-                <div class="mt-10 space-y-3 px-2 py-4 sm:px-6 bg-white bg-opacity-60 border-3 border-navy-blue">
-                    <h1 class="text-4xl font-formula1 text-bluish-purple">Order Summary</h1>
+                <div class="mt-10 space-y-3 px-2 py-4 sm:px-6 bg-white bg-opacity-60 border-2 border-navy-blue">
+                    <h1 class="text-lg font-bold">Order Summary</h1>
                     <!-- Discount code input -->
                     <form class="grid gap-6 mt-5">
                         <div class="flex flex-col space-x-3 sm:flex-row">
