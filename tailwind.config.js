@@ -27,7 +27,7 @@ export default {
         },
         extend: {
             backgroundImage: {
-                "background-image": "url('/images/topography-background.svg')",
+                "background-image": "linear-gradient(to right top, #d6f2ff, #a8cee7, #80aad0, #5f86b8, #46629e, #39528c, #2d427a, #203369, #18315d, #162f50, #182c43, #1b2836)",
             },
             fontSize: {
                 "xs": "0.75rem", // Extra Small

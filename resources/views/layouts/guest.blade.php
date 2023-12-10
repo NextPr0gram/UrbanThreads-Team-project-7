@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex sm:justify-center items-center sm:pt py-32">
+    <div class="flex sm:justify-center items-center sm:pt py-32 ">
         <div class="hidden lg:block h-[40rem] -translate-x-[35rem] absolute">
             <img src="images/auth/lady-image-auth.png" alt="">
         </div>
