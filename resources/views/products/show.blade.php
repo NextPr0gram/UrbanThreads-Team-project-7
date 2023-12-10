@@ -8,7 +8,7 @@
             <div class=" mt-10 lg:mt-0 md:px-7 xl:px-20">
                 <div>
                     <h1 class="font-formula1 text-4xl text-bluish-purple">{{ $product->name }}</h1>
-                    <p class="mb-8 font-bold">£{{ $product->selling_price }}</p>
+                    <p class="mb-8 font-bold font-formula1 text-lg">£{{ $product->selling_price }}</p>
                 </div>
                 <div class="">
                     <h1 class="font-formula1 text-xl text-bluish-purple">Description</h1>
