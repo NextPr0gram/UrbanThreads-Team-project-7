@@ -15,9 +15,8 @@
 </div> --}}
 <div class="border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray transition-all duration-300 ease-in-out">
     {{-- image --}}
-    <div class="w-64 aspect-square bg-snow-white">
-        <img src="{{ $image }}" alt="">
-
+    <div class="w-64 aspect-square">
+        <img class="w-64 aspect-square" src="{{ $image }}" alt="">
     </div>
 
     {{-- description --}}
