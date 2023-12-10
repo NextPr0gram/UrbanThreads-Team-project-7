@@ -121,7 +121,7 @@
                     </a>
 
                     {{-- Checkout button --}}
-                    <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
+                    <a href="{{ route('checkout.show') }}"><x-primary-button-dark title="Checkout" class=" flex-shrink-0 mx-2 hidden md:block">
                         Checkout
                     </x-primary-button-dark></a>
                 </div>

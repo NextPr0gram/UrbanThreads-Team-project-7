@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
-
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,8 +70,8 @@ Route::get('/checkout', function () {
     return view('checkout');
 })->middleware(['auth'])->name('checkout');
 
-//? Route to show the user's basket
-Route::get('/checkout/show', [BasketController::class, 'show'])->name('basket.show');
+//? Route to show the checkout page with the basket items
+Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout.show');
 
 
 Route::get('auth.not-authenticated', function () {

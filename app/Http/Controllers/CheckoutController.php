@@ -4,16 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 
-/**
- ** Made by Kishan Jethwa
- */
-
-/**
- *? The basket controller is responsible for showing the user's basket and deleting the user's basket
- *? Basket creation is handled by the basket item controller
- */
-
-class BasketController extends Controller
+class CheckoutController extends Controller
 {
     public function show()
     {
@@ -35,7 +26,7 @@ class BasketController extends Controller
             if ($basketItems) {
                 return view('checkout.show', compact('basketItems', 'totalPrice')); //* Pass the basket items to the view as well as the total price
             } else {
-                return view('checkout.show')->with('error', 'You do not have a basket');
+                return redirect()->back()->with('error', 'You do not have a basket');
                 //! Redirect to the basket and display an error message that the user does not have a basket
             }
         } else {
