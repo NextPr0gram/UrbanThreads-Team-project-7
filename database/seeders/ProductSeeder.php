@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Cool Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'cool-hoodie',
                 'description' => 'This is a cool hoodie.',
                 'original_price' => '50.00',
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Comfy Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'comfy-hoodie',
                 'description' => 'This is a comfy hoodie with fleece.',
                 'original_price' => '75.00',
@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Sporty Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'sporty-hoodie',
                 'description' => 'This is a sporty hoodie.',
                 'original_price' => '45.00',
@@ -78,7 +78,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Oversized Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'oversized-hoodie',
                 'description' => 'This is a oversized hoodie.',
                 'original_price' => '45.00',
@@ -97,7 +97,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Slim-fit Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'slim-fit-hoodie',
                 'description' => 'This is a slim-fit hoodie.',
                 'original_price' => '45.00',
@@ -116,7 +116,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Winter Hoodie',
-                'image' => ''
+                'image' => '',
                 'slug' => 'winter-hoodie',
                 'description' => 'This is a winter hoodie.',
                 'original_price' => '45.00',
@@ -137,7 +137,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Normal T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'normal-t-shirt',
                 'description' => 'This is a normal-t-shirt.',
                 'original_price' => '45.00',
@@ -156,7 +156,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Boxy T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'boxy-t-shirt',
                 'description' => 'This is a boxy-t-shirt.',
                 'original_price' => '45.00',
@@ -175,7 +175,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Slim-fit T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'slim-fit-t-shirt',
                 'description' => 'This is a slim-fit t-shirt.',
                 'original_price' => '45.00',
@@ -194,7 +194,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Oversized T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'oversized-t-shirt',
                 'description' => 'This is a oversized t-shirt.',
                 'original_price' => '45.00',
@@ -213,7 +213,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Baggy T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'baggy-t-shirt',
                 'description' => 'This is a baggy t-shirt.',
                 'original_price' => '45.00',
@@ -232,7 +232,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'V-neck T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'v-neck-t-shirt',
                 'description' => 'This is a V-neck t-shirt.',
                 'original_price' => '45.00',
@@ -251,7 +251,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 2, //T-shirt
                 'name' => 'Sports T-shirt',
-                'image' => ''
+                'image' => '',
                 'slug' => 'sports-t-shirt',
                 'description' => 'This is a sports t-shirt.',
                 'original_price' => '45.00',
@@ -272,7 +272,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 3, //Jackets
                 'name' => 'Denim Jacket',
-                'image' => ''
+                'image' => '',
                 'slug' => 'demin-jacket',
                 'description' => 'This is a Denim Jacket.',
                 'original_price' => '45.00',
@@ -291,7 +291,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 3, //Jackets
                 'name' => 'Leather Jacket',
-                'image' => ''
+                'image' => '',
                 'slug' => 'leather-jacket',
                 'description' => 'This is a Leather Jacket.',
                 'original_price' => '45.00',
@@ -310,7 +310,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 3, //Jackets
                 'name' => 'Gilet',
-                'image' => ''
+                'image' => '',
                 'slug' => 'gilet',
                 'description' => 'This is a gilet.',
                 'original_price' => '45.00',
@@ -329,7 +329,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 3, //Jackets
                 'name' => 'Puffer Jacket',
-                'image' => ''
+                'image' => '',
                 'slug' => 'puffer-jacket',
                 'description' => 'This is a Puffer Jacket.',
                 'original_price' => '45.00',
@@ -348,7 +348,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 2, //FEMALE PRODUCT
                 'c2_id' => 3, //Jackets
                 'name' => 'Cropped Jacket',
-                'image' => ''
+                'image' => '',
                 'slug' => 'cropped-jacket',
                 'description' => 'This is a Cropped Jacket.',
                 'original_price' => '45.00',
@@ -369,7 +369,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Straight-leg Trousers',
-                'image' => ''
+                'image' => '',
                 'slug' => 'straight-leg-trousers',
                 'description' => 'These are Straight-leg Trousers.',
                 'original_price' => '45.00',
@@ -388,7 +388,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Joggers',
-                'image' => ''
+                'image' => '',
                 'slug' => 'joggers',
                 'description' => 'These are Joggers.',
                 'original_price' => '45.00',
@@ -407,7 +407,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Jeans',
-                'image' => ''
+                'image' => '',
                 'slug' => 'jeans',
                 'description' => 'These are Jeans.',
                 'original_price' => '45.00',
@@ -426,7 +426,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Shorts',
-                'image' => ''
+                'image' => '',
                 'slug' => 'shorts',
                 'description' => 'These are shorts.',
                 'original_price' => '45.00',
@@ -445,7 +445,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Cargos',
-                'image' => ''
+                'image' => '',
                 'slug' => 'cargos',
                 'description' => 'These are Cargos.',
                 'original_price' => '45.00',
@@ -464,7 +464,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Chinos',
-                'image' => ''
+                'image' => '',
                 'slug' => 'chinos',
                 'description' => 'These are Chinos.',
                 'original_price' => '45.00',
@@ -483,7 +483,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 4, //Trousers
                 'name' => 'Khakis',
-                'image' => ''
+                'image' => '',
                 'slug' => 'khakis',
                 'description' => 'These are Khakis.',
                 'original_price' => '45.00',
@@ -504,7 +504,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 5, //Accessories
                 'name' => 'Beanie Hat',
-                'image' => ''
+                'image' => '',
                 'slug' => 'beanie-hat',
                 'description' => 'This is a beanie hat.',
                 'original_price' => '45.00',
@@ -523,7 +523,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 5, //Accessories
                 'name' => 'Scarf',
-                'image' => ''
+                'image' => '',
                 'slug' => 'scarf',
                 'description' => 'This is a scarf.',
                 'original_price' => '45.00',
@@ -542,7 +542,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 5, //Accessories
                 'name' => 'Baseball Cap',
-                'image' => ''
+                'image' => '',
                 'slug' => 'baseball-cap',
                 'description' => 'This is a baseball cap.',
                 'original_price' => '45.00',
@@ -561,7 +561,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 5, //Accessories
                 'name' => 'Aviator Sunglasses',
-                'image' => ''
+                'image' => '',
                 'slug' => 'aviator-sunglasses',
                 'description' => 'These are Aviator Sunglasses.',
                 'original_price' => '45.00',
@@ -580,7 +580,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 5, //Accessories
                 'name' => 'Socks',
-                'image' => ''
+                'image' => '',
                 'slug' => 'socks',
                 'description' => 'Pair of socks.',
                 'original_price' => '45.00',
