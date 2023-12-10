@@ -15,6 +15,7 @@ export default {
             "snow-white": "#D6F2FF",
             "light-gray": "#A1A1A1",
             "navy-blue": "#1B2836",
+            "black": "#000000",
             "transparent": "transparent",
             "white": "#FFFFFF",
             "red": "#b91c1c",

@@ -40,6 +40,7 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+            
 
             <x-primary-button-dark class="ms-3">
                 {{ __('Log in') }}
