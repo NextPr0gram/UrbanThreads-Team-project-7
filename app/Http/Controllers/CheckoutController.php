@@ -57,7 +57,7 @@ class CheckoutController extends Controller
                         // For each item in the basket, add the price of the product multiplied by the quantity to the total price
                         $totalPrice += $basketItem->product->selling_price * $basketItem->quantity;
                     }
-                    return view('basket.show', compact('basketItems', 'totalPrice')); //* Pass the basket items to the view as well as the total price
+                    return view('checkout.show', compact('basketItems', 'totalPrice')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
