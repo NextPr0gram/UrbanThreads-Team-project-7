@@ -20,11 +20,6 @@
                     <a href="{{ route('home') }}"><x-primary-button-dark class="w-full">Continue
                             Shopping</x-primary-button-dark></a>
                 </div>
-                @if (session('error'))
-                    <div class="text-lg font-lexend bg-red bg-opacity-80 rounded-md text-center mt-5 justify-center">
-                        {{ session('error') }}
-                    </div>
-                @endif
             </div>
         </div>
     </div>

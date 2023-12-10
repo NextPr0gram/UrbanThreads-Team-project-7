@@ -34,13 +34,19 @@ Route::middleware('auth')->group(function () {
 //? Route to show the user's basket
 Route::get('/basket/show', [BasketController::class, 'show'])->name('basket.show');
 //? Route to delete the user's basket (to be done when the user checks out)
-Route::delete('/basket', [BasketController::class, 'destroy'])->name('basket.destroy');
+Route::delete('/basket/destroy/{basketId}', [BasketController::class, 'destroy'])->name('basket.destroy');
 //? Route to add a product to the user's basket
 Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBasket'])
     ->name('basket.add');
 //? Route to remove a product from the user's basket
 Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
     ->name('basket.remove');
+//? Route to increment the quantity of a basket item
+Route::post('/basket/increment/{productId}', [BasketItemController::class,'incrementQuantity'])
+    ->name('incrementQuantity');
+//? Route to decrement the quantity of a basket item
+Route::post('/basket/decrement/{productId}', [BasketItemController::class,'decrementQuantity'])
+    ->name('decrementQuantity');
 
 Route::get('/products', function () {
     return view('layouts.products');
