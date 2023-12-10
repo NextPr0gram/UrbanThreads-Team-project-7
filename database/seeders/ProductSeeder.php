@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
                 'c1_id' => 1, //MALE PRODUCT
                 'c2_id' => 1, //Hoodie
                 'name' => 'Cool Hoodie',
-                'image' => '',
+                'image' => '/images/product-images/hoodies/comfy-hoodie.png',
                 'slug' => 'cool-hoodie',
                 'description' => 'This is a cool hoodie.',
                 'original_price' => '50.00',
