@@ -29,12 +29,12 @@
         @endif
 
         @if (session('success'))
-            <div class="text-md font-lexend bg-green bg-opacity-80 rounded-md text-center my-5 justify-center">
+            <div class="py-1 text-base text-white font-lexend bg-green bg-opacity-80 text-center mb-5 justify-center">
                 {{ session('success') }}
             </div>
         @endif
         @if (session('error'))
-            <div class="text-md font-lexend bg-red bg-opacity-80 rounded-md text-center my-5 justify-center">
+            <div class="py-1 text-base text-white font-lexend bg-red bg-opacity-80 text-center mb-5 justify-center">
                 {{ session('error') }}
             </div>
         @endif
