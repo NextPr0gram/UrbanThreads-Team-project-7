@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class Category2Controller extends Controller
 {
+    //To do properly when admin page is made
     public function c2view(){
         $category2 = Category::all();
     return view('Testpages.testc2', compact('category2'));

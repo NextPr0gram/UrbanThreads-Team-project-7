@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class Category1Controller extends Controller
 {
-    //
+    //To do when admin page is made
 }

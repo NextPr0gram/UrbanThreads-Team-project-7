@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function create(){
+        //by Neha based on Baskets Controller
              // Get the authenticated user  
      $user = auth()->user();
 
