@@ -30,7 +30,7 @@ class BasketItemController extends Controller
         // If the user isn't logged in, they are redirected to a page that allows them to login, register or continue shopping
         // They are also shown an error message saying that they must be logged in to add items to their basket
         if (!$user) {
-            return redirect()->route('not-authenticated')->with('error', 'You must be logged in to add items to your basket.');
+            return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
         }
 
         // Find or create the basket for the user
@@ -88,5 +88,54 @@ class BasketItemController extends Controller
 
         // Redirect to the basket page with a success message to reflect changes
         return redirect()->back()->with('success', 'Item(s) removed from the basket.');
+    }
+
+    public function incrementQuantity(Request $request, $productId)
+    {
+        // Get the authenticated user
+        $user = auth()->user();
+
+        // Find the basket for the user
+        $basket = Basket::where('user_id', $user->id)->first();
+
+        // Find the product
+        $product = Product::findOrFail($productId);
+
+        // Find the basket item
+        $basketItem = BasketItem::where('basket_id', $basket->id)
+            ->where('product_id', $product->id)
+            ->first();
+
+        // Update the quantity of the basket item
+        $basketItem->quantity += 1;
+        // Save the basket item
+        $basketItem->save();
+
+        // Redirect to the basket page with a success message to reflect changes
+        return redirect()->back()->with('success', 'Quantity updated');
+    }
+
+    public function decrementQuantity($productId) {
+        // Get the authenticated user
+        $user = auth()->user();
+
+        // Find the basket for the user
+        $basket = Basket::where('user_id', $user->id)->first();
+
+        // Find the product
+        $product = Product::findOrFail($productId);
+
+        // Find the basket item
+        $basketItem = BasketItem::where('basket_id', $basket->id)
+            ->where('product_id', $product->id)
+            ->first();
+
+        // Update the quantity of the basket item
+        $basketItem->quantity -= 1;
+        // Save the basket item
+        $basketItem->save();
+
+        // Redirect to the basket page with a success message to reflect changes
+        return redirect()->back()->with('success', 'Quantity updated');
     }
 }

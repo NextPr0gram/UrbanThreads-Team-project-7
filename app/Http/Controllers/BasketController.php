@@ -33,24 +33,30 @@ class BasketController extends Controller
             }
 
             if ($basketItems) {
-                return view('basket.show', compact('basketItems', 'totalPrice')); // Pass the basket items to the view as well as the total price
+                return view('basket.show', compact('basketItems', 'totalPrice')); //* Pass the basket items to the view as well as the total price
             } else {
-                return view('basket.show')->with('error', 'You do not have a basket'); // Redirect to the basket and display an error
+                return view('basket.show')->with('error', 'You do not have a basket');
+                //! Redirect to the basket and display an error message that the user does not have a basket
             }
         } else {
-            return redirect()->route('not-authenticated')->with('error','Register to view your basket');
+            //! Redirect to the login page if the user is not authenticated
+            return redirect()->route('login')->with('error','Register to view your basket');
         }
     }
 
-    public function destroy()
+    public function destroy($basketId)
     {
         // Get the authenticated user
         $user = auth()->user();
         // Get the basket of the authenticated user
         $basket = Basket::where('user_id', $user->id)->first();
         // Delete the basket
-        $basket->delete();
 
-        return redirect()->route('basket.show')->with('success', 'Basket deleted');
+        if($basket->id = $basketId){
+            $basket->delete();
+        }
+
+        //* Redirect to the basket and display a success message that the basket was deleted
+        return redirect()->route('home')->with('success', 'Basket deleted');
     }
 }

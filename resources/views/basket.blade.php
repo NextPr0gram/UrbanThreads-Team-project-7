@@ -6,19 +6,45 @@
     </div>
 
     <!-- Main Container -->
-    <div class="flex flex-col items-center mt-8 space-y-8 md:space-x-4 md:flex-row md:justify-center">
+    <div class="flex flex-col items-center mt-4 space-y-8 md:space-x-4 md:flex-row md:justify-center">
         <!-- Cart items container -->
-        <div class="w-full gap-10 md:w-[1037px] p-3 sm:p-10 border-3 border-bluish-purple bg-white bg-opacity-40 backdrop-blur-sm">
-            {{-- TODO: backend code --}}
-            <x-basket-item>
-                <x-slot name="productName">
-                    Hoodie {{-- TODO: backend code, fetch name --}}
-                </x-slot>
-                <x-slot name="price">
-                    $420 {{-- TODO: backend code, fetch price --}}
-                </x-slot>
-            </x-basket-item>
-
+        <div
+            class="w-full gap-10 md:w-[1037px] p-3 sm:p-10 border-3 border-bluish-purple bg-white bg-opacity-40 backdrop-blur-sm">
+            @foreach ($basketItems as $item)
+                <x-basket-item>
+                    <x-slot name="productName">
+                        {{ $item->product->name }}
+                    </x-slot>
+                    <x-slot name="counter">
+                        <form action="{{ route('decrementQuantity', ['productId' => $item->product->id]) }}"
+                            method="post">
+                            @csrf
+                            <button
+                                class="bg-black mr-3 text-black w-8 h-8 squared border border-black font-bold">-</button>
+                        </form>
+                        <span class="flex font-bold items-center">{{ $item->quantity }}</span>
+                        <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
+                            method="post">
+                            @csrf
+                            <button
+                                class="bg-black ml-3 text-black w-8 h-8 squared border border-black font-bold">+</button>
+                        </form>
+                    </x-slot>
+                    <x-slot name="price">
+                        {{ $item->product->selling_price }}
+                    </x-slot>
+                    <x-slot name="remove">
+                        <form action="{{ route('basket.remove', $item->product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div x-data="{ showRemoveText: window.innerWidth > 768 }" x-init="() => { window.addEventListener('resize', () => { showRemoveText = window.innerWidth > 768 }); }">
+                                <button type="submit" class="text-red" x-show="showRemoveText">Remove</button>
+                                <button type="submit" class="text-red text-2xl font-formula1" x-show="!showRemoveText"><img src="{{asset('icons/utility/cancel-icon.png')}}" alt=""></button>
+                            </div>
+                        </form>
+                    </x-slot>
+                </x-basket-item>
+            @endforeach
         </div>
 
         <!-- Gap between Product Cards and Cart Summary (visible only on larger screens) -->
@@ -32,7 +58,8 @@
                     <div class="text-black text-sm font-medium font-lexend-deca">Subtotal</div>
                 </div>
                 <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-medium font-lexend-deca subtotal-value">£123</div>
+                    <div class="text-black text-sm font-medium font-lexend-deca subtotal-value">{{ $totalPrice }}
+                    </div>
                 </div>
             </div>
             <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
@@ -48,7 +75,7 @@
                     <div class="text-black text-sm font-bold font-lexend-deca">Total</div>
                 </div>
                 <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                    <div class="text-black text-sm font-bold font-lexend-deca total-value">£123</div>
+                    <div class="text-black text-sm font-bold font-lexend-deca total-value">{{ $totalPrice }}</div>
                 </div>
             </div>
 
@@ -61,63 +88,3 @@
         </div>
     </div>
 </x-app-layout>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    // Get the elements
-    const quantityElement = document.querySelector('.QuantityValue');
-    const plusButton = document.querySelector('.PlusIcon');
-    const minusButton = document.querySelector('.MinusIcon');
-    const removeButton = document.querySelector('.RemoveIcon');
-    const productPriceElement = document.querySelector('.ProductPrice');
-    const subtotalElement = document.querySelector('.subtotal-value');
-    const totalElement = document.querySelector('.total-value');
-
-    // Initial quantity value
-    let quantity = 1;
-
-    // Function to update the quantity display and calculate total price
-    function updateQuantityAndPrice() {
-        const productCard = document.querySelector('.CartItem');
-        if (!productCard) {
-            // No items in the cart, update subtotal and total to 0
-            subtotalElement.textContent = '£0.00';
-            totalElement.textContent = '£0.00';
-            return;
-        }
-
-        const productPrice = parseFloat(productCard.dataset.price); // Get the actual product price
-
-        quantityElement.textContent = quantity;
-        const totalPrice = quantity * productPrice;
-        productPriceElement.textContent = `£${totalPrice.toFixed(2)}`;
-
-        // Update subtotal and total in the cart summary
-        subtotalElement.textContent = `£${totalPrice.toFixed(2)}`;
-        totalElement.textContent = `£${totalPrice.toFixed(2)}`;
-    }
-
-    // Event listener for the plus button
-    plusButton.addEventListener('click', function () {
-        quantity++;
-        updateQuantityAndPrice();
-    });
-
-    // Event listener for the minus button
-    minusButton.addEventListener('click', function () {
-        if (quantity > 1) {
-            quantity--;
-            updateQuantityAndPrice();
-        }
-    });
-
-    // Event listener for the remove button
-    removeButton.addEventListener('click', function () {
-        // Assuming your sample product is the parent div with class "CartItem"
-        const cartItem = removeButton.closest('.CartItem');
-        cartItem.remove();
-        updateQuantityAndPrice(); // Update price after removing the item
-    });
-});
-
-</script>
