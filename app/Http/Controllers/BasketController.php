@@ -26,7 +26,8 @@ class BasketController extends Controller
                 // Optionally get the basket items of the basket if the basket exists
                 $basketItems = optional($basket)->items;
 
-                if ($basketItems) {
+                //? If the basket has items, calculate the total price of the basket items and pass the basket items and total price to the basket view
+                if (count($basketItems) > 0) {
                     // Calculate the total price of the basket items
                     $totalPrice = 0;
                     foreach ($basketItems as $basketItem) {
