@@ -19,33 +19,33 @@
         <div class="flex flex-col h-screen">
             {{-- alerts --}}
             @if (session('success'))
-                <script>
-                    Toastify({
-                        text: "{{ session('success') }}",
-                        duration: 5000,
-                        close: true,
-                        gravity: "top", // "top" or "bottom"
-                        position: 'right', // 'left', 'center', 'right'
-                        backgroundColor: "green",
-                        stopOnFocus: true,
-                        className: 'toast-success'
-                    }).showToast();
-                </script>
+                <div id="successMessage" class="py-1 text-base text-white font-lexend bg-green bg-opacity-80 text-center justify-center">
+                    {{ session('success') }}
+                </div>
             @endif
             @if (session('error'))
-                <script>
-                    Toastify({
-                        text: "{{ session('error') }}",
-                        duration: 5000,
-                        close: true,
-                        gravity: "top", // "top" or "bottom"
-                        position: 'right', // 'left', 'center', 'right'
-                        backgroundColor: "red",
-                        stopOnFocus: true,
-                        className: 'toast-error'
-                    }).showToast();
-                </script>
+                <div id="errorMessage" class="py-1 text-base text-white font-lexend bg-red bg-opacity-80 text-center justify-center">
+                    {{ session('error') }}
+                </div>
             @endif
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Set timeout to hide the success message after 5 seconds
+                    setTimeout(function () {
+                        var successMessage = document.getElementById('successMessage');
+                        if (successMessage) {
+                            successMessage.style.display = 'none';
+                        }
+
+                        // Set timeout to hide the error message after 5 seconds
+                        var errorMessage = document.getElementById('errorMessage');
+                        if (errorMessage) {
+                            errorMessage.style.display = 'none';
+                        }
+                    }, 5000);
+                });
+            </script>
             @include('layouts.navigation')
 
 
