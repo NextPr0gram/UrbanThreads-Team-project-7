@@ -21,7 +21,7 @@
 
     {{-- description --}}
     <div class="px-4 bg-white">
-        <h1 class="font-formula1 text-md">{{ $title }}</h1>
+        <h1 class="pt-2 font-formula1 text-md">{{ $title }}</h1>
         <p>{{ $price }}</p>
     </div>
 
