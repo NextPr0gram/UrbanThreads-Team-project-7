@@ -1,5 +1,4 @@
 {{-- resources/views/checkout.blade.php --}}
-
 <x-app-layout>
     @auth
         <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
@@ -11,26 +10,23 @@
                     {{-- basket items --}}
                     @foreach ($basketItems as $item)
                         <x-basket-item>
+                            <x-slot name="image">
+                                {{ $item->product->image }} {{-- * The product image is placed in the image placeholder --}}
+                            </x-slot>
                             <x-slot name="productName">
                                 {{ $item->product->name }}
                             </x-slot>
                             <x-slot name="counter">
-                                <form action="{{ route('decrementQuantity', ['productId' => $item->product->id]) }}"
-                                    method="post">
-                                    @csrf
-                                    <button
-                                        class="bg-black mr-3 text-black w-8 h-8 squared border border-black font-bold">-</button>
-                                </form>
-                                <span class="flex font-bold items-center">{{ $item->quantity }}</span>
-                                <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
-                                    method="post">
-                                    @csrf
-                                    <button
-                                        class="bg-black ml-3 text-black w-8 h-8 squared border border-black font-bold">+</button>
-                                </form>
+                                {{-- unused slot --}}
                             </x-slot>
                             <x-slot name="price">
                                 {{ $item->product->selling_price }}
+                            </x-slot>
+                            <x-slot name="counter">
+                                Quantity: {{ $item->quantity }}
+                            </x-slot>
+                            <x-slot name="remove">
+                                {{-- unused slot --}}
                             </x-slot>
                         </x-basket-item>
                     @endforeach
