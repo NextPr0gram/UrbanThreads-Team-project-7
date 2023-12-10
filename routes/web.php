@@ -65,9 +65,14 @@ Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
 
+
 Route::get('/checkout', function () {
     return view('checkout');
-})->name('checkout');
+})->middleware(['auth'])->name('checkout');
+
+//? Route to show the user's basket
+Route::get('/checkout/show', [BasketController::class, 'show'])->name('basket.show');
+
 
 Route::get('auth.not-authenticated', function () {
     return view('auth.not-authenticated');
