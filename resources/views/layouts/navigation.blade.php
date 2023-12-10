@@ -43,11 +43,11 @@
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center ">
                     {{-- Account button mobile--}}
-                    <button @click="open = ! open" title="Account" class="sm:hidden px-2 flex items-center flex-shrink-0 text-snow-white">
+                    <button @click="open = ! open" title="Account" class="sm:hidden px-2 flex items-center flex-shrink-0 text-bluish-purple">
                         @auth
                             <div class="pr-2 hidden md:block text-base">{{ Auth::user()->name }}</div>
                         @else
-                            <div class="pr-2 hidden md:block text-base">Account</div>
+                            <div class="pr-2 hidden md:block text-base ">Account</div>
                         @endauth
 
                         <img src="{{asset('icons/utility/account-icon-light.svg')}}" alt="">
