@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="mt-10 flex flex-col items-center lg:flex-row bg-white bg-opacity-40 backdrop-blur-sm border-3 border-bluish-purple">
         <div class="m-10 w-64  md:w-[30rem] aspect-square bg-snow-white ">
-            {{-- image --}}
+            <img src="{{ $product->image }}" alt="">
         </div>
         {{-- content --}}
         <div class="px-10 xl:px-40">
