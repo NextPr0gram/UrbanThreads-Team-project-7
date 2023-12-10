@@ -40,12 +40,12 @@ class BasketController extends Controller
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
                 }
             } else {
-                return redirect()->back()->with('error', 'You do not have a basket');
+                return redirect()->back()->with('error', 'Basket is empty!');
                 //! Redirect to the basket and display an error message that the user does not have a basket
             }
         } else {
             //! Redirect to the login page if the user is not authenticated
-            return redirect()->route('login')->with('error', 'Register to view your basket');
+            return redirect()->route('login')->with('error', 'Login to view your basket');
         }
     }
 
@@ -59,7 +59,7 @@ class BasketController extends Controller
             // Delete the basket
             $basket->delete();
             //* Redirect to the basket and display a success message that the basket was deleted
-            return redirect()->route('home')->with('success', 'Basket deleted');
+            return redirect()->route('home')->with('success', 'Basket cleared');
         } else {
             //! Redirect to the login page if the user is not authenticated
             return redirect()->route('login')->with('error', 'Register to view your basket');

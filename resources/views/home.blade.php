@@ -1,10 +1,10 @@
 {{-- home page --}}
 <x-app-layout>
     {{-- hero section --}}
-    <div class="flex justify-between items-center lg:px-10">
+    <div class="flex justify-between items-center lg:px-10 ">
         {{-- hero text --}}
         <div class="pl-4 py-10">
-            <h1 class="px-2 my-5 text-bluish-purple text-3xl font-formula1 leading-tight sm:text-4xl lg:text-6xl">
+            <h1 class="px-2 my-5 bg-background-image bg-clip-text text-transparent  text-3xl font-formula1 leading-tight sm:text-4xl lg:text-6xl">
                 Welcome to <br>
                 UrbanThreads
             </h1>

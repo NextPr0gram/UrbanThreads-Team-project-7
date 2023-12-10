@@ -1,5 +1,4 @@
 {{-- resources/views/checkout.blade.php --}}
-
 <x-app-layout>
     @auth
         <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
@@ -8,41 +7,29 @@
                 <div class="mt-2 space-y-3 px-2 py-4 sm:px-6 bg-white bg-opacity-60 border-3 border-navy-blue max-sm:text-center">
                     <h1 class="text-4xl font-formula1 text-bluish-purple">Items</h1>
 
-                    <div class="flex flex-col sm:flex-row border-b border-bluish-purple max-sm:items-center">
-                        <img class="m-2 h-24 w-28 border-2 border-bluish-purple object-cover object-center"
-                            src="https://ih1.redbubble.net/image.339900741.3490/ssrco,triblend_tee,mens,navy_triblend,front,square_product,x600-bg,f8f8f8.u4.jpg"
-                            alt="" />
-                        <div class="flex w-full flex-col px-4 py-4 content-center">
-                            <h2 class="text-lg font-formula1">Mountain Tee</h2>
-                            <p class="mt-auto text-lg font-formula1">£399.00</p>
-                            <p class="text-gray-400 font-lexend">Size: Large</p>
-                            <p class="text-gray-400 font-lexend">Colour: Navy Blue</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row border-b border-bluish-purple max-sm:items-center">
-                        <img class="m-2 h-24 w-28 border-2 border-bluish-purple object-cover object-center"
-                            src="https://ih1.redbubble.net/image.339900741.3490/ssrco,triblend_tee,mens,navy_triblend,front,square_product,x600-bg,f8f8f8.u4.jpg"
-                            alt="" />
-                        <div class="flex w-full flex-col px-4 py-4 content-center">
-                            <h2 class="text-lg font-formula1">Mountain Tee</h2>
-                            <p class="mt-auto text-lg font-formula1">£399.00</p>
-                            <p class="text-gray-400 font-lexend">Size: Large</p>
-                            <p class="text-gray-400 font-lexend">Colour: Navy Blue</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row max-sm:items-center">
-                        <img class="m-2 h-24 w-28 border-2 border-bluish-purple object-cover object-center"
-                            src="https://ih1.redbubble.net/image.339900741.3490/ssrco,triblend_tee,mens,navy_triblend,front,square_product,x600-bg,f8f8f8.u4.jpg"
-                            alt="" />
-                        <div class="flex w-full flex-col px-4 py-4 content-center">
-                            <h2 class="text-lg font-formula1">Mountain Tee</h2>
-                            <p class="mt-auto text-lg font-formula1">£399.00</p>
-                            <p class="text-gray-400 font-lexend">Size: Large</p>
-                            <p class="text-gray-400 font-lexend">Colour: Navy Blue</p>
-                        </div>
-                    </div>
+                    {{-- basket items --}}
+                    @foreach ($basketItems as $item)
+                        <x-basket-item>
+                            <x-slot name="image">
+                                {{ $item->product->image }} {{-- * The product image is placed in the image placeholder --}}
+                            </x-slot>
+                            <x-slot name="productName">
+                                {{ $item->product->name }}
+                            </x-slot>
+                            <x-slot name="counter">
+                                {{-- unused slot --}}
+                            </x-slot>
+                            <x-slot name="price">
+                                {{ $item->product->selling_price }}
+                            </x-slot>
+                            <x-slot name="counter">
+                                Quantity: {{ $item->quantity }}
+                            </x-slot>
+                            <x-slot name="remove">
+                                {{-- unused slot --}}
+                            </x-slot>
+                        </x-basket-item>
+                    @endforeach
                 </div>
 
                 <div class="bg-white bg-opacity-60 p-3 mt-5 border-navy-blue border-3 text-bluish-purple">

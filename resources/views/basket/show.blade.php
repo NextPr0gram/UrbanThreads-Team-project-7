@@ -35,26 +35,26 @@
                         <x-slot name="counter">
                             {{-- * This is the form that allows the button inside the form perform a post request that decrements the quantity
                              * of the basket item inside the user's basket --}}
-                            <form action="{{ route('decrementQuantity', ['productId' => $item->product->id]) }}"
-                                method="post">
-                                @csrf
-                                {{-- * This is a button that allows for decrementing the quantity --}}
-                                <button
-                                    class="bg-black mr-3 text-black w-8 h-8 squared border border-black font-bold">-</button>
-                            </form>
-                            {{-- * The quantity of the basket item is fetched from the basket item record in the basket items table
+                        <form action="{{ route('decrementQuantity', ['productId' => $item->product->id]) }}"
+                            method="post">
+                            @csrf
+                            {{-- * This is a button that allows for decrementing the quantity --}}
+                            <button
+                                class="bg-transparent mr-3 text-black w-8 h-8 squared border border-black font-bold">-</button>
+                        </form>
+                        {{-- * The quantity of the basket item is fetched from the basket item record in the basket items table
                              * It is updated whenever the buttons for incrementing and decrementing the quantity are clicked --}}
                             <span class="flex font-bold items-center">{{ $item->quantity }}</span>
                             {{-- * This is the form that allows the button inside the form perform a post request that increments the quantity
                              * of the basket item inside the user's basket --}}
-                            <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
-                                method="post">
-                                @csrf
-                                {{-- * This is a button that allows for incrementing the quantity --}}
-                                <button
-                                    class="bg-black ml-3 text-black w-8 h-8 squared border border-black font-bold">+</button>
-                            </form>
-                        </x-slot>
+                        <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
+                            method="post">
+                            @csrf
+                            {{-- * This is a button that allows for incrementing the quantity --}}
+                            <button
+                                class="bg-transparent ml-3 text-black w-8 h-8 squared border border-black font-bold">+</button>
+                        </form>
+                    </x-slot>
 
                         {{-- * The price of the basket item is placed in the price placeholder --}}
                         <x-slot name="price">
