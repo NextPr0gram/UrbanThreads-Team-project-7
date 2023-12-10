@@ -12,7 +12,7 @@
                 @foreach ($products as $product)
                     <div class="mb-4">
                         <a href="{{ route('show', ['slug' => $product->slug]) }}">
-                            <x-products-card title='{{ $product->name }}' price='£{{ $product->selling_price }}'></x-products-card>
+                            <x-products-card image='{{ $product->image }}' title='{{ $product->name }}' price='£{{ $product->selling_price }}'></x-products-card>
                         </a>
                     </div>
                 @endforeach
