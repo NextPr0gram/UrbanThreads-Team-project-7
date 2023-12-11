@@ -123,20 +123,16 @@
                     <div class=" mt-6 border-t border-b border-bluish-purple py-2">
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-900">Number of items</p>
-                            <p class="font-semibold text-gray-900">3</p>
+                            <p class="font-semibold text-gray-900">{{ $itemCount }}</p>
                         </div>
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                            <p class="font-semibold text-gray-900">£399.00</p>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-900">Delivery</p>
-                            <p class="font-semibold text-gray-900">£2.99</p>
+                            <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
                         </div>
                     </div>
                     <div class="mt-6 flex items-center justify-between">
                         <p class="text-2xl font-semibold text-gray-900">Total</p>
-                        <p class="text-2xl font-semibold text-gray-900">£401.99</p>
+                        <p class="text-2xl font-semibold text-gray-900">£{{ $totalPrice }}</p>
                     </div>
                     <x-primary-button-dark class="w-full mt-5">Place Order</x-primary-button-dark>
                 </div>
