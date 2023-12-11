@@ -44,6 +44,10 @@ Open XAMPP and start the Apache server and the MySQL server.
 - Enter `npm run dev`
 - Enter `php artisan serve` and it will return a link, press Ctrl + Click on the link to open the website and voilà!
 
+### Database
+- Enter `php artisan migrate`, this creates the databse and tables.
+- Enter `php artisan db:seed --class=DatabaseSeeder` this fills the tables with records
+
 ## Author
 
 - Anaf Ibn Karim - [@NextPr0gram](https://www.github.com/NextPr0gram)
