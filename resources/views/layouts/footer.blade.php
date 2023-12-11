@@ -29,10 +29,10 @@
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-lg font-formula1 text-snow-white">Customer service</h2>
+                  <h2 class="mb-6 text-lg font-formula1 text-snow-white">Information</h2>
                   <ul class="text-snow-white ">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">Contact us</a>
+                          <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                       </li>
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Order status</a>
