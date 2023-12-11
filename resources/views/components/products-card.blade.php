@@ -18,7 +18,7 @@
 
     <div class="flex justify-end p-4 bg-white">
         {{--* Button to add the product to the basket --}}
-        <x-primary-button-dark class="" href={{ $productLink }}>Add to basket</x-primary-button-dark>
+        <x-primary-button-dark class="" href={{ $productLink }}>More info</x-primary-button-dark>
         {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
     </div>
 </div>
