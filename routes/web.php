@@ -67,6 +67,9 @@ Route::get('/basket', function () {
 //? Route to show the checkout page with the basket items
 Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
 
+//? Route to add functionality to the "Place Order" button on the checkout page
+Route::get('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
+
 
 Route::get('auth.not-authenticated', function () {
     return view('auth.not-authenticated');
@@ -78,6 +81,7 @@ Route::get('/category/tshirts', [ProductController::class, 'showTshirts'])->name
 Route::get('/category/jackets', [ProductController::class, 'showJackets'])->name('jackets');
 Route::get('/category/trousers', [ProductController::class, 'showTrousers'])->name('trousers');
 Route::get('/category/accessories', [ProductController::class, 'showAccessories'])->name('accessories');
+Route::get('/category/all', [ProductController::class, 'showAll'])->name('all');
 
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');

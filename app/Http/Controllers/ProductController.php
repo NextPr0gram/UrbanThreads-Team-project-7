@@ -17,6 +17,12 @@ class ProductController extends Controller
      ** showTshirts() will show all products with category_id = 2 (T-shirts)
      */
 
+    // ** This method will show all products
+    public function showAll()
+    {
+        $products = Product::all(); // Get all products
+        return view('products', ['products' => $products, 'category' => 'All Products']); // Pass the products and category to the view
+    }
 
     // ** This method will show all hoodies
     public function showHoodies()

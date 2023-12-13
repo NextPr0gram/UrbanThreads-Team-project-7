@@ -42,4 +42,15 @@ class CheckoutController extends Controller
             return redirect()->route('login')->with('error', 'Login to view your basket');
         }
     }
+
+    //* Place order
+    public function placeOrder()
+    {
+        // Get the authenticated user
+        $user = auth()->user();
+        // Get the basket of the authenticated user
+        $basket = Basket::where('user_id', $user->id)->first();
+        $basket->delete(); // Delete the basket
+        return redirect()->route('home')->with('success', 'Order placed successfully!');
+    }
 }
