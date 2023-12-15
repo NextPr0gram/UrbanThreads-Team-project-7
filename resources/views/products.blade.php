@@ -8,7 +8,7 @@
     </x-slot>
     <div class="container mx-auto">
         <div class="flex justify-center">
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-20 mt-5">
+            <div class="grid grid-cols-1 gap-20 mt-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 {{--
                     * Loops through all products in the category of clothing and generates a product card for each product
                     * The product card includes the product image, name, price and a button that goes to the page for that specific product

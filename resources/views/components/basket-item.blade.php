@@ -4,15 +4,15 @@
     ? and remove the product from the basket
     --}}
 
-<div class="flex items-center border-b-2 border-snow-white ">
-    <img class="m-2 h-16 sm:h-24 aspect-square border-3 border-bluish-purple object-cover object-center"
+<div class="flex items-center border-b-2 border-snow-white">
+    <img class="object-cover object-center m-2 h-16 sm:h-24 aspect-square border-3 border-bluish-purple"
         src="{{ $image }}" {{--* This is the placeholder for the image link for the specific product fetched from the database --}}
         alt="" />
-    <div class="flex w-full flex-col p-4">
+    <div class="flex flex-col p-4 w-full">
         <div class="flex justify-between items-center max-w-lg lg:max-w-full">
-            <div class="flex justify-between flex-col">
+            <div class="flex flex-col justify-between">
                 <h2 class="text-md sm:text-lg font-formula1">{{ $productName }}</h2> {{--* This is the placeholder for the product name --}}
-                <p class="text-base font-formula1 text-left">{{ $price }}</p> {{--* This is the placeholder for the price of the product --}}
+                <p class="text-base text-left font-formula1">{{ $price }}</p> {{--* This is the placeholder for the price of the product --}}
             </div>
             <div class="flex">
                 {{ $counter }} {{--* This is the placeholder for the counter that allows for incrementing and decrementing the quantity of a product --}}

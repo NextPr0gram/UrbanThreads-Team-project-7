@@ -1,14 +1,14 @@
 {{-- home page --}}
 <x-app-layout>
     {{-- hero section --}}
-    <div class="flex justify-between items-center lg:px-10 ">
+    <div class="flex justify-between items-center lg:px-10">
         {{-- hero text --}}
-        <div class="pl-4 py-10">
-            <h1 class="px-2 my-5 bg-background-image bg-clip-text text-transparent  text-3xl font-formula1 leading-tight sm:text-4xl lg:text-6xl">
+        <div class="py-10 pl-4">
+            <h1 class="px-2 my-5 text-3xl leading-tight text-transparent bg-clip-text bg-background-image font-formula1 sm:text-4xl lg:text-6xl">
                 Welcome to <br>
                 UrbanThreads
             </h1>
-            <p class="border-l-3 border-bluish-purple px-2 mx-2 my-5">Elevate Your Style. Discover the latest trends in
+            <p class="px-2 mx-2 my-5 border-l-3 border-bluish-purple">Elevate Your Style. Discover the latest trends in
                 fashion.</p>
             <div class="px-2 my-5"><x-primary-button-dark> Shop now </x-primary-button-dark></div>
         </div>

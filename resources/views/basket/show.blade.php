@@ -40,11 +40,11 @@
                             @csrf
                             {{-- * This is a button that allows for decrementing the quantity --}}
                             <button
-                                class="bg-transparent mr-3 text-black w-8 h-8 squared border border-black font-bold">-</button>
+                                class="mr-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">-</button>
                         </form>
                         {{-- * The quantity of the basket item is fetched from the basket item record in the basket items table
                              * It is updated whenever the buttons for incrementing and decrementing the quantity are clicked --}}
-                            <span class="flex font-bold items-center">{{ $item->quantity }}</span>
+                            <span class="flex items-center font-bold">{{ $item->quantity }}</span>
                             {{-- * This is the form that allows the button inside the form perform a post request that increments the quantity
                              * of the basket item inside the user's basket --}}
                         <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
@@ -52,7 +52,7 @@
                             @csrf
                             {{-- * This is a button that allows for incrementing the quantity --}}
                             <button
-                                class="bg-transparent ml-3 text-black w-8 h-8 squared border border-black font-bold">+</button>
+                                class="ml-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">+</button>
                         </form>
                     </x-slot>
 
@@ -71,7 +71,7 @@
                                 <div x-data="{ showRemoveText: window.innerWidth > 768 }" x-init="() => { window.addEventListener('resize', () => { showRemoveText = window.innerWidth > 768 }); }">
                                     <button type="submit" class="text-red" x-show="showRemoveText">Remove</button>
                                     {{-- * This button is only visible on larger screens. It is a --}}
-                                    <button type="submit" class="text-red text-2xl font-formula1"
+                                    <button type="submit" class="text-2xl text-red font-formula1"
                                         x-show="!showRemoveText"><img src="{{ asset('icons/utility/cancel-icon.png') }}"
                                             alt=""></button> {{-- * This is the button that is only visible on mobile phones/small screens. It is a red X button. --}}
                                 </div>
@@ -82,7 +82,7 @@
                 <form method="POST" action="{{ route('basket.destroy') }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red text-base f mt-5 w-full">Clear Basket</button>
+                    <button type="submit" class="mt-5 w-full text-base text-red f">Clear Basket</button>
                 </form>
             </div>
 
@@ -92,36 +92,36 @@
             <!-- Cart Summary Container -->
             <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-2 border-navy-blue backdrop-blur-[18px]">
                 <!-- Subtotal, Discount, Total -->
-                <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                        <div class="text-black text-sm font-medium font-lexend-deca">Subtotal</div>
+                <div class="flex justify-between items-center self-stretch px-4 h-12 border-b-2 border-snow-white">
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-medium text-black font-lexend-deca">Subtotal</div>
                     </div>
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                        <div class="text-black text-sm font-medium font-lexend-deca subtotal-value">{{ $totalPrice }}
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">{{ $totalPrice }}
                         </div>
                     </div>
                 </div>
-                <div class="self-stretch h-12 px-4 justify-between items-center flex border-b-2 border-snow-white">
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex ">
-                        <div class="text-black text-sm font-medium font-lexend-deca">Discount</div>
+                <div class="flex justify-between items-center self-stretch px-4 h-12 border-b-2 border-snow-white">
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-medium text-black font-lexend-deca">Discount</div>
                     </div>
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                        <div class="text-black text-sm font-medium font-lexend-deca">£0</div>
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-medium text-black font-lexend-deca">£0</div>
                     </div>
                 </div>
-                <div class="self-stretch h-12 px-4 justify-between items-center flex">
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                        <div class="text-black text-sm font-bold font-lexend-deca">Total</div>
+                <div class="flex justify-between items-center self-stretch px-4 h-12">
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-bold text-black font-lexend-deca">Total</div>
                     </div>
-                    <div class="px-2 py-2 justify-center items-center gap-2.5 flex">
-                        <div class="text-black text-sm font-bold font-lexend-deca total-value">{{ $totalPrice }}</div>
+                    <div class="flex gap-2.5 justify-center items-center px-2 py-2">
+                        <div class="text-sm font-bold text-black font-lexend-deca total-value">{{ $totalPrice }}</div>
                     </div>
                 </div>
 
                 <!-- Checkout Button -->
-                <div class="self-stretch justify-center mt-4">
+                <div class="justify-center self-stretch mt-4">
                     <a href="{{ route('checkout') }}">
-                        <x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark>
+                        <x-primary-button-dark class="mt-5 w-full">Checkout</x-primary-button-dark>
                     </a>
 
                 </div>

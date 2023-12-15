@@ -4,7 +4,7 @@
     ? It displays the product image, name, price and a button to add the product to the basket
     --}}
 
-<div class="border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray transition-all duration-300 ease-in-out">
+<div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
     <div class="w-64 aspect-square">
         {{--* The placeholder for the image of the product --}}
         <img class="w-64 aspect-square" src="{{ $image }}" alt="">
