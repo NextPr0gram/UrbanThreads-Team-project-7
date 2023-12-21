@@ -8,7 +8,7 @@
                 <p class="py-2" >The page you are looking for does not exist. How you got here is a <br>
                     mystery. But you can click the button below to go back to the homepage
                 </p>
-                <div class="py-2" ><x-primary-button-dark>Home</x-primary-button-dark></div>
+                <div class="py-2" ><x-primary-button>Home</x-primary-button></div>
             </div>
         </div>
     </div>

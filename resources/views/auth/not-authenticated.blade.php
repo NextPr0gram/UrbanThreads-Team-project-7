@@ -7,18 +7,18 @@
                 <div class="flex flex-col gap-5 mt-5 sm:flex-row">
                     <div class="w-full">
                         <x-input-label class="flex justify-center">If you are an existing customer:</x-input-label>
-                        <a href="{{ route('login') }}"><x-primary-button-dark
-                                class="mt-5 w-full">Login</x-primary-button-dark></a>
+                        <a href="{{ route('login') }}"><x-primary-button
+                                class="mt-5 w-full">Login</x-primary-button></a>
                     </div>
                     <div class="w-full">
                         <x-input-label class="flex justify-center">If you are a new customer:</x-input-label>
-                        <a href="{{ route('register') }}"><x-primary-button-dark
-                                class="mt-5 w-full">Register</x-primary-button-dark></a>
+                        <a href="{{ route('register') }}"><x-primary-button
+                                class="mt-5 w-full">Register</x-primary-button></a>
                     </div>
                 </div>
                 <div class="flex flex-col justify-center mt-5">
-                    <a href="{{ route('home') }}"><x-primary-button-dark class="w-full">Continue
-                            Shopping</x-primary-button-dark></a>
+                    <a href="{{ route('home') }}"><x-primary-button class="w-full">Continue
+                            Shopping</x-primary-button></a>
                 </div>
             </div>
         </div>
