@@ -1,6 +1,6 @@
 ## Describe your changes
 
-## Upload a screen recording of feature/bugfix in action (only requred if you did anything realed to UI)
+## Upload a screen recording of feature/bugfix in action (only requred if you did anything related to UI)
 
 ## Checklist before requesting a review
 - [ ] I have tested my code, everything is working fine and I did not break anything.
