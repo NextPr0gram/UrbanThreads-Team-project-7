@@ -22,8 +22,7 @@
 
                 {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                         {{ __('Dashboard') }}
-                                    </x-nav-
-                                    .0> --}}
+                </x-nav- .0> --}}
             </div>
 
             {{-- right side nav-items account, wishlist, cart buttons...--}}
@@ -34,7 +33,7 @@
                     <x-text-input class="hidden w-full md:block"></x-text-input>
                     <button title="Search" class="flex-none px-2">
                         <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
-                    </button>
+                </button>
 
                 </form> --}}
 
@@ -45,9 +44,9 @@
                     {{-- Account button mobile--}}
                     <button @click="open = ! open" title="Account" class="flex flex-shrink-0 items-center px-2 sm:hidden text-bluish-purple">
                         @auth
-                            <div class="hidden pr-2 text-base md:block">{{ Auth::user()->name }}</div>
+                        <div class="hidden pr-2 text-base md:block">{{ Auth::user()->name }}</div>
                         @else
-                            <div class="hidden pr-2 text-base md:block">Account</div>
+                        <div class="hidden pr-2 text-base md:block">Account</div>
                         @endauth
 
                         <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
@@ -60,7 +59,7 @@
                                 @auth
                                 <div class="px-1 text-bluish-purple">{{ Auth::user()->name }}</div>
                                 @else
-                                    <div class="px-1 text-base text-bluish-purple">Account</div>
+                                <div class="px-1 text-base text-bluish-purple">Account</div>
                                 @endauth
                                 <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
 
@@ -78,42 +77,77 @@
 
                         <x-slot name="content">
                             @auth
-                                <!-- Show profile and logout for authenticated users -->
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
+                            <!-- Show profile and logout for authenticated users -->
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
 
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
+                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            @else
-                                <!-- Show login and register for guests (not authenticated users) -->
-                                <x-dropdown-link :href="route('login')">
-                                    {{ __('Login') }}
+                                    {{ __('Log Out') }}
                                 </x-dropdown-link>
+                            </form>
+                            @else
+                            <!-- Show login and register for guests (not authenticated users) -->
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Login') }}
+                            </x-dropdown-link>
 
-                                @if (Route::has('register'))
-                                    <x-dropdown-link :href="route('register')">
-                                        {{ __('Register') }}
-                                    </x-dropdown-link>
-                                @endif
+                            @if (Route::has('register'))
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Register') }}
+                            </x-dropdown-link>
+                            @endif
                             @endauth
                         </x-slot>
 
                     </x-dropdown>
 
-                    {{-- Wishlist button --}}
-                    {{-- <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
-                        <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
-                    </button> --}}
+                    {{-- Code for wishlist button and dropdown --}}
+                    <div x-data="{ showMenu: false}">
 
+                        {{-- Wishlist Button --}}
+                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
+                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
+                        </button>
+
+                        {{-- Wishlist Dropdown --}}
+                        <div x-show="showMenu" @click.away="showMenu = false" class="absolute right-42 mt-3 w-48 bg-white border shadow-lg">
+                            {{-- Wishlist Items --}}
+                            <div class="py-2">
+                                {{-- Wishlist Item 1 --}}
+                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">White Beanie</span>
+                                    <button class="ml-auto text-red">Remove</button>
+                                </div>
+
+                                {{-- Wishlist Item 2 --}}
+                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">Cream Chinos</span>
+                                    <button class="ml-auto text-red">Remove</button>
+                                </div>
+
+                                {{-- Wishlist Item 3 --}}
+                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">Pink Hoodie</span>
+                                    <button class="ml-auto text-red">Remove</button>
+                                </div>
+
+                                {{-- More items --}}
+
+                            </div>
+
+                            {{-- Link to wishlist page --}}
+
+                        </div>
+                    </div>
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="flex-none px-2">
@@ -122,8 +156,8 @@
 
                     {{-- Checkout button --}}
                     <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
-                        Checkout
-                    </x-primary-button-dark></a>
+                            Checkout
+                        </x-primary-button-dark></a>
                 </div>
 
 
@@ -153,43 +187,42 @@
         {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div> --}}
+        </x-responsive-nav-link>
+    </div> --}}
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
-            @auth
-                <div class="px-4">
-                    <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                    <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
-            @endauth
-                <div class="mt-3 space-y-1">
-                    @auth
-                        <x-responsive-nav-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-responsive-nav-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-responsive-nav-link>
-                        </form>
-                    @else
-                        <x-responsive-nav-link :href="route('login')">
-                            Login
-                        </x-responsive-nav-link>
-                        <x-responsive-nav-link :href="route('register')">
-                            Register
-                        </x-responsive-nav-link>
-                    @endauth
-            </div>
+    <!-- Responsive Settings Options -->
+    <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
+        @auth
+        <div class="px-4">
+            <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+            <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
         </div>
+        @endauth
+        <div class="mt-3 space-y-1">
+            @auth
+            <x-responsive-nav-link :href="route('profile.edit')">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
+
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
+            @else
+            <x-responsive-nav-link :href="route('login')">
+                Login
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register')">
+                Register
+            </x-responsive-nav-link>
+            @endauth
+        </div>
+    </div>
     </div>
 </nav>
 
@@ -203,7 +236,3 @@
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('accessories') }}">Accessories</a>
     </nav>
 </div>
-
-
-
-
