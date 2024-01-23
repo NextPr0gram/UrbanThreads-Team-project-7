@@ -14,7 +14,8 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block mx-2 h-9" />
+                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        
                     </a>
                 </div>
 
