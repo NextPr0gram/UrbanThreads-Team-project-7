@@ -10,7 +10,7 @@
             </h1>
             <p class="px-2 mx-2 my-5 border-l-3 border-bluish-purple">Elevate Your Style. Discover the latest trends in
                 fashion.</p>
-            <div class="px-2 my-5"><x-primary-button-dark> Shop now </x-primary-button-dark></div>
+            <div class="px-2 my-5"><x-primary-button> Shop now </x-primary-button></div>
         </div>
 
         {{-- hero image --}}

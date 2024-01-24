@@ -19,7 +19,7 @@
                 <div class="my-10 text-center">
                     <form action="{{ route('basket.add', ['productId' => $product->id]) }}" method="post">
                         @csrf
-                        <x-primary-button-dark class="px-5 w-full">Add to Basket</x-primary-button-dark>
+                        <x-primary-button class="px-5 w-full">Add to Basket</x-primary-button>
                     </form>
                 </div>
             </div>

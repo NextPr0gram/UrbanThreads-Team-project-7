@@ -6,7 +6,7 @@
         <div class="overflow-hidden px-6 py-4 mt-6 w-full bg-white bg-opacity-40 border-2 shadow-md backdrop-blur-sm sm:max-w-md b border-navy-blue">
             <div class="flex justify-center items-center py-8 shrink-0">
                 <a href="{{ route('home') }}">
-                    <x-application-logo class="block mx-2 h-9" />
+                    <x-application-logo class="block mx-2 w-10 h-9" />
                 </a>
             </div>
             {{ $slot }}

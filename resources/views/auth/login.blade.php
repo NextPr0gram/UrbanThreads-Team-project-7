@@ -42,9 +42,9 @@
             @endif
 
 
-            <x-primary-button-dark class="ms-3">
+            <x-primary-button class="ms-3">
                 {{ __('Log in') }}
-            </x-primary-button-dark>
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
