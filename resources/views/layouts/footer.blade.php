@@ -13,9 +13,9 @@
             <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
               <div>
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Shop</h2>
-                  <ul class="text-snow-white ">
+                  <ul class="text-snow-white">
                       <li class="mb-4">
-                          <a href="#" class=" hover:underline">T-shirts</a>
+                          <a href="#" class="hover:underline">T-shirts</a>
                       </li>
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Hoodies</a>
@@ -29,10 +29,10 @@
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-lg font-formula1 text-snow-white">Customer service</h2>
-                  <ul class="text-snow-white ">
+                  <h2 class="mb-6 text-lg font-formula1 text-snow-white">Information</h2>
+                  <ul class="text-snow-white">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">Contact us</a>
+                          <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                       </li>
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Order status</a>
@@ -47,7 +47,7 @@
               </div>
               <div>
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Social channels</h2>
-                  <ul class="text-snow-white ">
+                  <ul class="text-snow-white">
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Twitter</a>
                       </li>
@@ -64,7 +64,7 @@
               </div>
               <div>
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Our Apps</h2>
-                  <ul class="text-snow-white ">
+                  <ul class="text-snow-white">
                       <li class="mb-4">
                           <a href="#" class="hover:underline"><img class="h-9" src="{{asset('images/playstore-app.svg')}}" alt=""></a>
                       </li>
@@ -74,11 +74,11 @@
                   </ul>
               </div>
           </div>
-        <hr class="my-6 mx-4 border-bluish-purple border-2 lg:my-8" />
-        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <div class=" sm:flex sm:items-center sm:justify-between">
+        <hr class="mx-4 my-6 border-2 border-bluish-purple lg:my-8" />
+        <div class="p-4 mx-auto w-full max-w-screen-xl md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="flex justify-center items-center pb-4 sm:pb-0">
-                    <x-application-logo :dark="false" class="block h-9 mx-2" />
+                    <x-application-logo :dark="false" class="block mx-2 h-9" />
                 </div>
                 <p class="flex flex-wrap justify-center mb-6 text-base text-snow-white sm:mb-0">
                     © UrbanThreads 2023 | All rights reserved

@@ -2,11 +2,11 @@
 
     <!-- Header Container -->
     <div class="flex justify-center items-center h-20 bg-gray-100">
-        <h1 class="text-white text-3xl font-formula1">My Basket</h1>
+        <h1 class="text-3xl text-white font-formula1">My Basket</h1>
     </div>
 
     <!-- Product Cards Container -->
-    <div class="flex flex-wrap justify-start mt-8 pl-4 space-y-8 md:space-y-0 md:space-x-4">
+    <div class="flex flex-wrap justify-start pl-4 mt-8 space-y-8 md:space-y-0 md:space-x-4">
 
         <!-- Sample Product Card -->
         <div class="CartItem" style="width: 1037px; height: 135px; padding-left: 21px; padding-right: 21px; background: rgba(255, 255, 255, 0.40); border: 3px #A1A1A1 solid; backdrop-filter: blur(18px); justify-content: space-between; align-items: center; display: inline-flex">
@@ -71,8 +71,8 @@
             </div>
 
             <!-- Checkout Button -->
-            <div class="self-stretch justify-center mt-4">
-                <a href="{{ route('checkout') }}"><x-primary-button-dark class="w-full mt-5">Checkout</x-primary-button-dark></a>
+            <div class="justify-center self-stretch mt-4">
+                <a href="{{ route('checkout') }}"><x-primary-button-dark class="mt-5 w-full">Checkout</x-primary-button-dark></a>
             </div>
         </div>
 
@@ -128,3 +128,4 @@
         });
     });
 </script>
+

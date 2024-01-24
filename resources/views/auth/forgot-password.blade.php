@@ -16,7 +16,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex justify-end items-center mt-4">
             <x-primary-button-dark>
                 {{ __('Send') }}
             </x-primary-button-dark>
