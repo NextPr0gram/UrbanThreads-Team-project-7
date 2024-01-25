@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class contactformcontroller extends Controller
+class ContactFormController extends Controller
 {
     //
 }
