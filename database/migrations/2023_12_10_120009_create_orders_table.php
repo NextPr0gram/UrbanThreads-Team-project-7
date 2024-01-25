@@ -12,6 +12,7 @@ return new class extends Migration
      *? user_id: The id of the user the order belongs to
      *? total: The total price of the order
      *? status: The status of the order, set to "placed" by default
+     * TODO Add delivery and payment info to orders table
      */
     public function up(): void
     {
