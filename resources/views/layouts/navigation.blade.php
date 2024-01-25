@@ -14,7 +14,8 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block mx-2 h-9" />
+                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        
                     </a>
                 </div>
 
@@ -121,9 +122,9 @@
                     </a>
 
                     {{-- Checkout button --}}
-                    <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
+                    <a href="{{ route('checkout') }}"><x-secondary-button title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
                         Checkout
-                    </x-primary-button-dark></a>
+                    </x-secondary-button></a>
                 </div>
 
 

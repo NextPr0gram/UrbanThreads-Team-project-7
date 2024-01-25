@@ -113,8 +113,8 @@
                         <div class="flex flex-col space-x-3 sm:flex-row">
                             <x-text-input type="text" name="discount-code" class="w-full text-sm shadow-sm"
                                 placeholder="Enter a discount code here" />
-                            <div class="flex justify-center max-sm:mt-2"><x-primary-button-dark
-                                    type="submit">Apply</x-primary-button-dark></div>
+                            <div class="flex justify-center max-sm:mt-2"><x-primary-button
+                                    type="submit">Apply</x-primary-button></div>
                         </div>
                     </form>
 
@@ -134,7 +134,7 @@
                         <p class="text-2xl font-semibold text-gray-900">Total</p>
                         <p class="text-2xl font-semibold text-gray-900">£{{ $totalPrice }}</p>
                     </div>
-                    <x-primary-button-dark class="mt-5 w-full">Place Order</x-primary-button-dark>
+                    <x-primary-button class="mt-5 w-full">Place Order</x-primary-button>
                 </div>
             </div>
         </div>

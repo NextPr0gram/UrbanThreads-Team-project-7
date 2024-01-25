@@ -121,7 +121,7 @@
                 <!-- Checkout Button -->
                 <div class="justify-center self-stretch mt-4">
                     <a href="{{ route('checkout') }}">
-                        <x-primary-button-dark class="mt-5 w-full">Checkout</x-primary-button-dark>
+                        <x-primary-button class="mt-5 w-full">Checkout</x-primary-button>
                     </a>
 
                 </div>
