@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'basket_id', 'total_amount'];
+
+    protected $table = "orders"; // Table name
+
+    protected $fillable = ['user_id', 'total']; // The user id is a fillable field as it is required when creating an order
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function basket()
+    public function items()
     {
-        return $this->belongsTo(Basket::class);
+        return $this->hasMany(OrderItems::class);
     }
 }

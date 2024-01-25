@@ -15,6 +15,7 @@ use App\Models\Basket;
 
 class BasketController extends Controller
 {
+    //* Show the user's basket
     public function show()
     {
         // Get the authenticated user
@@ -49,6 +50,7 @@ class BasketController extends Controller
         }
     }
 
+    //* Delete the user's basket
     public function destroy()
     {
         // Get the authenticated user

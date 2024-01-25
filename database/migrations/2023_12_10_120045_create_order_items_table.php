@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     *? Table info:
+     *? id: The id of the order item
+     *? order_id: The id of the order the order item belongs to
+     *? product_id: The id of the product the order item belongs to
+     *? quantity: The quantity of the product in the order
      */
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('basketItems_id');
-            
+            $table->unsignedBigInteger('product_id');
+            $table->integer ("quantity")->default(1);
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
-        $table->foreign('basketItems_id')->references('id')->on('basket_items')->onDelete('cascade');
         });
     }
 

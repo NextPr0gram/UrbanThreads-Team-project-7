@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     *? Table info:
+     *? id: The id of the order
+     *? user_id: The id of the user the order belongs to
+     *? total: The total price of the order
+     *? status: The status of the order, set to "placed" by default
      */
     public function up(): void
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('basket_id');
-            $table->decimal('total_amount', 10, 2);
+            $table->decimal('total', 8, 2)->default(0);
+            $table->enum('status', ['placed', 'processing', 'dispatched', 'delivered'])->default('placed');
             $table->timestamps();
-
-            //add foreign key
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('basket_id')->references('id')->on('baskets')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 };

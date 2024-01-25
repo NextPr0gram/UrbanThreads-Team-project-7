@@ -97,7 +97,7 @@
                         <div class="text-sm font-medium text-black font-lexend-deca">Subtotal</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">{{ $totalPrice }}
+                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">£{{ $totalPrice }}
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                         <div class="text-sm font-bold text-black font-lexend-deca">Total</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-bold text-black font-lexend-deca total-value">{{ $totalPrice }}</div>
+                        <div class="text-sm font-bold text-black font-lexend-deca total-value">£{{ $totalPrice }}</div>
                     </div>
                 </div>
 
@@ -123,7 +123,6 @@
                     <a href="{{ route('checkout') }}">
                         <x-primary-button class="mt-5 w-full">Checkout</x-primary-button>
                     </a>
-
                 </div>
             </div>
     </div>

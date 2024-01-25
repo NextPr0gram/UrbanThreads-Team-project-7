@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Order;
+use App\Models\OrderItems;
+use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
@@ -41,5 +44,62 @@ class CheckoutController extends Controller
             //! Redirect to the login page if the user is not authenticated
             return redirect()->route('login')->with('error', 'Login to view your basket');
         }
+    }
+
+    public function placeOrder(Request $request) {
+
+        //* Checkout form validation
+        $validated = $request->validate([
+            // Name fields
+            'first_name' => 'required',
+            'last_name' => 'required',
+            // Address fields
+            'address_line1' => 'required',
+            'address_line2' => 'nullable',
+            'country' => 'required',
+            'city' => 'required',
+            'postcode' => 'required',
+            // Payment fields
+            'card_number' => 'required|digits:16',
+            'expiry_date' => 'required|date_format:m/y',
+            'security_code' => 'required|digits:3',
+            'cardholder_name' => 'required'
+        ]);
+
+        // Get the authenticated user
+        $user = auth()->user();
+        // Get the basket of the authenticated user
+        $basket = Basket::where('user_id', $user->id)->first();
+        // Get the items in the basket
+        $basketItems = $basket->items;
+        // Calculate the total amount of the order
+        $totalAmount = 0;
+        $itemCount = 0;
+        foreach ($basketItems as $basketItem) {
+            // Loop through each item in the basket and add the price of the product multiplied by the quantity to the total amount
+            $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
+            $itemCount += $basketItem->quantity;
+        }
+        // Create an order
+        $newOrder = Order::create([
+            'user_id' => $user->id,
+            'total' => $totalAmount,
+        ]);
+        // Add each item in the basket to the order with the quantity
+        foreach($basketItems as $basketItem) {
+            OrderItems::create([
+                'order_id' => $newOrder->id,
+                'product_id' => $basketItem->product_id,
+                'quantity' => $basketItem->quantity,
+            ]);
+        }
+        // Get the order that was just created
+        $order = Order::where('id', $newOrder->id)->first();
+        // Get the items in the order
+        $orderItems = optional($order)->items;
+        // Delete the basket
+        $basket->delete();
+        // Returns the page that tells the user that the order has been placed and sends the order items,  total amount and item count
+        return view('checkout.success', compact('orderItems', 'totalAmount', 'order', 'itemCount'));
     }
 }
