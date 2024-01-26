@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('contactform', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('FirstName');
+            $table->string('LastName');
             $table->string('email');
             $table->unsignedBigInteger('order_id')->nullable(); // Keep nullable if needed
             $table->string('subject')->nullable();
