@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); //simplyfied FK added
-            //instead of FK for users address is linked to
-           // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('address1');
-            $table->string('address2')-> nullable();
+            //! Removed foreign key as an address can be linked to both a user and an order
+            // $table->foreignId('user_id')->constrained();
+            $table->string('address_line_1');
+            $table->string('address_line_2')-> nullable();
             $table->string('city');
-            $table->string('County');
-            $table->string('post_code');
+            $table->string('county');
+            $table->string('postcode');
             $table->timestamps();
 
         });

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->decimal('total', 8, 2)->default(0);
             $table->enum('status', ['placed', 'processing', 'dispatched', 'delivered'])->default('placed');
+            $table->unsignedBigInteger('address_id');
             $table->timestamps();
         });
     }

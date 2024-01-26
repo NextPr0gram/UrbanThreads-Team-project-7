@@ -6,6 +6,7 @@ use App\Models\Basket;
 use App\Models\Order;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
+use App\Models\Address;
 
 /**
  ** Class CheckoutController
@@ -55,22 +56,22 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request) {
 
         //* Checkout form validation
-        // $validated = $request->validate([
-        //     // Name fields
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     // Address fields
-        //     'address_line1' => 'required',
-        //     'address_line2' => 'nullable',
-        //     'county' => 'required',
-        //     'city' => 'required',
-        //     'postcode' => 'required',
-        //     // Payment fields
-        //     'card_number' => 'required|digits:16',
-        //     'expiry_date' => 'required|date_format:m/y',
-        //     'security_code' => 'required|digits:3',
-        //     'cardholder_name' => 'required'
-        // ]);
+        $validated = $request->validate([
+            // Name fields
+            'first_name' => 'required',
+            'last_name' => 'required',
+            // Address fields
+            'address_line_1' => 'required',
+            'address_line_2' => 'nullable',
+            'county' => 'required',
+            'city' => 'required',
+            'postcode' => 'required',
+            // Payment fields
+            'card_number' => 'required|digits:16',
+            'expiry_date' => 'required|date_format:m/y',
+            'security_code' => 'required|digits:3',
+            'cardholder_name' => 'required'
+        ]);
 
         // Get the authenticated user
         $user = auth()->user();
@@ -86,10 +87,36 @@ class CheckoutController extends Controller
             $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
             $itemCount += $basketItem->quantity;
         }
+
+        // Get the address from the checkout form
+        $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
+        // Get the address from the database if it exists
+        $address = Address::where('address_line_1', $request->address_line1)
+            ->where('address_line_2', $request->address_line2)
+            ->where('city', $request->city)
+            ->where('county', $request->county)
+            ->where('postcode', $request->postcode)
+            ->first();
+        // If the address exists, get the ID of the address
+        if ($address) {
+            $addressId = $address->id;
+        // Otherwise, create the address and get the ID of the address
+        } else {
+            $address = Address::create([
+                'address_line_1' => $request->address_line1,
+                'address_line_2' => $request->address_line2,
+                'city' => $request->city,
+                'county' => $request->county,
+                'postcode' => $request->postcode,
+            ]);
+            $addressId = $address->id;
+        }
+
         // Create an order
         $newOrder = Order::create([
             'user_id' => $user->id,
             'total' => $totalAmount,
+            'address_id' => $addressId,
         ]);
         // Add each item in the basket to the order with the quantity
         foreach($basketItems as $basketItem) {

@@ -31,10 +31,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
+//? Routes to show the user's profile and perform actions on it
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/profile', [ProfileController::class, 'addOrUpdateAddress'])->name('profile.address');
 });
 
 //? Route to show the user's basket
