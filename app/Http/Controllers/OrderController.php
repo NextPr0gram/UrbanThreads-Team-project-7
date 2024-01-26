@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 
+/**
+ ** Class OrderController
+ *? The order controller is responsible for showing the user's orders and cancelling an order
+ */
 class OrderController extends Controller
 {
     //* Shows the user's orders

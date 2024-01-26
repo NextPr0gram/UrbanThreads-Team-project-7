@@ -50,7 +50,9 @@
             <p class="text-2xl font-semibold text-gray-900">Total</p>
             <p class="text-2xl font-semibold text-gray-900">£{{ $totalAmount }}</p>
         </div>
-        <x-primary-button class="mt-5 w-full">Continue Shopping</x-primary-button>
+        <a href=" {{ route('home') }} ">
+            <x-primary-button class="mt-5 w-full">Continue Shopping</x-primary-button>
+        </a>
     </div>
     @endif
 </x-app-layout>

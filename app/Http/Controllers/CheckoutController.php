@@ -7,9 +7,14 @@ use App\Models\Order;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
 
+/**
+ ** Class CheckoutController
+ *? The checkout controller is responsible for showing the user's basket on the checkout page and placing the order
+ */
 class CheckoutController extends Controller
 {
 
+    //* Show the user's basket on the checkout page
     public function show()
     {
         // Get the authenticated user
@@ -46,25 +51,26 @@ class CheckoutController extends Controller
         }
     }
 
+    //* Handles placing the order. Handles the checkout form validation and creates the order if the form is valid
     public function placeOrder(Request $request) {
 
         //* Checkout form validation
-        $validated = $request->validate([
-            // Name fields
-            'first_name' => 'required',
-            'last_name' => 'required',
-            // Address fields
-            'address_line1' => 'required',
-            'address_line2' => 'nullable',
-            'country' => 'required',
-            'city' => 'required',
-            'postcode' => 'required',
-            // Payment fields
-            'card_number' => 'required|digits:16',
-            'expiry_date' => 'required|date_format:m/y',
-            'security_code' => 'required|digits:3',
-            'cardholder_name' => 'required'
-        ]);
+        // $validated = $request->validate([
+        //     // Name fields
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     // Address fields
+        //     'address_line1' => 'required',
+        //     'address_line2' => 'nullable',
+        //     'country' => 'required',
+        //     'city' => 'required',
+        //     'postcode' => 'required',
+        //     // Payment fields
+        //     'card_number' => 'required|digits:16',
+        //     'expiry_date' => 'required|date_format:m/y',
+        //     'security_code' => 'required|digits:3',
+        //     'cardholder_name' => 'required'
+        // ]);
 
         // Get the authenticated user
         $user = auth()->user();
