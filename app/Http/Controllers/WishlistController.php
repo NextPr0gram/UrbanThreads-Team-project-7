@@ -13,7 +13,7 @@ class WishlistController extends Controller
         // $wishlistItems = Wishlist::all();
         // return view('wishlist.index', compact('wishlistItems'));
     }
-    // Add more methods for CRUD operations
+  
 
     //RRoutes need to be added!!
 }
