@@ -63,7 +63,7 @@
                                 @endauth
                                 <img src="{{asset('icons/utility/account-icon-dark.svg')}}" alt="">
 
-                                {{-- dropdown icon, uncomment to show--}}
+                                {{-- dropdown icon, uncomment to show --}}
                                 {{-- <div class="ms-1">
                                     <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -107,57 +107,120 @@
 
                     </x-dropdown>
 
-                    {{-- Code for wishlist button and dropdown --}}
-                    <div x-data="{ showMenu: false}">
+                    {{-- Wishlist Button and Dropdown --}}
+                    <div x-data="{ showMenu: false}" class="relative">
 
                         {{-- Wishlist Button --}}
                         <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
-                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
+                            <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist">
                         </button>
 
                         {{-- Wishlist Dropdown --}}
-                        <div x-show="showMenu" @click.away="showMenu = false" class="absolute right-42 mt-3 w-48 bg-white border shadow-lg">
+                        <div x-show="showMenu" @click.away="showMenu = false" class="flex flex-col items-center w-96 border-2 rounded-lg"> <!-- py-3 px-2.5 -->
+
+                            <div class="px-4 py-2 flex items-center justify-between flex-row">
+                                <div>
+                                    <h3 class="font-formula1 text-xl mr-10 not-italic font-medium leading-5">Wishlist</h3>
+                                </div>
+                                <div>
+                                    <button class="text-2xl float-right ml-10">X</button> <!-- Colour #00182E -->
+                                </div>
+                            </div>
+
                             {{-- Wishlist Items --}}
                             <div class="py-2">
                                 {{-- Wishlist Item 1 --}}
-                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
-                                    <img src="#" alt="" class="w-10 h-10 mr-3">
-                                    <span class="text-bluish-purple">White Beanie</span>
-                                    <button class="ml-auto text-red">Remove</button>
+                                <div class="flex items-center px-4 py-2 mb-4">
+                                    <!-- <div class="flex items-center">
+                                        <img src="#" alt="" class="w-20 h-20 ml-2.5">
+                                        <span class="text-bluish-purple pl-4 mr-10">Beanie Hat</span>
+                                    </div>
+
+                                    <div class="block items-center">
+                                        <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" class="mb-3" alt="Like Button">
+                                        <x-primary-button-dark class="flex justify-center items-center h-10">Add to cart</x-primary-button-dark>
+                                    </div> -->
                                 </div>
 
                                 {{-- Wishlist Item 2 --}}
-                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
-                                    <img src="#" alt="" class="w-10 h-10 mr-3">
-                                    <span class="text-bluish-purple">Cream Chinos</span>
-                                    <button class="ml-auto text-red">Remove</button>
-                                </div>
+                                <!-- <div class="flex items-center justify-between px-4 py-2 hover:bg-snow-white mb-5">
+                                    <div class="flex items-center">
+                                        <img src="#" alt="" class="w-20 h-20 mr-3">
+                                        <span class="text-bluish-purple">Leather Jacket</span>
+                                    </div>
+                                    <div class="block items-center">
+                                        <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" class="mb-3" alt="Like Button">
+                                        <x-primary-button-dark class="flex justify-center items-center h-10 float-right">Add to cart</x-primary-button-dark>
+                                    </div>
+                                </div> -->
 
                                 {{-- Wishlist Item 3 --}}
-                                <div class="flex items-center px-4 py-2 hover:bg-snow-white">
-                                    <img src="#" alt="" class="w-10 h-10 mr-3">
-                                    <span class="text-bluish-purple">Pink Hoodie</span>
+                                <!-- <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-20 h-20 mr-3">
+                                    <span class="text-bluish-purple">Winter Hoodie</span>
                                     <button class="ml-auto text-red">Remove</button>
-                                </div>
+                                </div> -->
 
-                                {{-- More items --}}
+                                {{-- More Wishlist Items --}}
 
                             </div>
 
-                            {{-- Link to wishlist page --}}
+                            {{-- Link to Wishlist Page --}}
+                            <a href=" {{ route ('wishlist') }}" class="flex items-center py-2 px-0 text-sm border-b pb-1">View all items</a> <!-- Colour #75828E -->
+                            <!-- {{ route ('basket.show') }} -->
 
                         </div>
                     </div>
 
-                    {{-- Shopping cart button --}}
-                    <a href="{{ route('basket.show') }}" class="flex-none px-2">
-                        <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt="">
+
+                    {{-- Basket Button and Dropdown --}}
+                    <!-- <div x-data="{ showMenu: false}" @mouseenter="showMenu = true" @mouseleave="setTimeout(() => showMenu = false, 1"> -->
+
+                    {{-- Basket Button --}}
+                    <!-- <a href="" class="flex-none px-2"> -->
+                    <!-- {{ route('basket.show') }} -->
+                    <!-- <img src="{{asset('icons/utility/shopping-cart-dark.svg')}}" alt=""> -->
                     </a>
 
+                    {{-- Basket Dropdown --}}
+                    <!-- <div x-show="showMenu" @click.away="showMenu = false" class="absolute right-12 w-48 bg-white border-2">
+                            {{-- Basket Items --}}
+                            <div class="py-2">
+                                {{-- Basket Item 1 --}}
+                                <div class=" flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">Baggy T-shirt</span>
+                                    <button class="ml-2 text-red">Remove</button>
+                                </div> -->
+
+                    {{-- Basket Item 2 --}}
+                    <!-- <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">Cropped Jacket</span>
+                                    <button class="ml-2 text-red">Remove</button>
+                                </div> -->
+
+                    {{-- Basket Item 3 --}}
+                    <!-- <div class="flex items-center px-4 py-2 hover:bg-snow-white">
+                                    <img src="#" alt="" class="w-10 h-10 mr-3">
+                                    <span class="text-bluish-purple">Comfy Hoodie</span>
+                                    <button class="ml-2 text-red">Remove</button>
+                                </div> -->
+
+                    {{-- More Basket Items --}}
+
+                    <!-- </div> -->
+
+                    {{-- Link to Basket Page --}}
+                    <!-- <a href="" class="block px-4 py-2 bg-bluish-purple text-black font-semibold text-sm text-center">View Basket</a> -->
+                    <!-- {{ route ('basket.show') }} -->
+                    <!-- </div>
+                    </div> -->
+
                     {{-- Checkout button --}}
-                    <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
-                            Checkout
-                        </x-primary-button-dark></a>
+                    <!-- <a href="{{ route('checkout') }}"><x-primary-button-dark title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
+                            View all items
+                        </x-primary-button-dark></a> -->
                 </div>
 
 
