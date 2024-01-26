@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,10 +31,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
+//? Routes to show the user's profile and perform actions on it
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/profile', [ProfileController::class, 'addOrUpdateAddress'])->name('profile.address');
 });
 
 //? Route to show the user's basket
@@ -71,6 +75,8 @@ Route::get('/basket', function () {
 //? Route to show the checkout page with the basket items
 Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
 
+//? Route to place an order
+Route::post('/checkout/success', [CheckoutController::class, 'placeOrder'])->name('place-order');
 
 Route::get('auth.not-authenticated', function () {
     return view('auth.not-authenticated');

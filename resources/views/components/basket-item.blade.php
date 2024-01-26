@@ -12,7 +12,7 @@
         <div class="flex justify-between items-center max-w-lg lg:max-w-full">
             <div class="flex flex-col justify-between">
                 <h2 class="text-md sm:text-lg font-formula1">{{ $productName }}</h2> {{--* This is the placeholder for the product name --}}
-                <p class="text-base text-left font-formula1">{{ $price }}</p> {{--* This is the placeholder for the price of the product --}}
+                <p class="text-base text-left font-formula1">£{{ $price }}</p> {{--* This is the placeholder for the price of the product --}}
             </div>
             <div class="flex">
                 {{ $counter }} {{--* This is the placeholder for the counter that allows for incrementing and decrementing the quantity of a product --}}
