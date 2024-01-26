@@ -62,7 +62,7 @@ class CheckoutController extends Controller
         //     // Address fields
         //     'address_line1' => 'required',
         //     'address_line2' => 'nullable',
-        //     'country' => 'required',
+        //     'county' => 'required',
         //     'city' => 'required',
         //     'postcode' => 'required',
         //     // Payment fields

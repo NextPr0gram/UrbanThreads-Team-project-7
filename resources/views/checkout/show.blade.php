@@ -74,9 +74,9 @@
                                 class="w-full text-sm shadow-sm" placeholder="Apartment 420" />
                         </div>
                         <div class="relative mt-2">
-                            <x-input-label for="country">Country</x-input-label>
-                            <x-text-input type="text" id="country" name="country" class="w-full text-sm shadow-sm"
-                                placeholder="United Kingdom" />
+                            <x-input-label for="county">County</x-input-label>
+                            <x-text-input type="text" id="county" name="county" class="w-full text-sm shadow-sm"
+                                placeholder="West Midlands" />
                         </div>
                         <div class="flex flex-col gap-5 fmt-2 sm:flex-row">
                             <div class="w-full">
