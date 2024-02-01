@@ -14,13 +14,13 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'mobile_number',
+        'address_id',
     ];
 
     /**
@@ -41,5 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'phone_number' => 'string',
     ];
+
+    // The user has one address
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }
