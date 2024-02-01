@@ -29,6 +29,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/wishlist', function () {
+    return view('wishlist');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -46,10 +50,10 @@ Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBaske
 Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}', [BasketItemController::class,'incrementQuantity'])
+Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}', [BasketItemController::class,'decrementQuantity'])
+Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
 
 Route::mailPreview();
@@ -67,6 +71,10 @@ Route::get('/about-us', function () {
 Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
+
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->name('wishlist');
 
 //? Route to show the checkout page with the basket items
 Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
