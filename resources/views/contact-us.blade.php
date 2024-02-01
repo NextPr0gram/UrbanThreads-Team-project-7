@@ -1,16 +1,11 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h1 class="">
-            Contact us
-        </h1>
-    </x-slot>
-
+        <h2 class="text-lg font-formula1 py-3">Contact Us</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4 ">
 
         <!-- this is the welcome paragraph at the top -->
-        <div class="w-full md:w-[600px] mx-4 ">
+        <div class="w-full md:w-[600px] ">
             <p>Welcome to UrbanThreads, where your satisfaction is our top priority. Whether you have a question, need assistance, or simply want to share your thoughts, our dedicated support team is here for you. </p>
             <p class="mt-4">Reach out through the contact form below. Your feedback is invaluable, and at UrbanThreads, we're committed to weaving a seamless shopping experience for you. Happy shopping!</p>
         </div>
@@ -21,10 +16,11 @@
         </div>
 
         <!-- this is the contact details with icons and description -->
-        <h2 class="py-5 text-lg font-formula1"></h2>
+        <h2 class=" text-lg font-formula1"></h2> 
         <!-- this is the border around the contact details -->
-        <div class="w-full p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg mt-8">
-            <h2 class="py-5 text-lg font-formula1">Contact Details</h2>
+        <div class="w-full sm:pt-0">
+        <h2 class="py-5 text-lg font-formula1 md:w-[700px]">Contact Details</h2>
+        <div class="w-full p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg">
 
             <!-- this is the icon for the location  -->
             <div class="items-center">
@@ -66,19 +62,19 @@
                         <p class="text-xs text-neutral-400">urbanthreads@aston.ac.uk</p>
                     </div>
                 </div>
-
+                </div>
             </div>
         </div>
 
         <!-- this is the contact form which will be submitted by the customer -->
         <h2 class="py-5 text-lg font-formula1 md:w-[700px]"></h2>
-        <div class="pt-6 w-full sm:pt-0"> 
+        <div class="w-full sm:pt-0"> 
             <h2 class="py-5 text-lg font-formula1 md:w-[700px]">Contact Form</h2>
             <div class="w-full  p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg ">
-                <div class="mt-4">
+                
                     <x-input-label for="first_name">First Name</x-input-label>
                     <x-text-input type="text" id="first_name" name="first_name" class="mt-1 w-full " placeholder="First name" required />
-                </div>
+                
 
                 <div class="mt-4">
                     <x-input-label for="last_name">Last Name</x-input-label>
@@ -113,7 +109,7 @@
 
         </div>
         
-        <div class="hidden md:block w-full aspect-square md:mt-[-360px] ">
+        <div class="hidden md:block w-full md:mt-[-330px] md:mr-[-330px] ">
             <img class="w-full h-auto" src="/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
         </div>
        
