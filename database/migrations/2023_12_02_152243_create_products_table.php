@@ -24,7 +24,7 @@ return new class extends Migration
             $table->mediumText('meta_title'); //? The title that appears in the browser (for the page of the specific product)
             $table->mediumText('meta_description');
             $table->mediumText('meta_keywords');
-            $table->foreignId('c1_id')->constrained('category2')->onDelete('cascade');
+            $table->foreignId('c1_id')->constrained('category1')->onDelete('cascade');
             $table->foreignId('c2_id')->constrained('category2')->onDelete('cascade');
             $table->string('slug');
             $table->timestamps();

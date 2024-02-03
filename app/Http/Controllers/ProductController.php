@@ -70,6 +70,7 @@ class ProductController extends Controller
     // ** This method will show the individual page of a product
     public function showProduct($slug) {
         $product = Product::where('slug', $slug)->firstOrFail(); // Get the product with the slug
-        return view('products.show', ['product' => $product]); //
+        $variations = $product->variations; // Get the variations of the product
+        return view('products.show', ['product' => $product, 'variations' => $variations]); // Pass the product to the view with the variations (sizes)
     }
 }

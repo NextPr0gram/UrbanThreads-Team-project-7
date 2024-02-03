@@ -30,7 +30,9 @@
                         <x-slot name="productName">
                             {{ $item->product->name }} {{-- * The product name is placed in the title placeholder --}}
                         </x-slot>
-
+                        <x-slot name="size">
+                            {{ $item->variation->size }} {{-- * The size of the product is placed in the size placeholder --}}
+                        </x-slot>
                         {{-- * The counter is placed in the counter placeholder --}}
                         <x-slot name="counter">
                             {{-- * This is the form that allows the button inside the form perform a post request that decrements the quantity

@@ -31,7 +31,7 @@
                     <div
                         class="p-3 mt-2 space-y-3 w-full bg-white bg-opacity-60 border-2 sm:px-6 border-navy-blue max-sm:text-center">
 
-                        {{-- basket items --}}
+                        {{-- Basket items --}}
                         @foreach ($basketItems as $item)
                             <x-order-item>
                                 <x-slot name="image">
@@ -45,6 +45,9 @@
                                 </x-slot>
                                 <x-slot name="quantity">
                                     {{ $item->quantity }}
+                                </x-slot>
+                                <x-slot name="size">
+                                    {{ $item->variation->size }}
                                 </x-slot>
                             </x-order-item>
                         @endforeach
