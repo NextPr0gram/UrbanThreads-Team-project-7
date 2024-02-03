@@ -91,3 +91,17 @@ Route::get('/category/accessories', [ProductController::class, 'showAccessories'
 
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
+
+//return the contact us page view - name needs to be changed depending on page came - create is fake
+//just to show form to user
+//Route::get('/create', function(){
+    //return view ('contactpage');
+//})
+//Post method requires another route
+Route::post('/page',function(){
+    $contactform = new contactform();s
+    $contactform->title = request ('title');
+    $contactform->name =request('body');
+    $contactform ->save();
+    //one way to store info on table
+})
