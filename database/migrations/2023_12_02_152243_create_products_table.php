@@ -21,16 +21,13 @@ return new class extends Migration
             $table->string('original_price'); //? The original price of the product
             $table->string('selling_price'); //? The selling price of the product (discounted price)
             $table->string('image'); //? The link to the image of the product
-            $table->string('qty'); //? The quantity of the product available
-            $table->tinyInteger('status')->default('0');
-            $table->tinyInteger('trending')->default('0'); //? Flag to indicate if the product is trending
             $table->mediumText('meta_title'); //? The title that appears in the browser (for the page of the specific product)
             $table->mediumText('meta_description');
             $table->mediumText('meta_keywords');
+            $table->unsignedBigInteger('c1_id');
+            $table->unsignedBigInteger('c2_id');
+            $table->string('slug');
             $table->timestamps();
-
-            // $table->foreign('c1_id')->references('id')->on('category1'); //* The foreign key of the category1 table
-           // $table->foreign('c2_id')->references('id')->on('category2'); //* The foreign key of the category2 table
         });
     }
 

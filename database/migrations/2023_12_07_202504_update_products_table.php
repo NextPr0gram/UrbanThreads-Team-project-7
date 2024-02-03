@@ -11,21 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // 1. Add 'c1_id' after 'id'
+        // Foreign key for c1_id to link the product to the specific category1 in the category1 table
+        // Foreign key for c2_id to link the product to the specific category2 in the category2 table
         Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('c1_id')->nullable()->after('id');
-            $table->foreign('c1_id')->references('id')->on('category1');
-        });
-
-        // 2. Add 'c2_id' before 'name'
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('c2_id')->nullable()->before('c1_id');
-            $table->foreign('c2_id')->references('id')->on('category2');
-        });
-
-        // 3. Add slug column after 'name
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('slug')->nullable()->after('name');
+            $table->foreign('c1_id')->references('id')->on('category1')->onDelete('cascade');
+            $table->foreign('c2_id')->references('id')->on('category2')->onDelete('cascade');
         });
     }
 
@@ -35,20 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         // 1. Remove 'c1_id' column
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['c1_id']);
-            $table->dropColumn('c1_id');
-        });
-
         // 2. Remove 'c2_id' column
         Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['c1_id']);
             $table->dropForeign(['c2_id']);
-            $table->dropColumn('c2_id');
-        });
-
-        // 3. Remove 'slug' column
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('slug');
         });
     }
 };
