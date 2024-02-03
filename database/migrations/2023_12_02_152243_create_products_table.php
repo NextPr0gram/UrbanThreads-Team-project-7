@@ -24,8 +24,8 @@ return new class extends Migration
             $table->mediumText('meta_title'); //? The title that appears in the browser (for the page of the specific product)
             $table->mediumText('meta_description');
             $table->mediumText('meta_keywords');
-            $table->unsignedBigInteger('c1_id');
-            $table->unsignedBigInteger('c2_id');
+            $table->foreignId('c1_id')->constrained('category2')->onDelete('cascade');
+            $table->foreignId('c2_id')->constrained('category2')->onDelete('cascade');
             $table->string('slug');
             $table->timestamps();
         });
@@ -37,5 +37,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['c1_id']);
+            $table->dropForeign(['c2_id']);
+        });
     }
 };
