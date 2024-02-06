@@ -99,9 +99,14 @@ Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name(
 //})
 //Post method requires another route
 Route::post('/page',function(){
-    $contactform = new contactform();s
+    $contactform = new contactform();
     $contactform->title = request ('title');
     $contactform->name =request('body');
     $contactform ->save();
     //one way to store info on table
-})
+    Model:: create([
+        'title' => request('title'),
+        //include model as use in top
+    ]);
+    return redirect('/create'); //redirects to iser page - maybe thanlks
+});
