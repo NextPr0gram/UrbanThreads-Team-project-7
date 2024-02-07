@@ -32,7 +32,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/wishlist', function () {
-    return view('wishlist');
+    return view('testpages.wishlist');
 });
 
 //? Routes to show the user's profile and perform actions on it
@@ -77,7 +77,7 @@ Route::get('/basket', function () {
 })->name('basket');
 
 Route::get('/wishlist', function () {
-    return view('wishlist');
+    return view('testpages.wishlist');
 })->name('wishlist');
 
 //? Route to show the checkout page with the basket items

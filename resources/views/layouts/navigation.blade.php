@@ -116,7 +116,7 @@
                         </button>
 
                         {{-- Wishlist Dropdown --}}
-                        <div x-show="showMenu" @click.away="showMenu = false" class="absolute right-0 py-3 px-2.5 flex-col items-center mt-4 w-96 h-auto gap-3 rounded-lg border border-solid border-neutral-30 bg-default-white shadow-md">
+                        <div x-show="showMenu" @click.away="showMenu = false" x-transition:enter="transition ease-out duration 300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="hidden md:flex absolute -translate-x-1/2 py-3 px-2.5 flex-col items-center mt-4 w-96 h-auto gap-3 rounded-lg border border-solid border-neutral-30 bg-default-white shadow-md">
 
                             {{-- Wishlist Title--}}
                             <div class="flex py-4 px-2 justify-between items-center self-stretch text-neutral-900">
@@ -124,7 +124,7 @@
                             </div>
 
                             {{-- Wishlist Item 1 Container--}}
-                            <div class="flex flex-col justify-between border-b-2 pb-4 pt-4 stroke-2 border-neutral-30">
+                            <div class="flex flex-col justify-between border-b-2 pb-4 pt-1 stroke-2 border-neutral-30">
 
                                 {{-- Item 1 Left Container--}}
                                 <div class="flex items-center">
@@ -148,7 +148,7 @@
                             </div>
 
                             {{-- Wishlist Item 2 Container--}}
-                            <div class="flex flex-col justify-between border-b-2 pb-4 pt-4 stroke-2 border-neutral-30">
+                            <div class="flex flex-col justify-between border-b-2 pb-4 pt-1 stroke-2 border-neutral-30">
 
                                 {{-- Item 2 Left Container--}}
                                 <div class="flex items-center">
@@ -172,7 +172,7 @@
                             </div>
 
                             {{-- Wishlist Item 3 Container--}}
-                            <div class="flex flex-col justify-between pb-4 pt-4">
+                            <div class="flex flex-col justify-between pt-1">
 
                                 {{-- Item 3 Left Container--}}
                                 <div class="flex items-center">
@@ -201,8 +201,107 @@
                             </div>
 
                         </div>
-
                     </div>
+
+
+                    <!-- <div x-data="{ showMenu : false }" class="relative">
+
+                        {{-- Button to Toggle the Wishlist Dropdown and Slide --}}
+                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
+                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="Wishlist button">
+                        </button>
+
+                        {{-- Mobile Dark Overlay for Remaining 1/12 of the Width --}}
+                        <div x-show="showMenu" @click.away="showMenu = false" class="fixed inset-0 bg-default-black opacity-50 sm:hidden"></div>
+
+                        {{-- Mobile Dropdown Menu --}}
+                        <div x-show="showMenu" @click.away="showMenu = false" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-11/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white">
+
+                            {{-- Wishlist Title--}}
+                            <div class="flex flex-grow py-4 px-2 justify-between items-center self-stretch text-neutral-900">
+                                <h3 class="font-formula1 text-lg not-italic font-medium leading-5 pl-4 md:flex md:mx-auto">Wishlist</h3>
+                                <button @click="showMenu = false" class="text-xl pr-4 md:hidden">X</button>
+                            </div>
+
+                            {{-- Wishlist Item 1 Container--}}
+                            <div class="flex flex-col justify-between border-b-2 stroke-2 border-neutral-30 py-4">
+
+                                {{-- Item 1 Left Container--}}
+                                <div class="flex items-center">
+
+                                    <img src="#" alt="" class="w-20 h-20 shrink-0 ml-4 bg-primary-75 rounded-sm">
+
+                                    <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
+                                        <p class="font-bold pb-2">Item Name</p>
+                                        <p class="font-normal">£ 24.99</p>
+                                    </div>
+
+                                    {{-- Item 1 Right Container--}}
+                                    <div class="flex flex-col items-end mr-4">
+                                        <button class="group">
+                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                        </button>
+                                        <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 text-primary-300 whitespace-nowrap">Add to cart</x-secondary-button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Wishlist Item 2 Container--}}
+                            <div class="flex flex-col justify-between border-b-2 pb-4 pt-4 stroke-2 border-neutral-30">
+
+                                {{-- Item 2 Left Container--}}
+                                <div class="flex items-center">
+                                    <img src="#" alt="" class="w-20 h-20 shrink-0 ml-4 bg-primary-75 rounded-sm">
+
+                                    <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
+                                        <p class="font-bold pb-2">Item Name</p>
+                                        <p class="font-normal">£ 24.99</p>
+                                    </div>
+
+                                    {{-- Item 2 Right Container--}}
+                                    <div class="flex flex-col items-end mr-4">
+                                        <button class="group">
+                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                        </button>
+                                        <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 text-primary-300 whitespace-nowrap">Add to cart</x-secondary-button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Wishlist Item 3 Container--}}
+                            <div class="flex flex-col justify-between pb-4 pt-4">
+
+                                {{-- Item 3 Left Container--}}
+                                <div class="flex items-center">
+                                    <img src="#" alt="" class="w-20 h-20 shrink-0 ml-4 bg-primary-75 rounded-sm">
+
+                                    <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
+                                        <p class="font-bold pb-2">Item Name</p>
+                                        <p class="font-normal">£ 24.99</p>
+                                    </div>
+
+                                    {{-- Item 3 Right Container--}}
+                                    <div class="flex flex-col items-end mr-4">
+                                        <button class="group">
+                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                        </button>
+                                        <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 text-primary-300 whitespace-nowrap">Add to cart</x-secondary-button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex py-2 px-0 items-center justify-center underline text-neutral-100">
+                                <a href="{{ route('wishlist') }}" class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
+                            </div>
+                        </div>
+
+                    </div> -->
+
+
+
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="flex-none px-2">
@@ -214,7 +313,6 @@
                             Checkout
                         </x-secondary-button></a>
                 </div>
-
 
             </div>
 
