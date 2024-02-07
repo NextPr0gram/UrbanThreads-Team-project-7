@@ -103,8 +103,8 @@ class CheckoutController extends Controller
         // Otherwise, create the address and get the ID of the address
         } else {
             $address = Address::create([
-                'address_line_1' => $request->address_line1,
-                'address_line_2' => $request->address_line2,
+                'address_line_1' => $request->address_line_1,
+                'address_line_2' => $request->address_line_2,
                 'city' => $request->city,
                 'county' => $request->county,
                 'postcode' => $request->postcode,
@@ -124,6 +124,7 @@ class CheckoutController extends Controller
                 'order_id' => $newOrder->id,
                 'product_id' => $basketItem->product_id,
                 'quantity' => $basketItem->quantity,
+                'variation_id' => $basketItem->variation_id
             ]);
         }
         // Get the order that was just created
