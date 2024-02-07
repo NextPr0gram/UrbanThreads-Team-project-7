@@ -92,13 +92,15 @@ Route::get('/category/accessories', [ProductController::class, 'showAccessories'
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
 
+
+//@Neha - for when contact page is Live
 //return the contact us page view - name needs to be changed depending on page came - create is fake
 //just to show form to user
 //Route::get('/create', function(){
     //return view ('contactpage');
 //})
 //Post method requires another route
-Route::post('/page',function(){
+/*Route::post('/page',function(){
     $contactform = new contactform();
     $contactform->title = request ('title');
     $contactform->name =request('body');
@@ -109,4 +111,4 @@ Route::post('/page',function(){
         //include model as use in top
     ]);
     return redirect('/create'); //redirects to iser page - maybe thanlks
-});
+});*/
