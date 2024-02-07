@@ -1,7 +1,7 @@
 <x-app-layout>
     <!-- this is the padding for the whole contact us page  -->
     <div class="p-25">
-        <h1 class="text-xl font-formula1 pt-10">Contact Us</h1>
+        <h1 class="text-3xl font-formula1 pt-10">Contact Us</h1>
 
 
         <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4">
