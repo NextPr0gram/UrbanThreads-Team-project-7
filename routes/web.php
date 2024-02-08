@@ -92,11 +92,7 @@ Route::get('/category/accessories', [ProductController::class, 'showAccessories'
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
 
-
-//*? Route for the admin dashboard
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
-
-require __DIR__ . '/adminauth.php';
-
+//? Route for contact-us page
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
