@@ -127,12 +127,13 @@
                     <div class="p-4 mt-10 space-y-6 bg-white border-2 sm:px-6 border-navy-blue">
                         <h1 class="text-lg font-bold">Order Summary</h1>
                         <!-- Discount code input -->
-                        <form class="grid gap-6 mt-5">
+                        <form class="grid gap-6 mt-5" action="{{ route('checkout.discount') }}">
                             <div class="flex flex-col space-x-3 sm:flex-row">
-                                <x-text-input type="text" name="discount-code" class="w-full text-sm shadow-sm"
+                                <x-text-input type="text" name="discount_code" class="w-full text-sm shadow-sm"
                                     placeholder="Enter a discount code here" />
-                                <div class="flex justify-center max-sm:mt-2"><x-primary-button
-                                        type="submit">Apply</x-primary-button></div>
+                                <div class="flex justify-center max-sm:mt-2">
+                                    <x-primary-button>Apply</x-primary-button>
+                                </div>
                             </div>
                         </form>
 
@@ -147,6 +148,10 @@
                                 <p class="text-sm font-medium text-gray-900">Subtotal</p>
                                 <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
                             </div>
+                            <div class="flex justify-between items-center">
+                                <p class="text-sm font-medium text-gray-900">Discount</p>
+                                <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
+                            </div>
                         </div>
                         <div class="flex justify-between items-center mt-6">
                             <p class="text-2xl font-semibold text-gray-900">Total</p>
@@ -157,5 +162,32 @@
                 </div>
             </div>
         </form>
+        <div class="">
+            <div class="p-4 mt-10 space-y-6 bg-white border-2 sm:px-6 border-navy-blue">
+                <h1 class="text-lg font-bold">Order Summary</h1>
+                <!-- Discount code input -->
+
+                <!-- Total -->
+                <div class="py-2 mt-6 border-t border-b  border-bluish-purple">
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium text-gray-900">Number of items</p>
+                        <p class="font-semibold text-gray-900">{{ $itemCount }}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium text-gray-900">Subtotal</p>
+                        <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium text-gray-900">Discount</p>
+                        <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-6">
+                    <p class="text-2xl font-semibold text-gray-900">Total</p>
+                    <p class="text-2xl font-semibold text-gray-900">£{{ $totalPrice }}</p>
+                </div>
+                <x-primary-button class="mt-5 w-full">Place Order</x-primary-button>
+            </div>
+        </div>
     @endauth
 </x-app-layout>

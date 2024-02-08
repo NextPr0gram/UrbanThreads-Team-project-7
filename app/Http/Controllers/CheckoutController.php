@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Discount;
 
 /**
  ** Class CheckoutController
@@ -135,5 +136,36 @@ class CheckoutController extends Controller
         $basket->delete();
         // Returns the page that tells the user that the order has been placed and sends the order items,  total amount and item count
         return view('checkout.success', compact('orderItems', 'totalAmount', 'order', 'itemCount'));
+    }
+
+    //* Validate discount code and return the discounted total amount for the checkout form
+    public function validateDiscount(Request $request) {
+        // Get the discount code from the request
+        $discountCode = $request->discount_code;
+        // Get the authenticated user
+        $user = auth()->user();
+        // Get the basket of the authenticated user
+        $basket = Basket::where('user_id', $user->id)->first();
+        // Get the items in the basket
+        $basketItems = $basket->items;
+        // Calculate the total amount of the order
+        $totalAmount = 0;
+        foreach ($basketItems as $basketItem) {
+            // Loop through each item in the basket and add the price of the product multiplied by the quantity to the total amount
+            $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
+        }
+        // Get the discount from the database if it exists
+        $discount = Discount::where('code', $discountCode)->first();
+        // If the discount exists, get the percentage of the discount
+        if ($discount) {
+            $discountPercentage = $discount->percentage;
+            // Calculate the discounted total amount
+            $discountedTotalAmount = $totalAmount - ($totalAmount * $discountPercentage / 100);
+            // Return the discounted total amount
+            return redirect()->back()->with('discountedTotalAmount', $discountedTotalAmount);
+        } else {
+            // Return an error message if the discount does not exist
+            return redirect()->back()->with('error', 'Invalid discount code');
+        }
     }
 }
