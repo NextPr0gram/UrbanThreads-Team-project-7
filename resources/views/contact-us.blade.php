@@ -1,5 +1,5 @@
 <x-app-layout>
-    <!-- this is the padding for the whole contact us page  -->
+<!-- this is the padding for the whole contact us page  -->
     <div class="p-25">
         <h1 class="text-3xl font-formula1 pt-10">Contact Us</h1>
 
@@ -72,7 +72,9 @@
                 </div>
             </div>
             
-
+<!--Begin outline of form to be submitted-->
+<for action="/contact-us" method = "POST">
+    @csrf    
             <!-- this is the contact form which will be submitted by the customer -->
             <div class="py-5 "> </div>
             <div class="w-full sm:pt-0 ">
@@ -124,5 +126,6 @@
             <!-- this is the ending div for the padding -->
         </div>
     </div>
+</form> <!--end of form-->
 
 </x-app-layout>
