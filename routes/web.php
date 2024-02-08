@@ -112,3 +112,33 @@ Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name(
     ]);
     return redirect('/create'); //redirects to iser page - maybe thanlks
 });*/
+
+//? Route for contact-us page
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
+
+
+//@Neha - for when contact page is Live
+//return the contact us page view - name needs to be changed depending on page came - create is fake
+//just to show form to user
+//Route::get('/create', function(){
+    //return view ('contactpage');
+//})
+//Post method requires another route
+/*Route::post('/page',function(){
+    $contactform = new contactform();
+    $contactform->title = request ('title');
+    $contactform->name =request('body');
+    $contactform ->save();
+    //one way to store info on table
+    Model:: create([
+        'title' => request('title'),
+        //include model as use in top
+    ]);
+    return redirect('/create'); //redirects to iser page - maybe thanlks
+});*/
+//? Route for contact-us page
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
