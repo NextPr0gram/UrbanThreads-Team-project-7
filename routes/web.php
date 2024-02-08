@@ -96,3 +96,9 @@ Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name(
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+require __DIR__ . '/adminauth.php';
