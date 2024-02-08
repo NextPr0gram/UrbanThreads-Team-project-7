@@ -73,8 +73,9 @@
             </div>
             
 <!--Begin outline of form to be submitted-->
-<for action="/contact-us" method = "POST">
+<form action="/contact-us" method = "POST">
     @csrf    
+
             <!-- this is the contact form which will be submitted by the customer -->
             <div class="py-5 "> </div>
             <div class="w-full sm:pt-0 ">
@@ -126,6 +127,24 @@
             <!-- this is the ending div for the padding -->
         </div>
     </div>
+    <!--javascript for pop up after submission-->
+    <script>
+    window.onload = function() {
+
+        // Check if the page contains validation errors
+        var hasErrors = @json($errors->any());
+// If there are validation errors, display an alert message
+if (hasErrors) {
+    alert("Please check the highlighted fields before submitting.");
+}
+        // Check if the URL contains a success message
+        var successMessage = "<?php echo session('success'); ?>";
+        if (successMessage) {
+            // Display a JavaScript alert with the success message
+            alert(successMessage);
+        }
+    };
+</script>
 </form> <!--end of form-->
 
 </x-app-layout>

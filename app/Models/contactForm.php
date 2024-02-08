@@ -9,8 +9,6 @@ class ContactForm extends Model
 {
     use HasFactory;
     protected $table = 'contactform';
-    protected $fillable =['FirstName', 'LastName', 'email','order_id',
-'subject', 'message'];
-//@Neha Not sure about id as it could be left blank
+    protected $fillable = ['FirstName', 'LastName', 'email', 'order_id', 'subject', 'message'];
 
 }
