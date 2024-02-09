@@ -24,8 +24,8 @@ class ContactFormController extends Controller
         $newContactForm = ContactForm::create($validatedData);
 
 //redirects to home - using a js implementation at front end for success message
-        return redirect('/home'); //->with('success', 'Contact form submitted successfully!');
-        //one time message - could get a Javascript box to support thius
+        return redirect('/home')->with('success', 'Contact form submitted successfully!');
+        //one time message at the top
 }
 
 }

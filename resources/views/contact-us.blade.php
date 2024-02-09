@@ -99,7 +99,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="OrderID">Order ID</x-input-label>
-                        <x-text-input type="text" id="OrderID" name="order_id" class="mt-1 w-full  " placeholder="Order ID" required />
+                        <x-text-input type="text" id="OrderID" name="order_id" class="mt-1 w-full  " placeholder="Order ID" /><!--required removed so can be nullable-->
                     </div>
 
                     <div class="mt-4">
@@ -117,23 +117,6 @@
                        </div>
                 </div> 
             </div>  
-            <!--javascript for pop up after submission-->
-   <script>
-  window.onload = function() {
-
-        // Check if the page contains validation errors
-        var hasErrors = @json($errors->any());
-If there are validation errors, display an alert message
- if (hasErrors) {
-   alert("Please check the highlighted fields before submitting.");
-}
-         // Check if the URL contains a success message
-         var successMessage = "<?php echo session('success'); ?>";
-        if (successMessage) {
-            // Display a JavaScript alert with the success message
-            alert(successMessage);
-        }
-     };
   </script>
          </form> <!--Note: Location of form tag effects layout of page -->
 
