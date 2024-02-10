@@ -99,3 +99,8 @@ Route::get('/category/accessories', [ProductController::class, 'showAccessories'
 
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
+
+//? Route for contact-us page
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
