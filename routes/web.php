@@ -7,7 +7,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
-
+use App\Http\Controllers\ContactFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/wishlist', function () {
+    return view('testpages.wishlist');
+});
+
 //? Routes to show the user's profile and perform actions on it
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -50,10 +54,10 @@ Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBaske
 Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}', [BasketItemController::class,'incrementQuantity'])
+Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}', [BasketItemController::class,'decrementQuantity'])
+Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
 
 Route::mailPreview();
@@ -71,6 +75,10 @@ Route::get('/about-us', function () {
 Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
+
+Route::get('/wishlist', function () {
+    return view('testpages.wishlist');
+})->name('wishlist');
 
 //? Route to show the checkout page with the basket items
 Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
@@ -91,3 +99,12 @@ Route::get('/category/accessories', [ProductController::class, 'showAccessories'
 
 //*? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
+
+//? Route for contact-us page
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
+
+//Route to save form into database
+Route::post('/contact-us', [ContactFormController::class, 'store']);
+
