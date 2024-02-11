@@ -1,5 +1,5 @@
 <x-app-layout>
-    <!-- this is the padding for the whole contact us page  -->
+<!-- this is the padding for the whole contact us page  -->
     <div class="p-25">
         <h1 class="text-3xl font-formula1 pt-10">Contact Us</h1>
 
@@ -73,56 +73,60 @@
             </div>
             
 
+
             <!-- this is the contact form which will be submitted by the customer -->
             <div class="py-5 "> </div>
             <div class="w-full sm:pt-0 ">
+                <!--Begin outline of form to be submitted-->
+<form action="/contact-us" method = "POST">
+    @csrf    
                 <h2 class="py-5 text-lg font-formula1 md:w-[700px] pt-8">Contact Form</h2>
                 <div class="w-full  p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg ">
 
                     <x-input-label for="first_name">First Name</x-input-label>
-                    <x-text-input type="text" id="first_name" name="first_name" class="mt-1 w-full " placeholder="First name" required />
-
+                    <x-text-input type="text" id="first_name" name="FirstName" class="mt-1 w-full " placeholder="First name" required />
+<!--NAME attributes need to match column names-->
 
                     <div class="mt-4">
                         <x-input-label for="last_name">Last Name</x-input-label>
-                        <x-text-input type="text" id="last_name" name="last_name" class="mt-1 w-full " placeholder="Last name" required />
+                        <x-text-input type="text" id="last_name" name="LastName" class="mt-1 w-full " placeholder="Last name" required />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="Email">Email</x-input-label>
-                        <x-text-input type="Email" id="Email" name="Email" class="mt-1 w-full  " placeholder="Email" required />
+                        <x-text-input type="Email" id="Email" name="email" class="mt-1 w-full  " placeholder="Email" required />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="OrderID">Order ID</x-input-label>
-                        <x-text-input type="text" id="OrderID" name="OrderID" class="mt-1 w-full  " placeholder="Order ID" required />
+                        <x-text-input type="text" id="OrderID" name="order_id" class="mt-1 w-full  " placeholder="Order ID" /><!--required removed so can be nullable-->
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="Subject">Subject</x-input-label>
-                        <x-text-input type="text" id="Subject" name="Subject" class="mt-1 w-full  " placeholder="Subject" required />
+                        <x-text-input type="text" id="Subject" name="subject" class="mt-1 w-full  " placeholder="Subject" required />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="Message">Message</x-input-label>
-                        <x-text-area type="text" id="Message" name="Message" class="mt-1 w-full " placeholder="Write your message here" required />
+                        <x-text-area type="text" id="Message" name="message" class="mt-1 w-full " placeholder="Write your message here" required />
                     </div>
 
                     <div class="justify-center self-stretch mt-4">
                         <x-primary-button class="mt-5 w-full rows-6 cols-60">Submit</x-primary-button>
-                    </div>
-                </div>
-               
-            </div>
-             
+                       </div>
+                </div> 
+            </div>  
+  </script>
+         </form> <!--Note: Location of form tag effects layout of page -->
 
-            <!-- this is the second image which is hidden in the mobile setting  -->
-            <div class="hidden md:block w-full md:mt-[-310px] md:mr-[-310px]">
-                <img class="w-full h-auto" src="/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
-            </div>
+             <!-- this is the second image which is hidden in the mobile setting  -->
+             <div class="hidden md:block w-full md:mt-[-310px] md:mr-[-310px]">
+                 <img class="w-full h-auto" src="/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
+             </div>
 
-            <!-- this is the ending div for the padding -->
-        </div>
-    </div>
+             <!-- this is the ending div for the padding -->
+         </div>
+     </div>
 
 </x-app-layout>
