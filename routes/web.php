@@ -7,7 +7,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
-
+use App\Http\Controllers\ContactFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,3 +104,7 @@ Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name(
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
+
+//Route to save form into database
+Route::post('/contact-us', [ContactFormController::class, 'store']);
+
