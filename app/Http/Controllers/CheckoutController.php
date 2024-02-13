@@ -31,14 +31,17 @@ class CheckoutController extends Controller
                 if ($basketItems) {
                     // Variable for the total price of the basket
                     $totalAmount = $basket->total_amount;
+                    // Variable for the subtotal of the basket
                     $subTotal = $totalAmount + $basket->discount_amount;
+                    // Variable for the discount amount of the basket
+                    $discountAmount = $basket->discount_amount;
                     // Variable to keep track of the number of items in the basket (including the quantity of each item)
                     $itemCount = 0;
                     foreach ($basketItems as $basketItem) {
                         // For each item in the basket, add the quantity to the item count
                         $itemCount += $basketItem->quantity;
                     }
-                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount')); //* Pass the basket items to the view as well as the total price
+                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
@@ -81,12 +84,10 @@ class CheckoutController extends Controller
         // Get the items in the basket
         $basketItems = $basket->items;
         // Calculate the total amount of the order
-        if (session()->has('discount')) {
-            $discount = session()->get('discount');
-            $totalAmount = $discount['discountedTotalAmount'];
-        } else {
-            $totalAmount = $request->totalAmount;
-            $itemCount = $request->item_count;
+        $totalAmount = $basket->total_amount;
+        $itemCount = 0;
+        foreach ($basketItems as $basketItem) {
+            $itemCount += $basketItem->quantity;
         }
         // Get the address from the checkout form
         $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
