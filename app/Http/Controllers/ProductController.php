@@ -67,6 +67,13 @@ class ProductController extends Controller
         return view('products', ['products' => $products, 'category' => 'Shirts']); // Pass the products and category to the view
     }
 
+    // ** This method will show all products
+    public function showAllProducts()
+    {
+        $products = Product::all(); // Get all products
+        return view('products', ['products' => $products, 'category' => 'All Products']); // Pass the products and category to the view
+    }
+
     // ** This method will show the individual page of a product
     public function showProduct($slug) {
         $product = Product::where('slug', $slug)->firstOrFail(); // Get the product with the slug
