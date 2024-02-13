@@ -23,9 +23,9 @@
         Checkout
     </x-slot>
     @auth
-        <form method="post" action="{{ route('place-order') }}">
-            @csrf
-            <div class="sm:grid lg:grid-cols-2 lg:px-20 xl:px-32">
+        <div class="sm:grid lg:grid-cols-2 lg:px-20 xl:px-32">
+            <form method="post" action="{{ route('place-order') }}" name="checkout_form" id="checkout_form">
+                @csrf
                 {{-- Order summary --}}
                 <div class="sm:px-4 sm:pt-8">
                     <div
@@ -58,7 +58,7 @@
                             <div class="w-full">
                                 <x-input-label for="first_name">First Name</x-input-label>
                                 <x-text-input type="text" id="first_name" name="first_name"
-                                    class="w-full text-sm shadow-sm font-lexend" placeholder="John" :value="old('first_name')"/>
+                                    class="w-full text-sm shadow-sm font-lexend" placeholder="John" :value="old('first_name')" />
                             </div>
                             <div class="pt-6 w-full sm:pt-0">
                                 <x-input-label for="last_name">Last Name</x-input-label>
@@ -74,23 +74,23 @@
                         <div class="relative mt-2">
                             <x-input-label for="address_line_2">Address Line 2 (Optional)</x-input-label>
                             <x-text-input type="text" id="address_line_2" name="address_line_2"
-                                class="w-full text-sm shadow-sm" placeholder="Apartment 420" :value="old('address_line_2')"/>
+                                class="w-full text-sm shadow-sm" placeholder="Apartment 420" :value="old('address_line_2')" />
                         </div>
                         <div class="relative mt-2">
                             <x-input-label for="county">County</x-input-label>
                             <x-text-input type="text" id="county" name="county" class="w-full text-sm shadow-sm"
-                                placeholder="West Midlands" :value="old('county')"/>
+                                placeholder="West Midlands" :value="old('county')" />
                         </div>
                         <div class="flex flex-col gap-5 fmt-2 sm:flex-row">
                             <div class="w-full">
                                 <x-input-label for="city">Town/City</x-input-label>
                                 <x-text-input type="text" id="city" name="city" class="w-full text-sm shadow-sm"
-                                    placeholder="Birmingham" :value="old('city')"/>
+                                    placeholder="Birmingham" :value="old('city')" />
                             </div>
                             <div class="w-full">
                                 <x-input-label for="postcode">Postcode</x-input-label>
                                 <x-text-input type="text" id="postcode" name="postcode" class="w-full text-sm shadow-sm"
-                                    placeholder="B4 7ET" :value="old('postcode')"/>
+                                    placeholder="B4 7ET" :value="old('postcode')" />
                             </div>
                         </div>
                     </div>
@@ -118,75 +118,32 @@
                         <div class="relative">
                             <x-input-label for="cardholder_name">Cardholder Name</x-input-label>
                             <x-text-input type="text" id="cardholder_name" name="cardholder_name"
-                                class="w-full text-sm shadow-sm" placeholder="Mr John Doe" :value="old('cardholder_name')"/>
+                                class="w-full text-sm shadow-sm" placeholder="Mr John Doe" :value="old('cardholder_name')" />
                         </div>
                     </div>
                 </div>
+            </form>
 
-                <div class="">
-                    <div class="p-4 mt-10 space-y-6 bg-white border-2 sm:px-6 border-navy-blue">
-                        <h1 class="text-lg font-bold">Order Summary</h1>
-                        <!-- Discount code input -->
-                        <form class="grid gap-6 mt-5" action="{{ route('checkout.discount') }}">
-                            <div class="flex flex-col space-x-3 sm:flex-row">
-                                <x-text-input type="text" name="discount_code" class="w-full text-sm shadow-sm"
-                                    placeholder="Enter a discount code here" />
-                                <div class="flex justify-center max-sm:mt-2">
-                                    <x-primary-button>Apply</x-primary-button>
-                                </div>
-                            </div>
-                        </form>
-
-
-                        <!-- Total -->
-                        <div class="py-2 mt-6 border-t border-b  border-bluish-purple">
-                            <div class="flex justify-between items-center">
-                                <p class="text-sm font-medium text-gray-900">Number of items</p>
-                                <p class="font-semibold text-gray-900">{{ $itemCount }}</p>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                                <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <p class="text-sm font-medium text-gray-900">Discount</p>
-                                <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
-                            </div>
+            <div class="">
+                <div class="p-4 mt-10 space-y-6 bg-white border-2 sm:px-6 border-navy-blue">
+                    <h1 class="text-lg font-bold">Order Summary</h1>
+                    <!-- Total -->
+                    <div class="py-2 mt-6 border-t border-b  border-bluish-purple">
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm font-medium text-gray-900">Number of items</p>
+                            <p class="font-semibold text-gray-900">{{ $itemCount }}</p>
                         </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <p class="text-2xl font-semibold text-gray-900">Total</p>
-                            <p class="text-2xl font-semibold text-gray-900">£{{ $totalPrice }}</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm font-medium text-gray-900">Subtotal</p>
+                            <p class="font-semibold text-gray-900">£{{ $subTotal }}</p>
                         </div>
-                        <x-primary-button class="mt-5 w-full">Place Order</x-primary-button>
                     </div>
+                    <div class="flex justify-between items-center mt-6">
+                        <p class="text-2xl font-semibold text-gray-900">Total</p>
+                        <p class="text-2xl font-semibold text-gray-900">£{{ $totalAmount }}</p>
+                    </div>
+                    <x-primary-button class="mt-5 w-full" form="checkout_form">Place Order</x-primary-button>
                 </div>
-            </div>
-        </form>
-        <div class="">
-            <div class="p-4 mt-10 space-y-6 bg-white border-2 sm:px-6 border-navy-blue">
-                <h1 class="text-lg font-bold">Order Summary</h1>
-                <!-- Discount code input -->
-
-                <!-- Total -->
-                <div class="py-2 mt-6 border-t border-b  border-bluish-purple">
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm font-medium text-gray-900">Number of items</p>
-                        <p class="font-semibold text-gray-900">{{ $itemCount }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                        <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm font-medium text-gray-900">Discount</p>
-                        <p class="font-semibold text-gray-900">£{{ $totalPrice }}</p>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center mt-6">
-                    <p class="text-2xl font-semibold text-gray-900">Total</p>
-                    <p class="text-2xl font-semibold text-gray-900">£{{ $totalPrice }}</p>
-                </div>
-                <x-primary-button class="mt-5 w-full">Place Order</x-primary-button>
             </div>
         </div>
     @endauth

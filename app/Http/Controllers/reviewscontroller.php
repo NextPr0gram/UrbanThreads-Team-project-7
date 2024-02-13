@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
 /*
-* Displau reviews made
+* Display reviews made
 */
 {
-    public function 
+    public function display()
+    {
+        return view('reviews');
+    }
     //routes need to be added
 }

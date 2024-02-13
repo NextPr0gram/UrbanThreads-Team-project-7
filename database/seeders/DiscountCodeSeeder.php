@@ -20,7 +20,7 @@ class DiscountCodeSeeder extends Seeder
                 'value' => 10,
                 'percentage' => 0,
                 'uses' => 0,
-                'max_uses' => 1,
+                'max_uses' => 100,
                 'valid_from' => now(),
                 'valid_to' => now()->addDays(7),
             ],
@@ -34,6 +34,16 @@ class DiscountCodeSeeder extends Seeder
                 'valid_from' => now(),
                 'valid_to' => now()->addMonths(3),
             ],
+            [
+                'code' => 'WINTER',
+                'type' => 'percentage',
+                'value' => 0,
+                'percentage' => 0.2, // 20%
+                'uses' => 0,
+                'max_uses' => 100,
+                'valid_from' => now(),
+                'valid_to' => now()->addMonths(3),
+            ]
         ]);
     }
 }

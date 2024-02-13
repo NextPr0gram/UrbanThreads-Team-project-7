@@ -59,6 +59,8 @@ Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incr
 //? Route to decrement the quantity of a basket item
 Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
+//? Route to perform discount code validation
+Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
 
 Route::mailPreview();
 

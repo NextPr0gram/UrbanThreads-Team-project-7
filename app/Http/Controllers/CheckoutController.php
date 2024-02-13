@@ -30,15 +30,15 @@ class CheckoutController extends Controller
 
                 if ($basketItems) {
                     // Variable for the total price of the basket
-                    $totalPrice = 0;
+                    $totalAmount = $basket->total_amount;
+                    $subTotal = $totalAmount + $basket->discount_amount;
                     // Variable to keep track of the number of items in the basket (including the quantity of each item)
                     $itemCount = 0;
                     foreach ($basketItems as $basketItem) {
-                        // For each item in the basket, add the price of the product multiplied by the quantity to the total price
-                        $totalPrice += $basketItem->product->selling_price * $basketItem->quantity;
+                        // For each item in the basket, add the quantity to the item count
                         $itemCount += $basketItem->quantity;
                     }
-                    return view('checkout.show', compact('basketItems', 'totalPrice', 'itemCount')); //* Pass the basket items to the view as well as the total price
+                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
@@ -54,8 +54,8 @@ class CheckoutController extends Controller
     }
 
     //* Handles placing the order. Handles the checkout form validation and creates the order if the form is valid
-    public function placeOrder(Request $request) {
-
+    public function placeOrder(Request $request)
+    {
         //* Checkout form validation
         $validated = $request->validate([
             // Name fields
@@ -81,14 +81,13 @@ class CheckoutController extends Controller
         // Get the items in the basket
         $basketItems = $basket->items;
         // Calculate the total amount of the order
-        $totalAmount = 0;
-        $itemCount = 0;
-        foreach ($basketItems as $basketItem) {
-            // Loop through each item in the basket and add the price of the product multiplied by the quantity to the total amount
-            $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
-            $itemCount += $basketItem->quantity;
+        if (session()->has('discount')) {
+            $discount = session()->get('discount');
+            $totalAmount = $discount['discountedTotalAmount'];
+        } else {
+            $totalAmount = $request->totalAmount;
+            $itemCount = $request->item_count;
         }
-
         // Get the address from the checkout form
         $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
         // Get the address from the database if it exists
@@ -101,7 +100,7 @@ class CheckoutController extends Controller
         // If the address exists, get the ID of the address
         if ($address) {
             $addressId = $address->id;
-        // Otherwise, create the address and get the ID of the address
+            // Otherwise, create the address and get the ID of the address
         } else {
             $address = Address::create([
                 'address_line_1' => $request->address_line_1,
@@ -120,7 +119,7 @@ class CheckoutController extends Controller
             'address_id' => $addressId,
         ]);
         // Add each item in the basket to the order with the quantity
-        foreach($basketItems as $basketItem) {
+        foreach ($basketItems as $basketItem) {
             OrderItems::create([
                 'order_id' => $newOrder->id,
                 'product_id' => $basketItem->product_id,
@@ -136,36 +135,5 @@ class CheckoutController extends Controller
         $basket->delete();
         // Returns the page that tells the user that the order has been placed and sends the order items,  total amount and item count
         return view('checkout.success', compact('orderItems', 'totalAmount', 'order', 'itemCount'));
-    }
-
-    //* Validate discount code and return the discounted total amount for the checkout form
-    public function validateDiscount(Request $request) {
-        // Get the discount code from the request
-        $discountCode = $request->discount_code;
-        // Get the authenticated user
-        $user = auth()->user();
-        // Get the basket of the authenticated user
-        $basket = Basket::where('user_id', $user->id)->first();
-        // Get the items in the basket
-        $basketItems = $basket->items;
-        // Calculate the total amount of the order
-        $totalAmount = 0;
-        foreach ($basketItems as $basketItem) {
-            // Loop through each item in the basket and add the price of the product multiplied by the quantity to the total amount
-            $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
-        }
-        // Get the discount from the database if it exists
-        $discount = Discount::where('code', $discountCode)->first();
-        // If the discount exists, get the percentage of the discount
-        if ($discount) {
-            $discountPercentage = $discount->percentage;
-            // Calculate the discounted total amount
-            $discountedTotalAmount = $totalAmount - ($totalAmount * $discountPercentage / 100);
-            // Return the discounted total amount
-            return redirect()->back()->with('discountedTotalAmount', $discountedTotalAmount);
-        } else {
-            // Return an error message if the discount does not exist
-            return redirect()->back()->with('error', 'Invalid discount code');
-        }
     }
 }
