@@ -94,6 +94,9 @@ class BasketController extends Controller
                 } else if($discount->valid_from > now() || $discount->valid_to < now()) {
                     //! Redirect to the basket and display an error message that the discount is not valid
                     return redirect()->back()->with('error', 'Discount is not valid');
+                } else if($basket->discount_amount > 0) {
+                    //! Redirect to the basket and display an error message that the discount has already been applied
+                    return redirect()->back()->with('error', 'Discount has already been applied');
                 } else {
                     $discount->uses += 1;
                     $discount->save();
