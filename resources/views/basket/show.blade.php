@@ -30,7 +30,9 @@
                         <x-slot name="productName">
                             {{ $item->product->name }} {{-- * The product name is placed in the title placeholder --}}
                         </x-slot>
-
+                        <x-slot name="size">
+                            {{ $item->variation->size }} {{-- * The size of the product is placed in the size placeholder --}}
+                        </x-slot>
                         {{-- * The counter is placed in the counter placeholder --}}
                         <x-slot name="counter">
                             {{-- * This is the form that allows the button inside the form perform a post request that decrements the quantity
@@ -91,13 +93,19 @@
 
             <!-- Cart Summary Container -->
             <div class="w-full md:w-[414px] p-4 bg-white bg-opacity-40 border-2 border-navy-blue backdrop-blur-[18px]">
+
+                <div class = "justify-center self-stretch my-4">
+                    <h3 class="text-md font-medium text-black font-formula1">Have a discount code?</h3>
+                    @include('basket.partials.discount-code-form')
+                </div>
+
                 <!-- Subtotal, Discount, Total -->
                 <div class="flex justify-between items-center self-stretch px-4 h-12 border-b-2 border-snow-white">
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
                         <div class="text-sm font-medium text-black font-lexend-deca">Subtotal</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">£{{ $totalPrice }}
+                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">£{{ $subTotal }}
                         </div>
                     </div>
                 </div>
@@ -106,7 +114,7 @@
                         <div class="text-sm font-medium text-black font-lexend-deca">Discount</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-medium text-black font-lexend-deca">£0</div>
+                        <div class="text-sm font-medium text-black font-lexend-deca">£{{ $discountAmount }}</div>
                     </div>
                 </div>
                 <div class="flex justify-between items-center self-stretch px-4 h-12">
@@ -114,7 +122,7 @@
                         <div class="text-sm font-bold text-black font-lexend-deca">Total</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-bold text-black font-lexend-deca total-value">£{{ $totalPrice }}</div>
+                        <div class="text-sm font-bold text-black font-lexend-deca total-value">£{{ $totalAmount }}</div>
                     </div>
                 </div>
 

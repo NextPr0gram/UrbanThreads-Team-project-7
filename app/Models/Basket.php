@@ -16,7 +16,7 @@ class Basket extends Model
     protected $table = 'baskets'; // Table name
 
     // The user id is a fillable field as it is required when creating a basket
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'total_amount', 'discount_amount'];
 
     public function items()
     {

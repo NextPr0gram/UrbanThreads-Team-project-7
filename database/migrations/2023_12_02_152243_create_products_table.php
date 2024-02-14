@@ -21,16 +21,13 @@ return new class extends Migration
             $table->string('original_price'); //? The original price of the product
             $table->string('selling_price'); //? The selling price of the product (discounted price)
             $table->string('image'); //? The link to the image of the product
-            $table->string('qty'); //? The quantity of the product available
-            $table->tinyInteger('status')->default('0');
-            $table->tinyInteger('trending')->default('0'); //? Flag to indicate if the product is trending
             $table->mediumText('meta_title'); //? The title that appears in the browser (for the page of the specific product)
             $table->mediumText('meta_description');
             $table->mediumText('meta_keywords');
+            $table->foreignId('c1_id')->constrained('category1')->onDelete('cascade');
+            $table->foreignId('c2_id')->constrained('category2')->onDelete('cascade');
+            $table->string('slug');
             $table->timestamps();
-
-            // $table->foreign('c1_id')->references('id')->on('category1'); //* The foreign key of the category1 table
-           // $table->foreign('c2_id')->references('id')->on('category2'); //* The foreign key of the category2 table
         });
     }
 
@@ -40,5 +37,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['c1_id']);
+            $table->dropForeign(['c2_id']);
+        });
     }
 };
