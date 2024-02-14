@@ -101,4 +101,16 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
+Route::get('/admin/products-view', function () {
+    return view('admin.products-view');
+})->middleware(['auth:admin', 'verified'])->name('admin.products-view');
+
+Route::get('/admin/orders-view', function () {
+    return view('admin.orders-view');
+})->middleware(['auth:admin', 'verified'])->name('admin.orders-view');
+
+Route::get('/admin/customer-enquiries-view', function () {
+    return view('admin.customer-enquiries-view');
+})->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
+
 require __DIR__ . '/adminauth.php';
