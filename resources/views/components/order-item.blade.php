@@ -10,9 +10,10 @@
         <div class="flex flex-col">
             <h2 class="text-md sm:text-lg font-formula1">{{ $productName }}</h2> {{-- * This is the placeholder for the product name --}}
             <div class="flex flex-center justify-between">
-                <p class="text-base text-left font-formula1">Price £{{ $price }}</p> {{-- * This is the placeholder for the price of the product --}}
-                <p class="text-base text-right font-formula1">Quantity {{ $quantity }}</p> {{-- * This is the placeholder for the quantity of the product --}}
+                <p class="text-base text-left">Price: £{{ $price }}</p> {{-- * This is the placeholder for the price of the product --}}
+                <p class="text-base text-right">Quantity: {{ $quantity }}</p> {{-- * This is the placeholder for the quantity of the product --}}
             </div>
+            <p class="text-base text-left">Size: {{ $size }}</p> {{-- * This is the placeholder for the quantity of the product --}}
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Basket;
 use App\Models\Product;
 use App\Models\BasketItem;
+use App\Models\ProductVariation;
 
 /**
  ** Made by Kishan Jethwa
@@ -22,7 +23,7 @@ class BasketItemController extends Controller
      * If the product is already in the basket, increment the quantity
      * If the product is not in the basket, create a new basket item
      */
-    public function addToBasket($productId)
+    public function addToBasket(Request $request, $productId)
     {
         // Get the authenticated user
         $user = auth()->user();
@@ -39,9 +40,13 @@ class BasketItemController extends Controller
         // Find the product
         $product = Product::findOrFail($productId);
 
+        $variationId = $request->input('size');
+        $variation = ProductVariation::findOrFail($variationId);
+
         // Check if the product is already in the basket
         $existingBasketItem = BasketItem::where('basket_id', $basket->id)
             ->where('product_id', $product->id)
+            ->where('variation_id', $variation->id)
             ->first();
 
         if ($existingBasketItem) {
@@ -55,6 +60,7 @@ class BasketItemController extends Controller
                 'basket_id' => $basket->id, // The basket ID is the ID of the basket that was found or created for the user
                 'product_id' => $product->id, // The product ID is the ID of the product that was added to the basket
                 'quantity' => 1,
+                'variation_id' => $variation->id
             ]);
         }
 

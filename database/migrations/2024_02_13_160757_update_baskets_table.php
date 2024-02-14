@@ -7,16 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     *? Table info:
-     *? id: The id of the basket
-     *? user_id: The id of the user the basket belongs to
+     * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('baskets', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('baskets', function (Blueprint $table) {
+            $table->decimal('total_amount', 8, 2)->default(0)->after('user_id');
+            $table->decimal('discount_amount', 8, 2)->default(0)->after('total_amount');
         });
     }
 
@@ -25,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('baskets');
         Schema::table('baskets', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropColumn('total_amount');
+            $table->dropColumn('discount_amount');
         });
     }
 };

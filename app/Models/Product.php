@@ -17,11 +17,13 @@ class Product extends Model
         'description',
         'original_price',
         'selling_price',
-        'qty',
-        'status',
-        'trending',
         'meta_description',
         'meta_keywords',
 
     ];
+
+    // A product has many variations
+    public function variations() {
+        return $this->hasMany(ProductVariation::class);
+    }
 }
