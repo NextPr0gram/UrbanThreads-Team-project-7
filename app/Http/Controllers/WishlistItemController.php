@@ -30,7 +30,7 @@ class WishlistItemController extends Controller
         $product = Product::findOrFail($productId);
 
         /*
-        *Check wishlist type (Heart i.e, click add, click again remove...)
+        *Check wishlist type (Heart i.e, click add + fill color, click again remove...)
         *Controller will need changing
         */
 
@@ -39,7 +39,7 @@ class WishlistItemController extends Controller
             ->where('wishlists_id', $product->id)
             ->first();
             if ($existingBasketItem) {
-                // May want to delete
+                // May want to delete from wish lust
             } else {
                 // Add the product to the wishlist
                 $wishlistsItems = WishlistItems::create([

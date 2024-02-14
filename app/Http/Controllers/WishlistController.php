@@ -33,5 +33,5 @@ class WishlistController extends Controller
     }
   
 
-    //RRoutes need to be added!!
+    //Routes need to be added in web php for full functionality!!
 }
