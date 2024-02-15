@@ -22,14 +22,17 @@
         <div class="flex flex-col h-screen grow">
 
             <header class="w-auto flex items-center justify-between py-8 max-w-[1440px] min-[1500px]:mx-auto mx-5">
-                <img onclick="OpenSideBar()" class="hover:cursor-pointer absolute md:hidden" src="{{ asset("icons/admin-dashboard/menu-icon.svg") }}" alt="">
+                <img onclick="OpenSideBar()" class="hover:cursor-pointer absolute md:hidden"
+                    src="{{ asset('icons/admin-dashboard/menu-icon.svg') }}" alt="">
                 <h6 class="text-xl w-full text-center font-formula1">@yield('title')</h6>
 
             </header>
 
             <!-- Page Content -->
-            <main class="text-base bg-transparent text-lexend  max-w-[1440px] min-[1500px]:mx-auto mx-5">
-                @yield('content')
+            <main>
+                <div class="text-base bg-transparent text-lexend w-auto max-w-[1440px] min-[1500px]:mx-auto mx-5">
+                    @yield('content')
+                </div>
             </main>
         </div>
     </div>
