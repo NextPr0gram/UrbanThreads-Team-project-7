@@ -34,6 +34,9 @@
                         <x-slot name="quantity">
                             {{ $item->quantity }}
                         </x-slot>
+                        <x-slot name="size">
+                            {{ $item->variation->size }}
+                        </x-slot>
                     </x-order-item>
                 @endforeach
             </div>

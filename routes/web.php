@@ -59,6 +59,8 @@ Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incr
 //? Route to decrement the quantity of a basket item
 Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
+//? Route to perform discount code validation
+Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
 
 Route::mailPreview();
 
@@ -91,6 +93,7 @@ Route::get('auth.not-authenticated', function () {
 })->name('not-authenticated');
 
 //*? Routes for the products pages
+Route::get('/category/all-products', [ProductController::class, 'showAllProducts'])->name('all-products');
 Route::get('/category/hoodies', [ProductController::class, 'showHoodies'])->name('hoodies');
 Route::get('/category/tshirts', [ProductController::class, 'showTshirts'])->name('tshirts');
 Route::get('/category/jackets', [ProductController::class, 'showJackets'])->name('jackets');

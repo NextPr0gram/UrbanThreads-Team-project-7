@@ -18,10 +18,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->decimal('total', 8, 2)->default(0);
             $table->enum('status', ['placed', 'processing', 'dispatched', 'delivered'])->default('placed');
-            $table->unsignedBigInteger('address_id');
             $table->timestamps();
         });
     }
@@ -32,5 +31,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
     }
 };

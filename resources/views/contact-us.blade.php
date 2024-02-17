@@ -117,7 +117,6 @@
                        </div>
                 </div> 
             </div>  
-  </script>
          </form> <!--Note: Location of form tag effects layout of page -->
 
              <!-- this is the second image which is hidden in the mobile setting  -->
