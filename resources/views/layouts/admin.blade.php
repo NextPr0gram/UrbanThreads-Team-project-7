@@ -19,18 +19,19 @@
 <body class="antialiased bg-white bg-right-top bg-cover font-lexend text-neutral-900 box-border">
     <div class="flex">
         @include('layouts.sidebar')
-        <div class="flex flex-col h-screen grow">
+        <div class="flex flex-col h-screen mx-auto w-full">
 
-            <header class="w-auto flex items-center justify-between py-8 max-w-[1440px] min-[1500px]:mx-auto mx-5">
-                <img onclick="OpenSideBar()" class="hover:cursor-pointer absolute md:hidden"
-                    src="{{ asset('icons/admin-dashboard/menu-icon.svg') }}" alt="">
-                <h6 class="text-xl w-full text-center font-formula1">@yield('title')</h6>
 
-            </header>
 
             <!-- Page Content -->
-            <main>
-                <div class="text-base bg-transparent text-lexend w-auto max-w-[1440px] min-[1500px]:mx-auto mx-5">
+            <main class="h-full flex flex-col w-full">
+                <div class="w-auto flex items-center justify-between py-8 max-w-[1440px] min-[1500px]:mx-auto mx-5">
+                    <img onclick="OpenSideBar()" class="hover:cursor-pointer absolute md:hidden"
+                        src="{{ asset('icons/admin-dashboard/menu-icon.svg') }}" alt="">
+                    <h6 class="text-xl w-full text-center font-formula1">@yield('title')</h6>
+
+                </div>
+                <div class="text-base bg-transparent text-lexend   w-auto  overflow-hidden mb-8">
                     @yield('content')
                 </div>
             </main>
