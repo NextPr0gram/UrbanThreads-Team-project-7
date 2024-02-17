@@ -16,6 +16,13 @@
         <p>{{ $price }}</p>
     </div>
 
+    <div class="ml-3 pt-3">
+        <button x-data="{ clicked: false }" @click="clicked = !clicked">
+            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+        </button>
+    </div>
+
     <div class="flex justify-end p-4 bg-white">
         {{--* Button to add the product to the basket --}}
         <x-primary-button class="" href={{ $productLink }}>More info</x-primary-button>

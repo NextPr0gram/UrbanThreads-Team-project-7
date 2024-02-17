@@ -127,7 +127,7 @@
 
                                 {{-- Button to Close the Mobile Wishlist --}}
                                 <button @click="showMenu = false" class="md:hidden">
-                                    <img src="{{ asset('icons/utility/cancel-icon.png') }}" class="w-10 h-10" alt="">
+                                    <img src="{{ asset('icons/utility/cancel-icon.svg') }}" class="w-8 h-8" alt="">
                                 </button>
                             </div>
 
