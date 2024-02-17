@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin')
+@extends('layouts.admin')
 
 @section('content')
     <div class="flex items-center py-32 sm:justify-center sm:pt">
