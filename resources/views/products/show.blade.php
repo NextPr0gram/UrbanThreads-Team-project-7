@@ -19,7 +19,7 @@
                 <div class="my-10 text-center">
                     <form action="{{ route('basket.add', ['productId' => $product->id]) }}" method="post">
                         @csrf
-                        
+
                         <x-select name="size" class="w-full" required>
                             @foreach ($variations as $variation)
                                 <option value="{{ $variation->id }}">Size: {{ $variation->size }}</option>
@@ -28,6 +28,7 @@
 
                         <x-primary-button class="px-5 w-full mt-5">Add to Basket</x-primary-button>
                     </form>
+                    <x-bladewind.rating name="rating" size="small" clickable />
                 </div>
             </div>
         </div>
