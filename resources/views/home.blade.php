@@ -21,10 +21,10 @@
     </div>
 <!-- ALL OF THE BELOW IS FOR THE FILTER -->
     <!-- <div class="grid grid-flow-col auto-cols-max items-start "> -->
-    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 items-start "> 
-        
+    <!-- <div class="grid items-start grid-flow-row auto-rows-max">  -->
+    <div class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-3 mb-12 sm:mb-24 min-h-[30rem]">
         <div class="flex flex-nowrap"> 
-        <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col ">
+        <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left ">
         
 
         <div class="relative" id="dropdownButton">
@@ -34,7 +34,7 @@
         </div>
 
         <!-- this is the border for the dropdown options  -->
-        <!-- if this doesnt work remember to add hidden back here and get rid of overflow transition stuff -->
+        <!-- if this doesn't work remember to add hidden back here and get rid of overflow transition stuff -->
         <div id="dropdown" class="rounded-md border-neutral-60 hidden ">
         <div class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
             <!-- Dropdown content -->
@@ -67,7 +67,7 @@
        
         
     <!-- these are the checkboxes -->
-        <x-input-label for="Man" class="py-3">
+        <x-input-label for="Man" class="py-3 flex items-center">
         <span class=" flex-grow mr-60">Man</span>
         <x-checkbox></x-checkbox>
         </x-input-label>
@@ -141,6 +141,7 @@
             </h3>
         </a>
     </div>
+    
     <!-- this is the end of the div for the grid i added  -->
     </div> 
 </x-app-layout>
