@@ -17,57 +17,42 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-neutral-20">
+                        @foreach ($products as $product)
+                            <tr class="h-10">
+                                <td class="align-middle flex items-center h-10  gap-4 ">
+                                    <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt="">
+                                    </div>{{ $product->name }}
+                                </td>
+                                <td class="text-center">50</td>
+                                <td class="text-right"><button class="underline">More details</button></td>
+                            </tr>
+                        @endforeach
 
                         <tr class="h-10">
-                            <td class="align-middle flex items-center h-10  gap-4 "> <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt=""></div>Product Name</td>
+                            <td class="align-middle flex items-center h-10  gap-4 ">
+                                <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt="">
+                                </div>Product Name
+                            </td>
                             <td class="text-center">50</td>
                             <td class="text-right"><button class="underline">More details</button></td>
                         </tr>
 
                         <tr class="h-10">
-                            <td class="align-middle flex items-center h-10  gap-4 "> <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt=""></div>Product Name</td>
+                            <td class="align-middle flex items-center h-10  gap-4 ">
+                                <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt="">
+                                </div>Product Name
+                            </td>
                             <td class="text-center">50</td>
                             <td class="text-right"><button class="underline">More details</button></td>
                         </tr>
                         <tr class="h-10">
-                            <td class="align-middle flex items-center h-10  gap-4 "> <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt=""></div>Product Name</td>
+                            <td class="align-middle flex items-center h-10  gap-4 ">
+                                <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt="">
+                                </div>Product Name
+                            </td>
                             <td class="text-center">50</td>
                             <td class="text-right"><button class="underline">More details</button></td>
                         </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         {{-- example code for table row, add backend code --}}
                         {{-- <tr>
@@ -78,7 +63,7 @@
                     </tbody>
                 </table>
             </div>
-            <div>2</div>
+            {{-- <div class="rounded-lg border border-neutral-30">2</div> --}}
         </div>
 
     </div>

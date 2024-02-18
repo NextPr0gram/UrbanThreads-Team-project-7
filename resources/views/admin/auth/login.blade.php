@@ -54,6 +54,7 @@
                         {{ __('Log in') }}
                     </x-primary-button>
                 </div>
+                
             </form>
         </div>
         <div class="hidden lg:block h-[40rem] absolute translate-x-[35rem]">
