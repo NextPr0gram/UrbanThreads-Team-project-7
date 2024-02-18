@@ -17,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('basket_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('basket_id');
-            $table->unsignedBigInteger('product_id');
+            $table->foreignId('basket_id')->constrained('baskets')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->integer ("quantity")->default(1);
             $table->timestamps();
         });
@@ -30,5 +30,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('basket_items');
+        Schema::table('basket_items', function (Blueprint $table) {
+            $table->dropForeign(['basket_id']);
+            $table->dropForeign(['product_id']);
+        });
     }
 };
