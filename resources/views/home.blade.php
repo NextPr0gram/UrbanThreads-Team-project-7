@@ -19,7 +19,82 @@
             <img src="images/home-page/hero-image.png" alt="" class="hidden sm:block max-h-[40rem]">
         </div>
     </div>
+<!-- ALL OF THE BELOW IS FOR THE FILTER -->
+    <!-- <div class="grid grid-flow-col auto-cols-max items-start "> -->
+    <div class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 items-start "> 
+        
+        <div class="flex flex-nowrap"> 
+        <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col ">
+        
 
+        <div class="relative" id="dropdownButton">
+        <x-input-label for="Sort" class="pb-2">Sort</x-input-label>
+        <div id="button" onclick = "toggleDropdown()" class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">Options
+         <img id="upArrow" src="/images/filter icons/Chevron Down.svg" > 
+        </div>
+
+        <!-- this is the border for the dropdown options  -->
+        <!-- if this doesnt work remember to add hidden back here and get rid of overflow transition stuff -->
+        <div id="dropdown" class="rounded-md border-neutral-60 hidden ">
+        <div class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
+            <!-- Dropdown content -->
+            <x-dropdown-link >Low to high</x-dropdown-link>
+            <x-dropdown-link >High to low</x-dropdown-link>
+            <x-dropdown-link >Popularity</x-dropdown-link>
+            <x-dropdown-link >Relevance</x-dropdown-link>
+            </div> 
+        </div>
+<!-- this is the ending div for the dropdown  -->
+        </div>
+           
+
+        <!-- this is the javascript for the dropdown to allow the options to be shown when the arrow is pressed and an up arrow is shown when the options are shown-->
+        <script>
+            function toggleDropdown(){
+
+                let dropdownButton = document.querySelector('#dropdownButton, #dropdown');
+                let upArrow = document.querySelector('#upArrow');
+                dropdown.classList.toggle("hidden");
+                if(dropdown.classList.contains("hidden")){
+                    upArrow.src = "/images/filter icons/Chevron Down.svg";
+                    
+                }else{
+                    upArrow.src =  "/images/filter icons/Vector.svg";
+                }
+            }
+
+        </script>
+       
+        
+    <!-- these are the checkboxes -->
+        <x-input-label for="Man" class="py-3">
+        <span class=" flex-grow mr-60">Man</span>
+        <x-checkbox></x-checkbox>
+        </x-input-label>
+
+
+        <x-input-label for="Women" class="pb-3 flex items-center">
+        <span class="flex-grow mr-52">Women</span>
+        <x-checkbox ></x-checkbox>
+        </x-input-label> 
+       
+
+        <x-input-label for="Unisex" class="pb-3 flex items-center">
+        <span class="flex-grow mr-52">Unisex</span>
+        <x-checkbox></x-checkbox>
+        </x-input-label>
+
+        <div class="flex space-x-4 ml-24 pt-3">
+        <x-secondary-button>Reset</x-secondary-button>
+        <x-primary-button>Apply</x-primary-button>
+        </div>
+    
+    <!-- this is the ending div for the border  -->
+    </div>
+      <!-- this the ending div for the flex no wrap  -->
+    </div> 
+    
+    <!-- ALL OF THE ABOVE IS FOR THE FILTER -->
 
     <!-- Container for the product category cards -->
     <div class="flex flex-wrap justify-center mt-3 mb-12 sm:mb-24 min-h-[30rem]">
@@ -66,4 +141,6 @@
             </h3>
         </a>
     </div>
+    <!-- this is the end of the div for the grid i added  -->
+    </div> 
 </x-app-layout>
