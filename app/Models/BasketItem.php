@@ -11,7 +11,7 @@ class BasketItem extends Model
 
     //protected $table = 'basket_items'; // Table name
 
-    protected $fillable = ['basket_id', 'product_id', 'quantity']; // Fillable fields
+    protected $fillable = ['basket_id', 'product_id', 'quantity', 'variation_id']; // Fillable fields
 
     public function basket()
     {
@@ -25,6 +25,12 @@ class BasketItem extends Model
         return $this->BelongsTo(Product::class);
         // Many products belong to one basket item (quantity)
         // Many to one relationship
+    }
+
+    public function variation()
+    {
+        return $this->BelongsTo(ProductVariation::class);
+        // One product variation belongs to one basket item
     }
 }
 

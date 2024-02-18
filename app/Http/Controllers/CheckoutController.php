@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Discount;
 
 /**
  ** Class CheckoutController
@@ -29,15 +30,18 @@ class CheckoutController extends Controller
 
                 if ($basketItems) {
                     // Variable for the total price of the basket
-                    $totalPrice = 0;
+                    $totalAmount = $basket->total_amount;
+                    // Variable for the subtotal of the basket
+                    $subTotal = $totalAmount + $basket->discount_amount;
+                    // Variable for the discount amount of the basket
+                    $discountAmount = $basket->discount_amount;
                     // Variable to keep track of the number of items in the basket (including the quantity of each item)
                     $itemCount = 0;
                     foreach ($basketItems as $basketItem) {
-                        // For each item in the basket, add the price of the product multiplied by the quantity to the total price
-                        $totalPrice += $basketItem->product->selling_price * $basketItem->quantity;
+                        // For each item in the basket, add the quantity to the item count
                         $itemCount += $basketItem->quantity;
                     }
-                    return view('checkout.show', compact('basketItems', 'totalPrice', 'itemCount')); //* Pass the basket items to the view as well as the total price
+                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
@@ -53,8 +57,8 @@ class CheckoutController extends Controller
     }
 
     //* Handles placing the order. Handles the checkout form validation and creates the order if the form is valid
-    public function placeOrder(Request $request) {
-
+    public function placeOrder(Request $request)
+    {
         //* Checkout form validation
         $validated = $request->validate([
             // Name fields
@@ -80,14 +84,11 @@ class CheckoutController extends Controller
         // Get the items in the basket
         $basketItems = $basket->items;
         // Calculate the total amount of the order
-        $totalAmount = 0;
+        $totalAmount = $basket->total_amount;
         $itemCount = 0;
         foreach ($basketItems as $basketItem) {
-            // Loop through each item in the basket and add the price of the product multiplied by the quantity to the total amount
-            $totalAmount += $basketItem->product->selling_price * $basketItem->quantity;
             $itemCount += $basketItem->quantity;
         }
-
         // Get the address from the checkout form
         $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
         // Get the address from the database if it exists
@@ -100,11 +101,11 @@ class CheckoutController extends Controller
         // If the address exists, get the ID of the address
         if ($address) {
             $addressId = $address->id;
-        // Otherwise, create the address and get the ID of the address
+            // Otherwise, create the address and get the ID of the address
         } else {
             $address = Address::create([
-                'address_line_1' => $request->address_line1,
-                'address_line_2' => $request->address_line2,
+                'address_line_1' => $request->address_line_1,
+                'address_line_2' => $request->address_line_2,
                 'city' => $request->city,
                 'county' => $request->county,
                 'postcode' => $request->postcode,
@@ -119,11 +120,12 @@ class CheckoutController extends Controller
             'address_id' => $addressId,
         ]);
         // Add each item in the basket to the order with the quantity
-        foreach($basketItems as $basketItem) {
+        foreach ($basketItems as $basketItem) {
             OrderItems::create([
                 'order_id' => $newOrder->id,
                 'product_id' => $basketItem->product_id,
                 'quantity' => $basketItem->quantity,
+                'variation_id' => $basketItem->variation_id
             ]);
         }
         // Get the order that was just created

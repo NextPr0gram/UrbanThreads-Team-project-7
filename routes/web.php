@@ -7,8 +7,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\ContactFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +31,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/wishlist', function () {
+    return view('testpages.wishlist');
+});
+
 //? Routes to show the user's profile and perform actions on it
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,11 +54,13 @@ Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBaske
 Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}', [BasketItemController::class,'incrementQuantity'])
+Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}', [BasketItemController::class,'decrementQuantity'])
+Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
+//? Route to perform discount code validation
+Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
 
 Route::mailPreview();
 
@@ -73,6 +78,10 @@ Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
 
+Route::get('/wishlist', function () {
+    return view('testpages.wishlist');
+})->name('wishlist');
+
 //? Route to show the checkout page with the basket items
 Route::get('/checkout/show', [CheckoutController::class, 'show'])->name('checkout');
 
@@ -84,6 +93,7 @@ Route::get('auth.not-authenticated', function () {
 })->name('not-authenticated');
 
 //*? Routes for the products pages
+Route::get('/category/all-products', [ProductController::class, 'showAllProducts'])->name('all-products');
 Route::get('/category/hoodies', [ProductController::class, 'showHoodies'])->name('hoodies');
 Route::get('/category/tshirts', [ProductController::class, 'showTshirts'])->name('tshirts');
 Route::get('/category/jackets', [ProductController::class, 'showJackets'])->name('jackets');
@@ -113,3 +123,7 @@ Route::get('/admin/customer-enquiries-view', function () {
 })->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
 
 require __DIR__ . '/adminauth.php';
+
+//Route to save form into database
+Route::post('/contact-us', [ContactFormController::class, 'store']);
+
