@@ -62,7 +62,7 @@
 
 
         <!-- Page Content -->
-        <main class="text-base bg-transparent text-lexend  max-w-[1440px] min-[1500px]:mx-auto mx-5">
+        <main class="text-base text-neutral-900 bg-transparent text-lexend  max-w-[1440px] min-[1500px]:mx-auto mx-5">
             {{ $slot }}
         </main>
 
