@@ -81,6 +81,11 @@ export default {
                 800: 'rgba(13, 19, 32, 1)',
                 900: 'rgba(0, 7, 20, 1)',
             },
+
+            gray: {
+               0:'rgba(239, 239, 240, 1)',
+            },
+
         },
         fontFamily: {
             "lexend": ["Lexend Deca", "sans-serif"],
