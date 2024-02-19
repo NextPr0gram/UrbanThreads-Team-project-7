@@ -92,7 +92,7 @@ Route::get('auth.not-authenticated', function () {
     return view('auth.not-authenticated');
 })->name('not-authenticated');
 
-//*? Routes for the products pages
+//? Routes for the products pages
 Route::get('/category/all-products', [ProductController::class, 'showAllProducts'])->name('all-products');
 Route::get('/category/hoodies', [ProductController::class, 'showHoodies'])->name('hoodies');
 Route::get('/category/tshirts', [ProductController::class, 'showTshirts'])->name('tshirts');
@@ -100,8 +100,11 @@ Route::get('/category/jackets', [ProductController::class, 'showJackets'])->name
 Route::get('/category/trousers', [ProductController::class, 'showTrousers'])->name('trousers');
 Route::get('/category/accessories', [ProductController::class, 'showAccessories'])->name('accessories');
 
-//*? Route for the individual product page
+//? Route for the individual product page
 Route::get('/products/{slug}', [ProductController::class, 'showProduct'])->name('show');
+
+//? Route for showing the product search results
+Route::get('/search', [ProductController::class, 'searchForProduct'])->name('search');
 
 //? Route for contact-us page
 Route::get('/contact-us', function () {

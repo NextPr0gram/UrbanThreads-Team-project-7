@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        <x-application-logo class="block mx-2 h-9" />
 
                     </a>
                 </div>
@@ -30,13 +30,13 @@
             <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
 
                 {{-- Searchbar --}}
-                {{-- <form class="flex px-0 my-auto md:px-8" method="POST" action="">
-                    <x-text-input class="hidden w-full md:block"></x-text-input>
-                    <button title="Search" class="flex-none px-2">
+                <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
+                    <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
+                    <button class="flex-none px-2" type="submit">
                         <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
                 </button>
 
-                </form> --}}
+                </form>
 
 
 
