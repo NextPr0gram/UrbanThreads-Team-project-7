@@ -28,7 +28,6 @@
 
                         <x-primary-button class="px-5 w-full mt-5">Add to Basket</x-primary-button>
                     </form>
-                    <x-bladewind.rating name="rating" size="small" clickable />
                 </div>
             </div>
         </div>
