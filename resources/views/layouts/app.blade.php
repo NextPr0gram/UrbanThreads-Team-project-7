@@ -24,12 +24,12 @@
         <div class="flex flex-col h-screen">
             {{-- alerts --}}
             @if (session('success'))
-                <div id="successMessage" class="justify-center py-1 text-base text-center text-white bg-opacity-80 font-lexend bg-green">
+                <div id="successMessage" class="justify-center bg-success-300 py-1 text-base text-center text-white bg-opacity-80 font-lexend">
                     {{ session('success') }}
                 </div>
             @endif
             @if (session('error'))
-                <div id="errorMessage" class="justify-center py-1 text-base text-center text-white bg-opacity-80 font-lexend bg-red">
+                <div id="errorMessage" class="justify-center bg-danger-300 py-1 text-base text-center text-white bg-opacity-80 font-lexend">
                     {{ session('error') }}
                 </div>
             @endif
