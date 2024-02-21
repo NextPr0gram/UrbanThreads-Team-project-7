@@ -32,8 +32,8 @@
                 </div>
             </div>
         </div>
-        <x-write-review></x-write-review>
-        <x-review></x-review>
-        <x-users-reviews></x-users-reviews>
     </div>
+    <x-review></x-review>
+    <x-write-review name="review-modal"/>
+    <x-users-reviews></x-users-reviews>
 </x-app-layout>
