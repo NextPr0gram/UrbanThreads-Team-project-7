@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="">
-            {{ __('Profile') }}
+            {{ __('My Account') }}
         </h2>
+        <p class="font-lexend text-lg">
+            {{ __('Update your account information.') }}
+        </p>
     </x-slot>
 
     <div class="py-12">

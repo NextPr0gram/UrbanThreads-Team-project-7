@@ -29,18 +29,18 @@
                 {{-- Order summary --}}
                 <div class="sm:px-4 sm:pt-8">
                     <div
-                        class="p-3 mt-2 space-y-3 w-full bg-white bg-opacity-60 border-2 sm:px-6 border-navy-blue max-sm:text-center">
+                        class="mt-2 space-y-3 w-full bg-white bg-opacity-60 border-2 sm:px-6 border-navy-blue max-sm:text-center pb-5">
 
                         {{-- Basket items --}}
                         @foreach ($basketItems as $item)
                             <x-order-item>
-                                <x-slot name="image">
+                                <x-slot name="productImage">
                                     {{ $item->product->image }} {{-- * The product image is placed in the image placeholder --}}
                                 </x-slot>
                                 <x-slot name="productName">
                                     {{ $item->product->name }}
                                 </x-slot>
-                                <x-slot name="price">
+                                <x-slot name="sellingPrice">
                                     {{ $item->product->selling_price }}
                                 </x-slot>
                                 <x-slot name="quantity">
