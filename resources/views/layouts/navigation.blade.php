@@ -135,6 +135,7 @@
                             </div>
 
                             {{-- Wishlist Items Container --}}
+                            <link rel="stylesheet" href="resources/css/app.css">
                             <div class="px-4 pb-6">
 
                                 {{-- Wishlist Item 1 Container --}}
@@ -150,9 +151,9 @@
 
                                         {{-- Item 1 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                            <button class="group likeButton">
+                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">   
+                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                             </button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
@@ -173,10 +174,10 @@
 
                                         {{-- Item 2 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                        <button class="likeButton">
+                                              <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
                                                 <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
+                                </button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
@@ -195,7 +196,7 @@
 
                                         {{-- Item 3 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
+                                        <button class="group likeButton">
                                                 <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
                                                 <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                             </button>
@@ -209,6 +210,26 @@
                                 <a href="{{ route('wishlist') }}" class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
                             </div>
                         </div>
+                        <!--Script to make heart functional-->
+                        <script>
+    // Get all like buttons by class name
+    const likeButtons = document.querySelectorAll('.likeButton');
+
+    // Loop through each like button and add event listener
+    likeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            if (button.classList.contains('liked')) {
+                // If button is already liked, remove the liked class
+                button.classList.remove('liked');
+            } else {
+                // If button is not liked, add the liked class
+                button.classList.add('liked');
+            }
+        });
+    });
+</script>
+
+
                     </div>
 
 

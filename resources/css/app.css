@@ -43,3 +43,11 @@
     font-weight: bold;
     font-style: normal;
 }
+
+
+.liked {
+    /* Define the non-default color styles for the like button here */
+    /* For example */
+  background-image: url('icons/utility/heart-default.svg');
+}
+
