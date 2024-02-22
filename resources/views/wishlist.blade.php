@@ -13,145 +13,155 @@
     </x-slot>
 
     {{-- Wishlist Items Container --}}
-    <div class="flex flex-col items-center md:grid md:justify-items-center md:gap-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <div class="flex justify-center">
+        <div class="grid grid-cols-1 gap-20 mt-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
-        {{-- Item 1 Container --}}
-        <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray mb-20 mt-5">
-            <div class="w-64 aspect-square">
-                <!-- {{--* The placeholder for the image of the product --}} -->
-                <img class="w-64 aspect-square" src="{{ asset('images/product-images/hoodies/comfy-hoodie.png') }}" alt="">
+            {{-- Item 1 Container --}}
+            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
+                <div class="w-64 aspect-square">
+                    <!-- {{--* The placeholder for the image of the product --}} -->
+                    <img class="w-64 aspect-square" src="{{ asset('images/product-images/hoodies/comfy-hoodie.png') }}" alt="">
+                </div>
+
+                <div class="px-4 bg-white">
+                    {{--* The placeholders for the product name, price and availability --}}
+                    <p class="text-base font-formula1">Comfy Hoodie</p>
+                    <p>£50.00</p>
+                    <p>In Stock</p>
+                </div>
+
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <button x-data="{ clicked: false }" @click="clicked = !clicked">
+                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                    </button>
+                </div>
+
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
             </div>
 
-            <div class="px-4 bg-white">
-                {{--* The placeholders for the product name, price and availability --}}
-                <p class="text-base font-formula1">Pink Hoodie</p>
-                <p>£50.00</p>
-                <p>In Stock</p>
+            {{-- Item 2 Container --}}
+            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
+                <div class="w-64 aspect-square">
+                    {{--* The placeholder for the image of the product --}}
+                    <img class="w-64 aspect-square" src="{{ asset('images/product-images/jackets/cropped-puffer-jacket.png') }}" alt="">
+                </div>
+
+                <div class="px-4 bg-white">
+                    {{--* The placeholders for the product name, price and availability --}}
+                    <p class="text-base font-formula1">Cropped Puffer Jacket</p>
+                    <p>£50.00</p>
+                    <p>In Stock</p>
+                </div>
+
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <button x-data="{ clicked: false }" @click="clicked = !clicked">
+                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                    </button>
+                </div>
+
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
             </div>
 
-            <div class="pt-4 pl-4">
-                {{-- *Button to remove from the wishlist --}}
-                <button x-data="{ clicked: false }" @click="clicked = !clicked">
-                    <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                    <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                </button>
+
+            {{-- Item 3 Container --}}
+            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
+                <div class="w-64 aspect-square">
+                    {{--* The placeholder for the image of the product --}}
+                    <img class="w-64 aspect-square" src="{{ asset('images/product-images/accessories/socks.png') }}" alt="">
+                </div>
+
+                <div class="px-4 bg-white">
+                    {{--* The placeholders for the product name, price and availability --}}
+                    <p class="text-base font-formula1">Socks</p>
+                    <p>£50.00</p>
+                    <p>In Stock</p>
+                </div>
+
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <button x-data="{ clicked: false }" @click="clicked = !clicked">
+                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                    </button>
+                </div>
+
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
             </div>
 
-            <div class="flex justify-end p-4 bg-white">
-                {{--* Button to add the product to the basket --}}
-                <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+            {{-- Item 4 Container --}}
+            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
+                <div class="w-64 aspect-square">
+                    {{--* The placeholder for the image of the product --}}
+                    <img class="w-64 aspect-square" src="{{ asset('images/product-images/trousers/shorts.png') }}" alt="">
+                </div>
+
+                <div class="px-4 bg-white">
+                    {{--* The placeholders for the product name, price and availability --}}
+                    <p class="text-base font-formula1">Shorts</p>
+                    <p>£50.00</p>
+                    <p>In Stock</p>
+                </div>
+
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <button x-data="{ clicked: false }" @click="clicked = !clicked">
+                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                    </button>
+                </div>
+
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
+            </div>
+
+            {{-- Item 5 Container --}}
+            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
+                <div class="w-64 aspect-square">
+                    {{--* The placeholder for the image of the product --}}
+                    <img class="w-64 aspect-square" src="{{ asset('images/product-images/jackets/leather-jacket.png') }}" alt="">
+                </div>
+
+                <div class="px-4 bg-white">
+                    {{--* The placeholders for the product name, price and availability --}}
+                    <p class="text-base font-formula1">Leather Jacket</p>
+                    <p>£50.00</p>
+                    <p>In Stock</p>
+                </div>
+
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <button x-data="{ clicked: false }" @click="clicked = !clicked">
+                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                    </button>
+                </div>
+
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
             </div>
         </div>
-
-        {{-- Item 2 Container --}}
-        <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray mb-20 mt-5">
-            <div class="w-64 aspect-square">
-                <!-- {{--* The placeholder for the image of the product --}} -->
-                <img class="w-64 aspect-square" src="{{ asset('images/product-images/hoodies/comfy-hoodie.png') }}" alt=""> <!-- w-64 aspect-square -->
-            </div>
-
-            <div class="px-4 bg-white">
-                {{--* The placeholders for the product name, price and availability --}}
-                <p class="text-base font-formula1">Pink Hoodie</p>
-                <p>£50.00</p>
-                <p>In Stock</p>
-            </div>
-
-            <div class="pt-4 pl-4">
-                {{-- *Button to remove from the wishlist --}}
-                <button x-data="{ clicked: false }" @click="clicked = !clicked">
-                    <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                    <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                </button>
-            </div>
-
-            <div class="flex justify-end p-4 bg-white">
-                {{--* Button to add the product to the basket --}}
-                <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
-            </div>
-        </div>
-
-        {{-- Item 3 Container --}}
-        <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray mb-20 mt-5">
-            <div class="w-64 aspect-square">
-                <!-- {{--* The placeholder for the image of the product --}} -->
-                <img class="w-64 aspect-square" src="{{ asset('images/product-images/hoodies/comfy-hoodie.png') }}" alt=""> <!-- w-64 aspect-square -->
-            </div>
-
-            <div class="px-4 bg-white">
-                {{--* The placeholders for the product name, price and availability --}}
-                <p class="text-base font-formula1">Pink Hoodie</p>
-                <p>£50.00</p>
-                <p>In Stock</p>
-            </div>
-
-            <div class="pt-4 pl-4">
-                {{-- *Button to remove from the wishlist --}}
-                <button x-data="{ clicked: false }" @click="clicked = !clicked">
-                    <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                    <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                </button>
-            </div>
-
-            <div class="flex justify-end p-4 bg-white">
-                {{--* Button to add the product to the basket --}}
-                <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
-            </div>
-        </div>
-
-        {{-- Item 4 Container --}}
-        <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray mb-20 mt-5">
-            <div class="w-64 aspect-square">
-                <!-- {{--* The placeholder for the image of the product --}} -->
-                <img class="w-64 aspect-square" src="{{ asset('images/product-images/hoodies/comfy-hoodie.png') }}" alt=""> <!-- w-64 aspect-square -->
-            </div>
-
-            <div class="px-4 bg-white">
-                {{--* The placeholders for the product name, price and availability --}}
-                <p class="text-base font-formula1">Pink Hoodie</p>
-                <p>£50.00</p>
-                <p>In Stock</p>
-            </div>
-
-            <div class="pt-4 pl-4">
-                {{-- *Button to remove from the wishlist --}}
-                <button x-data="{ clicked: false }" @click="clicked = !clicked">
-                    <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                    <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                </button>
-            </div>
-
-            <div class="flex justify-end p-4 bg-white">
-                {{--* Button to add the product to the basket --}}
-                <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
-            </div>
-        </div>
-
     </div>
 
 </x-app-layout>
-
-<!-- <div class="flex flex-col">
-
-    {{-- Wishlist Item 1 --}}
-    <div class="flex flex-col font-lexend text-sm not-italic leading-4 text-neutral-900 border-b-2 border-solid border-neutral-30 py-4">
-        <div class="flex items-center py-3">
-            <img src="#" alt="" class="w-20 h-20 bg-primary-75 rounded-sm">
-            <div class="flex flex-col pl-5">
-                <p class="font-bold pb-2">Pink Hoodie</p>
-                <p class="pb-1">In stock</p>
-                <p class="">£ 24.99</p>
-            </div>
-        </div>
-
-        <div class="flex items-center relative py-5">
-            <x-secondary-button class="absolute left-24 font-lexend text-sm not-italic font-normal leading-4 text-primary-300">Add to cart</x-secondary-button>
-            <button class="absolute right-0"><img src="{{ asset('icons/utility/bin-icon.svg') }}" alt="" class="w-5 h-5"></button>
-        </div>
-    </div>
-
-</div> -->
