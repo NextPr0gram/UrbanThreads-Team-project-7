@@ -1,12 +1,12 @@
 <section>
     <header>
         <!-- Title of form -->
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium text-primary-500">
             {{ __('Address Information') }}
         </h2>
 
         <!-- Description of form -->
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600">
             {{ __('Save your address here for placing orders quickly.') }}
         </p>
     </header>

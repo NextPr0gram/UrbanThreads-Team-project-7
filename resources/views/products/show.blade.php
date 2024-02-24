@@ -28,7 +28,6 @@
 
                         <x-primary-button class="px-5 w-full mt-5">Add to Basket</x-primary-button>
                     </form>
-
                 </div>
             </div>
         </div>
