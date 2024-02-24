@@ -32,4 +32,7 @@
             </div>
         </div>
     </div>
+    <x-review></x-review>
+    <x-write-review name="review-modal"/>
+    <x-users-reviews></x-users-reviews>
 </x-app-layout>
