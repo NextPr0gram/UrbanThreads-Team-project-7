@@ -89,11 +89,10 @@ class CheckoutController extends Controller
         foreach ($basketItems as $basketItem) {
             $itemCount += $basketItem->quantity;
         }
-        // Get the address from the checkout form
-        $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
+
         // Get the address from the database if it exists
-        $address = Address::where('address_line_1', $request->address_line1)
-            ->where('address_line_2', $request->address_line2)
+        $address = Address::where('address_line_1', $request->address_line_1)
+            ->where('address_line_2', $request->address_line_2)
             ->where('city', $request->city)
             ->where('county', $request->county)
             ->where('postcode', $request->postcode)
@@ -103,14 +102,14 @@ class CheckoutController extends Controller
             $addressId = $address->id;
             // Otherwise, create the address and get the ID of the address
         } else {
-            $address = Address::create([
+            $newAddress = Address::create([
                 'address_line_1' => $request->address_line_1,
                 'address_line_2' => $request->address_line_2,
                 'city' => $request->city,
                 'county' => $request->county,
                 'postcode' => $request->postcode,
             ]);
-            $addressId = $address->id;
+            $addressId = $newAddress->id;
         }
 
         // Create an order

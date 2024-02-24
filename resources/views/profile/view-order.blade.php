@@ -11,7 +11,25 @@
         Order ID: {{ $order->id }}
     </x-slot>
 
-    <p class="text-center text-xl font-lexend">Thank you for placing your order!</p>
+    <div class="flex items-center justify-center pb-2 max-sm:mx-5">
+        @switch($order->status)
+            @case('placed')
+                <p class="text-gray-500 text-lg font-lexend">Your order has been placed.</p>
+            @break
+
+            @case('processing')
+                <p class="text-gray-500 text-lg font-lexend">Your order is being processed.</p>
+            @break
+
+            @case('dispatched')
+                <p class="text-gray-500 text-lg font-lexend">Your order has been dispatched.</p>
+            @break
+
+            @case('delivered')
+                <p class="text-gray-500 text-lg font-lexend">Your order has been delivered.</p>
+            @break
+        @endswitch
+    </div>
 
     <!-- Main Container -->
     <div class="grid grid-rows-2 items-center mt-4 mx-10 space-y-8 md:flex-row md:justify-center">
@@ -55,10 +73,32 @@
                 <p class="text-2xl font-semibold text-gray-900">Total</p>
                 <p class="text-2xl font-semibold text-gray-900">£{{ $order->total }}</p>
             </div>
-            <div class="flex justify-center mt-6">
+            <div class = "grid grid-flow-col items-center justify-center mt-6">
+                @if ($order->status === 'placed' || $order->status === 'processing')
+                    <form action="{{ route('cancel-order', $order->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <x-primary-button>
+                            Cancel Order
+                        </x-primary-button>
+                    </form>
+                @else
+                    @switch($order->status)
+                        @case('dispatched')
+                            <p class="text-lg font-medium text-gray-900">You cannot cancel this order as it has already been
+                                dispatched.</p>
+                        @break
+
+                        @case('delivered')
+                            <p class="text-lg font-medium text-gray-900">You cannot cancel this order as it has already been
+                                delivered.</p>
+                        @break
+                    @endswitch
+                @endif
                 <a href="{{ route('home') }}">
-                    <x-primary-button>Continue Shopping</x-primary-button>
-                </a>
+                    <x-secondary-button class="ml-5">
+                        Continue Shopping
+                    </x-secondary-button></a>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 
 /**
@@ -75,9 +76,21 @@ class ProductController extends Controller
     }
 
     // ** This method will show the individual page of a product
-    public function showProduct($slug) {
+    public function showProduct($slug)
+    {
         $product = Product::where('slug', $slug)->firstOrFail(); // Get the product with the slug
         $variations = $product->variations; // Get the variations of the product
         return view('products.show', ['product' => $product, 'variations' => $variations]); // Pass the product to the view with the variations (sizes)
+    }
+
+    public function searchForProduct(Request $request)
+    {
+        $search = $request->input('search');
+        $products = Product::where('name', 'like', "%$search%")->get();
+        if ($products->isEmpty()) {
+            return view('products', ['products' => $products, 'category' => 'No products found for ' . $search]);
+        } else {
+            return view('products', ['products' => $products, 'category' => 'Search Results for ' . $search]);
+        }
     }
 }
