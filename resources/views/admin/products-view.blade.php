@@ -7,7 +7,8 @@
 @section('content')
     <div class="w-full h-full">
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
-            <div id="productsTable"  class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto lg:col-span-1 col-span-2">
+            <div id="productsTable"
+                class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto lg:col-span-1 col-span-2">
                 <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                     <thead>
                         <tr class="text-left text-lg font-formula1">
@@ -33,9 +34,10 @@
                                     </div>{{ $product->name }}
                                 </td>
                                 <td class="text-center">{{ $product->totalStock }}</td>
-                                <td class="text-right"><button class="underline" id="moreDetailsBtn"
-                                        data-product-id="{{ $product->id }}" product-name="{{ $product->name }}"
-                                        variations="{{ $product->variations }}">More details</button></td>
+                                <td class="text-right">
+                                    <button class="underline" onclick="showDetails({{ $product->id }}, '{{ $product->name }}', {{ $product->original_price }}, '{{ $product->variations }}', '{{ $product->description }}')">
+                                        More details
+                                    </button></td>
                             </tr>
                         @endforeach
 
@@ -51,9 +53,9 @@
             </div>
 
             {{-- second column --}}
-            <div id="editDetails" class="justify-self-end overflow-hidden absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
-                <div
-                    class=" overflow-y-auto py-4 px-5 h-full">
+            <div id="editDetails"
+                class="justify-self-end overflow-hidden absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
+                <div class=" overflow-y-auto py-4 px-5 h-full">
                     <style>
                         #editDetails::-webkit-scrollbar-thumb {
                             background-color: blue;
@@ -94,10 +96,10 @@
                             </div>
                             <div class="w-full flex-1 pl-4 min-w-[12]">
                                 <x-input-label for="first_name" class="pb-2">First Name</x-input-label>
-                                <x-text-input type="text" id="name" name="name" class="w-full "
+                                <x-text-input type="text" id="nameField" name="name" class="w-full "
                                     placeholder="Name" />
                                 <x-input-label for="first_name" class="pb-2 pt-4">Price</x-input-label>
-                                <x-text-input type="number" id="name" name="price" class="w-full "
+                                <x-text-input type="number" id="priceField" name="price" class="w-full "
                                     placeholder="Price" />
                             </div>
                         </div>
@@ -119,7 +121,8 @@
                             placeholder="Write your description here" required />
 
 
-                        <x-primary-button type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save changes</x-primary-button>
+                        <x-primary-button type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
+                            changes</x-primary-button>
 
                     </form>
 
@@ -151,26 +154,33 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const moreDetailsButtons = document.getElementById("moreDetailsBtn");
-        const productDetailsForm = document.getElementById('productDetailsForm');
-        const closeFormBtn = document.getElementById('closeFormBtn');
+    function showDetails(id, name, price, variations, description) {
+        /* {{ $product->id }}, {{ $product->name }}, {{ $product->original_price }}, {{ $product->variations }}, {{ $product->description }}) */
 
-        moreDetailsButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product-id');
-                // Fetch product details by productId and populate form fields
-                // For now, let's just show/hide the form
-                productDetailsForm.classList.toggle('hidden');
+            nameField = document.getElementById("nameField");
+            priceField = document.getElementById("priceField");
+            descriptionField = document.getElementById("descriptionField");
+
+
+
+       /*  document.addEventListener('DOMContentLoaded', function() {
+            const moreDetailsButtons = document.getElementById("moreDetailsBtn");
+            const productDetailsForm = document.getElementById('productDetailsForm');
+            const closeFormBtn = document.getElementById('closeFormBtn');
+
+            moreDetailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    // Fetch product details by productId and populate form fields
+                    // For now, let's just show/hide the form
+                    productDetailsForm.classList.toggle('hidden');
+                });
             });
-        });
 
-        closeFormBtn.addEventListener('click', function() {
-            productDetailsForm.classList.add('hidden');
-        });
-    });
-
-    function showDetails() {
+            closeFormBtn.addEventListener('click', function() {
+                productDetailsForm.classList.add('hidden');
+            });
+        }); */
 
     }
 </script>

@@ -109,6 +109,14 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
 
+
+//Route to save form into database
+Route::post('/contact-us', [ContactFormController::class, 'store']);
+
+
+
+
+//? Routes for admin dashboard
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
@@ -123,8 +131,7 @@ Route::get('/admin/customer-enquiries-view', function () {
     return view('admin.customer-enquiries-view');
 })->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
 
+Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])
+    ->name('product.update');
+
 require __DIR__ . '/adminauth.php';
-
-//Route to save form into database
-Route::post('/contact-us', [ContactFormController::class, 'store']);
-

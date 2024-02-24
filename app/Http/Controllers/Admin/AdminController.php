@@ -14,6 +14,11 @@ class AdminController extends Controller
         $products->each(function ($product) {
             $product->totalStock = $product->variations->sum('stock'); // Calculate the total stock for each product
         });
-        return view('admin.products-view', ['products' => $products,]); // Return the view and pass the products as a parameter
+        return view('admin.products-view', ['products' => $products]); // Return the view and pass the products as a parameter
+    }
+
+    public function updateProduct(Request $request, $productId, $productName = null, $productPrice = null, $stockS = null, $stockM = null, $stockL = null)
+    {
+        
     }
 }
