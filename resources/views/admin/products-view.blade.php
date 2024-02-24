@@ -7,44 +7,49 @@
 @section('content')
     <div class="w-full h-full">
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
-            <div id="productsTable"
-                class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto lg:col-span-1 col-span-2">
-                <table class="table-auto w-full divide-y divide-neutral-20 text-base">
-                    <thead>
-                        <tr class="text-left text-lg font-formula1">
-                            <th>Product Name</th>
-                            <th class="text-center">Total Stocks</th>
-                            <th class="text-right">More Details</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-neutral-20">
-                        <tr class="h-10">
-                            <td class="align-middle flex items-center h-10  gap-4 ">
-                                <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src="" alt="">
-                                </div>$product->name
-                            </td>
-                            <td class="text-center">$product->totalStock</td>
-                            <td class="text-right"><button class="underline">More details</button></td>
-                        </tr>
-                        @foreach ($products as $product)
+            <div class="rounded-lg overflow-hidden">
+                <div id="productsTable"
+                    class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto lg:col-span-1 col-span-2">
+                    <table class="table-auto w-full divide-y divide-neutral-20 text-base">
+                        <thead>
+                            <tr class="text-left text-lg font-formula1">
+                                <th>Product Name</th>
+                                <th class="text-center">Total Stocks</th>
+                                <th class="text-right">More Details</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-20">
                             <tr class="h-10">
                                 <td class="align-middle flex items-center h-10  gap-4 ">
                                     <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src=""
                                             alt="">
-                                    </div>{{ $product->name }}
+                                    </div>$product->name
                                 </td>
-                                <td class="text-center">{{ $product->totalStock }}</td>
-                                <td class="text-right">
-                                    <button class="underline" onclick="showDetails({{ $product->id }}, '{{ $product->name }}', {{ $product->original_price }}, '{{ $product->variations }}', '{{ $product->description }}')">
-                                        More details
-                                    </button></td>
+                                <td class="text-center">$product->totalStock</td>
+                                <td class="text-right"><button class="underline">More details</button></td>
                             </tr>
-                        @endforeach
+                            @foreach ($products as $product)
+                                <tr class="h-10">
+                                    <td class="align-middle flex items-center h-10  gap-4 ">
+                                        <div class="w-6 aspect-square bg-primary-50 rounded-sm overflow-hidden"><img
+                                                src={{ $product->image }} alt="">
+                                        </div>{{ $product->name }}
+                                    </td>
+                                    <td class="text-center">{{ $product->totalStock }}</td>
+                                    <td class="text-right">
+                                        <button class="underline"
+                                            onclick="showDetails({{ $product->id }}, '{{ $product->name }}', {{ $product->original_price }}, '{{ $product->variations }}', '{{ $product->description }}')">
+                                            More details
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
 
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             {{-- Form --}}
@@ -157,30 +162,30 @@
     function showDetails(id, name, price, variations, description) {
         /* {{ $product->id }}, {{ $product->name }}, {{ $product->original_price }}, {{ $product->variations }}, {{ $product->description }}) */
 
-            nameField = document.getElementById("nameField");
-            priceField = document.getElementById("priceField");
-            descriptionField = document.getElementById("descriptionField");
+        nameField = document.getElementById("nameField");
+        priceField = document.getElementById("priceField");
+        descriptionField = document.getElementById("descriptionField");
 
 
 
-       /*  document.addEventListener('DOMContentLoaded', function() {
-            const moreDetailsButtons = document.getElementById("moreDetailsBtn");
-            const productDetailsForm = document.getElementById('productDetailsForm');
-            const closeFormBtn = document.getElementById('closeFormBtn');
+        /*  document.addEventListener('DOMContentLoaded', function() {
+             const moreDetailsButtons = document.getElementById("moreDetailsBtn");
+             const productDetailsForm = document.getElementById('productDetailsForm');
+             const closeFormBtn = document.getElementById('closeFormBtn');
 
-            moreDetailsButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-product-id');
-                    // Fetch product details by productId and populate form fields
-                    // For now, let's just show/hide the form
-                    productDetailsForm.classList.toggle('hidden');
-                });
-            });
+             moreDetailsButtons.forEach(button => {
+                 button.addEventListener('click', function() {
+                     const productId = this.getAttribute('data-product-id');
+                     // Fetch product details by productId and populate form fields
+                     // For now, let's just show/hide the form
+                     productDetailsForm.classList.toggle('hidden');
+                 });
+             });
 
-            closeFormBtn.addEventListener('click', function() {
-                productDetailsForm.classList.add('hidden');
-            });
-        }); */
+             closeFormBtn.addEventListener('click', function() {
+                 productDetailsForm.classList.add('hidden');
+             });
+         }); */
 
     }
 </script>
