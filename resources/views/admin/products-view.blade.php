@@ -7,9 +7,8 @@
 @section('content')
     <div class="w-full h-full">
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
-            <div class="rounded-lg overflow-hidden">
-                <div id="productsTable"
-                    class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto lg:col-span-1 col-span-2">
+            <div id="productsTable" class="rounded-lg overflow-hidden lg:col-span-1 col-span-2">
+                <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                         <thead>
                             <tr class="text-left text-lg font-formula1">
@@ -23,7 +22,7 @@
                                 <td class="align-middle flex items-center h-10  gap-4 ">
                                     <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src=""
                                             alt="">
-                                    </div>$product->name
+                                    </div>$products->name
                                 </td>
                                 <td class="text-center">$product->totalStock</td>
                                 <td class="text-right"><button class="underline">More details</button></td>
@@ -38,7 +37,7 @@
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails({{ $product->id }}, '{{ $product->name }}', {{ $product->original_price }}, '{{ $product->variations }}', '{{ $product->description }}')">
+                                            onclick="showDetails({{ $product->id }},'{{ $product->image }}',  '{{ $product->name }}', {{ $product->original_price }}, {{ $product->variations }}, '{{ $product->description }}')">
                                             More details
                                         </button>
                                     </td>
@@ -90,44 +89,46 @@
 
                     <form class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action="">
                         <div class="flex justify-between pb-4">
-                            <h1 class="font-formula1 text-lg">T-shirt</h1>
+                            <h1 id="title" class="font-formula1 text-lg">Edit Product Details</h1>
                             <button type="button" onclick="hideForm()">Cancel</button>
                         </div>
                         {{-- image, name and price fields --}}
                         <div class="flex w-full h-fit">
                             <div
-                                class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial">
-                                <img src="" alt="">
+                                class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
+                                <img id="imageField" class="w-full h-full" src="" alt="">
                             </div>
                             <div class="w-full flex-1 pl-4 min-w-[12]">
-                                <x-input-label for="first_name" class="pb-2">First Name</x-input-label>
+                                <x-input-label for="name" class="pb-2">Name</x-input-label>
                                 <x-text-input type="text" id="nameField" name="name" class="w-full "
                                     placeholder="Name" />
-                                <x-input-label for="first_name" class="pb-2 pt-4">Price</x-input-label>
+                                <x-input-label for="price" class="pb-2 pt-4">Price</x-input-label>
                                 <x-text-input type="number" id="priceField" name="price" class="w-full "
                                     placeholder="Price" />
                             </div>
                         </div>
 
-                        <x-input-label for="StockForS" class="pb-2 pt-4">Stock For S</x-input-label>
-                        <x-text-input type="text" id="StockForS" name="StockForS" class="w-full "
-                            placeholder="Stock For S" />
+                            <x-input-label id="StockForSLabel" for="StockForS" class="pb-2 pt-4">Stock For S</x-input-label>
+                            <x-text-input type="text" id="StockForSInput" name="StockForS" class="w-full "
+                                placeholder="Stock For S" />
 
-                        <x-input-label for="StockForM" class="pb-2 pt-4">Stock For M</x-input-label>
-                        <x-text-input type="text" id="StockForM" name="StockForM" class="w-full "
-                            placeholder="Stock For M" />
+                            <x-input-label id="StockForMLabel" for="StockForM" class="pb-2 pt-4">Stock For M</x-input-label>
+                            <x-text-input type="text" id="StockForMInput" name="StockForM" class="w-full "
+                                placeholder="Stock For M" />
 
-                        <x-input-label for="StockForL" class="pb-2 pt-4">Stock For L</x-input-label>
-                        <x-text-input type="text" id="StockForL" name="StockForL" class="w-full "
-                            placeholder="Stock For L" />
+                            <x-input-label id="StockForLLabel" for="StockForL" class="pb-2 pt-4">Stock For L</x-input-label>
+                            <x-text-input type="text" id="StockForLInput" name="StockForL" class="w-full "
+                                placeholder="Stock For L" />
+
 
                         <x-input-label for="Description" class="pb-2 pt-4 ">Description</x-input-label>
-                        <x-text-area type="text" id="Description" name="Description" class="lg:grow w-full h-auto "
-                            placeholder="Write your description here" required />
+                        <x-text-area type="text" id="descriptionField" name="Description"
+                            class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 
                         <x-primary-button type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
                             changes</x-primary-button>
+
 
                     </form>
 
@@ -155,37 +156,88 @@
         </div>
 
     </div>
+    <script>
+        function showDetails(id, image, name, price, variations, description) {
+
+            // Show menu
+            let editDetailsForm = document.getElementById("editDetails");
+            let formOverlay = document.getElementById("formOverlay");
+            let productsTable = document.getElementById("productsTable");
+
+            editDetails.classList.remove("translate-y-full");
+            editDetails.classList.remove("lg:w-0");
+            editDetails.classList.remove("border-none");
+            editDetails.classList.remove("lg:translate-y-0");
+            editDetails.classList.remove("col-start-3");
+
+            formOverlay.classList.remove("hidden");
+
+            productsTable.classList.remove("lg:col-span-2");
+
+            // Update fields
+            let title = document.getElementById("title");
+            let nameField = document.getElementById("nameField");
+            let priceField = document.getElementById("priceField");
+            let descriptionField = document.getElementById("descriptionField");
+            let imageField = document.getElementById("imageField");
+
+            title.innerHTML = name;
+            nameField.value = name;
+            priceField.value = price;
+            descriptionField.value = description;
+            imageField.src = image;
+
+
+
+
+
+            // Variations S
+            let StockForSLabel = document.getElementById("StockForSLabel");
+            let StockForSInput = document.getElementById("StockForSInput");
+
+            // Variations M
+            let StockForMLabel = document.getElementById("StockForMLabel");
+            let StockForMInput = document.getElementById("StockForMInput");
+
+            // Variations L
+            let StockForLLabel = document.getElementById("StockForLLabel");
+            let StockForLInput = document.getElementById("StockForLInput");
+
+            if (variations[0]){
+                StockForSInput.value = variations[0].stock;
+
+                StockForMLabel.classList.add("hidden");
+                StockForMInput.classList.add("hidden");
+
+                StockForLLabel.classList.add("hidden");
+                StockForLInput.classList.add("hidden");
+            }
+
+            if (variations[1]){
+                StockForMInput.value = variations[1].stock;
+
+                StockForMLabel.classList.remove("hidden");
+                StockForMInput.classList.remove("hidden");
+
+                StockForLLabel.classList.add("hidden");
+                StockForLInput.classList.add("hidden");
+            }
+
+            if (variations[2]){
+                StockForLInput.value = variations[2].stock;
+
+                StockForMLabel.classList.remove("hidden");
+                StockForMInput.classList.remove("hidden");
+
+                StockForLLabel.classList.remove("hidden");
+                StockForLInput.classList.remove("hidden");
+
+            }
+
+
+
+
+
+        }
+    </script>
 @endsection
-
-
-<script>
-    function showDetails(id, name, price, variations, description) {
-        /* {{ $product->id }}, {{ $product->name }}, {{ $product->original_price }}, {{ $product->variations }}, {{ $product->description }}) */
-
-        nameField = document.getElementById("nameField");
-        priceField = document.getElementById("priceField");
-        descriptionField = document.getElementById("descriptionField");
-
-
-
-        /*  document.addEventListener('DOMContentLoaded', function() {
-             const moreDetailsButtons = document.getElementById("moreDetailsBtn");
-             const productDetailsForm = document.getElementById('productDetailsForm');
-             const closeFormBtn = document.getElementById('closeFormBtn');
-
-             moreDetailsButtons.forEach(button => {
-                 button.addEventListener('click', function() {
-                     const productId = this.getAttribute('data-product-id');
-                     // Fetch product details by productId and populate form fields
-                     // For now, let's just show/hide the form
-                     productDetailsForm.classList.toggle('hidden');
-                 });
-             });
-
-             closeFormBtn.addEventListener('click', function() {
-                 productDetailsForm.classList.add('hidden');
-             });
-         }); */
-
-    }
-</script>
