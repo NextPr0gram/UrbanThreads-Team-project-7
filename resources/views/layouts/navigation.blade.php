@@ -152,8 +152,7 @@
                                         {{-- Item 1 Right Container--}}
                                         <div class="flex flex-col items-end">
                                             <button class="group likeButton">
-                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">   
-                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+
                                             </button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
@@ -175,8 +174,6 @@
                                         {{-- Item 2 Right Container--}}
                                         <div class="flex flex-col items-end">
                                         <button class="likeButton">
-                                              <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                 </button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
@@ -188,7 +185,6 @@
                                     {{-- Item 3 Left Container--}}
                                     <div class="flex items-center justify-between">
                                         <img src="#" alt="" class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
                                         <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
                                             <p class="font-bold pb-2">Item Name</p>
                                             <p class="font-normal">£ 24.99</p>
@@ -196,10 +192,7 @@
 
                                         {{-- Item 3 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                        <button class="group likeButton">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
+                                        <button class="group likeButton"></button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>

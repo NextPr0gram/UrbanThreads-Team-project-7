@@ -44,10 +44,18 @@
     font-style: normal;
 }
 
-
+.likeButton{/*Default Non filled button*/
+    width: 20px;
+    height: 20px;
+  background-image: url('icons/utility/heart-hover.svg');
+  background-size: cover;
+  background-position: center;
+}
 .liked {
-    /* Define the non-default color styles for the like button here */
-    /* For example */
+
+    width: 20px;
+    height: 20px;
   background-image: url('icons/utility/heart-default.svg');
+  background-size: cover;
 }
 
