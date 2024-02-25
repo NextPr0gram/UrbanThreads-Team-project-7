@@ -17,8 +17,48 @@ class AdminController extends Controller
         return view('admin.products-view', ['products' => $products]); // Return the view and pass the products as a parameter
     }
 
-    public function updateProduct(Request $request, $productId, $productName = null, $productPrice = null, $stockS = null, $stockM = null, $stockL = null)
+    public function updateProduct(Request $request, $productId)
     {
-        
+
+
+        // only validate fields that the client provides
+        $request->validate([
+            'name' => 'nullable|string|max:55',
+            'price' => 'nullable|string',
+            'description' => 'nullable|string|max:1000',
+            'stockForS' => 'nullable|numeric',
+            'stockForM' => 'nullable|numeric',
+            'stockForL' => 'nullable|numeric',
+        ]);
+
+        $product = Product::findOrFail($productId);
+
+        if ($request->filled('name')) {
+            $product->name = $request->name;
+        }
+
+        if ($request->filled('price')) {
+            $product->selling_price = $request->price;
+        }
+
+        if ($request->filled('description')) {
+            $product->description = $request->description;
+        }
+
+        if ($request->filled('stockForS')) {
+            $product->variations()->where('size', 'Small')->update(['stock' => $request->stockForS]);
+        }
+
+        if ($request->filled('stockForM')) {
+            $product->variations()->where('size', 'Medium')->update(['stock' => $request->stockForM]);
+        }
+
+        if ($request->filled('stockForL')) {
+            $product->variations()->where('size', 'Large')->update(['stock' => $request->stockForL]);
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.products-view')->with('success', 'Product updated successfully.');
     }
 }

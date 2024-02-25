@@ -7,7 +7,7 @@
 @section('content')
     <div class="w-full h-full">
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
-            <div id="productsTable" class="rounded-lg overflow-hidden lg:col-span-1 col-span-2">
+            <div id="productsTable" class="lg:col-span-2 rounded-lg overflow-hidden lg:col-span-1 col-span-2">
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                         <thead>
@@ -37,7 +37,7 @@
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails({{ $product->id }},'{{ $product->image }}',  '{{ $product->name }}', {{ $product->original_price }}, {{ $product->variations }}, '{{ $product->description }}')">
+                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}')">
                                             More details
                                         </button>
                                     </td>
@@ -53,12 +53,12 @@
 
             {{-- Form --}}
             <div id="formOverlay"
-                class="absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
+                class="hidden absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
             </div>
 
             {{-- second column --}}
             <div id="editDetails"
-                class="justify-self-end overflow-hidden absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
+                class="translate-y-full lg:w-0 border-none lg:translate-y-0 col-start-3 justify-self-end overflow-hidden absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
                 <div class=" overflow-y-auto py-4 px-5 h-full">
                     <style>
                         #editDetails::-webkit-scrollbar-thumb {
@@ -87,7 +87,10 @@
 
                     {{-- Title and cancel button --}}
 
-                    <form class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action="">
+                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action=""  method="POST">
+                        @csrf
+                        @method('POST')
+
                         <div class="flex justify-between pb-4">
                             <h1 id="title" class="font-formula1 text-lg">Edit Product Details</h1>
                             <button type="button" onclick="hideForm()">Cancel</button>
@@ -108,21 +111,21 @@
                             </div>
                         </div>
 
-                            <x-input-label id="StockForSLabel" for="StockForS" class="pb-2 pt-4">Stock For S</x-input-label>
-                            <x-text-input type="text" id="StockForSInput" name="StockForS" class="w-full "
+                            <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For S</x-input-label>
+                            <x-text-input type="text" id="StockForSInput" name="stockForS" class="w-full "
                                 placeholder="Stock For S" />
 
-                            <x-input-label id="StockForMLabel" for="StockForM" class="pb-2 pt-4">Stock For M</x-input-label>
-                            <x-text-input type="text" id="StockForMInput" name="StockForM" class="w-full "
+                            <x-input-label id="StockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For M</x-input-label>
+                            <x-text-input type="text" id="StockForMInput" name="stockForM" class="w-full "
                                 placeholder="Stock For M" />
 
-                            <x-input-label id="StockForLLabel" for="StockForL" class="pb-2 pt-4">Stock For L</x-input-label>
-                            <x-text-input type="text" id="StockForLInput" name="StockForL" class="w-full "
+                            <x-input-label id="StockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For L</x-input-label>
+                            <x-text-input type="text" id="StockForLInput" name="stockForL" class="w-full "
                                 placeholder="Stock For L" />
 
 
-                        <x-input-label for="Description" class="pb-2 pt-4 ">Description</x-input-label>
-                        <x-text-area type="text" id="descriptionField" name="Description"
+                        <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
+                        <x-text-area type="text" id="descriptionField" name="description"
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 
@@ -157,12 +160,14 @@
 
     </div>
     <script>
-        function showDetails(id, image, name, price, variations, description) {
+        function showDetails(image, name, price, variations, description, action) {
 
+            console.log(action);
             // Show menu
             let editDetailsForm = document.getElementById("editDetails");
             let formOverlay = document.getElementById("formOverlay");
             let productsTable = document.getElementById("productsTable");
+
 
             editDetails.classList.remove("translate-y-full");
             editDetails.classList.remove("lg:w-0");
@@ -180,12 +185,14 @@
             let priceField = document.getElementById("priceField");
             let descriptionField = document.getElementById("descriptionField");
             let imageField = document.getElementById("imageField");
+            let updateProductForm = document.getElementById("updateProductForm");
 
             title.innerHTML = name;
             nameField.value = name;
             priceField.value = price;
             descriptionField.value = description;
             imageField.src = image;
+            updateProductForm.action = action;
 
 
 
@@ -233,6 +240,7 @@
                 StockForLInput.classList.remove("hidden");
 
             }
+
 
 
 

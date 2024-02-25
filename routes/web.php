@@ -131,7 +131,7 @@ Route::get('/admin/customer-enquiries-view', function () {
     return view('admin.customer-enquiries-view');
 })->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
 
-Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])
-    ->name('product.update');
+Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+
 
 require __DIR__ . '/adminauth.php';
