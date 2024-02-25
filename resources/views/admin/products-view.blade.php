@@ -18,15 +18,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
-                            <tr class="h-10">
-                                <td class="align-middle flex items-center h-10  gap-4 ">
-                                    <div class="w-6 aspect-square bg-primary-50 rounded-sm"><img src=""
-                                            alt="">
-                                    </div>$products->name
-                                </td>
-                                <td class="text-center">$product->totalStock</td>
-                                <td class="text-right"><button class="underline">More details</button></td>
-                            </tr>
+                            
                             @foreach ($products as $product)
                                 <tr class="h-10">
                                     <td class="align-middle flex items-center h-10  gap-4 ">
@@ -87,7 +79,8 @@
 
                     {{-- Title and cancel button --}}
 
-                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action=""  method="POST">
+                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action=""
+                        method="POST">
                         @csrf
                         @method('POST')
 
@@ -111,17 +104,17 @@
                             </div>
                         </div>
 
-                            <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For S</x-input-label>
-                            <x-text-input type="text" id="StockForSInput" name="stockForS" class="w-full "
-                                placeholder="Stock For S" />
+                        <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For S</x-input-label>
+                        <x-text-input type="text" id="StockForSInput" name="stockForS" class="w-full "
+                            placeholder="Stock For S" />
 
-                            <x-input-label id="StockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For M</x-input-label>
-                            <x-text-input type="text" id="StockForMInput" name="stockForM" class="w-full "
-                                placeholder="Stock For M" />
+                        <x-input-label id="StockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For M</x-input-label>
+                        <x-text-input type="text" id="StockForMInput" name="stockForM" class="w-full "
+                            placeholder="Stock For M" />
 
-                            <x-input-label id="StockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For L</x-input-label>
-                            <x-text-input type="text" id="StockForLInput" name="stockForL" class="w-full "
-                                placeholder="Stock For L" />
+                        <x-input-label id="StockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For L</x-input-label>
+                        <x-text-input type="text" id="StockForLInput" name="stockForL" class="w-full "
+                            placeholder="Stock For L" />
 
 
                         <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
@@ -129,7 +122,7 @@
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 
-                        <x-primary-button type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
+                        <x-primary-button id="saveChangesButton" type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
                             changes</x-primary-button>
 
 
@@ -210,7 +203,7 @@
             let StockForLLabel = document.getElementById("StockForLLabel");
             let StockForLInput = document.getElementById("StockForLInput");
 
-            if (variations[0]){
+            if (variations[0]) {
                 StockForSInput.value = variations[0].stock;
 
                 StockForMLabel.classList.add("hidden");
@@ -220,7 +213,7 @@
                 StockForLInput.classList.add("hidden");
             }
 
-            if (variations[1]){
+            if (variations[1]) {
                 StockForMInput.value = variations[1].stock;
 
                 StockForMLabel.classList.remove("hidden");
@@ -230,7 +223,7 @@
                 StockForLInput.classList.add("hidden");
             }
 
-            if (variations[2]){
+            if (variations[2]) {
                 StockForLInput.value = variations[2].stock;
 
                 StockForMLabel.classList.remove("hidden");
@@ -239,6 +232,21 @@
                 StockForLLabel.classList.remove("hidden");
                 StockForLInput.classList.remove("hidden");
 
+            }
+
+
+
+            let saveChangesButton = document.getElementById("saveChangesButton");
+
+            // Check if any field has changed
+            let fields = [nameField, priceField, descriptionField, StockForSInput, StockForMInput, StockForLInput];
+            let hasChanged = fields.some(field => field.value !== field.defaultValue);
+
+            // Show or hide save changes button based on changes
+            if (hasChanged) {
+                saveChangesButton.classList.remove("hidden");
+            } else {
+                saveChangesButton.classList.add("block");
             }
 
 
