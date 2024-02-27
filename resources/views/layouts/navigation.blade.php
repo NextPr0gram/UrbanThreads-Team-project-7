@@ -152,7 +152,6 @@
                                         {{-- Item 1 Right Container--}}
                                         <div class="flex flex-col items-end">
                                             <button class="group likeButton">
-
                                             </button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
                                         </div>

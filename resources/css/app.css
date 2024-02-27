@@ -45,7 +45,7 @@
 }
 
 .likeButton{/*Default Non filled button*/
-    width: 20px;
+    width: 25px;
     height: 20px;
   background-image: url('icons/utility/heart-hover.svg');
   background-size: cover;
@@ -53,7 +53,7 @@
 }
 .liked {
 
-    width: 20px;
+    width: 25px;
     height: 20px;
   background-image: url('icons/utility/heart-default.svg');
   background-size: cover;

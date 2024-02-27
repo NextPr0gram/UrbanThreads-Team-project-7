@@ -10,7 +10,7 @@ class ContactFormController extends Controller
  
     public function store(Request $request)
     {
-        //validates incoming requests data
+        //validates incoming requests data.
         $validatedData = $request->validate([
             'FirstName' => 'required|string|max:255',
             'LastName' => 'required|string|max:255',
