@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 use app\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+
+    // Products view
     public function getAllProducts()
     {
         $products = Product::with('variations')->get(); // Eager load the variations relationship
@@ -60,5 +63,13 @@ class AdminController extends Controller
         $product->save();
 
         return redirect()->route('admin.products-view')->with('success', 'Product updated successfully.');
+    }
+
+
+
+    // User accounts view
+    public function getAllUsers() {
+        $users = User::all();
+        return view('admin.user-accounts-view', ['users' => $users]);
     }
 }
