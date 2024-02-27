@@ -18,7 +18,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
-                            
+
                             @foreach ($products as $product)
                                 <tr class="h-10">
                                     <td class="align-middle flex items-center h-10  gap-4 ">
@@ -50,7 +50,7 @@
 
             {{-- second column --}}
             <div id="editDetails"
-                class="translate-y-full lg:w-0 border-none lg:translate-y-0 col-start-3 justify-self-end overflow-hidden absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
+                class="overflow-hidden h-0 md:h-auto translate-y-full lg:w-0 border-none lg:translate-y-0 col-start-3 justify-self-end absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
                 <div class=" overflow-y-auto py-4 px-5 h-full">
                     <style>
                         #editDetails::-webkit-scrollbar-thumb {
@@ -105,15 +105,15 @@
                         </div>
 
                         <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For S</x-input-label>
-                        <x-text-input type="text" id="StockForSInput" name="stockForS" class="w-full "
+                        <x-text-input type="number" id="StockForSInput" name="stockForS" class="w-full "
                             placeholder="Stock For S" />
 
                         <x-input-label id="StockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For M</x-input-label>
-                        <x-text-input type="text" id="StockForMInput" name="stockForM" class="w-full "
+                        <x-text-input type="number" id="StockForMInput" name="stockForM" class="w-full "
                             placeholder="Stock For M" />
 
                         <x-input-label id="StockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For L</x-input-label>
-                        <x-text-input type="text" id="StockForLInput" name="stockForL" class="w-full "
+                        <x-text-input type="number" id="StockForLInput" name="stockForL" class="w-full "
                             placeholder="Stock For L" />
 
 
@@ -140,7 +140,15 @@
                             editDetails.classList.add("lg:translate-y-0");
                             editDetails.classList.add("col-start-3");
 
+                            editDetails.classList.add("overflow-hidden");
+                            editDetails.classList.add("h-0");
+                            editDetails.classList.add("md:h-auto");
+
+
+
+
                             formOverlay.classList.add("hidden");
+
 
                             productsTable.classList.add("lg:col-span-2");
                         }
@@ -167,6 +175,13 @@
             editDetails.classList.remove("border-none");
             editDetails.classList.remove("lg:translate-y-0");
             editDetails.classList.remove("col-start-3");
+
+
+            editDetails.classList.remove("overflow-hidden");
+            editDetails.classList.remove("h-0");
+            editDetails.classList.remove("md:h-auto");
+
+
 
             formOverlay.classList.remove("hidden");
 
