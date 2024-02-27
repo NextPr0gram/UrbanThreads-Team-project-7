@@ -123,6 +123,8 @@ Route::get('/admin/dashboard', function () {
 
 Route::get('/admin/products-view',[AdminController::class, 'getAllProducts'])->middleware(['auth:admin', 'verified'])->name('admin.products-view');
 
+Route::get('/admin/user-accounts-view',[AdminController::class, 'getAllUsers'])->middleware(['auth:admin', 'verified'])->name('admin.user-accounts-view');
+
 Route::get('/admin/orders-view', function () {
     return view('admin.orders-view');
 })->middleware(['auth:admin', 'verified'])->name('admin.orders-view');
