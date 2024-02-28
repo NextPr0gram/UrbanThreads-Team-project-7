@@ -12,24 +12,20 @@
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                         <thead>
                             <tr class="text-left text-lg font-formula1">
-                                <th>Name</th>
-                                <th class="align-left">Email</th>
-                                <th class="text-right">More Details</th>
-                            </tr>
+                                <th class="text-left">Name</th>
+                                <th class="text-left">Email</th>
+                                <th class="text-left">Mobile number</th>
+                            </tr>   
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
 
                             @foreach ($users as $user)
                                 <tr class="h-10">
-                                    <td class="align-left flex items-center h-10  gap-4 ">
+                                    <td class="text-left px-1">
                                         {{ $user->name }}
                                     </td>
-                                    <td class="align-left">{{ $user->email }}</td>
-                                    <td class="text-right">
-                                        <button class="underline">
-                                            More details
-                                        </button>
-                                    </td>
+                                    <td class="text-left px-1">{{ $user->email }}</td>
+                                    <td class="text-left px-1">{{$user->mobile_number}}</td>
                                 </tr>
                             @endforeach
 
@@ -158,7 +154,7 @@
 
     </div>
     <script>
-        function showDetails(image, name, price, variations, description, action) {
+        function showDetails() {
 
             console.log(action);
             // Show menu
