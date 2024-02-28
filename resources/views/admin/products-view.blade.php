@@ -96,29 +96,29 @@
                             </div>
                             <div class="w-full flex-1 pl-4 min-w-[12]">
                                 <x-input-label for="name" class="pb-2">Name</x-input-label>
-                                <x-text-input type="text" id="nameField" name="name" class="w-full "
-                                    placeholder="Name" />
+                                <x-text-input adminDashboard="true" type="text" id="nameField" name="name"
+                                    class="w-full " placeholder="Name" />
                                 <x-input-label for="price" class="pb-2 pt-4">Price</x-input-label>
-                                <x-text-input type="number" id="priceField" name="price" class="w-full "
-                                    placeholder="Price" />
+                                <x-text-input adminDashboard="true" type="number" id="priceField" name="price"
+                                    class="w-full " placeholder="Price" />
                             </div>
                         </div>
 
                         <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For S</x-input-label>
-                        <x-text-input type="number" id="StockForSInput" name="stockForS" class="w-full "
-                            placeholder="Stock For S" />
+                        <x-text-input adminDashboard="true" type="number" id="StockForSInput" name="stockForS"
+                            class="w-full " placeholder="Stock For S" />
 
                         <x-input-label id="StockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For M</x-input-label>
-                        <x-text-input type="number" id="StockForMInput" name="stockForM" class="w-full "
-                            placeholder="Stock For M" />
+                        <x-text-input adminDashboard="true" type="number" id="StockForMInput" name="stockForM"
+                            class="w-full " placeholder="Stock For M" />
 
                         <x-input-label id="StockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For L</x-input-label>
-                        <x-text-input type="number" id="StockForLInput" name="stockForL" class="w-full "
-                            placeholder="Stock For L" />
+                        <x-text-input adminDashboard="true" type="number" id="StockForLInput" name="stockForL"
+                            class="w-full " placeholder="Stock For L" />
 
 
                         <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
-                        <x-text-area type="text" id="descriptionField" name="description"
+                        <x-text-area adminDashboard="true" type="text" id="descriptionField" name="description"
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 

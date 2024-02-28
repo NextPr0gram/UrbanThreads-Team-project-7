@@ -14,7 +14,7 @@
                             <tr class="text-left text-lg font-formula1">
                                 <th class="align-left">First Name</th>
                                 <th class="align-left">Last Name</th>
-                                <th class="text-left">Emai</th>
+                                <th class="text-left">Email</th>
                                 <th class="text-left">Subject</th>
                                 <th class="text-left">Message</th>
                             </tr>
