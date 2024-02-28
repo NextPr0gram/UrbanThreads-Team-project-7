@@ -125,13 +125,13 @@ Route::get('/admin/products-view',[AdminController::class, 'getAllProducts'])->m
 
 Route::get('/admin/user-accounts-view',[AdminController::class, 'getAllUsers'])->middleware(['auth:admin', 'verified'])->name('admin.user-accounts-view');
 
+Route::get('/admin/customer-enquiries-view',[AdminController::class, 'getAllCustomerEnquiries'])->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
+
 Route::get('/admin/orders-view', function () {
     return view('admin.orders-view');
 })->middleware(['auth:admin', 'verified'])->name('admin.orders-view');
 
-Route::get('/admin/customer-enquiries-view', function () {
-    return view('admin.customer-enquiries-view');
-})->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
+
 
 Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 

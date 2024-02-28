@@ -15,7 +15,7 @@
                                 <th class="text-left">Name</th>
                                 <th class="text-left">Email</th>
                                 <th class="text-left">Mobile number</th>
-                            </tr>   
+                            </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
 
@@ -25,6 +25,7 @@
                                         {{ $user->name }}
                                     </td>
                                     <td class="text-left px-1">{{ $user->email }}</td>
+                                    <td class="text-left px-1">{{$user->mobile_number}}</td>
                                     <td class="text-left px-1">{{$user->mobile_number}}</td>
                                 </tr>
                             @endforeach

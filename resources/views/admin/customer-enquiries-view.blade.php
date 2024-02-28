@@ -30,6 +30,7 @@
                                     <td class="text-left px-1">{{$customerEnquiry->email}}</td>
                                     <td class="text-left px-1">{{$customerEnquiry->subject}}</td>
                                     <td class="text-left px-1">{{$customerEnquiry->message}}</td>
+                                    <td class="text-left px-1">{{$customerEnquiry->order_id}}</td>
                                 </tr>
                             @endforeach
 
