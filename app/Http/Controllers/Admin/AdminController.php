@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\contactForm;
 use app\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -71,5 +72,15 @@ class AdminController extends Controller
     public function getAllUsers() {
         $users = User::all();
         return view('admin.user-accounts-view', ['users' => $users]);
+    }
+
+
+
+    // Customer enquiries view
+    public function getAllCustomerEnquiries() {
+
+        $customerEnquiries = contactForm::all();
+        return view('admin.customer-enquiries-view', ['customerEnquiries' => $customerEnquiries]);
+
     }
 }
