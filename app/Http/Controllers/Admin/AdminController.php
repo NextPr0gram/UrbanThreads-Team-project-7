@@ -63,7 +63,7 @@ class AdminController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.products-view')->with('success', 'Product updated successfully.');
+        return redirect()->back()->with('success', 'Product updated successfully.');
     }
 
 

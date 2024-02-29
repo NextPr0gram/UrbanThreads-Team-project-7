@@ -17,12 +17,39 @@
 </head>
 
 <body class="antialiased bg-white bg-right-top bg-cover font-lexend text-neutral-900 box-border bg-secondary-500">
+    {{-- alerts --}}
+    @if (session('success'))
+        <div id="successMessage"
+            class="justify-center py-1 text-base text-center text-white bg-opacity-80 font-lexend bg-success-300">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div id="errorMessage"
+            class="justify-center py-1 text-base text-center text-white bg-opacity-80 font-lexend bg-danger-300">
+            {{ session('error') }}
+        </div>
+    @endif
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set timeout to hide the success message after 5 seconds
+            setTimeout(function () {
+                var successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+
+                // Set timeout to hide the error message after 5 seconds
+                var errorMessage = document.getElementById('errorMessage');
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+            }, 5000);
+        });
+    </script>
     <div class="flex">
         @include('layouts.sidebar')
         <div class="flex flex-col h-screen mx-auto w-full">
-
-
-
             <!-- Page Content -->
             <main class="h-full flex flex-col w-full ">
                 <div class="w-auto flex items-center justify-between py-6 max-w-[1440px] min-[1500px]:mx-auto mx-5 ">

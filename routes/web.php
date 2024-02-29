@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,27 +114,18 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
-
-
-
 //? Routes for admin dashboard
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
-
-Route::get('/admin/products-view',[AdminController::class, 'getAllProducts'])->middleware(['auth:admin', 'verified'])->name('admin.products-view');
-
-Route::get('/admin/user-accounts-view',[AdminController::class, 'getAllUsers'])->middleware(['auth:admin', 'verified'])->name('admin.user-accounts-view');
-
-Route::get('/admin/customer-enquiries-view',[AdminController::class, 'getAllCustomerEnquiries'])->middleware(['auth:admin', 'verified'])->name('admin.customer-enquiries-view');
-
-Route::get('/admin/orders-view', function () {
-    return view('admin.orders-view');
-})->middleware(['auth:admin', 'verified'])->name('admin.orders-view');
-
-
-
-Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
+    Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
+    Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
+    Route::get('/admin/orders-view', function () {
+        return view('admin.orders-view');
+    })->name('admin.orders-view');
+    Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+});
 
 require __DIR__ . '/adminauth.php';
