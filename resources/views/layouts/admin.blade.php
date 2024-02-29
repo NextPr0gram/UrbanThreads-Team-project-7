@@ -25,7 +25,7 @@
 
             <!-- Page Content -->
             <main class="h-full flex flex-col w-full ">
-                <div class="w-auto flex items-center justify-between py-6 max-w-[1440px] min-[1500px]:mx-auto mx-5 ">
+                <div class="w-full flex items-center justify-between py-6 mx-auto px-5">
                     <img onclick="OpenSideBar()" class="hover:cursor-pointer absolute lg:hidden"
                         src="{{ asset('icons/admin-dashboard/menu-icon.svg') }}" alt="">
                     <h6 class="text-xl w-full text-center font-formula1 text-neutral-30">@yield('title')</h6>

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('title')
-    <div class="flex">
-        <div class="flex-1 text-left">Products</div>
-        <x-secondary-button adminDashboard="true" class="font-lexend text-base">Add new product</x-secondary-button>
+    <div class="flex items-center">
+        <div class="flex-1 text-left pl-10 lg:pl-0">Products</div>
+        <x-secondary-button adminDashboard="true" onclick="showAddProductForm()" class="font-lexend text-base">Add new product</x-secondary-button>
     </div>
 @endsection
 
@@ -22,12 +22,6 @@
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                         <thead class="divide-y divide-neutral-20">
-                            <tr class=" ">
-                                <td colspan="3" class="text-center "> <button onclick="showAddProductForm()"
-                                        class="w-full h-full py-5 hover:bg-secondary-50 rounded-md transition-all ease-in-out  text-secondary-500">Add
-                                        new product</button></td>
-
-                            </tr>
                             <tr class="text-left text-lg font-formula1">
                                 <th class="py-4">Product Name</th>
                                 <th class="py-4 text-center">Total Stocks</th>
