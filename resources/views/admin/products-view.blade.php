@@ -1,10 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
+    
     Products
 @endsection
 
 @section('content')
+    {{-- form overlay, basically make everything dark behind the form --}}
+    <div id="formOverlay"
+        class="z-40 hidden absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
+    </div>
+
     <div class="w-full h-full">
 
 
@@ -13,20 +19,42 @@
             <div id="productsTable" class="lg:col-span-2 rounded-lg overflow-hidden lg:col-span-1 col-span-2">
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
-                        <thead>
-                            <tr class="text-left text-lg font-formula1">
-                                <th>Product Name</th>
-                                <th class="text-center">Total Stocks</th>
-                                <th class="text-right">More Details</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-neutral-20">
+                        <thead class="divide-y divide-neutral-20">
                             <tr class=" ">
-                                <td colspan="3" class="text-center "> <button
+                                <td colspan="3" class="text-center "> <button onclick="showAddProductForm()"
                                         class="w-full h-full py-5 hover:bg-secondary-50 rounded-md transition-all ease-in-out  text-secondary-500">Add
                                         new product</button></td>
 
                             </tr>
+                            <tr class="text-left text-lg font-formula1">
+                                <th class="py-4">Product Name</th>
+                                <th class="py-4 text-center">Total Stocks</th>
+                                <th class="py-4 text-right">More Details</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-20">
+
+
+
+                            {{-- add new product form --}}
+                            <div id="addProductForm" class="hidden z-50 absolute inset-0 flex justify-center items-center">
+                                <div
+                                    class="max-w-[800px]  bg-default-white border border-neutral-30 rounded-lg p-4 animate-jump-in animate-duration-150 animate-ease-in">
+                                    <form id="" class="" action="">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="flex justify-between gap-x-12 pb-4">
+                                            <h1 id="title" class="font-formula1 text-lg">Add new product</h1>
+                                            <button type="button" onclick="hideAddProductForm()">Cancel</button>
+                                        </div>
+                                        <x-input-label id="StockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For
+                                            S</x-input-label>
+                                        <x-text-input adminDashboard="true" type="number" id="StockForSInput"
+                                            name="stockForS" class="w-full " placeholder="Stock For S" />
+
+                                    </form>
+                                </div>
+                            </div>
 
                             @foreach ($products as $product)
                                 <tr class="h-10">
@@ -53,9 +81,7 @@
             </div>
 
             {{-- Form --}}
-            <div id="formOverlay"
-                class="hidden absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
-            </div>
+
 
             {{-- second column --}}
             <div id="editDetails"
@@ -131,7 +157,8 @@
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 
-                        <x-primary-button id="saveChangesButton" type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
+                        <x-primary-button id="saveChangesButton" type="submit"
+                            class=" w-full mt-4 bottom-0 shrink-0">Save
                             changes</x-primary-button>
 
 
@@ -278,6 +305,24 @@
 
 
 
+
+        }
+
+
+        function showAddProductForm() {
+            let addProductForm = document.getElementById("addProductForm");
+            let formOverlay = document.getElementById("formOverlay");
+            addProductForm.classList.toggle("hidden");
+            formOverlay.classList.toggle("hidden");
+            formOverlay.classList.toggle("lg:hidden");
+        }
+
+        function hideAddProductForm() {
+            let addProductForm = document.getElementById("addProductForm");
+            let formOverlay = document.getElementById("formOverlay");
+            addProductForm.classList.toggle("hidden");
+            formOverlay.classList.toggle("hidden");
+            formOverlay.classList.toggle("lg:hidden");
         }
     </script>
 @endsection
