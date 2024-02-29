@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
 @section('title')
-    
-    Products
+    <div class="flex">
+        <div class="flex-1 text-left">Products</div>
+        <x-secondary-button adminDashboard="true" class="font-lexend text-base">Add new product</x-secondary-button>
+    </div>
 @endsection
 
 @section('content')
