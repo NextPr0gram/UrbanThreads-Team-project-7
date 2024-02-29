@@ -6,6 +6,9 @@
 
 @section('content')
     <div class="w-full h-full">
+
+
+        {{-- 2 column gird --}}
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
             <div id="productsTable" class="lg:col-span-2 rounded-lg overflow-hidden lg:col-span-1 col-span-2">
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
@@ -18,6 +21,12 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
+                            <tr class=" ">
+                                <td colspan="3" class="text-center "> <button
+                                        class="w-full h-full py-5 hover:bg-secondary-50 rounded-md transition-all ease-in-out  text-secondary-500">Add
+                                        new product</button></td>
+
+                            </tr>
 
                             @foreach ($products as $product)
                                 <tr class="h-10">
