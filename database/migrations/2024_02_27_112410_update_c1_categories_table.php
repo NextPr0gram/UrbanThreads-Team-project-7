@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,10 +14,10 @@ return new class extends Migration
     {
 
         // Delete children from category1
-        \DB::table('category1')->whereIn('name', ['children'])->delete();
-        
+        DB::table('category1')->whereIn('name', ['children'])->delete();
+
         // Add 'unisex' category
-        \DB::table('category1')->insert([
+        DB::table('category1')->insert([
             'name' => 'unisex',
             'slug' => 'unisex',
             'description' => 'Made for men and women',
@@ -36,7 +37,7 @@ return new class extends Migration
         Schema::table('category1', function (Blueprint $table) {
 
         // Remove 'unisex' category
-        \DB::table('category1')->where('name', 'unisex')->delete();
+        DB::table('category1')->where('name', 'unisex')->delete();
         });
     }
 };
