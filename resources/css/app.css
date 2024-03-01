@@ -43,3 +43,19 @@
     font-weight: bold;
     font-style: normal;
 }
+
+.likeButton{/*Default Non filled button*/
+    width: 25px;
+    height: 20px;
+  background-image: url('icons/utility/heart-hover.svg');
+  background-size: cover;
+  background-position: center;
+}
+.liked {
+
+    width: 25px;
+    height: 20px;
+  background-image: url('icons/utility/heart-default.svg');
+  background-size: cover;
+}
+

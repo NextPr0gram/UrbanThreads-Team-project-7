@@ -32,6 +32,9 @@
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Information</h2>
                   <ul class="text-snow-white">
                       <li class="mb-4">
+                          <a href="{{ route('contact-us') }}" class="hover:underline">Contact us</a>
+                      </li>
+                      <li class="mb-4">
                           <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                       </li>
                       <li class="mb-4">
@@ -49,16 +52,16 @@
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Social channels</h2>
                   <ul class="text-snow-white">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">Twitter</a>
+                          <a href="https://twitter.com" class="hover:underline">Twitter</a>
                       </li>
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">Instagram</a>
+                          <a href="https://www.instagram.com" class="hover:underline">Instagram</a>
                       </li>
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">facebook</a>
+                          <a href="https://www.facebook.com" class="hover:underline">facebook</a>
                       </li>
                       <li class="mb-4">
-                        <a href="#" class="hover:underline">LinkedIn</a>
+                        <a href="https://www.linkedin.com" class="hover:underline">LinkedIn</a>
                     </li>
                   </ul>
               </div>
@@ -66,10 +69,10 @@
                   <h2 class="mb-6 text-lg font-formula1 text-snow-white">Our Apps</h2>
                   <ul class="text-snow-white">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline"><img class="h-9" src="{{asset('images/playstore-app.svg')}}" alt=""></a>
+                          <a href="https://play.google.com/store/games?gl=GB&utm_source=emea_Med&utm_medium=hasem&utm_content=May2021&utm_campaign=Evergreen&pcampaignid=MKT-EDR-emea-gb-1707522-Med-hasem-py-Evergreen-May2021-Text_Search_BKWS-test_ctrl_cta_RSA%7CONSEM_kwid_43700008794228187&gad_source=1&gclid=CjwKCAiAivGuBhBEEiwAWiFmYbp1xpnd5Pk1k-hDC6brwy7-hFW3hBfNZ8U67Xb3ZT8C9yOB7kUbXhoCDM0QAvD_BwE&gclsrc=aw.ds" class="hover:underline"><img class="h-9" src="{{asset('images/playstore-app.svg')}}" alt=""></a>
                       </li>
                       <li class="mb-4">
-                          <a href="#" class="hover:underline"><img class="h-9" src="{{asset('images/appstore-app.svg')}}" alt=""></a>
+                          <a href="https://www.apple.com/uk/store" class="hover:underline"><img class="h-9" src="{{asset('images/appstore-app.svg')}}" alt=""></a>
                       </li>
                   </ul>
               </div>

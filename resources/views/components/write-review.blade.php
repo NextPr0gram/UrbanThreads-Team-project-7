@@ -61,7 +61,7 @@
                             onclick="{!! $cancelAction !!}">Cancel</x-secondary-button>
                     </div>
                 </div>
-                <form action="" method="post">
+                <form action="/users-reviews" method="post">
                     @csrf
                     <div class="text-left">
                         <p class="mt-2 ml-2 text-md font-lexend-bold"> Rate out of 5 </p>
@@ -70,7 +70,7 @@
                     <p class="mt-2 mb-2 ml-2 text-md font-lexend-bold text-left">Review</p>
                     <x-text-area
                         class="pt-3 w-60 md:w-[30rem] bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50"
-                        placeholder="Write your review here" name="review-description" />
+                        placeholder="Write your review here" name="review-description" required/>
                     <div class="flex justify-end w-full">
                         <x-primary-button class="text-right">Add Review</x-primary-button>
                     </div>
