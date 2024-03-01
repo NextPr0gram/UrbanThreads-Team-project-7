@@ -1,23 +1,94 @@
+
 @extends('layouts.admin')
 
 @section('title')
-    Products
+    <div class="flex items-center">
+        <div class="flex-1 text-left pl-10 lg:pl-0">Products</div>
+        <x-secondary-button adminDashboard="true" onclick="showAddProductForm()" class="font-lexend text-base">Add new
+            product</x-secondary-button>
+    </div>
 @endsection
 
 @section('content')
+    {{-- form overlay, basically make everything dark behind the form --}}
+    <div id="formOverlay"
+        class="z-40 hidden absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
+    </div>
+
     <div class="w-full h-full">
+
+
+        {{-- 2 column gird --}}
         <div class=" grid grid-cols-2 grid-rows-1 gap-4 h-full w-full px-5  sm:px-8">
             <div id="productsTable" class="lg:col-span-2 rounded-lg overflow-hidden lg:col-span-1 col-span-2">
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
-                        <thead>
+                        <thead class="divide-y divide-neutral-20">
                             <tr class="text-left text-lg font-formula1">
-                                <th>Product Name</th>
-                                <th class="text-center">Total Stocks</th>
-                                <th class="text-right">More Details</th>
+                                <th class="py-4">Product Name</th>
+                                <th class="py-4 text-center">Total Stocks</th>
+                                <th class="py-4 text-right">More Details</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
+
+
+
+                            {{-- add new product form --}}
+                            <div id="addProductForm" class="hidden z-50 absolute inset-0 flex justify-center items-center">
+                                <div
+                                    class="max-w-[800px]  bg-default-white border border-neutral-30 rounded-lg px-4 py-5 animate-jump-in animate-duration-150 animate-ease-in">
+                                    <form id="" class="" action="">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="flex justify-between gap-x-12 pb-4">
+                                            <h1 id="title" class="font-formula1 text-lg">Add new product</h1>
+                                            <button type="button" onclick="hideAddProductForm()">Cancel</button>
+                                        </div>
+                                        <div class="flex w-full h-fit">
+                                            <div
+                                                class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
+                                                <img id="addProductImageField" class="w-full h-full" src="" alt="">
+                                            </div>
+                                            <div class="w-full flex-1 pl-4 min-w-[12]">
+                                                <x-input-label for="name" class="pb-2" >Name</x-input-label>
+                                                <x-text-input adminDashboard="true" type="text" id="addProductNameField"
+                                                    name="name" class="w-full " placeholder="Name" required/>
+                                                <x-input-label for="price" class="pb-2 pt-4">Price</x-input-label>
+                                                <x-text-input adminDashboard="true" type="number" id="addProductPriceField"
+                                                    name="price" class="w-full " placeholder="Price" required/>
+                                            </div>
+                                        </div>
+
+                                        <x-input-label id="addProductStockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For
+                                            S</x-input-label>
+                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForSInput"
+                                            name="stockForS" class="w-full " placeholder="Stock For S" required/>
+
+                                        <x-input-label id="addProductStockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For
+                                            M (optional)</x-input-label>
+                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForMInput"
+                                            name="stockForM" class="w-full " placeholder="Stock For M" />
+
+                                        <x-input-label id="addProductStockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For
+                                            L (optional)</x-input-label>
+                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForLInput"
+                                            name="stockForL" class="w-full " placeholder="Stock For L" />
+
+
+                                        <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
+                                        <x-text-area adminDashboard="true" type="text" id="addProductDescriptionField"
+                                            name="description" class="text-base lg:grow w-full h-auto "
+                                            placeholder="Write your description here" required />
+
+
+                                        <x-primary-button adminDashboard="true" id="addProductSaveChangesButton" type="submit"
+                                            class=" w-full mt-4 bottom-0 shrink-0">Save
+                                            changes</x-primary-button>
+
+                                    </form>
+                                </div>
+                            </div>
 
                             @foreach ($products as $product)
                                 <tr class="h-10">
@@ -44,13 +115,11 @@
             </div>
 
             {{-- Form --}}
-            <div id="formOverlay"
-                class="hidden absolute top-0 left-0 lg:hidden w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
-            </div>
+
 
             {{-- second column --}}
             <div id="editDetails"
-                class="overflow-hidden h-0 md:h-auto translate-y-full lg:w-0 border-none lg:translate-y-0 col-start-3 justify-self-end absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
+                class="z-50 overflow-hidden h-0 md:h-auto translate-y-full lg:w-0 border-none lg:translate-y-0 col-start-3 justify-self-end absolute bottom-0 left-0 border border-neutral-30 rounded-t-lg lg:rounded-lg bg-default-white w-full max-h-3/4  transition-all duration-150 ease-in-out lg:static">
                 <div class=" overflow-y-auto py-4 px-5 h-full">
                     <style>
                         #editDetails::-webkit-scrollbar-thumb {
@@ -122,7 +191,8 @@
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
 
 
-                        <x-primary-button id="saveChangesButton" type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
+                        <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
+                            class=" w-full mt-4 bottom-0 shrink-0">Save
                             changes</x-primary-button>
 
 
@@ -269,6 +339,25 @@
 
 
 
+
+        }
+
+
+        function showAddProductForm() {
+            hideForm();
+            let addProductForm = document.getElementById("addProductForm");
+            let formOverlay = document.getElementById("formOverlay");
+            addProductForm.classList.toggle("hidden");
+            formOverlay.classList.toggle("hidden");
+            formOverlay.classList.toggle("lg:hidden");
+        }
+
+        function hideAddProductForm() {
+            let addProductForm = document.getElementById("addProductForm");
+            let formOverlay = document.getElementById("formOverlay");
+            addProductForm.classList.toggle("hidden");
+            formOverlay.classList.toggle("hidden");
+            formOverlay.classList.toggle("lg:hidden");
         }
     </script>
 @endsection
