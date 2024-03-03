@@ -61,7 +61,7 @@
                             onclick="{!! $cancelAction !!}">Cancel</x-secondary-button>
                     </div>
                 </div>
-                <form action="/users-reviews" method="post">
+                <form action="{{route('reviews.add', ['productId' => $reviewProductId]) }}" method="post">
                     @csrf
                     <div class="text-left">
                         <p class="mt-2 ml-2 text-md font-lexend-bold"> Rate out of 5 </p>

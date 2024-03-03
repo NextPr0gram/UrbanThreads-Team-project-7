@@ -13,16 +13,16 @@ class ReviewsController extends Controller
 
 {
 
-    public function showReviews($productId)
-{
-    $product = Product::findOrFail($productId);
-    // Fetch reviews for the product using $productId
-    $reviews = $product->reviews; // Assuming you have a relationship set up
-    return view('reviews.index', compact('product', 'reviews'));
-}
+//     public function showReviews($productId)
+// {
+//     $product = Product::findOrFail($productId);
+//     // Fetch reviews for the product using $productId
+//     $reviews = $product->reviews; // Assuming you have a relationship set up
+//     return view('reviews.index', compact('product', 'reviews'));
+// }
 
     //this will store a new review created
-    public function store(Request $request)
+    public function store(Request $request, $productId)
     {
     // Get the authenticated user
     $user = auth()->user();
@@ -32,28 +32,30 @@ class ReviewsController extends Controller
     if (!$user) {
         return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
     }
-    //Not working
-    try {
-               // Get the product ID from the request
-        $product_id = $request->product_id;
+    //Not working 
 
-
-// Validate incoming data for review
+   try {
+//            // Validate incoming data for review
 $validatedData = $request->validate([
     'rating' => 'required|integer|min:0|max:255',
     'description' => 'required|string',
-]);
- // Create new review with product and user ID
- $reviews = Reviews::create([
-    'user_id' => $user->id,
-    'product_id' => $product_id,
-    'description' => $validatedData['description'],
-    'rating' => $validatedData['rating'],
-]);
+]); 
 
-          // Redirect to product page for that product
-          return redirect()->route('users-reviews')->with('success', 'Review submitted successfully');
-    
+try {
+    // Create new review with product and user ID
+    $reviews = Reviews::create([
+        'user_id' => $user->id,
+        'product_id'=>$productId,
+        'description' => $validatedData['description'],
+        'rating' => $validatedData['rating'],
+    ]);
+    // Redirect to product page for that product
+return redirect()->route('reviews.add')->with('success', 'Review submitted successfully');
+
+} catch (\Exception $e) {
+    return redirect()->route('reviews.add')->with('error', 'Failed to create review: ' . $e->getMessage());
+}
+
 } catch(\Exception $e){
     // Log the error
     logger()->error('Error creating review: ' . $e->getMessage());

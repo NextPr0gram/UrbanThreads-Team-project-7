@@ -120,8 +120,7 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
-//? Route to add a product to the user's basket
-// Route::post('/reviews/store/{productId}', [BasketItemController::class, 'addToBasket'])
-//     ->name('reviews.store');
 
-Route::post('/users-reviews', [ReviewsController::class, 'store']);
+//Route::post('/users-reviews', [ReviewsController::class, 'store']);
+
+Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
