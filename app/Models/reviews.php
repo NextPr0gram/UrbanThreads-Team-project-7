@@ -10,7 +10,10 @@ class Reviews extends Model
     use HasFactory;
     protected $table = 'reviews';
     protected $fillable = [
-        'title', 'description', 'image', 'rating'];
+       'product_id','description',  'rating', 'user_id'];
+       //'username,
        // product id and user id should be fetched
-       //In the controllers
+       //In the controllers'image',  'title',
+
+       
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +120,8 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
+//? Route to add a product to the user's basket
+// Route::post('/reviews/store/{productId}', [BasketItemController::class, 'addToBasket'])
+//     ->name('reviews.store');
+
+Route::post('/users-reviews', [ReviewsController::class, 'store']);

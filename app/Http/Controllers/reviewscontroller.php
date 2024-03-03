@@ -4,44 +4,62 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\reviews;
+use App\Models\Product;
 
 class ReviewsController extends Controller
-
+/**
+ * Responsible for actions related to reviews
+ */
 
 {
+
+    public function showReviews($productId)
+{
+    $product = Product::findOrFail($productId);
+    // Fetch reviews for the product using $productId
+    $reviews = $product->reviews; // Assuming you have a relationship set up
+    return view('reviews.index', compact('product', 'reviews'));
+}
+
     //this will store a new review created
     public function store(Request $request)
     {
-        //validate incoming data for review
-        $validatedData  = $request->validate([
-            'user_name' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image',
-            'rating' => 'required|integer|min:0|max:255',
-        ]);
-        // Get the current user's ID if logged in
-        if (auth()->check()) {
-            $user_id = auth()->id(); // Retrieve the user's ID
-            // get product id
-            $product_id = $request->input('product_id');
+    // Get the authenticated user
+    $user = auth()->user();
 
-            // Create new review with product and user ID
-            $newReview = Review::create([
-                'user_id' => $user_id,
-                'product_id' => $product_id,
-                'user_name' => $validatedData['user_name'],
-                'title' => $validatedData['title'],
-                'description' => $validatedData['description'],
-                'image' => $request->file('image') ? $request->file('image')->store('images') : null,
-                'rating' => $validatedData['rating'],
-            ]);
+    // If the user isn't logged in, they are redirected to a page that allows them to login, register or continue shopping
+    // They are also shown an error message saying that they must be logged in to add items to their basket
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
+    }
+    //Not working
+    try {
+               // Get the product ID from the request
+        $product_id = $request->product_id;
 
-            // Redirect to product page for that product
-            return redirect('/slug')->with('success', 'Review submitted successfully');
-        } else {
-            // If the user isn't authenticated, redirect to the login page with an error message
-            return redirect()->route('login')->with('error', 'Login to make a review');
-        }
+
+// Validate incoming data for review
+$validatedData = $request->validate([
+    'rating' => 'required|integer|min:0|max:255',
+    'description' => 'required|string',
+]);
+ // Create new review with product and user ID
+ $reviews = Reviews::create([
+    'user_id' => $user->id,
+    'product_id' => $product_id,
+    'description' => $validatedData['description'],
+    'rating' => $validatedData['rating'],
+]);
+
+          // Redirect to product page for that product
+          return redirect()->route('users-reviews')->with('success', 'Review submitted successfully');
+    
+} catch(\Exception $e){
+    // Log the error
+    logger()->error('Error creating review: ' . $e->getMessage());
+
+    // Redirect back with error message
+    return redirect()->back()->with('error', 'An error occurred while submitting the review. Please try again later.');
+}
     }
 }
