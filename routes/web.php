@@ -122,5 +122,4 @@ Route::post('/contact-us', [ContactFormController::class, 'store']);
 
 
 //Route::post('/users-reviews', [ReviewsController::class, 'store']);
-
 Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
