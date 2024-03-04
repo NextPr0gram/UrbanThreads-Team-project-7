@@ -24,19 +24,22 @@ class ReviewsController extends Controller
     }
 
     try {
-        //Believe error os route
-        // Validate incoming data for review
-        $validatedData = $request->validate([
+        //Error is not the route
+        //Might be the validation of incoming data
+        //Maybe be a problem with fields
+        // Validate incoming data for review 
+
+      $validatedData = $request->validate([
             'rating' => 'required|integer|min:0|max:255',
             'description' => 'required|string',
         ]); 
-
+        
         // Create new review with product and user ID
-        $review = Review::create([
+        $newReview = Reviews::create([
             'user_id' => $user->id,
             'product_id' => $productId,
-            'description' => $validatedData['description'],
-            'rating' => $validatedData['rating'],
+            'description' => $validator['description'],
+            'rating' => $validator['rating'],
         ]);
 
         // Redirect to product page for that product

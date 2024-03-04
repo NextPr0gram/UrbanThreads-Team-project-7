@@ -61,33 +61,20 @@
                             onclick="{!! $cancelAction !!}">Cancel</x-secondary-button>
                     </div>
                 </div>
-                <form action="{{ route('reviews.add', ['productId' => $reviewProductId]) }}" method="post">
-    @csrf
-    <div class="text-left">
-        <p class="mt-2 ml-2 text-md font-lexend-bold">Rate out of 5</p>
-        <x-bladewind.rating name="rating" size="small" clickable />
-    </div>
-    <div class="mt-2">
-        <label for="title" class="ml-2 text-md font-lexend-bold">Title</label>
-        <input type="text" name="title" id="title" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" required />
-    </div>
-    <div class="mt-2">
-        <label for="username" class="ml-2 text-md font-lexend-bold">Username</label>
-        <input type="text" name="username" id="username" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" required />
-    </div>
-    <div class="mt-2">
-        <label for="image" class="ml-2 text-md font-lexend-bold">Upload Image</label>
-        <input type="file" name="image" id="image" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" />
-    </div>
-    <div class="mt-2">
-        <p class="ml-2 text-md font-lexend-bold">Description</p>
-        <x-text-area class="pt-3 w-full bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" placeholder="Write your review here" name="description" required />
-    </div>
-    <div class="flex justify-end w-full">
-        <x-primary-button class="text-right">Add Review</x-primary-button>
-    </div>
-</form>
-
+                <form action="{{route('reviews.add', ['productId' => $reviewProductId]) }}" method="post">
+                    @csrf
+                    <div class="text-left">
+                        <p class="mt-2 ml-2 text-md font-lexend-bold"> Rate out of 5 </p>
+                        <x-bladewind.rating name="rating" size="small" clickable />
+                    </div>
+                    <p class="mt-2 mb-2 ml-2 text-md font-lexend-bold text-left">Review</p>
+                    <x-text-area
+                        class="pt-3 w-60 md:w-[30rem] bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50"
+                        placeholder="Write your review here" name="description" required/>
+                    <div class="flex justify-end w-full">
+                        <x-primary-button class="text-right">Add Review</x-primary-button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
