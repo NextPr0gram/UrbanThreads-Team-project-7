@@ -36,7 +36,7 @@
         @endif
 
         @if(session('warn'))
-        <div id="warnNotification" class="justify-center bg-secondary-200 py-1 text-base text-center text-default-white bg-opacity-100 font-lexend">
+        <div id="warnNotification" class="justify-center bg-warning-300 py-1 text-base text-center text-default-white bg-opacity-100 font-lexend">
             {{ session('warn')}}
         </div>
         @endif

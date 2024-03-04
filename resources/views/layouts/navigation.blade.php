@@ -34,7 +34,7 @@
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
                         <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
-                </button>
+                    </button>
 
                 </form>
 
@@ -113,16 +113,16 @@
 
                     <div x-data="{ showMenu : false }" class="relative">
 
-                        {{-- Button to Toggle the Wishlist Dropdown and Slide --}}
+                        {{-- Button to Toggle the Wishlist Dropdown --}}
                         <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
-                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="Wishlist button">
+                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
                         </button>
 
                         {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
                         <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
 
-                        {{-- Mobile Dropdown Menu --}}
-                        <div x-show="showMenu" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg">
+                        {{-- Mobile and Desktop Dropdown Menu --}}
+                        <div x-show="showMenu" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg z-40">
 
                             {{-- Wishlist Title Section --}}
                             <div class="flex flex-grow justify-between py-4 px-4 items-center self-stretch text-neutral-900">
@@ -154,7 +154,7 @@
                                                 <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
                                                 <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                             </button>
-                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
+                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                                 <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
                                                 <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                             </button>
-                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
+                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                                                 <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
                                                 <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
                                             </button>
-                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
+                                            <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
                                 </div>
@@ -211,6 +211,132 @@
                         </div>
                     </div>
 
+                    <!-- <div x-data="{ showMenu : false }" class="relative">
+
+                        {{-- Button to Toggle the Basket Dropdown and Slide --}}
+                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
+                            <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="Wishlist button">
+                        </button>
+
+                        {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
+                        <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
+
+                        {{-- Mobile and Desktop Dropdown Menu --}}
+                        <div x-show="showMenu" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg z-40">
+
+                            {{-- Basket Title Section --}}
+                            <div class="flex flex-grow justify-between py-4 px-4 items-center self-stretch text-neutral-900">
+                                <h3 class="font-formula1 text-lg not-italic font-medium leading-5 md:flex md:mx-auto">Basket</h3>
+
+                                {{-- Button to Close the Mobile Basket --}}
+                                <button @click="showMenu = false" class="md:hidden">
+                                    <img src="{{ asset('icons/utility/cancel-icon.svg') }}" class="w-8 h-8" alt="">
+                                </button>
+                            </div>
+
+                            {{-- Basket Items Container --}}
+                            <div class="px-4 pb-6">
+
+                                {{-- Basket Item 1 Container --}}
+                                <div class="flex justify-between py-4 border-b-2 stroke-2 border-neutral-30">
+
+                                    {{-- Left Container --}}
+                                    <div class="flex items-center">
+                                        <img src="#" alt="" class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                                        <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 text-neutral-900">
+                                            <p class="font-bold pb-2">Item Name</p>
+                                            <p class="font-normal">£ 24.99</p>
+                                        </div>
+                                    </div>
+
+                                    {{-- Right Container--}}
+                                    <div class="flex items-center">
+                                        <div class="grid grid-cols-3 items-center border border-1 border-neutral-100 rounded-md px-3 py-0.5">
+                                            <img src="{{ asset('icons/utility/minus-symbol.png') }}" class="" alt="">
+                                            <p class="px-2 border-1 border-r border-l border-neutral-30">0</p>
+                                            <img src="{{ asset('icons/utility/plus-symbol.png') }}" class="pl-3" alt="">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <button>
+                                            <img src="{{ asset('icons/utility/bin-icon.png') }}" class="w-5 h-5" alt="">
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                                {{-- Basket Item 2 Container --}}
+                                <div class="flex justify-between py-4 border-b-2 stroke-2 border-neutral-30">
+
+                                    {{-- Left Container --}}
+                                    <div class="flex items-center">
+                                        <img src="#" alt="" class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                                        <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 text-neutral-900">
+                                            <p class="font-bold pb-2">Item Name</p>
+                                            <p class="font-normal">£ 24.99</p>
+                                        </div>
+                                    </div>
+
+                                    {{-- Right Container--}}
+                                    <div class="flex items-center">
+                                        <div class="grid grid-cols-3 items-center border border-1 border-neutral-100 rounded-md px-3 py-0.5">
+                                            <img src="{{ asset('icons/utility/minus-symbol.png') }}" class="" alt="">
+                                            <p class="px-2 border-1 border-r border-l border-neutral-30">0</p>
+                                            <img src="{{ asset('icons/utility/plus-symbol.png') }}" class="pl-3" alt="">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <button>
+                                            <img src="{{ asset('icons/utility/bin-icon.png') }}" class="w-5 h-5" alt="">
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                                {{-- Basket Item 3 Container --}}
+                                <div class="flex justify-between pt-4"> border-b-2 stroke-2 border-neutral-30
+
+                    {{-- Left Container --}}
+                    <div class="flex items-center">
+                        <img src="#" alt="" class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                        <div class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 text-neutral-900">
+                            <p class="font-bold pb-2">Item Name</p>
+                            <p class="font-normal">£ 24.99</p>
+                        </div>
+                    </div>
+
+                    {{-- Right Container--}}
+                    <div class="flex items-center">
+                        <div class="grid grid-cols-3 items-center border border-1 border-neutral-100 rounded-md px-3 py-0.5">
+                            <img src="{{ asset('icons/utility/minus-symbol.png') }}" class="" alt="">
+                            <p class="px-2 border-1 border-r border-l border-neutral-30">0</p>
+                            <img src="{{ asset('icons/utility/plus-symbol.png') }}" class="pl-3" alt="">
+
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <button>
+                            <img src="{{ asset('icons/utility/bin-icon.png') }}" class="w-5 h-5" alt="">
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-center underline text-neutral-100 pb-4">
+                <a href="{{ route('wishlist') }}" class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
+            </div>
+        </div>
+    </div> -->
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="flex-none px-2">
