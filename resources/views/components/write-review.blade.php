@@ -61,19 +61,26 @@
                             onclick="{!! $cancelAction !!}">Cancel</x-secondary-button>
                     </div>
                 </div>
-                <form action="{{ route('reviews.add', ['productId' => $reviewProductId]) }}" method="post">
+                <form action="{{ route('reviews.add', ['productId' => $reviewProductId]) }}" method="POST">
     @csrf
     <div class="text-left">
         <p class="mt-2 ml-2 text-md font-lexend-bold">Rate out of 5</p>
-        <x-bladewind.rating name="rating" size="small" clickable />
+        <x-bladewind.rating name="rating" size="small" />
+        <input type="hidden" name="rating"  value="1" />
+        <!-- <x-bladewind.rating
+    rating="2"
+    name="small-rating"
+    onclick="saveRating('small-rating')" />
+        <div> -->
+
     </div>
     <div class="mt-2">
         <label for="title" class="ml-2 text-md font-lexend-bold">Title</label>
         <input type="text" name="title" id="title" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" required />
     </div>
     <div class="mt-2">
-        <label for="username" class="ml-2 text-md font-lexend-bold">Username</label>
-        <input type="text" name="username" id="username" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" required />
+        <label for="user_name" class="ml-2 text-md font-lexend-bold">Username</label>
+        <input type="text" name="user_name" id="user_name" class="block w-full py-2 px-4 bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50" required />
     </div>
     <div class="mt-2">
         <label for="image" class="ml-2 text-md font-lexend-bold">Upload Image</label>
@@ -94,7 +101,17 @@
 </div>
 <span class="overflow-hidden"></span>
 
-<script>
+<script>  
+
+    saveRating = function(element) {
+        let element_value = dom_el(`.rating-value-${element}`).value;
+        ajaxCall(
+            'post',
+            '/article/rating/save',
+            `rating=${element_value}`
+        );
+    }
+
     dom_el('.bw-{{ $name }}-modal').addEventListener('click', function(e) {
         let backdrop_can_close = this.getAttribute('data-backdrop-can-close');
         if (backdrop_can_close) hideModal('{{ $name }}');
@@ -117,3 +134,4 @@
         }
     })
 </script>
+

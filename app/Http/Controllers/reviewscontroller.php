@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\reviews;
+use App\Models\Reviews;
 use App\Models\Product;
 
 class ReviewsController extends Controller
@@ -15,6 +14,8 @@ class ReviewsController extends Controller
     //this will store a new review created
     public function store(Request $request, $productId)
 {
+ 
+  // dd($request->all()); //check request
     // Get the authenticated user
     $user = auth()->user();
 
@@ -24,22 +25,31 @@ class ReviewsController extends Controller
     }
 
     try {
-        //Error is not the route
+        //Error is not the route as catch statement works
+        //$request is processed and printed so problemis definitely create
         //Might be the validation of incoming data
         //Maybe be a problem with fields
         // Validate incoming data for review 
-
+//RATING IS ISSUEEE
+//this is still issue
       $validatedData = $request->validate([
-            'rating' => 'required|integer|min:0|max:255',
-            'description' => 'required|string',
+        'rating' => 'required|integer|min:1|max:255',
+        'title' => 'required|string|max:255',
+        'user_name' => 'required|string|max:255',
+        'description' => 'required|string',
+        //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]); 
-        
-        // Create new review with product and user ID
-        $newReview = Reviews::create([
+
+       // Create new review with product and user ID
+       //used Model name
+        $newReviews = Reviews::create([
             'user_id' => $user->id,
             'product_id' => $productId,
-            'description' => $validator['description'],
-            'rating' => $validator['rating'],
+            'title' => $validatedData['title'],
+            'user_name' => $validatedData['user_name'],
+            'description' => $validatedData['description'],
+            'rating' => $validatedData['rating'],
+           // 'image' => $imagePath = $request->file('image')->store('images'),
         ]);
 
         // Redirect to product page for that product

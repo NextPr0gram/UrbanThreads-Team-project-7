@@ -10,10 +10,12 @@ class Reviews extends Model
     use HasFactory;
     protected $table = 'reviews';
     protected $fillable = [
-       'product_id','description',  'rating', 'user_id'];
-       //'username,
-       // product id and user id should be fetched
-       //In the controllers'image',  'title',
+       'user_id', 'product_id','title', 'user_name', 'description',  'rating' , 'image' ];    
 
-       
+       // One review for one product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
+//
