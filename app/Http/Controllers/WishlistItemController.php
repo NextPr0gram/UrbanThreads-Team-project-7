@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Route
+Route::post('/like', 'LikeController@toggleLike');
+
 class WishlistItemController extends Controller
 /*
 *Responsible for showing items in whislist, adding and deleting item
@@ -13,44 +16,36 @@ class WishlistItemController extends Controller
     //route will need to be added as well
     
     //To add an item to wishlist
-    public function addToWishlist($productId)
+    public function addToWishlist(Request $request)
     {
         // Get the authenticated user
         $user = auth()->user();
-
-        // If the user isn't logged in, they are redirected to a page that allows them to login, register or continue shopping
-        // They are also shown an error message saying that they must be logged in to add items to their basket
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
-        }
-
-        // Find or create the wishlist for the user
-        $wishlists = Wishlists::firstOrCreate(['user_id' => $user->id]);
-        // Find the product
-        $product = Product::findOrFail($productId);
-
-        /*
-        *Check wishlist type (Heart i.e, click add + fill color, click again remove...)
-        *Controller will need changing
-        */
-
-        // Check if the product is already in the basket
-        $existingWishlistItems = WishlistItems::where('wishlists_id', $wishlists->id)
-            ->where('wishlists_id', $product->id)
-            ->first();
-            if ($existingBasketItem) {
-                // May want to delete from wish lust
-            } else {
-                // Add the product to the wishlist
-                $wishlistsItems = WishlistItems::create([
-                    'wishlists_id' => $wishlists->id, // Wishlist id for wishlist found or created for the user
-                    'product_id' => $product->id, // The product ID is the ID of the product that was added to the wishlist
-                ]);
-            }
     
-            // Redirect to the wishlist page with a success message to reflect changes
-            return redirect()->route('wishlist.show')->with('success', 'Item added to the wishlist.');
+        // If the user isn't logged in, redirect them to the login page
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'You must be logged in to add items to your wishlist.');
+        }
+    
+        // Get the product ID from the request
+        $productId = $request->input('productId');
+    
+        // Find or create the wishlist for the user
+        $wishlist = Wishlist::firstOrCreate(['user_id' => $user->id]);
+    
+        // Check if the product is already in the wishlist
+        $existingWishlistItem = $wishlist->products()->where('product_id', $productId)->first();
+    
+        if ($existingWishlistItem) {
+            // Product is already in the wishlist, so remove it
+            $wishlist->products()->detach($productId);
+            return response()->json(['message' => 'Product removed from the wishlist.'], 200);
+        } else {
+            // Product is not in the wishlist, so add it
+            $wishlist->products()->attach($productId);
+            return response()->json(['message' => 'Product added to the wishlist.'], 200);
+        }
     }
+    
 
  
 }
