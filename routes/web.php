@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\filterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +120,5 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
+//this is the route for the filterController to sort the products 
+Route::get('/sort/{category}', [filterController::class, 'sort'])->name('sort');
