@@ -33,10 +33,15 @@ class ReviewsController extends Controller
 //RATING IS ISSUEEE
 //this is still issue
       $validatedData = $request->validate([
-        'rating' => 'required|integer|min:1|max:255',
-        'title' => 'required|string|max:255',
-        'user_name' => 'required|string|max:255',
-        'description' => 'required|string',
+        'rating'=> 'required',
+        'title' => 'required',
+        'user_name'=>'required',
+        'description' => 'required',
+        'image'=>'nullable'
+        // 'rating' => 'required|integer|min:1|max:255',
+        // 'title' => 'required|string|max:255',
+        // 'user_name' => 'required|string|max:255',
+        // 'description' => 'required|string',
         //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]); 
 

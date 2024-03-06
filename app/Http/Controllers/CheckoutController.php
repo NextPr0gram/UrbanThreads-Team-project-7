@@ -131,6 +131,8 @@ class CheckoutController extends Controller
         $order = Order::where('id', $newOrder->id)->first();
         // Get the items in the order
         $orderItems = optional($order)->items;
+      
+        $productSales = Product::where('sales', );
         // Delete the basket
         $basket->delete();
         // Returns the page that tells the user that the order has been placed and sends the order items,  total amount and item count
