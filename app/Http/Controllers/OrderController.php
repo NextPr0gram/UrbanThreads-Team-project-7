@@ -36,9 +36,16 @@ class OrderController extends Controller
         if ($order->status == 'dispatched' || $order->status == 'delivered') {
             return redirect()->route('profile.orders')->with('error', 'You cannot delete an order that has been dispatched or delivered');
         } else {
-            // Otherwise, delete the order and redirect back with a success message
+            // Otherwise...
+            // Increment the stock of the products in the order
+            $orderItems = $order->items;
+            foreach ($orderItems as $orderItem) {
+                $orderItem->variation->increment('stock', $orderItem->quantity);
+            }
+            // Delete the order record
             $order->delete();
-            return redirect()->route('profile.orders')->with('success', 'Order deleted successfully');
+            // Redirect back with a success message
+            return redirect()->route('profile.orders')->with('success', 'Order cancelled successfully');
         }
     }
 
