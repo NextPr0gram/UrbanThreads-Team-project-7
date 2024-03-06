@@ -19,6 +19,7 @@ class WishlistController extends Controller
             if ($wishlists) {
                 // Optionally get the basket items of the basket if the basket exists
                 $wishlistItems = optional($wishlists)->items;
+                
                 return view('wishlists.show', compact('wishlistItems')); //* Pass the basket items to the view
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your wishlist');
