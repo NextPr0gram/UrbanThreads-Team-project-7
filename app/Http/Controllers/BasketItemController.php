@@ -129,6 +129,12 @@ class BasketItemController extends Controller
             ->where('variation_id', $variation->id)
             ->first();
 
+        // Check if the quantity of the basket item exceeds the stock of the product
+        if($basketItem->quantity >= $variation->stock) {
+            // Redirect back without updating the quantity and show an error message
+            return redirect()->back()->with('error', 'The quantity of the product cannot exceed the stock.');
+        }
+
         // Update the quantity of the basket item
         $basketItem->quantity += 1;
         // Save the basket item
