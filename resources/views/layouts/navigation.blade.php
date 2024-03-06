@@ -111,18 +111,22 @@
 
                     </x-dropdown>
 
-                    <div x-data="{ showMenu : false }" class="relative">
+
+
+                    {{-- Code for wishlist dropdown menu --}}
+                    <div x-data="{ showMenu : false }" @click.outside="showMenu = false" @close.stop="showMenu = false" class="relative">
 
                         {{-- Button to Toggle the Wishlist Dropdown --}}
-                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
+                        <a @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2"> <!-- add route here -->
                             <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
-                        </button>
+                        </a>
+
 
                         {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
                         <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
 
                         {{-- Mobile and Desktop Dropdown Menu --}}
-                        <div x-show="showMenu" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg z-40">
+                        <div x-show="showMenu" x-transition:enter="transform transition-transform ease-in-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform ease-in-out duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md md:border-3 md:border-x-navy-blue bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 z-50"> <!-- md:gap-3 -->
 
                             {{-- Wishlist Title Section --}}
                             <div class="flex flex-grow justify-between py-4 px-4 items-center self-stretch text-neutral-900">
@@ -211,6 +215,7 @@
                         </div>
                     </div>
 
+                    {{-- Code for basket dropdown menu --}}
                     <!-- <div x-data="{ showMenu : false }" class="relative">
 
                         {{-- Button to Toggle the Basket Dropdown and Slide --}}
