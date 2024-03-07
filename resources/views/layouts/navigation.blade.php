@@ -112,15 +112,13 @@
                     </x-dropdown>
 
 
-
                     {{-- Code for wishlist dropdown menu --}}
-                    <div x-data="{ showMenu : false }" @click.outside="showMenu = false" @close.stop="showMenu = false" class="relative">
+                    <div x-data="{ showMenu : false }" @mouseleave="showMenu = false" class="relative">
 
                         {{-- Button to Toggle the Wishlist Dropdown --}}
-                        <a @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2"> <!-- add route here -->
+                        <a @mouseenter="showMenu = true" title="" class="flex-none px-2">
                             <img src="{{asset('icons/utility/wishlist-icon-dark.svg')}}" alt="">
                         </a>
-
 
                         {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
                         <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
@@ -154,10 +152,7 @@
 
                                         {{-- Item 1 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
+                                            <button class="group likeButton"></button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
@@ -177,10 +172,7 @@
 
                                         {{-- Item 2 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
+                                            <button class="group likeButton"></button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
@@ -199,10 +191,7 @@
 
                                         {{-- Item 3 Right Container--}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
+                                            <button class="group likeButton"></button>
                                             <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-32 text-primary-300">Add to cart</x-secondary-button>
                                         </div>
                                     </div>
@@ -210,9 +199,28 @@
                             </div>
 
                             <div class="flex items-center justify-center underline text-neutral-100 pb-4">
-                                <a href="{{ route('wishlist') }}" class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
+                                <a href="{{ route('login') }}" class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
                             </div>
                         </div>
+
+                        <!-- Script to make heart functional  -->
+                        <script>
+                            // Get all like buttons by class name
+                            const likeButtons = document.querySelectorAll('.likeButton');
+
+                            // Loop through each like button and add event listener
+                            likeButtons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    if (button.classList.contains('liked')) {
+                                        // If button is already liked, remove the liked class
+                                        button.classList.remove('liked');
+                                    } else {
+                                        // If button is not liked, add the liked class
+                                        button.classList.add('liked');
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
 
                     {{-- Code for basket dropdown menu --}}

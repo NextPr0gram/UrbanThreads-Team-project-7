@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,3 +119,14 @@ Route::get('/contact-us', function () {
 
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
+
+// Route to show the user's wishlist
+Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
+
+// Route to add a product to the user's wishlist
+Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])
+    ->name('wishlist.add');
+
+// Route to remove a product from the user's wishlist
+Route::delete('/wishlist/remove/{productId', [WishlistController::class, 'removeFromWishlist'])
+    ->name('wishlist.remove');
