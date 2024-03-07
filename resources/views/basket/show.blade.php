@@ -37,7 +37,7 @@
                         <x-slot name="counter">
                             {{-- * This is the form that allows the button inside the form perform a post request that decrements the quantity
                              * of the basket item inside the user's basket --}}
-                        <form action="{{ route('decrementQuantity', ['productId' => $item->product->id]) }}"
+                        <form action="{{ route('decrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
                             method="post">
                             @csrf
                             {{-- * This is a button that allows for decrementing the quantity --}}
@@ -49,7 +49,7 @@
                             <span class="flex items-center font-bold">{{ $item->quantity }}</span>
                             {{-- * This is the form that allows the button inside the form perform a post request that increments the quantity
                              * of the basket item inside the user's basket --}}
-                        <form action="{{ route('incrementQuantity', ['productId' => $item->product->id]) }}"
+                        <form action="{{ route('incrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
                             method="post">
                             @csrf
                             {{-- * This is a button that allows for incrementing the quantity --}}
