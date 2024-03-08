@@ -44,6 +44,16 @@ class ReviewsController extends Controller
         // Redirect to product page for that product
         return redirect()->back()->with('success', 'Review submitted successfully');
 }
+//This will show associated reviews
+//Tested on /products/cool-hoodie
+public function show($productId){
+    // Fetch reviews for the specified product ID
+    $reviews = Reviews::where('product_id', $productId)->get();
+
+    // Pass the reviews data to the view
+    return view('users-reviews', ['reviews' => $reviews]);
+}
+
 
 
     }
