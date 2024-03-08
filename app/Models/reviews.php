@@ -10,7 +10,7 @@ class Reviews extends Model
     use HasFactory;
     protected $table = 'reviews';
     protected $fillable = [
-       'user_id', 'product_id','title', 'user_name', 'description',  'rating' , 'image' ];    
+       'user_id', 'product_id', 'description',  'rating' ];    
 
        // One review for one product
     public function product()

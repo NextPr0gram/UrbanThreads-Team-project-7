@@ -34,6 +34,12 @@
     <x-review></x-review>
     <x-write-review name="review-modal">
         <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
+  
+<x-slot name="reviewrating">
+  <x-bladewind.rating name="rating" size="small" clickable />
+</x-slot>
+
+
     </x-write-review>
     <x-users-reviews></x-users-reviews>
 </x-app-layout>

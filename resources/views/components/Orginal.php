@@ -65,7 +65,14 @@
                     @csrf
                     <div class="text-left">
                         <p class="mt-2 ml-2 text-md font-lexend-bold"> Rate out of 5 </p>
-                        <x-bladewind.rating name="rating" size="small" clickable />
+                        <x-select id="rating" name="rating" class="w-60 md:w-[30rem] bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50"
+                            required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </x-select>
                     </div>
                     <p class="mt-2 mb-2 ml-2 text-md font-lexend-bold text-left">Review</p>
                     <x-text-area
