@@ -18,7 +18,8 @@
 
     <div class="flex justify-end p-4 bg-white">
         {{--* Button to add the product to the basket --}}
-        <x-primary-button class="" href={{ $productLink }}>More info</x-primary-button>
+        <x-primary-button class="mx-4">More info</x-primary-button>
+        <x-primary-button href="#">Add to Wishlist</x-primary-button>
         {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
     </div>
 </div>

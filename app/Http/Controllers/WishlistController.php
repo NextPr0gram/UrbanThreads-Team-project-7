@@ -2,35 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Wishlists;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
-    //To show wishlists to users
-        public function show()
+
+    public function __construct()
     {
-        // Get the authenticated user
-        $user = auth()->user();
-        // Get the wishlist of the authenticated user
-        if ($user) {
-            $wishlists = Wishlists::where('user_id', $user->id)->first();
+        $this->middleware('login_required');
+    }
+    //To show wishlists to users
+    public function show(){
+        //ToDo returns a json response of the shortlisted products
+    }
 
-
-            if ($wishlists) {
-                // Optionally get the basket items of the basket if the basket exists
-                $wishlistItems = optional($wishlists)->items;
-                
-                return view('wishlists.show', compact('wishlistItems')); //* Pass the basket items to the view
-                } else {
-                    return redirect()->back()->with('error', 'You do not have any items in your wishlist');
-                    //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
-                }
-        } else {
-            //?? Really should be on when users try to add onto wishlist so could delete in future...
-            //! Redirect to the wishlist page if the user is not authenticated
-            return redirect()->route('login')->with('error', 'Login to view your wishlist');
+    public function addToWishList(int $productId){
+        $product = Product::find($productId);
+        $user = Auth::user();
+        foreach($user->products as $storedProduct){
+            if(($product == $storedProduct)){
+                return back('error', "This product has already been added to your wishlist");
+            }
         }
-        
+        $user->products->create($product);
+        return back()->with('success', "the product $product->name has been added to your wishlist");
+    }
+
+    public function removeFromWishList(int $productId){
+        $product = Product::find($productId);
+        $user = Auth::user();
+        $user->products->remove($product);
     }
   
 

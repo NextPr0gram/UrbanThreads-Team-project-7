@@ -26,4 +26,8 @@ class Product extends Model
     public function variations() {
         return $this->hasMany(ProductVariation::class);
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'wishlists');
+    }
 }

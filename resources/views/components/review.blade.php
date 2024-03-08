@@ -10,7 +10,7 @@
                 <div class="grid grid-rows-2 grid-cols-2 pb-6 items-center">
                     <p class="font-formula1 text-6xl text-primary-400"> 0 </p>
                     <div class="col-span-1">
-                        <x-bladewind.rating name="product-rating" />
+                        <!-- <x-bladewind.rating name="product-rating" /> -->
                         <p class="font-lexand text-xs text-primary-400"> Total Reviews </p>
                     </div>
                     <x-primary-button class="col-span-2 w-full items-center mt-5"

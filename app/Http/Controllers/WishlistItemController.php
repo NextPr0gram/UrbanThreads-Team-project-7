@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Wishlists;
 
 // Route
-Route::post('/like', 'LikeController@toggleLike');
+//Route::post('/like', 'LikeController@toggleLike');
 
 class WishlistItemController extends Controller
 /*
@@ -30,7 +31,7 @@ class WishlistItemController extends Controller
         $productId = $request->input('productId');
     
         // Find or create the wishlist for the user
-        $wishlist = Wishlist::firstOrCreate(['user_id' => $user->id]);
+        $wishlist = Wishlists::firstOrCreate(['user_id' => $user->id]);
     
         // Check if the product is already in the wishlist
         $existingWishlistItem = $wishlist->products()->where('product_id', $productId)->first();
