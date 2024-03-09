@@ -60,10 +60,10 @@ Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBaske
 Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}', [BasketItemController::class, 'incrementQuantity'])
+Route::post('/basket/increment/{productId}/{variationId}', [BasketItemController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}', [BasketItemController::class, 'decrementQuantity'])
+Route::post('/basket/decrement/{productId}/{variationId}', [BasketItemController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
 //? Route to perform discount code validation
 Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
