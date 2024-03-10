@@ -10,6 +10,8 @@ use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\WishlistItemController;
+// use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,13 +122,16 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
-// Route to show the user's wishlist
+// // Route to show the user's wishlist
 Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
 
 // Route to add a product to the user's wishlist
-Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])
+Route::post('/wishlist/add/{productId}', [WishlistItemController::class, 'addToWishlist'])
     ->name('wishlist.add');
 
 // Route to remove a product from the user's wishlist
-Route::delete('/wishlist/remove/{productId', [WishlistController::class, 'removeFromWishlist'])
+Route::delete('/wishlist/remove/{productId}', [WishlistItemController::class, 'removeFromWishlist'])
     ->name('wishlist.remove');
+
+// Route
+// Route::post('/like', [LikeController::class, 'toggleLike']);

@@ -14,7 +14,7 @@ class WishlistItems extends Model
 {
     use HasFactory;
     protected $table = 'wishlist_items';
-    protected $fillable = ['user_id', 'wishlists_is', 'product_id'];
+    protected $fillable = ['user_id', 'wishlists_id', 'product_id'];
 
     public function wishlist()
     {
