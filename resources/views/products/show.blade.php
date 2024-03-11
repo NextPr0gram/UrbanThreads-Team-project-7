@@ -19,9 +19,17 @@
                     <form action="{{ route('basket.add', ['productId' => $product->id]) }}" method="post">
                         @csrf
 
-                        <x-select name="size" class="w-full" required>
+                        <x-select id="size" name="size" class="w-full" required>
                             @foreach ($variations as $variation)
-                                <option value="{{ $variation->id }}">Size: {{ $variation->size }}</option>
+                                <option value="{{ $variation->id }}">Size: {{ $variation->size }}
+                                    @if ($variation->stock <= 0)
+                                        - Out of stock
+                                    @elseif ($variation->stock < 10)
+                                        - Low stock ({{ $variation->stock }} left)
+                                    @else
+                                        - In stock
+                                    @endif
+                                </option>
                             @endforeach
                         </x-select>
 
@@ -31,6 +39,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <!--Recall product for each review card-->
     <x-review>
     <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
@@ -41,4 +50,9 @@
     <x-users-reviews>
     <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
     </x-users-reviews>
+=======
+    <x-review></x-review>
+    <x-write-review name="review-modal" />
+    <x-users-reviews></x-users-reviews>
+>>>>>>> efca184d5bfded5bca4970a016a25ca3386d650a
 </x-app-layout>

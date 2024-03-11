@@ -118,14 +118,17 @@ class CheckoutController extends Controller
             'total' => $totalAmount,
             'address_id' => $addressId,
         ]);
-        // Add each item in the basket to the order with the quantity
+        // Iterate through the items in the basket
         foreach ($basketItems as $basketItem) {
+            // Create an order item for each item in the basket
             OrderItems::create([
                 'order_id' => $newOrder->id,
                 'product_id' => $basketItem->product_id,
                 'quantity' => $basketItem->quantity,
                 'variation_id' => $basketItem->variation_id
             ]);
+            // Decrement the stock of the variation by the quantity of the basket item
+            $basketItem->variation->decrement('stock', $basketItem->quantity);
         }
         // Get the order that was just created
         $order = Order::where('id', $newOrder->id)->first();
