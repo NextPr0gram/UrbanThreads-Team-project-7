@@ -51,8 +51,11 @@ public function show($productId){
     $reviews = Reviews::where('product_id', $productId)->get();
 
     // Pass the reviews data to the view
-    return view('users-reviews', ['reviews' => $reviews]);
+    return view('reviews.show', compact('reviews', 'rating', 'created_at', 'description'));
+
 }
+
+
 
 
 

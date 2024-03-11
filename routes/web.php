@@ -124,5 +124,5 @@ Route::post('/contact-us', [ContactFormController::class, 'store']);
 Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
 
 
-//Route to show reviews associated to the product
+//Route to show reviews associated to the productID
 Route::get('/products/{productId}/reviews', [ReviewsController::class, 'show'])->name('reviews.show');
