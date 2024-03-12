@@ -36,8 +36,8 @@ class filterController extends Controller
             $products = $productsQuery->orderBy('selling_price', 'asc')->get();
         } else if ($sortOption == 'High to Low') {
             $products = $productsQuery->orderBy('selling_price', 'desc')->get();
-        } else if ($sortOption == 'popular') {
-            $products = $productsQuery->orderBy('sales', 'asc')->get();
+        } else if ($sortOption == 'Popularity') {
+            $products = $productsQuery->orderBy('sales', 'desc')->get();
         } else {
             $products = $productsQuery->get();
         }

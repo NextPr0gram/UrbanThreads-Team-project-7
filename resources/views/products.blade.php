@@ -10,7 +10,7 @@
     <!-- ALL OF THE BELOW IS FOR THE FILTER -->
     <form id="filter" action="{{ route('sort' ,['category'=> $category]) }}" method="GET">
         <input type="hidden" id="sortOption" name="sort" value="">
-        <div class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem]">
+        <div class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem] justify-center">
             <div class="flex flex-nowrap">
                 <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left mt-5">
 
@@ -57,8 +57,8 @@
                         <x-primary-button type="submit" id="applyFilters">Apply</x-primary-button>
                     </div>
 
-                     <!-- this is the javascript for the dropdown to allow the options to be shown when the arrow is pressed and an up arrow is shown when the options are shown-->
-                     <script>
+                    <!-- this is the javascript for the dropdown to allow the options to be shown when the arrow is pressed and an up arrow is shown when the options are shown-->
+                    <script>
                         function toggleDropdown() {
                             let dropdownButton = document.querySelector('#dropdownButton, #dropdown');
                             let upArrow = document.querySelector('#upArrow');
@@ -81,13 +81,13 @@
 
                         function reset() {
                             document.getElementById("filter").reset();
-                            document.querySelector('#button').innerText = 'Options';
-
+                            document.querySelector("#button").textContent = "Options";
                         }
                     </script>
                 </div>
             </div>
     </form>
+
     <!-- ALL OF THE ABOVE IS FOR THE FILTER -->
 
 
@@ -109,6 +109,6 @@
             </div>
         </div>
     </div>
-    <!-- this is the end of the div for the grid i added  -->
+    <!-- ending div for the filter -->
     </div>
 </x-app-layout>
