@@ -34,14 +34,18 @@ class BasketItemController extends Controller
             return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
         }
 
-        // Find or create the basket for the user
-        $basket = Basket::firstOrCreate(['user_id' => $user->id]);
-
         // Find the product
         $product = Product::findOrFail($productId);
 
-        $variationId = $request->input('size');
-        $variation = ProductVariation::findOrFail($variationId);
+        // Get the variation of the product
+        $variation = ProductVariation::findOrFail($request->input('size'));
+
+        if($variation->stock <= 0) {
+            return redirect()->back()->with('error', 'This variant of the product is out of stock.');
+        }
+
+        // Find or create the basket for the user
+        $basket = Basket::firstOrCreate(['user_id' => $user->id]);
 
         // Check if the product is already in the basket
         $existingBasketItem = BasketItem::where('basket_id', $basket->id)
@@ -56,7 +60,7 @@ class BasketItemController extends Controller
             $existingBasketItem->save();
         } else {
             // Add the product to the basket
-            $basketItem = BasketItem::create([
+            BasketItem::create([
                 'basket_id' => $basket->id, // The basket ID is the ID of the basket that was found or created for the user
                 'product_id' => $product->id, // The product ID is the ID of the product that was added to the basket
                 'quantity' => 1,
@@ -107,7 +111,7 @@ class BasketItemController extends Controller
         }
     }
 
-    public function incrementQuantity(Request $request, $productId)
+    public function incrementQuantity(Request $request, $productId, $variationId)
     {
         // Get the authenticated user
         $user = auth()->user();
@@ -117,11 +121,19 @@ class BasketItemController extends Controller
 
         // Find the product
         $product = Product::findOrFail($productId);
+        $variation = ProductVariation::findOrFail($variationId);
 
         // Find the basket item
         $basketItem = BasketItem::where('basket_id', $basket->id)
             ->where('product_id', $product->id)
+            ->where('variation_id', $variation->id)
             ->first();
+
+        // Check if the quantity of the basket item exceeds the stock of the product
+        if($basketItem->quantity >= $variation->stock) {
+            // Redirect back without updating the quantity and show an error message
+            return redirect()->back()->with('error', 'The quantity of the product cannot exceed the stock.');
+        }
 
         // Update the quantity of the basket item
         $basketItem->quantity += 1;
@@ -132,7 +144,7 @@ class BasketItemController extends Controller
         return redirect()->back()->with('success', 'Quantity updated');
     }
 
-    public function decrementQuantity($productId)
+    public function decrementQuantity($productId, $variationId)
     {
         // Get the authenticated user
         $user = auth()->user();
@@ -143,9 +155,13 @@ class BasketItemController extends Controller
         // Find the product
         $product = Product::findOrFail($productId);
 
+        // Find the variation
+        $variation = ProductVariation::findOrFail($variationId);
+
         // Find the basket item
         $basketItem = BasketItem::where('basket_id', $basket->id)
             ->where('product_id', $product->id)
+            ->where('variation_id', $variation->id)
             ->first();
 
         if ($basketItem) {
