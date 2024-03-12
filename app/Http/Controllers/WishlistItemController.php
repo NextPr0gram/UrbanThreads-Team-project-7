@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Wishlist;
 
 // Route
 Route::post('/like', 'LikeController@toggleLike');
@@ -16,7 +18,7 @@ class WishlistItemController extends Controller
     //route will need to be added as well
     
     //To add an item to wishlist
-    public function addToWishlist(Request $request)
+    public function edittoWishlist(Request $request, $productId)
     {
         // Get the authenticated user
         $user = auth()->user();
@@ -45,7 +47,6 @@ class WishlistItemController extends Controller
             return response()->json(['message' => 'Product added to the wishlist.'], 200);
         }
     }
-    
 
  
 }

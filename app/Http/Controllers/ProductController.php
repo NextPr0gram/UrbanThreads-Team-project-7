@@ -83,6 +83,19 @@ class ProductController extends Controller
         $variations = $product->variations; // Get the variations of the product
 
         $reviews = Reviews::where('product_id', $product->id)->get(); // Fetch reviews for the specified product ID
+
+        //Set to 0 for items where reviews are non existent
+
+        $averageRating = 0;
+        $totalProductReviews = 0;
+        $fiveStarPercentage = 0;
+        $fourStarPercentage = 0;
+        $threeStarPercentage = 0;
+        $twoStarPercentage = 0;
+        $oneStarPercentage = 0;
+
+        //Calculations only execute if reviews are existent
+        if ($reviews->isNotEmpty()) {
         $averageRating = $reviews->avg('rating'); // Calculate the average rating of the product
         $averageRating = round($averageRating, 2); // Round the average rating to 2 decimal places
         $totalProductReviews = $reviews->count(); // Get the total number of reviews for the product
@@ -91,10 +104,14 @@ class ProductController extends Controller
         $threeStarPercentage = round($reviews->where('rating', 3)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 3 star ratings
         $twoStarPercentage = round($reviews->where('rating', 2)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 2 star ratings
         $oneStarPercentage = round($reviews->where('rating', 1)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 1 star ratings
+         } 
 
+         // Pass the product to the view with the variations (sizes) and the reviews associated with it
         return view('products.show', compact('product', 'variations', 'reviews', 'averageRating', 'fiveStarPercentage', 'fourStarPercentage', 'threeStarPercentage', 'twoStarPercentage', 'oneStarPercentage', 'totalProductReviews'));
-        // Pass the product to the view with the variations (sizes) and the reviews associated with it
-    }
+
+
+
+}
 
     public function searchForProduct(Request $request)
     {
