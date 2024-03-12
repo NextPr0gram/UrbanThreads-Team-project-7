@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="flex justify-center items-center">
-        <div class="flex flex-col items-center mt-16 bg-white bg-opacity-40 border-2 shadow-md backdrop-blur-sm w-fit lg:flex-row border-navy-blue">
+        <div
+            class="flex flex-col items-center mt-16 bg-white bg-opacity-40 border-2 shadow-md backdrop-blur-sm w-fit lg:flex-row border-navy-blue">
             <div class="w-80 md:w-[30rem] aspect-square bg-snow-white">
                 <img src="{{ $product->image }}" alt="">
             </div>
@@ -39,20 +40,23 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     <!--Recall product for each review card-->
     <x-review>
-    <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
+        <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
+        <x-slot name="productRating">{{ $averageRating }}</x-slot>
+        <x-slot name="fiveStarPercentage">{{ $fiveStarPercentage }}</x-slot>
+        <x-slot name="fourStarPercentage">{{ $fourStarPercentage }}</x-slot>
+        <x-slot name="threeStarPercentage">{{ $threeStarPercentage }}</x-slot>
+        <x-slot name="twoStarPercentage">{{ $twoStarPercentage }}</x-slot>
+        <x-slot name="oneStarPercentage">{{ $oneStarPercentage }}</x-slot>
+        <x-slot name="totalProductReviews">{{ $totalProductReviews }}</x-slot>
     </x-review>
     <x-write-review name="review-modal">
         <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
     </x-write-review>
-    <x-users-reviews>
-    <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
-    </x-users-reviews>
-=======
-    <x-review></x-review>
-    <x-write-review name="review-modal" />
-    <x-users-reviews></x-users-reviews>
->>>>>>> efca184d5bfded5bca4970a016a25ca3386d650a
+    <div class="flex flex-col pl-2">
+        @foreach ($reviews as $review)
+            <x-users-reviews :review="$review" />
+        @endforeach
+    </div>
 </x-app-layout>

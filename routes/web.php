@@ -123,6 +123,4 @@ Route::post('/contact-us', [ContactFormController::class, 'store']);
 //Route to save reviews to database along with product Id associated to it
 Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
 
-
-//Route to show reviews associated to the productID
-Route::get('/products/{productId}/reviews', [ReviewsController::class, 'show'])->name('reviews.show');
+//! Removed route to show product reviews as it is now shown on the product page through the showProduct method in the ProductController (show route)

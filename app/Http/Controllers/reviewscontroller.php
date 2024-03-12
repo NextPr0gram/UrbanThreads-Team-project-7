@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Reviews;
 use App\Models\Product;
@@ -13,26 +14,26 @@ class ReviewsController extends Controller
 {
     //this will store a new review created
     public function store(Request $request, $productId)
-{
- 
- //dd($request->all()); //check request
-    // Get the authenticated user
-    $user = auth()->user();
+    {
 
-    // If the user isn't logged in, redirect to login page
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
-    }
+        //dd($request->all()); //check request
+        // Get the authenticated user
+        $user = auth()->user();
 
-//RATING IS ISSUEEE
+        // If the user isn't logged in, redirect to login page
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
+        }
 
-      $validatedData = $request->validate([
-        'rating'=> 'required',
-        'description' => 'required',
-        ]); 
+        //RATING IS ISSUEEE
 
-       // Create new review with product and user ID
-       //used Model name
+        $validatedData = $request->validate([
+            'rating' => 'required',
+            'description' => 'required',
+        ]);
+
+        // Create new review with product and user ID
+        //used Model name
         $newReviews = Reviews::create([
             'user_id' => $user->id,
             'product_id' => $productId,
@@ -43,20 +44,7 @@ class ReviewsController extends Controller
 
         // Redirect to product page for that product
         return redirect()->back()->with('success', 'Review submitted successfully');
-}
-//This will show associated reviews
-//Tested on /products/cool-hoodie
-public function show($productId){
-    // Fetch reviews for the specified product ID
-    $reviews = Reviews::where('product_id', $productId)->get();
-
-    // Pass the reviews data to the view
-    return view('reviews.show', compact('reviews', 'rating', 'created_at', 'description'));
-
-}
-
-
-
-
-
     }
+
+    //! Moved code in show method to the showProduct method in the ProductController
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Reviews;
 
 
 /**
@@ -80,7 +81,19 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail(); // Get the product with the slug
         $variations = $product->variations; // Get the variations of the product
-        return view('products.show', ['product' => $product, 'variations' => $variations]); // Pass the product to the view with the variations (sizes)
+
+        $reviews = Reviews::where('product_id', $product->id)->get(); // Fetch reviews for the specified product ID
+        $averageRating = $reviews->avg('rating'); // Calculate the average rating of the product
+        $averageRating = round($averageRating, 2); // Round the average rating to 2 decimal places
+        $totalProductReviews = $reviews->count(); // Get the total number of reviews for the product
+        $fiveStarPercentage = round($reviews->where('rating', 5)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 5 star ratings
+        $fourStarPercentage = round($reviews->where('rating', 4)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 4 star ratings
+        $threeStarPercentage = round($reviews->where('rating', 3)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 3 star ratings
+        $twoStarPercentage = round($reviews->where('rating', 2)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 2 star ratings
+        $oneStarPercentage = round($reviews->where('rating', 1)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 1 star ratings
+
+        return view('products.show', compact('product', 'variations', 'reviews', 'averageRating', 'fiveStarPercentage', 'fourStarPercentage', 'threeStarPercentage', 'twoStarPercentage', 'oneStarPercentage', 'totalProductReviews'));
+        // Pass the product to the view with the variations (sizes) and the reviews associated with it
     }
 
     public function searchForProduct(Request $request)
