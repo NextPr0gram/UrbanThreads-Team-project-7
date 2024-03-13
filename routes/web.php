@@ -8,11 +8,12 @@ use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\filterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\WishlistItemController;
 // use App\Http\Controllers\LikeController;
-
+use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -119,19 +120,26 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
 
+
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
-// // Route to show the user's wishlist
-Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
 
-// Route to add a product to the user's wishlist
-Route::post('/wishlist/add/{productId}', [WishlistItemController::class, 'addToWishlist'])
-    ->name('wishlist.add');
+//this is the route for the filterController to sort the products 
+Route::get('/sort/{category}', [filterController::class, 'sort'])->name('sort');
 
-// Route to remove a product from the user's wishlist
-Route::delete('/wishlist/remove/{productId}', [WishlistItemController::class, 'removeFromWishlist'])
-    ->name('wishlist.remove');
+//? Routes for admin dashboard
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
+    Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
+    Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
+    Route::get('/admin/orders-view', function () {
+        return view('admin.orders-view');
+    })->name('admin.orders-view');
+    Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+});
 
-// Route
-// Route::post('/like', [LikeController::class, 'toggleLike']);
+

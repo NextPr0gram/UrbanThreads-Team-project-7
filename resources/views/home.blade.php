@@ -20,7 +20,6 @@
         </div>
     </div>
 
-
     <!-- Container for the product category cards -->
     <div class="flex flex-wrap justify-center mt-3 mb-12 sm:mb-24 min-h-[30rem]">
         <!-- Container for first product category -->

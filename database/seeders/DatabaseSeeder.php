@@ -8,6 +8,7 @@ use Database\Seeders\ProductSeeder;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\ProductVariationSeeder;
 use Database\Seeders\DiscountCodeSeeder;
+use Database\Seeders\AdminSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call([ProductSeeder::class]);
         $this->call([ProductVariationSeeder::class]);
         $this->call([DiscountCodeSeeder::class]);
+        $this->call([AdminSeeder::class]);
+        $this->call([UserSeeder::class]);
+        $this->call([ContactFormSeeder::class]);
+
     }
 }
