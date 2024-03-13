@@ -8,6 +8,9 @@ use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\filterController;
+use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewsController;
 
@@ -116,6 +119,7 @@ Route::get('/search', [ProductController::class, 'searchForProduct'])->name('sea
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
+
 
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
