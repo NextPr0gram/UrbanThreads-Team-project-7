@@ -128,4 +128,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
 
-require __DIR__ . '/adminauth.php';
