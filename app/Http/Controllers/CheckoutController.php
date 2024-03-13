@@ -8,6 +8,7 @@ use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Discount;
+use App\Models\Product;
 
 /**
  ** Class CheckoutController
@@ -129,6 +130,11 @@ class CheckoutController extends Controller
             ]);
             // Decrement the stock of the variation by the quantity of the basket item
             $basketItem->variation->decrement('stock', $basketItem->quantity);
+
+            //this finds the productID for the product which has been bought
+            $product = Product::findOrFail($basketItem->product_id);
+            //this increments the sales column for the item whihc has been bought 
+            $product->increment('sales', $basketItem->quantity);
         }
         // Get the order that was just created
         $order = Order::where('id', $newOrder->id)->first();

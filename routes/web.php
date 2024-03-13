@@ -8,6 +8,7 @@ use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\filterController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -120,6 +121,10 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
+
+//this is the route for the filterController to sort the products 
+Route::get('/sort/{category}', [filterController::class, 'sort'])->name('sort');
+
 //? Routes for admin dashboard
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -133,4 +138,5 @@ Route::middleware('auth')->group(function () {
     })->name('admin.orders-view');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
+
 
