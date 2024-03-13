@@ -47,8 +47,10 @@
                                         </div>
                                         <div class="flex w-full h-fit">
                                             <div
+
                                                 class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
                                                 <img id="addProductImageField" class="w-full h-full" src="" alt="">
+                                                <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
                                             </div>
                                             <div class="w-full flex-1 pl-4 min-w-[12]">
                                                 <x-input-label for="name" class="pb-2" >Name</x-input-label>
