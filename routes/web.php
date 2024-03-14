@@ -9,8 +9,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\filterController;
-use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\WishlistItemController;
+use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
@@ -142,4 +142,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
 
-
+Route::get('/wishlist/show', [WishlistItemController::class, 'show'])->name('wishlist.show');
+Route::post('/wishlist/add/{productId}', [WishlistItemController::class, 'addToWishlist'])
+    ->name('wishlist.add');
