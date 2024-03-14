@@ -4,10 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\Admin\AdminController;
@@ -55,16 +53,16 @@ Route::get('/basket/show', [BasketController::class, 'show'])->name('basket.show
 //? Route to delete the user's basket (to be done when the user checks out)
 Route::delete('/basket/destroy', [BasketController::class, 'destroy'])->name('basket.destroy');
 //? Route to add a product to the user's basket
-Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBasket'])
+Route::post('/basket/add/{productId}', [BasketController::class, 'addToBasket'])
     ->name('basket.add');
 //? Route to remove a product from the user's basket
-Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
+Route::delete('/basket/remove/{productId}', [BasketController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}/{variationId}', [BasketItemController::class, 'incrementQuantity'])
+Route::post('/basket/increment/{productId}/{variationId}', [BasketController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}/{variationId}', [BasketItemController::class, 'decrementQuantity'])
+Route::post('/basket/decrement/{productId}/{variationId}', [BasketController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
 //? Route to perform discount code validation
 Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
