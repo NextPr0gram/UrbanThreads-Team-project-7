@@ -88,9 +88,12 @@
 
                         <x-slot name="content">
                             @auth
-                                <!-- Show profile and logout for authenticated users -->
+                                <!-- Show profile, orders and logout for authenticated users -->
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('profile.orders')">
+                                    {{ __('Orders') }}
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
