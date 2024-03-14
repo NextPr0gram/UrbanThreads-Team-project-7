@@ -4,9 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\Admin\AdminController;
@@ -57,16 +56,16 @@ Route::get('/basket/show', [BasketController::class, 'show'])->name('basket.show
 //? Route to delete the user's basket (to be done when the user checks out)
 Route::delete('/basket/destroy', [BasketController::class, 'destroy'])->name('basket.destroy');
 //? Route to add a product to the user's basket
-Route::post('/basket/add/{productId}', [BasketItemController::class, 'addToBasket'])
+Route::post('/basket/add/{productId}', [BasketController::class, 'addToBasket'])
     ->name('basket.add');
 //? Route to remove a product from the user's basket
-Route::delete('/basket/remove/{productId}', [BasketItemController::class, 'removeFromBasket'])
+Route::delete('/basket/remove/{productId}', [BasketController::class, 'removeFromBasket'])
     ->name('basket.remove');
 //? Route to increment the quantity of a basket item
-Route::post('/basket/increment/{productId}/{variationId}', [BasketItemController::class, 'incrementQuantity'])
+Route::post('/basket/increment/{productId}/{variationId}', [BasketController::class, 'incrementQuantity'])
     ->name('incrementQuantity');
 //? Route to decrement the quantity of a basket item
-Route::post('/basket/decrement/{productId}/{variationId}', [BasketItemController::class, 'decrementQuantity'])
+Route::post('/basket/decrement/{productId}/{variationId}', [BasketController::class, 'decrementQuantity'])
     ->name('decrementQuantity');
 //? Route to perform discount code validation
 Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
@@ -128,3 +127,20 @@ Route::post('/contact-us', [ContactFormController::class, 'store']);
 Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
 
 //! Removed route to show product reviews as it is now shown on the product page through the showProduct method in the ProductController (show route)
+
+//this is the route for the filterController to sort the products
+Route::get('/sort/{category}', [filterController::class, 'sort'])->name('sort');
+
+//? Routes for admin dashboard
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
+    Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
+    Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
+    Route::get('/admin/orders-view', function () {
+        return view('admin.orders-view');
+    })->name('admin.orders-view');
+    Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+});
