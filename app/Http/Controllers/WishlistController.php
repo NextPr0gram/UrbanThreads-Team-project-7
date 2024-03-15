@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WishlistItems;
 use App\Models\Product;
-use App\Models\Wishlist;
+use App\Models\Wishlists;
 
-// Route
-// Route::post('/like', 'LikeController@toggleLike');
-
-class WishlistItemController extends Controller
+/**
+ * Class WishlistController
+ * show method: responsible for showing items in wishlist
+ * addToWishlist method: responsible for adding item to wishlist
+ * removeFromWishlist method: responsible for removing item from wishlist
+ */
+class WishlistController extends Controller
 /*
 *Responsible for showing items in wishlist, adding and deleting item
 */
@@ -79,7 +82,7 @@ class WishlistItemController extends Controller
 
 
 
-    // To remove a product from the user's wishlist 
+    // To remove a product from the user's wishlist
     public function removeFromWishlist($productId)
     {
         // Ensure the user is authenticated
