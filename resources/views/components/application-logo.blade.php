@@ -1,8 +1,7 @@
-@props(['dark' => true])
 
-{{-- <img src="{{ asset($dark ? 'images/urbanthreads-logo-dark.svg' : 'images/urbanthreads-logo-light.svg') }}" alt="">
- --}}
+<img src="{{ asset('images/urbanthreads-logo-dark.svg') }}" alt="">
 
+{{--
 <svg id="eHy9EOKop0t1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 589.56 207.86" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     <style>
@@ -134,4 +133,4 @@
         <path d="M452.54,0.68c-26.65,70.29-57.3,139.55-91.5,206.5c26.62-70.3,57.33-139.54,91.5-206.5v0Z"
             transform="translate(.4351 0)" fill="#003566" stroke="#fff" stroke-width="3" stroke-miterlimit="10" />
     </g>
-</svg>
+</svg> --}}

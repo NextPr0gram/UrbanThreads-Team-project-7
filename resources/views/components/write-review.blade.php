@@ -47,7 +47,6 @@
     //this is intentional // required, so tailwindCSS will compile the styles in
 @endphp
 <span class="sm:w-1/6 sm:w-1/5 sm:w-1/4 sm:w-1/3 sm:w-2/5 sm:w-2/3 sm:w-11/12"></span>
-
 <div data-name="{{ $name }}" data-backdrop-can-close="{{ $backdrop_can_close }}"
     class="w-full h-full bg-white/40 fixed left-0 top-0 @if ($blur_backdrop) backdrop-blur-md @endif z-40 flex bw-modal bw-{{ $name }}-modal hidden">
     <div class="w-full p-4 m-auto bw-{{ $name }} animate__faster">
@@ -61,16 +60,23 @@
                             onclick="{!! $cancelAction !!}">Cancel</x-secondary-button>
                     </div>
                 </div>
-                <form action="/users-reviews" method="post">
+                <form action="{{route('reviews.add', ['productId' => $reviewProductId]) }}" method="post">
                     @csrf
                     <div class="text-left">
                         <p class="mt-2 ml-2 text-md font-lexend-bold"> Rate out of 5 </p>
-                        <x-bladewind.rating name="rating" size="small" clickable />
+                        <x-select id="rating" name="rating" class="w-60 md:w-[30rem] bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50"
+                            required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </x-select>
                     </div>
                     <p class="mt-2 mb-2 ml-2 text-md font-lexend-bold text-left">Review</p>
                     <x-text-area
                         class="pt-3 w-60 md:w-[30rem] bg-white border-light-grey border-2 text-light-gray border-light-gray mb-5 rounded-lg placeholder:text-neutral-50"
-                        placeholder="Write your review here" name="review-description" required/>
+                        placeholder="Write your review here" name="description" required/>
                     <div class="flex justify-end w-full">
                         <x-primary-button class="text-right">Add Review</x-primary-button>
                     </div>
@@ -81,7 +87,7 @@
 </div>
 <span class="overflow-hidden"></span>
 
-<script>
+<script>  
     dom_el('.bw-{{ $name }}-modal').addEventListener('click', function(e) {
         let backdrop_can_close = this.getAttribute('data-backdrop-can-close');
         if (backdrop_can_close) hideModal('{{ $name }}');
@@ -104,3 +110,4 @@
         }
     })
 </script>
+

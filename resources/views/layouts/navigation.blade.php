@@ -16,7 +16,7 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        <x-application-logo class="block mx-2 h-9" />
                     </a>
                 </div>
 
@@ -34,7 +34,7 @@
                 <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
-                        <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
+                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" alt="">
                     </button>
 
                 </form>
@@ -90,9 +90,12 @@
 
                         <x-slot name="content">
                             @auth
-                                <!-- Show profile and logout for authenticated users -->
+                                <!-- Show profile, orders and logout for authenticated users -->
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('profile.orders')">
+                                    {{ __('Orders') }}
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
@@ -266,10 +269,14 @@
             @endauth
             <div class="mt-3 space-y-1">
                 @auth
+                    @if (Auth::user()->admin == '1')
+                        <x-responsive-nav-link :href="route('admin.dashboard')">
+                            Go To Admin Dashboard
+                        </x-responsive-nav-link>
+                    @endif
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
