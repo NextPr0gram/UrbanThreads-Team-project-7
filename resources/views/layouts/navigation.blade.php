@@ -323,10 +323,14 @@
             @endauth
             <div class="mt-3 space-y-1">
                 @auth
+                    @if (Auth::user()->admin == '1')
+                        <x-responsive-nav-link :href="route('admin.dashboard')">
+                            Go To Admin Dashboard
+                        </x-responsive-nav-link>
+                    @endif
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
