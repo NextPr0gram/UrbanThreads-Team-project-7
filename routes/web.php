@@ -11,7 +11,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 
 /*
