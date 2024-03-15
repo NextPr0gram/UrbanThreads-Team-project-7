@@ -13,7 +13,17 @@
     <div class="px-4 bg-white">
         {{--* The placeholders for the product name and price --}}
         <h1 class="font-formula1 text-md">{{ $title }}</h1>
-        <p>{{ $price }}</p>
+        <p>{{ $price }}1</p>
+    </div>
+
+    {{-- Heart Button to Add to Wishlist --}}
+    <div class="p-3">
+        <form action="{{$route}}" method="post">
+            <button type="submit"  x-data="{ clicked: false }" @click="clicked = !clicked">
+                <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+            </button>
+        </form>
     </div>
 
     <div class="flex justify-end p-4 bg-white">

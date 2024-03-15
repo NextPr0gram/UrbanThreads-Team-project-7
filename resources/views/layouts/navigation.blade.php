@@ -21,7 +21,7 @@
                 <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
-                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" alt="">
+                        <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
                     </button>
                 </form>
             </div>
@@ -32,21 +32,20 @@
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
                     @auth
-                        @if (Auth::user()->admin == '1')
-                            <a href="{{ route('admin.dashboard') }}">
-                                <x-secondary-button class="hidden flex-shrink-0 mx-2 md:block">
-                                    Go To Admin Dashboard
-                                </x-secondary-button>
-                            </a>
-                        @endif
+                    @if (Auth::user()->admin == '1')
+                    <a href="{{ route('admin.dashboard') }}">
+                        <x-secondary-button class="hidden flex-shrink-0 mx-2 md:block">
+                            Go To Admin Dashboard
+                        </x-secondary-button>
+                    </a>
+                    @endif
                     @endauth
                     {{-- Account button mobile --}}
-                    <button @click="open = ! open" title="Account"
-                        class="flex flex-shrink-0 items-center px-2 sm:hidden text-bluish-purple">
+                    <button @click="open = ! open" title="Account" class="flex flex-shrink-0 items-center px-2 sm:hidden text-bluish-purple">
                         @auth
-                            <div class="hidden pr-2 text-base md:block">{{ Auth::user()->name }}</div>
+                        <div class="hidden pr-2 text-base md:block">{{ Auth::user()->name }}</div>
                         @else
-                            <div class="hidden pr-2 text-base md:block">Account</div>
+                        <div class="hidden pr-2 text-base md:block">Account</div>
                         @endauth
 
                         <img src="{{ asset('icons/utility/account-icon-dark.svg') }}" alt="">
@@ -55,12 +54,11 @@
                     <x-dropdown align="right" width="48" class="">
 
                         <x-slot name="trigger">
-                            <button
-                                class="hidden items-center pr-2 text-base sm:inline-flex text-bluish-purple hover:underline">
+                            <button class="hidden items-center pr-2 text-base sm:inline-flex text-bluish-purple hover:underline">
                                 @auth
-                                    <div class="px-1 text-bluish-purple">{{ Auth::user()->name }}</div>
+                                <div class="px-1 text-bluish-purple">{{ Auth::user()->name }}</div>
                                 @else
-                                    <div class="px-1 text-base text-bluish-purple">Account</div>
+                                <div class="px-1 text-base text-bluish-purple">Account</div>
                                 @endauth
                                 <img src="{{ asset('icons/utility/account-icon-dark.svg') }}" alt="">
 
@@ -73,9 +71,6 @@
                             </button>
                         </x-slot>
 
-
-
-
                         <x-slot name="content">
                             @auth
                                 <!-- Show profile, orders and logout for authenticated users -->
@@ -86,27 +81,26 @@
                                     {{ __('Orders') }}
                                 </x-dropdown-link>
 
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
+                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            @else
-                                <!-- Show login and register for guests (not authenticated users) -->
-                                <x-dropdown-link :href="route('login')">
-                                    {{ __('Login') }}
+                                    {{ __('Log Out') }}
                                 </x-dropdown-link>
+                            </form>
+                            @else
+                            <!-- Show login and register for guests (not authenticated users) -->
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Login') }}
+                            </x-dropdown-link>
 
-                                @if (Route::has('register'))
-                                    <x-dropdown-link :href="route('register')">
-                                        {{ __('Register') }}
-                                    </x-dropdown-link>
-                                @endif
+                            @if (Route::has('register'))
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Register') }}
+                            </x-dropdown-link>
+                            @endif
                             @endauth
                         </x-slot>
 
@@ -256,10 +250,12 @@
                                 });
                             });
                         </script>
-
-
                     </div>
 
+                    {{-- Wishlist Button --}}
+                    <a href="{{ route('wishlist.show') }}" class="flex-none px-2">
+                        <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
+                    </a>
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="flex-none px-2">
@@ -267,8 +263,7 @@
                     </a>
 
                     {{-- Checkout button --}}
-                    <a href="{{ route('checkout') }}"><x-secondary-button title="Checkout"
-                            class="hidden flex-shrink-0 mx-2 md:block">
+                    <a href="{{ route('checkout') }}"><x-secondary-button title="Checkout" class="hidden flex-shrink-0 mx-2 md:block">
                             Checkout
                         </x-secondary-button></a>
                 </div>
@@ -295,16 +290,22 @@
     </div>
 
     <!-- Responsive account navigation menu -->
-    <div :class="{ 'block': open, 'hidden': !open }"
-        class="hidden overflow-hidden transition-all duration-300 ease-in-out sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden overflow-hidden transition-all duration-300 ease-in-out sm:hidden">
         {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
         </x-responsive-nav-link>
     </div> --}}
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
+    <!-- Responsive Settings Options -->
+    <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
+        @auth
+        <div class="px-4">
+            <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+            <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
+        </div>
+        @endauth
+        <div class="mt-3 space-y-1">
             @auth
                 <div class="px-4">
                     <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -327,35 +328,30 @@
 
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-                @else
-                    <x-responsive-nav-link :href="route('login')">
-                        Login
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('register')">
-                        Register
-                    </x-responsive-nav-link>
-                @endauth
-            </div>
+                            this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
+            @else
+            <x-responsive-nav-link :href="route('login')">
+                Login
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register')">
+                Register
+            </x-responsive-nav-link>
+            @endauth
         </div>
+    </div>
     </div>
 </nav>
 
 {{-- Secondary nav bar at the bottom of the header --}}
 <div class="bg-navy-blue font-lexend-deca">
     <nav class="flex justify-center items-center h-9 text-base">
-        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
-            href="{{ route('hoodies') }}">Hoodies</a>
-        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
-            href="{{ route('tshirts') }}">T-Shirts</a>
-        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
-            href="{{ route('trousers') }}">Trousers</a>
-        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
-            href="{{ route('jackets') }}">Jackets</a>
-        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
-            href="{{ route('accessories') }}">Accessories</a>
+        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('hoodies') }}">Hoodies</a>
+        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('tshirts') }}">T-Shirts</a>
+        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('trousers') }}">Trousers</a>
+        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('jackets') }}">Jackets</a>
+        <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4" href="{{ route('accessories') }}">Accessories</a>
     </nav>
 </div>
