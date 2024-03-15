@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        <x-application-logo class="block mx-2 h-9" />
                     </a>
                 </div>
 
@@ -32,8 +32,8 @@
                 <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
-                        <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
-                </button>
+                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" alt="">
+                    </button>
 
                 </form>
 
@@ -250,22 +250,22 @@
                         </div>
                         <!--Script to make heart functional-->
                         <script>
-    // Get all like buttons by class name
-    const likeButtons = document.querySelectorAll('.likeButton');
+                            // Get all like buttons by class name
+                            const likeButtons = document.querySelectorAll('.likeButton');
 
-    // Loop through each like button and add event listener
-    likeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            if (button.classList.contains('liked')) {
-                // If button is already liked, remove the liked class
-                button.classList.remove('liked');
-            } else {
-                // If button is not liked, add the liked class
-                button.classList.add('liked');
-            }
-        });
-    });
-</script>
+                            // Loop through each like button and add event listener
+                            likeButtons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    if (button.classList.contains('liked')) {
+                                        // If button is already liked, remove the liked class
+                                        button.classList.remove('liked');
+                                    } else {
+                                        // If button is not liked, add the liked class
+                                        button.classList.add('liked');
+                                    }
+                                });
+                            });
+                        </script>
 
 
                     </div>
