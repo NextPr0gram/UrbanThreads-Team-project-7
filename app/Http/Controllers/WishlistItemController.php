@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Wishlists;
-use App\Models\Product;
 use App\Models\WishlistItems;
+use App\Models\Product;
+use App\Models\Wishlist;
 
 // Route
 // Route::post('/like', 'LikeController@toggleLike');

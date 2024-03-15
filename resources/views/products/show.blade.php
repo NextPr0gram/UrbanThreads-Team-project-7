@@ -2,7 +2,7 @@
     <div class="flex justify-center items-center">
         <div
             class="flex flex-col items-center mt-16 bg-white bg-opacity-40 border-2 shadow-md backdrop-blur-sm w-fit lg:flex-row border-navy-blue">
-            <div class=" w-80  md:w-[30rem] aspect-square bg-snow-white ">
+            <div class="w-80 md:w-[30rem] aspect-square bg-snow-white">
                 <img src="{{ $product->image }}" alt="">
             </div>
             <div class="mt-10 lg:mt-0 md:px-7 xl:px-20">
@@ -10,7 +10,7 @@
                     <h1 class="text-4xl font-formula1 text-bluish-purple">{{ $product->name }}</h1>
                     <p class="mb-8 text-lg font-bold font-formula1">£{{ $product->selling_price }}</p>
                 </div>
-                <div class="">
+                <div>
                     <h1 class="text-xl font-formula1 text-bluish-purple">Description</h1>
                     <p class="max-w-xl whitespace-normal break-words">
                         {{ $product->description }}
@@ -40,7 +40,23 @@
             </div>
         </div>
     </div>
-    <x-review></x-review>
-    <x-write-review name="review-modal" />
-    <x-users-reviews></x-users-reviews>
+    <!--Recall product for each review card-->
+    <x-review>
+        <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
+        <x-slot name="productRating">{{ $averageRating }}</x-slot>
+        <x-slot name="fiveStarPercentage">{{ $fiveStarPercentage }}</x-slot>
+        <x-slot name="fourStarPercentage">{{ $fourStarPercentage }}</x-slot>
+        <x-slot name="threeStarPercentage">{{ $threeStarPercentage }}</x-slot>
+        <x-slot name="twoStarPercentage">{{ $twoStarPercentage }}</x-slot>
+        <x-slot name="oneStarPercentage">{{ $oneStarPercentage }}</x-slot>
+        <x-slot name="totalProductReviews">{{ $totalProductReviews }}</x-slot>
+    </x-review>
+    <x-write-review name="review-modal">
+        <x-slot name="reviewProductId">{{ $product->id }}</x-slot>
+    </x-write-review>
+    <div class="flex flex-col pl-2">
+        @foreach ($reviews as $review)
+            <x-users-reviews :review="$review" />
+        @endforeach
+    </div>
 </x-app-layout>

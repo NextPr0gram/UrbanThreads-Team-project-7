@@ -14,30 +14,20 @@
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        <x-application-logo class="block mx-2 h-9" />
                     </a>
                 </div>
-
-
-
-                {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                        {{ __('Dashboard') }}
-                </x-nav- .0> --}}
-            </div>
-
-            {{-- right side nav-items account, wishlist, cart buttons... --}}
-            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
-
                 {{-- Searchbar --}}
                 <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
                         <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
                     </button>
-
                 </form>
+            </div>
 
-
+            {{-- right side nav-items account, wishlist, cart buttons... --}}
+            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
@@ -81,15 +71,15 @@
                             </button>
                         </x-slot>
 
-
-
-
                         <x-slot name="content">
                             @auth
-                            <!-- Show profile and logout for authenticated users -->
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
+                                <!-- Show profile, orders and logout for authenticated users -->
+                                <x-dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('profile.orders')">
+                                    {{ __('Orders') }}
+                                </x-dropdown-link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -116,6 +106,151 @@
 
                     </x-dropdown>
 
+                    <div x-data="{ showMenu: false }" class="relative">
+
+                        {{-- Button to Toggle the Wishlist Dropdown and Slide --}}
+                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
+                            <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
+                        </button>
+
+                        {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
+                        <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
+
+                        {{-- Mobile Dropdown Menu --}}
+                        <div x-show="showMenu"
+                            x-transition:enter="transform transition-transform ease-in-out duration-500"
+                            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                            x-transition:leave="transform transition-transform ease-in-out duration-500"
+                            x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                            class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg">
+
+                            {{-- Wishlist Title Section --}}
+                            <div
+                                class="flex flex-grow justify-between py-4 px-4 items-center self-stretch text-neutral-900">
+                                <h3 class="font-formula1 text-lg not-italic font-medium leading-5 md:flex md:mx-auto">
+                                    Wishlist</h3>
+
+                                {{-- Button to Close the Mobile Wishlist --}}
+                                <button @click="showMenu = false" class="md:hidden">
+                                    <img src="{{ asset('icons/utility/cancel-icon.png') }}" class="w-10 h-10"
+                                        alt="">
+                                </button>
+                            </div>
+
+                            {{-- Wishlist Items Container --}}
+                            <link rel="stylesheet" href="resources/css/app.css">
+                            <div class="px-4 pb-6">
+
+                                {{-- Wishlist Item 1 Container --}}
+                                <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
+                                    {{-- Item 1 Left Container --}}
+                                    <div class="flex items-center justify-between">
+                                        <img src="#" alt=""
+                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                                        <div
+                                            class="flex flex-col font-lexend text-sm not-italic leading-4 w-8/12 pl-4 text-neutral-900">
+                                            <p class="font-bold pb-2">Item Name</p>
+                                            <p class="font-normal">£ 24.99</p>
+                                        </div>
+
+                                        {{-- Item 1 Right Container --}}
+                                        <div class="flex flex-col items-end">
+                                            <button class="group">
+                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
+                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
+                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                            </button>
+                                            <x-secondary-button
+                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
+                                                to cart</x-secondary-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Wishlist Item 2 Container --}}
+                                <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
+
+                                    {{-- Item 2 Left Container --}}
+                                    <div class="flex items-center justify-between">
+                                        <img src="#" alt=""
+                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                                        <div
+                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
+                                            <p class="font-bold pb-2">Item Name</p>
+                                            <p class="font-normal">£ 24.99</p>
+                                        </div>
+
+                                        {{-- Item 2 Right Container --}}
+                                        <div class="flex flex-col items-end">
+                                            <button class="group">
+                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
+                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
+                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                            </button>
+                                            <x-secondary-button
+                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
+                                                to cart</x-secondary-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Wishlist Item 3 Container --}}
+                                <div class="pt-4">
+                                    {{-- Item 3 Left Container --}}
+                                    <div class="flex items-center justify-between">
+                                        <img src="#" alt=""
+                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+
+                                        <div
+                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
+                                            <p class="font-bold pb-2">Item Name</p>
+                                            <p class="font-normal">£ 24.99</p>
+                                        </div>
+
+                                        {{-- Item 3 Right Container --}}
+                                        <div class="flex flex-col items-end">
+                                            <button class="group">
+                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
+                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
+                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
+                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
+                                            </button>
+                                            <x-secondary-button
+                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
+                                                to cart</x-secondary-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-center underline text-neutral-100 pb-4">
+                                <a href="{{ route('wishlist') }}"
+                                    class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
+                            </div>
+                        </div>
+                        <!--Script to make heart functional-->
+                        <script>
+                            // Get all like buttons by class name
+                            const likeButtons = document.querySelectorAll('.likeButton');
+
+                            // Loop through each like button and add event listener
+                            likeButtons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    if (button.classList.contains('liked')) {
+                                        // If button is already liked, remove the liked class
+                                        button.classList.remove('liked');
+                                    } else {
+                                        // If button is not liked, add the liked class
+                                        button.classList.add('liked');
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
 
                     {{-- Wishlist Button --}}
                     <a href="{{ route('wishlist.show') }}" class="flex-none px-2">
@@ -172,16 +307,28 @@
         @endauth
         <div class="mt-3 space-y-1">
             @auth
-            <x-responsive-nav-link :href="route('profile.edit')">
-                {{ __('Profile') }}
-            </x-responsive-nav-link>
+                <div class="px-4">
+                    <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                    <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                </div>
+            @endauth
+            <div class="mt-3 space-y-1">
+                @auth
+                    @if (Auth::user()->admin == '1')
+                        <x-responsive-nav-link :href="route('admin.dashboard')">
+                            Go To Admin Dashboard
+                        </x-responsive-nav-link>
+                    @endif
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-            <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                        <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                            this.closest('form').submit();">
                     {{ __('Log Out') }}
                 </x-responsive-nav-link>
             </form>

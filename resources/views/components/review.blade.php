@@ -8,10 +8,10 @@
         <div class="grid grid-cols-2 max-sm:grid-cols-1 pl-5 pb-5 gap-x-5">
             <div class="justify-items-stretch items-center max-sm:px-5 lg:pr-96 max-sm:flex">
                 <div class="grid grid-rows-2 grid-cols-2 pb-6 items-center">
-                    <p class="font-formula1 text-6xl text-primary-400"> 0 </p>
+                    <p class="font-formula1 text-6xl text-primary-300">{{ $productRating }}</p>
                     <div class="col-span-1">
-                        <x-bladewind.rating name="product-rating" />
-                        <p class="font-lexand text-xs text-primary-400"> Total Reviews </p>
+                        <x-bladewind.rating name="product-rating" rating="{{ $productRating }}" clickable="false" />
+                        <p class="font-lexand text-xs text-primary-300"> {{ $totalProductReviews }} Reviews </p>
                     </div>
                     <x-primary-button class="col-span-2 w-full items-center mt-5"
                         onclick="showModal('review-modal')">Write A
@@ -20,15 +20,12 @@
             </div>
 
             <div class="pr-5 lg:pr-96 w-full items-center max-sm:pb-5">
-                <x-bladewind.horizontal-line-graph label="5 Stars " percentage="55.8" />
-                <x-bladewind.horizontal-line-graph label="4 Stars " percentage="30.0" />
-                <x-bladewind.horizontal-line-graph label="3 Stars " percentage="10.7" />
-                <x-bladewind.horizontal-line-graph label="2 Stars " percentage="66.0" />
-                <x-bladewind.horizontal-line-graph label="1 Stars " percentage="22.2" />
+                <x-bladewind.horizontal-line-graph label="5 Stars " percentage="{{ $fiveStarPercentage }}" />
+                <x-bladewind.horizontal-line-graph label="4 Stars " percentage="{{ $fourStarPercentage }}" />
+                <x-bladewind.horizontal-line-graph label="3 Stars " percentage="{{ $threeStarPercentage }}" />
+                <x-bladewind.horizontal-line-graph label="2 Stars " percentage="{{ $twoStarPercentage }}" />
+                <x-bladewind.horizontal-line-graph label="1 Star " percentage="{{ $oneStarPercentage }}" />
             </div>
-
         </div>
     </div>
-
-
 </div>
