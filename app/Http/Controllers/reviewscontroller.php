@@ -3,45 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\reviews;
+use App\Models\Reviews;
+use App\Models\Product;
 
 class ReviewsController extends Controller
-
+/**
+ * Responsible for actions related to reviews
+ */
 
 {
     //this will store a new review created
-    public function store(Request $request)
+    public function store(Request $request, $productId)
     {
-        //validate incoming data for review
-        $validatedData  = $request->validate([
-            'user_name' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image',
-            'rating' => 'required|integer|min:0|max:255',
-        ]);
-        // Get the current user's ID if logged in
-        if (auth()->check()) {
-            $user_id = auth()->id(); // Retrieve the user's ID
-            // get product id
-            $product_id = $request->input('product_id');
 
-            // Create new review with product and user ID
-            $newReview = Review::create([
-                'user_id' => $user_id,
-                'product_id' => $product_id,
-                'user_name' => $validatedData['user_name'],
-                'title' => $validatedData['title'],
-                'description' => $validatedData['description'],
-                'image' => $request->file('image') ? $request->file('image')->store('images') : null,
-                'rating' => $validatedData['rating'],
-            ]);
+        //dd($request->all()); //check request
+        // Get the authenticated user
+        $user = auth()->user();
 
-            // Redirect to product page for that product
-            return redirect('/slug')->with('success', 'Review submitted successfully');
-        } else {
-            // If the user isn't authenticated, redirect to the login page with an error message
-            return redirect()->route('login')->with('error', 'Login to make a review');
+        // If the user isn't logged in, redirect to login page
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
         }
+
+        //RATING IS ISSUEEE
+
+        $validatedData = $request->validate([
+            'rating' => 'required',
+            'description' => 'required',
+        ]);
+
+        // Create new review with product and user ID
+        //used Model name
+        $newReviews = Reviews::create([
+            'user_id' => $user->id,
+            'product_id' => $productId,
+            'rating' => $validatedData['rating'],
+            'description' => $validatedData['description'],
+
+        ]);
+
+        // Redirect to product page for that product
+        return redirect()->back()->with('success', 'Review submitted successfully');
     }
+
+    //! Moved code in show method to the showProduct method in the ProductController
 }

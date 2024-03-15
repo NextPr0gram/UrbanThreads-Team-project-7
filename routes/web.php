@@ -10,6 +10,9 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,6 +123,10 @@ Route::get('/contact-us', function () {
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
 
+//Route to save reviews to database along with product Id associated to it
+Route::post('/reviews/add/{productId}', [ReviewsController::class, 'store'])->name('reviews.add');
+
+//! Removed route to show product reviews as it is now shown on the product page through the showProduct method in the ProductController (show route)
 
 //this is the route for the filterController to sort the products
 Route::get('/sort/{category}', [filterController::class, 'sort'])->name('sort');
@@ -137,5 +144,3 @@ Route::middleware('auth')->group(function () {
     })->name('admin.orders-view');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
-
-

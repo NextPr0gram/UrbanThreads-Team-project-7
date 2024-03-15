@@ -26,4 +26,10 @@ class Product extends Model
     public function variations() {
         return $this->hasMany(ProductVariation::class);
     }
+
+    // Product has many reviews
+    public function reviews()
+    {
+        return $this->hasMany(Reviews::class);
+    }
 }
