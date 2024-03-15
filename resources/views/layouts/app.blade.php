@@ -51,8 +51,7 @@
                     }, 5000);
                 });
             </script>
-            @include('layouts.navigation')
-
+            <x-navigation-layout/>
 
         <!-- Page Heading -->
         @if (isset($header))

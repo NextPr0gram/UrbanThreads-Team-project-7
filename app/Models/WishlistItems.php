@@ -12,11 +12,11 @@ class WishlistItems extends Model
 {
     use HasFactory;
     protected $table = 'wishlist_items';
-    protected $fillable =['user_id', 'wishlists_is', 'product_id'];
+    protected $fillable =['user_id', 'wishlists_id', 'product_id'];
 
     public function wishlist()
     {
-        return $this->BelongsTo(wishlist::class);
+        return $this->BelongsTo(Wishlists::class);
         // Many to one relationship - many wishlist items to one wishlist
     }
 

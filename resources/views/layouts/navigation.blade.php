@@ -1,4 +1,6 @@
 {{-- Secondary nav bar on top of the header --}}
+
+
 {{-- <nav class="flex justify-end items-center px-4 mx-auto h-9 text-base max-w-8xl sm:px-6 lg:px-8">
     <a class="pr-2" href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
@@ -33,7 +35,7 @@
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
                         <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
-                </button>
+                    </button>
 
                 </form>
 
@@ -153,91 +155,35 @@
                             {{-- Wishlist Items Container --}}
                             <link rel="stylesheet" href="resources/css/app.css">
                             <div class="px-4 pb-6">
-
-                                {{-- Wishlist Item 1 Container --}}
+                                @if(isset($wishListItems))
+                                @foreach($wishListItems as $item)
                                 <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
-                                    {{-- Item 1 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 w-8/12 pl-4 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
+                                    <div class="flex item-center justify-betweem">
+                                        <img src="{{ asset($item->product->image) }}" alt="" class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
+                                        <div class="flex flex-col font-lexend text-sm not-italic leading-4 w-8/12 pl-4 text-neutral-900">
+                                            <p class="font-bold pb-2">{{ $item->product->name }}</p>
+                                            <p class="font-normal">{{$item->product->original_price}}</p>
                                         </div>
-
-                                        {{-- Item 1 Right Container --}}
                                         <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
+                                            <form action="{{ route('wishlist.add', $item->product->id) }}" method="post">
+                                                {{csrf_field()}}
+                                                <button type="submit" class="group likeButton"></button>
+                                            </form>
+                                            <form action="{{ route('basket.add', $item->product->id) }}" method="post">
+                                                {{ csrf_field() }}
+                                                <x-select id="size" name="size" class="w-full" required>
+                                                    @foreach ($item->product->variations as $variation)
+                                                    <option value="{{ $variation->id }}">Size: {{ $variation->size }}
+                                                        @if ($variation->stock <= 0) - Out of stock @elseif ($variation->stock < 10) - Low stock ({{ $variation->stock }} left) @else - In stock @endif </option>
+                                                                @endforeach
+                                                </x-select>
+                                                <x-secondary-button class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add to cart</x-secondary-button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- Wishlist Item 2 Container --}}
-                                <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
-
-                                    {{-- Item 2 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
-                                        </div>
-
-                                        {{-- Item 2 Right Container --}}
-                                        <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Wishlist Item 3 Container --}}
-                                <div class="pt-4">
-                                    {{-- Item 3 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
-                                        </div>
-
-                                        {{-- Item 3 Right Container --}}
-                                        <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @endif
                             </div>
 
                             <div class="flex items-center justify-center underline text-neutral-100 pb-4">
@@ -247,22 +193,22 @@
                         </div>
                         <!--Script to make heart functional-->
                         <script>
-    // Get all like buttons by class name
-    const likeButtons = document.querySelectorAll('.likeButton');
+                            // Get all like buttons by class name
+                            const likeButtons = document.querySelectorAll('.likeButton');
 
-    // Loop through each like button and add event listener
-    likeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            if (button.classList.contains('liked')) {
-                // If button is already liked, remove the liked class
-                button.classList.remove('liked');
-            } else {
-                // If button is not liked, add the liked class
-                button.classList.add('liked');
-            }
-        });
-    });
-</script>
+                            // Loop through each like button and add event listener
+                            likeButtons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    if (button.classList.contains('liked')) {
+                                        // If button is already liked, remove the liked class
+                                        button.classList.remove('liked');
+                                    } else {
+                                        // If button is not liked, add the liked class
+                                        button.classList.add('liked');
+                                    }
+                                });
+                            });
+                        </script>
 
 
                     </div>

@@ -7,9 +7,12 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BasketItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\Admin\AdminController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\WishlistItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +49,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/orders', [OrderController::class, 'show'])->name('profile.orders');
     Route::get('/profile/orders/{id}', [OrderController::class, 'showSingleOrder'])->name('view-order');
     Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::get('/wishlist/test/add', [WishlistController::class, 'addToWishListTest']);
+    Route::get('/wishlist/test/remove', [WishlistController::class, 'removeFromWishListTest']);
+    Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
+    Route::post('/wishlist/add/{productId}', [WishlistItemController::class, 'addToWishList'])
+        ->name('wishlist.add');
+    //? Route to remove a product from the user's basket
+    Route::delete('/wishlist/remove/{productId}', [WishlistItemController::class, 'removeFromWishList'])
+        ->name('wishlist.remove');
 });
 
 //? Route to show the user's basket
@@ -119,18 +130,3 @@ Route::get('/contact-us', function () {
 
 //Route to save form into database
 Route::post('/contact-us', [ContactFormController::class, 'store']);
-
-//? Routes for admin dashboard
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
-    Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
-    Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
-    Route::get('/admin/orders-view', function () {
-        return view('admin.orders-view');
-    })->name('admin.orders-view');
-    Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
-});
-
