@@ -7,7 +7,7 @@ use App\Models\Category1;
 use App\Models\Category2;
 use Illuminate\Http\Request;
 
-class filterController extends Controller
+class FilterController extends Controller
 {
 
     public function sort(Request $request, $category)
@@ -27,7 +27,7 @@ class filterController extends Controller
         /*
         If the option low to high is selected order the products ascendingly
         If the option High to Low is selected order the products descendingly
-        If the option popularity is selected then order the products by popularity which is determined 
+        If the option popularity is selected then order the products by popularity which is determined
         through the number of sales a product has and this is ordered ascendingly
         returning the most popular products first.
         if no options are selected then it just returns the products in the category
@@ -51,7 +51,7 @@ class filterController extends Controller
             return redirect()->back()->with('error', 'Sorry we do not have any products matching the selected gender');
         }
 
-        //this returns the filtered and sorted products as requested by the user 
+        //this returns the filtered and sorted products as requested by the user
         return view('products', ['products' => $products, 'category' => $category]);
     }
 }

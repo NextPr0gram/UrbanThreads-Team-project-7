@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reviews;
 use App\Models\Product;
 
-class ReviewsController extends Controller
+class ReviewController extends Controller
 /**
  * Responsible for actions related to reviews
  */
@@ -15,25 +15,21 @@ class ReviewsController extends Controller
     //this will store a new review created
     public function store(Request $request, $productId)
     {
-
-        //dd($request->all()); //check request
         // Get the authenticated user
         $user = auth()->user();
 
-        // If the user isn't logged in, redirect to login page
+        // If the user isn't logged in, redirect to login page with an error message
         if (!$user) {
-            return redirect()->route('login')->with('error', 'You must be logged in to add items to your basket.');
+            return redirect()->route('login')->with('error', 'You must be logged in to add a review to a product.');
         }
 
-        //RATING IS ISSUEEE
-
+        // Validate the data
         $validatedData = $request->validate([
             'rating' => 'required',
             'description' => 'required',
         ]);
 
-        // Create new review with product and user ID
-        //used Model name
+        // Create new review with product and user IDs and validated data
         $newReviews = Reviews::create([
             'user_id' => $user->id,
             'product_id' => $productId,
@@ -42,7 +38,7 @@ class ReviewsController extends Controller
 
         ]);
 
-        // Redirect to product page for that product
+        // Redirect back to the product page with a success message
         return redirect()->back()->with('success', 'Review submitted successfully');
     }
 
