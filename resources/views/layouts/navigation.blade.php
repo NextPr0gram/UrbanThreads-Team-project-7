@@ -17,27 +17,17 @@
                         <x-application-logo class="block mx-2 h-9" />
                     </a>
                 </div>
-
-
-
-                {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                        {{ __('Dashboard') }}
-                </x-nav- .0> --}}
-            </div>
-
-            {{-- right side nav-items account, wishlist, cart buttons... --}}
-            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
-
                 {{-- Searchbar --}}
                 <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
                     <button class="flex-none px-2" type="submit">
                         <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" alt="">
                     </button>
-
                 </form>
+            </div>
 
-
+            {{-- right side nav-items account, wishlist, cart buttons... --}}
+            <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
