@@ -13,7 +13,7 @@
     <div class="px-4 bg-white">
         {{--* The placeholders for the product name and price --}}
         <h1 class="font-formula1 text-md">{{ $title }}</h1>
-        <p>{{ $price }}1</p>
+        <p>{{ $price }}</p>
     </div>
 
     {{-- Heart Button to Add to Wishlist --}}
@@ -24,5 +24,10 @@
                 <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
             </button>
         </form>
+    </div>
+    <div class="flex justify-end p-4 bg-white">
+        {{--* Button to add the product to the basket --}}
+        <x-primary-button class="" href={{ $productLink }}>More info</x-primary-button>
+        {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
     </div>
 </div>
