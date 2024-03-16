@@ -13,14 +13,11 @@ class Wishlists extends Model
     use HasFactory;
     protected $table = 'wishlists';
 
-    protected $fillable =['user_id'];
+    protected $fillable = ['user_id'];
 
     public function items()
     {
-        return $this->hasMany(WishListItems::class);
+        return $this->hasMany(WishlistItems::class);
         //1 to many relationship wishlist and its items
     }
-
-    
-    
 }

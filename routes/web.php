@@ -4,16 +4,15 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CheckoutController; 
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\WishlistItemController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +38,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/wishlist', function () {
-    return view('testpages.wishlist');
+    return view('wishlist');
 });
 
 //? Routes to show the user's profile and perform actions on it as well as perform actions on the user's orders
@@ -97,7 +96,7 @@ Route::get('/basket', function () {
 })->name('basket');
 
 Route::get('/wishlist', function () {
-    return view('testpages.wishlist');
+    return view('wishlist');
 })->name('wishlist');
 
 //? Route to show the checkout page with the basket items
@@ -154,3 +153,7 @@ Route::middleware('auth')->group(function () {
     })->name('admin.orders-view');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
+
+Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
+Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])
+    ->name('wishlist.add');
