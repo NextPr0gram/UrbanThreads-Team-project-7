@@ -52,11 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
     Route::get('/wishlist/test/add', [WishlistController::class, 'addToWishListTest']);
     Route::get('/wishlist/test/remove', [WishlistController::class, 'removeFromWishListTest']);
-    Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
-    Route::post('/wishlist/add/{productId}', [WishlistItemController::class, 'addToWishList'])
+    Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishList'])
         ->name('wishlist.add');
     //? Route to remove a product from the user's basket
-    Route::delete('/wishlist/remove/{productId}', [WishlistItemController::class, 'removeFromWishList'])
+    Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'removeFromWishList'])
         ->name('wishlist.remove');
 });
 
