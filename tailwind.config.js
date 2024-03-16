@@ -93,6 +93,7 @@ export default {
             lexend: ["Lexend Deca", "sans-serif"],
             "lexend-bold": ["Lexend Deca Bold", "sans-serif"],
             formula1: ["Formula1 Display Bold", "sans-serif"],
+            "formula1-light": ["Formula1 Display Regular", "sans-serif"],
         },
         fontSize: {
             xs: "0.75rem", // Extra Small
