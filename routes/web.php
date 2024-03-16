@@ -147,3 +147,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
 Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])
     ->name('wishlist.add');
+
+//Route for admin side: To update status of customer enquiries
+Route::put('enquiries/{enquiryId}/status', [ContactFormController ::class, 'updateStatus'])->name('status.update');
+

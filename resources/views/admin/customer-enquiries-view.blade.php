@@ -17,24 +17,40 @@
                                 <th class="text-left">Email</th>
                                 <th class="text-left">Subject</th>
                                 <th class="text-left">Message</th>
+                                <th class="text-left">Status</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
 
-                            @foreach ($customerEnquiries as $customerEnquiry)
-                                <tr class="h-10">
-                                    <td class="align-left px-1">
-                                        {{ $customerEnquiry->FirstName }}
-                                    </td>
-                                    <td class="align-left px-1">{{ $customerEnquiry->LastName }}</td>
-                                    <td class="text-left px-1">{{$customerEnquiry->email}}</td>
-                                    <td class="text-left px-1">{{$customerEnquiry->subject}}</td>
-                                    <td class="text-left px-1">{{$customerEnquiry->message}}</td>
-                                    <td class="text-left px-1">{{$customerEnquiry->order_id}}</td>
-                                </tr>
-                            @endforeach
+                        @foreach ($customerEnquiries as $customerEnquiry)
+    <tr class="h-10">
+        <td class="align-left px-1">{{ $customerEnquiry->FirstName }}</td>
+        <td class="align-left px-1">{{ $customerEnquiry->LastName }}</td>
+        <td class="text-left px-1">{{ $customerEnquiry->email }}</td>
+        <td class="text-left px-1">{{ $customerEnquiry->subject }}</td>
+        <td class="text-left px-1">{{ $customerEnquiry->message }}</td>
+        <td class="text-left px-1">{{ $customerEnquiry->order_id }}</td>
+        <td class="text-left px-1">
+        <form id="status-form-{{ $customerEnquiry->id }}" action="{{ route('status.update', ['enquiryId' => $customerEnquiry->id]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <select name="newStatus" class="py-1 px-full rounded-md border border-neutral-300" onchange="submitForm('{{ $customerEnquiry->id }}', this.value)">
+                    <option value="New" {{ $customerEnquiry->status === 'New' ? 'selected' : '' }}>New</option>
+                    <option value="In Process" {{ $customerEnquiry->status === 'In Process' ? 'selected' : '' }}>In Process</option>
+                    <option value="Processed" {{ $customerEnquiry->status === 'Processed' ? 'selected' : '' }}>Processed</option>
+                </select>
+                <!-- Hidden input field for enquiryId -->
+                <input type="hidden" name="enquiryId" value="{{ $customerEnquiry->id }}">
+            </form>
+        </td>
+    </tr>
+@endforeach
 
-
+<script>
+    function submitForm(enquiryId, newStatus) {
+        document.getElementById('status-form-' + enquiryId).submit();
+    }
+</script>
 
                         </tbody>
                     </table>

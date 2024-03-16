@@ -25,7 +25,6 @@
             </button>
         </form>
     </div>
-
     <div class="flex justify-end p-4 bg-white">
         {{--* Button to add the product to the basket --}}
         <x-primary-button class="" href={{ $productLink }}>More info</x-primary-button>
