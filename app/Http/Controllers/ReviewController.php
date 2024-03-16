@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Reviews;
+use App\Models\Review;
 use App\Models\Product;
 
 class ReviewController extends Controller
@@ -30,7 +30,7 @@ class ReviewController extends Controller
         ]);
 
         // Create new review with product and user IDs and validated data
-        $newReviews = Reviews::create([
+        $newReviews = Review::create([
             'user_id' => $user->id,
             'product_id' => $productId,
             'rating' => $validatedData['rating'],
