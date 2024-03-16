@@ -147,9 +147,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
     Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
     Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
-    Route::get('/admin/orders-view', function () {
-        return view('admin.orders-view');
-    })->name('admin.orders-view');
+    Route::get('/admin/orders-view', [AdminController::class, 'getAllOrders'])->name('admin.orders-view');
+    Route::post('/processOrder/{orderId}', [AdminController::class, 'processOrder'])->name('order.process');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
 

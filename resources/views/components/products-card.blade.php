@@ -14,7 +14,7 @@
     <div class="px-4 bg-white">
         {{--* The placeholders for the product name and price --}}
         <h1 class="font-formula1 text-md">{{ $title }}</h1>
-        <p>{{ $price }}1</p>
+        <p>{{ $price }}</p>
     </div>
 
     {{-- Heart Button to Add to Wishlist --}}

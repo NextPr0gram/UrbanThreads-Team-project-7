@@ -50,7 +50,10 @@ class User extends Authenticatable
         return $this->belongsTo(Address::class);
     }
 
-    public function products(){
-        return $this->belongsToMany(Product::class, 'wishlists');
+    // Gets the user's address
+    public function getAddress()
+    {
+        $address = $this->address;
+        return $address->address_line_1 . ', ' . $address->address_line_2 . ', ' . $address->city . ', ' . $address->county . ', ' . $address->postcode;
     }
 }
