@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\CheckoutController; 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactFormController;
@@ -50,14 +50,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/orders', [OrderController::class, 'show'])->name('profile.orders');
     Route::get('/profile/orders/{id}', [OrderController::class, 'showSingleOrder'])->name('view-order');
     Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
-    Route::get('/wishlist/test/add', [WishlistController::class, 'addToWishListTest']);
-    Route::get('/wishlist/test/remove', [WishlistController::class, 'removeFromWishListTest']);
-    Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishList'])
-        ->name('wishlist.add');
-    //? Route to remove a product from the user's basket
-    Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'removeFromWishList'])
-        ->name('wishlist.remove');
 });
+
+//? Route to show the user's wishlist
+Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
+//? Route to add a product to the user's wishlist
+Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishList'])
+    ->name('wishlist.add');
+//? Route to remove a product from the user's wishlist
+Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'removeFromWishList'])
+    ->name('wishlist.remove');
 
 //? Route to show the user's basket
 Route::get('/basket/show', [BasketController::class, 'show'])->name('basket.show');
@@ -151,10 +153,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/processOrder/{orderId}', [AdminController::class, 'processOrder'])->name('order.process');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
 });
-
-Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
-Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishlist'])
-    ->name('wishlist.add');
 
 //Route for admin side: To update status of customer enquiries
 Route::put('enquiries/{enquiryId}/status', [ContactFormController ::class, 'updateStatus'])->name('status.update');

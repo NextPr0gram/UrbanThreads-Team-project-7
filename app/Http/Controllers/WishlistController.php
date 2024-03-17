@@ -79,10 +79,10 @@ class WishlistController extends Controller
             // Product is not in the wishlist, so add it
             $wishlist->items()->create([
                 'user_id' => $user->id,
-                'product_id'=>$productId,
+                'product_id' => $productId,
                 'wishlist_id' => $wishlist->id
             ]);
-            return redirect()->back()->with('success', 'Item added from Wishlist');
+            return redirect()->back()->with('success', 'Item added to Wishlist');
         }
     }
 
@@ -120,7 +120,7 @@ class WishlistController extends Controller
             // Removes the item from the wishlist
             $wishlistItem->delete();
             // Otherwise, redirect back to the wishlist page with a success alert saying that an item has been removed from the wishlist
-            return redirect()->route('wishlist.show')->with('success', 'Item(s) removed from wishlist.');
+            return redirect()->route('wishlist.show')->with('success', 'Item removed from wishlist.');
         }
     }
 }
