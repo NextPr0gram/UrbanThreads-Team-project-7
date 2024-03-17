@@ -30,4 +30,20 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class);
     }
+
+    // Get order details
+    public function getOrderDetails()
+    {
+        $orderItems = $this->items;
+        $orderDetails = "";
+        foreach ($orderItems as $item) {
+            $orderDetails .= "Item " . $item->id . ":<br>";
+            $orderDetails .= "Product: " . $item->product->name . "<br>";
+            $orderDetails .= "Variation: " . $item->variation->size . "<br>";
+            $orderDetails .= "Quantity: " . $item->quantity . "<br>";
+            $orderDetails .= "Price: " . $item->product->selling_price . "<br>";
+            $orderDetails .= "<br>";
+        }
+        return $orderDetails;
+    }
 }

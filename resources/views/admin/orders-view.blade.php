@@ -46,7 +46,7 @@
                                     </td>
                                     <td class="text-right">
                                         <button class="underline" id="viewOrderButton"
-                                            onclick="showDetails('{{ $order }}',  '{{ $order->total }}', '{{ $order->status }}', '{{ route('order.process', ['orderId' => $order->id]) }}')">
+                                            onclick="showDetails('{{ $order->getOrderDetails() }}',  '{{ $order->total }}', '{{ $order->status }}', '{{ route('order.process', ['orderId' => $order->id]) }}')">
                                             View Order
                                         </button>
                                     </td>
@@ -91,20 +91,22 @@
                         @csrf
                         @method('POST')
 
-                        <div class="flex justify-between mx-4">
+                        <div class="flex justify-between">
                             <h1 id="title" class="font-formula1 text-lg">Order Details</h1>
                             <button type="button" onclick="hideForm()">Cancel</button>
                         </div>
                         {{-- image, name and price fields --}}
-                        <div class="w-full h-fit gap-2 py-5" id="order-items">
+                        <div class="w-full h-fit gap-2 py-5">
+                            <p class="text-lg font-formula1">Items</p>
+                            <p id="order-items" class="font-lexend"></p>
                         </div>
-                        <div class="flex justify-between w-full h-fit">
+                        <div class="flex justify-between w-full h-fit text-lg">
                             <p class="font-formula1">Total</p>
-                            <p id="order-total"></p>
+                            <p id="order-total" class="font-lexend"></p>
                         </div>
-                        <div class="flex justify-between w-full h-fit">
+                        <div class="flex justify-between w-full h-fit text-lg">
                             <p class="font-formula1">Status</p>
-                            <p id="order-status"></p>
+                            <p id="order-status" class="font-lexend"></p>
                         </div>
                         <x-primary-button adminDashboard="true" id="processOrderButton" type="submit"
                             class=" w-full mt-4 bottom-0 shrink-0">Process Order</x-primary-button>
@@ -167,6 +169,7 @@
             let statusField = document.getElementById("order-status");
             let processOrderForm = document.getElementById("processOrderForm");
 
+            itemsField.innerHTML = items;
             totalField.innerHTML = total;
             statusField.innerHTML = status;
             processOrderForm.action = action;
