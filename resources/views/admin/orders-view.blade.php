@@ -174,7 +174,7 @@
             statusField.innerHTML = status;
             processOrderForm.action = action;
 
-            if (status == "delivered") {
+            if (status == "Delivered" || status == "Cancelled") {
                 let processOrderButton = document.getElementById("processOrderButton");
                 processOrderButton.classList.add("hidden");
             }
