@@ -5,11 +5,11 @@
         {{-- hero text --}}
         <div class="py-10 pl-4">
             <h1
-                class="px-2 my-5 text-3xl leading-tight text-transparent bg-clip-text bg-background-image font-formula1 sm:text-4xl lg:text-6xl">
+                class="px-2 my-5 text-3xl leading-tight text-default-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-secondary-300 font-formula1 sm:text-4xl lg:text-6xl">
                 Welcome to <br>
                 UrbanThreads
             </h1>
-            <p class="px-2 mx-2 my-5 border-l-3 border-bluish-purple">Elevate Your Style. Discover the latest trends in
+            <p class="px-2 mx-2 my-5 border-l-3 border-primary-300">Elevate Your Style. Discover the latest trends in
                 fashion.</p>
             <div class="px-2 my-5">
                 <a href="{{ route('all-products') }}"><x-primary-button> Shop now </x-primary-button></a>
