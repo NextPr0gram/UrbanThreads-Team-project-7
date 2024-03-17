@@ -75,9 +75,9 @@
             </div>
             <div class = "grid grid-flow-col items-center justify-center mt-6">
                 @if ($order->status === 'Placed' || $order->status === 'Processing')
-                    <form action="{{ route('cancel-order', $order->id) }}" method="POST">
+                    <form action="{{ route('cancel-order', ['id' => $order->id]) }}" method="POST">
                         @csrf
-                        
+
                         <x-primary-button>
                             Cancel Order
                         </x-primary-button>
@@ -90,8 +90,12 @@
                         @break
 
                         @case('Delivered')
-                            <p class="text-lg font-medium text-gray-900">You cannot cancel this order as it has already been
-                                delivered.</p>
+                            <form action="{{ route('return-order', ['id' => $order->id]) }}" method="POST">
+                                @csrf
+                                <x-primary-button>
+                                    Return Order
+                                </x-primary-button>
+                            </form>
                         @break
                     @endswitch
                 @endif

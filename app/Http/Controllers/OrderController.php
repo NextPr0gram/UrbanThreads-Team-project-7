@@ -45,6 +45,24 @@ class OrderController extends Controller
         return redirect()->route('profile.orders')->with('success', 'Order cancelled successfully');
     }
 
+    //* Allows a user to return an order
+    public function return($id)
+    {
+        // Get the order if it exists
+        $order = Order::findOrFail($id);
+        // Increment the stock of the products in the order
+        $orderItems = $order->items;
+        foreach ($orderItems as $orderItem) {
+            $orderItem->variation->increment('stock', $orderItem->quantity);
+        }
+        // Change order status to Returned
+        $order->status = 'Returned';
+        // Save the order
+        $order->save();
+        // Redirect back with a success message
+        return redirect()->route('profile.orders')->with('success', 'Order returned successfully');
+    }
+
     //* Shows a single order
     public function showSingleOrder($id)
     {

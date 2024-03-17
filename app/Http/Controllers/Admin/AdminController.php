@@ -164,12 +164,12 @@ class AdminController extends Controller
     public function processOrder($orderId)
     {
         $order = Order::findOrFail($orderId);
-        if ($order->status == 'placed') {
-            $order->status = 'processing';
-        } else if ($order->status == 'processing') {
-            $order->status = 'dispatched';
-        } else if ($order->status == 'dispatched') {
-            $order->status = 'delivered';
+        if ($order->status == 'Placed') {
+            $order->status = 'Processing';
+        } else if ($order->status == 'Processing') {
+            $order->status = 'Dispatched';
+        } else if ($order->status == 'Dispatched') {
+            $order->status = 'Delivered';
         }
         $order->save();
         return redirect()->back()->with('success', 'Order status updated successfully.');

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->decimal('total', 8, 2)->default(0);
-            $table->enum('status', ['Placed', 'Processing', 'Dispatched', 'Delivered', 'Cancelled'])->default('placed');
+            $table->enum('status', ['Placed', 'Processing', 'Dispatched', 'Delivered', 'Cancelled', 'Returned'])->default('placed');
             $table->timestamps();
         });
     }
