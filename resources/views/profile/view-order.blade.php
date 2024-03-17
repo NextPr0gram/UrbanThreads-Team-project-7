@@ -13,19 +13,19 @@
 
     <div class="flex items-center justify-center pb-2 max-sm:mx-5">
         @switch($order->status)
-            @case('placed')
+            @case('Placed')
                 <p class="text-gray-500 text-lg font-lexend">Your order has been placed.</p>
             @break
 
-            @case('processing')
+            @case('Processing')
                 <p class="text-gray-500 text-lg font-lexend">Your order is being processed.</p>
             @break
 
-            @case('dispatched')
+            @case('Dispatched')
                 <p class="text-gray-500 text-lg font-lexend">Your order has been dispatched.</p>
             @break
 
-            @case('delivered')
+            @case('Delivered')
                 <p class="text-gray-500 text-lg font-lexend">Your order has been delivered.</p>
             @break
         @endswitch
@@ -74,24 +74,28 @@
                 <p class="text-2xl font-semibold text-gray-900">£{{ $order->total }}</p>
             </div>
             <div class = "grid grid-flow-col items-center justify-center mt-6">
-                @if ($order->status === 'placed' || $order->status === 'processing')
-                    <form action="{{ route('cancel-order', $order->id) }}" method="POST">
+                @if ($order->status === 'Placed' || $order->status === 'Processing')
+                    <form action="{{ route('cancel-order', ['id' => $order->id]) }}" method="POST">
                         @csrf
-                        @method('DELETE')
+
                         <x-primary-button>
                             Cancel Order
                         </x-primary-button>
                     </form>
                 @else
                     @switch($order->status)
-                        @case('dispatched')
+                        @case('Dispatched')
                             <p class="text-lg font-medium text-gray-900">You cannot cancel this order as it has already been
                                 dispatched.</p>
                         @break
 
-                        @case('delivered')
-                            <p class="text-lg font-medium text-gray-900">You cannot cancel this order as it has already been
-                                delivered.</p>
+                        @case('Delivered')
+                            <form action="{{ route('return-order', ['id' => $order->id]) }}" method="POST">
+                                @csrf
+                                <x-primary-button>
+                                    Return Order
+                                </x-primary-button>
+                            </form>
                         @break
                     @endswitch
                 @endif

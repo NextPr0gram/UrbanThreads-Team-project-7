@@ -48,8 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [ProfileController::class, 'addOrUpdateAddress'])->name('profile.address');
     Route::get('/profile/orders', [OrderController::class, 'show'])->name('profile.orders');
-    Route::get('/profile/orders/{id}', [OrderController::class, 'showSingleOrder'])->name('view-order');
-    Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::get('/profile/orders/{id}/show', [OrderController::class, 'showSingleOrder'])->name('view-order');
+    Route::post('/profile/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::post('/profile/orders/{id}/return', [OrderController::class, 'return'])->name('return-order');
 });
 
 //? Route to show the user's wishlist
