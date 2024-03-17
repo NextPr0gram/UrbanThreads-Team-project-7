@@ -131,7 +131,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Product updated successfully.');
     }
 
-
+    // Delete a product
+    public function deleteProduct($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $product->delete();
+        return redirect()->back()->with('success', 'Product deleted successfully.');
+    }
 
     // User accounts view
     public function getAllUsers()

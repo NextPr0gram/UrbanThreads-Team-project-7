@@ -154,6 +154,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/processOrder/{orderId}', [AdminController::class, 'processOrder'])->name('order.process');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
     Route::post('/addProduct/', [AdminController::class, 'addProduct'])->name('product.add');
+    Route::delete('/deleteProduct/{productId}', [AdminController::class, 'deleteProduct'])->name('product.delete');
 });
 
 //Route for admin side: To update status of customer enquiries
