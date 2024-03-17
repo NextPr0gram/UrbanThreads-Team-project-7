@@ -3,30 +3,38 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="">
-            {{ $category }} {{--* Title for the category of clothing --}}
+            {{ $category }} {{-- * Title for the category of clothing --}}
         </h2>
     </x-slot>
 
     <!-- ALL OF THE BELOW IS FOR THE FILTER -->
-    <form id="filter" action="{{ route('sort' ,['category'=> $category]) }}" method="GET">
+    <form id="filter" action="{{ route('sort', ['category' => $category]) }}" method="GET">
         <input type="hidden" id="sortOption" name="sort" value="">
-        <div class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem] justify-center">
+        <div
+            class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem] justify-center">
             <div class="flex flex-nowrap">
-                <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left mt-5">
+                <div
+                    class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left mt-5">
 
                     <div class="relative" id="dropdownButton">
                         <x-input-label for="sort" class="pb-2">Sort</x-input-label>
-                        <div id="button" onclick="toggleDropdown()" class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">Options
+                        <div id="button" onclick="toggleDropdown()"
+                            class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
+                            Options
                             <img id="upArrow" src="/images/filter icons/Chevron Down.svg">
                         </div>
 
                         <!-- this is the border for the dropdown options  -->
                         <div id="dropdown" class="rounded-md border-neutral-60 hidden ">
-                            <div class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
+                            <div
+                                class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
                                 <!-- Dropdown content -->
-                                <x-dropdown-link id="Low to High" onclick="setSortOption('Low to High')">Low to High</x-dropdown-link>
-                                <x-dropdown-link id="High to Low" onclick="setSortOption('High to Low')">High to low</x-dropdown-link>
-                                <x-dropdown-link id="Popularity" onclick="setSortOption('Popularity')">Popularity</x-dropdown-link>
+                                <x-dropdown-link id="Low to High" onclick="setSortOption('Low to High')">Low to
+                                    High</x-dropdown-link>
+                                <x-dropdown-link id="High to Low" onclick="setSortOption('High to Low')">High to
+                                    low</x-dropdown-link>
+                                <x-dropdown-link id="Popularity"
+                                    onclick="setSortOption('Popularity')">Popularity</x-dropdown-link>
 
                             </div>
                         </div>
@@ -100,15 +108,16 @@
                     * which allows the user to add the product to their basket
                     --}}
                 @foreach ($products as $product)
-                <div class="mb-4">
-                    <a href="{{ route('show', ['slug' => $product->slug]) }}">
-                        <x-products-card image='{{ $product->image }}' title='{{ $product->name }}' price='£{{ $product->selling_price }}'>
-                            <x-slot name="route">
-                                {{ route('wishlist.add', ['productId' => $product->id]) }}
-                            </x-slot>
-                        </x-products-card>
-                    </a>
-                </div>
+                    <div class="mb-4">
+                        <a href="{{ route('show', ['slug' => $product->slug]) }}">
+                            <x-products-card image='{{ $product->image }}' title='{{ $product->name }}'
+                                price='£{{ $product->selling_price }}'>
+                                <x-slot name="route">
+                                    {{ route('wishlist.add', ['productId' => $product->id]) }}
+                                </x-slot>
+                            </x-products-card>
+                        </a>
+                    </div>
                 @endforeach
             </div>
         </div>

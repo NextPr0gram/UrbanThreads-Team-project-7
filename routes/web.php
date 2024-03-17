@@ -143,6 +143,7 @@ Route::middleware('auth')->group(function () {
         return view('admin.orders-view');
     })->name('admin.orders-view');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+    Route::post('/addProduct/', [AdminController::class, 'addProduct'])->name('product.add');
 });
 
 Route::get('/wishlist/show', [WishlistController::class, 'show'])->name('wishlist.show');
