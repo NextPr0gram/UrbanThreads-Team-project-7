@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\contactForm;
 use app\Http\Controllers\Controller;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -133,7 +134,8 @@ class AdminController extends Controller
 
 
     // User accounts view
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         $users = User::all();
         return view('admin.user-accounts-view', ['users' => $users]);
     }
@@ -141,10 +143,35 @@ class AdminController extends Controller
 
 
     // Customer enquiries view
-    public function getAllCustomerEnquiries() {
+    public function getAllCustomerEnquiries()
+    {
 
         $customerEnquiries = contactForm::all();
         return view('admin.customer-enquiries-view', ['customerEnquiries' => $customerEnquiries]);
+    }
 
+    // Get all orders
+    public function getAllOrders()
+    {
+        $orders = Order::all();
+        $orders->each(function ($order) {
+            $orderItems = $order->items;
+        });
+        return view('admin.orders-view', ['orders' => $orders]);
+    }
+
+    // Process an order with the enum status
+    public function processOrder($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        if ($order->status == 'placed') {
+            $order->status = 'processing';
+        } else if ($order->status == 'processing') {
+            $order->status = 'dispatched';
+        } else if ($order->status == 'dispatched') {
+            $order->status = 'delivered';
+        }
+        $order->save();
+        return redirect()->back()->with('success', 'Order status updated successfully.');
     }
 }

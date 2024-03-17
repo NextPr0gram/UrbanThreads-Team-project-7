@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('title')
@@ -6,8 +5,6 @@
 @endsection
 
 @section('content')
-
-
     <h1> dashboard</h1>
     @auth
         <form method="POST" action="{{ route('logout') }}">
@@ -17,12 +14,7 @@
                 onclick="event.preventDefault();
                         this.closest('form').submit();">
                 {{ __('Log Out') }}
-            </a >
+            </a>
         </form>
     @endauth
-
-
-
-
-
 @endsection

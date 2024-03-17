@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\WishlistItems;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Wishlists;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class WishlistController
@@ -33,7 +34,7 @@ class WishlistController extends Controller
                 $wishlistItems = optional($wishlists)->items;
 
                 //* Pass the wishlist items to the view
-                return view('wishlist.show', compact('wishlistItems'));
+                return view('wishlist', compact('wishlistItems'));
             } else {
 
                 //! Redirect to the previous page and displays an error message that the user does not have any items in their wishlist
@@ -67,16 +68,21 @@ class WishlistController extends Controller
         $wishlist = Wishlists::firstOrCreate(['user_id' => $user->id]);
 
         // Check if the product is already in the wishlist
-        $existingWishlistItem = $wishlist->products()->where('product_id', $productId)->first();
+        $existingWishlistItem = WishlistItems::where('wishlists_id', $wishlist->id)
+            ->where('product_id', $productId)->first();
 
         if ($existingWishlistItem) {
             // Product is already in the wishlist, so remove it
-            $wishlist->products()->detach($productId);
+            $existingWishlistItem->delete();
             return redirect()->back()->with('success', 'Item removed from Wishlist');
         } else {
             // Product is not in the wishlist, so add it
-            $wishlist->products()->attach($productId);
-            return redirect()->back()->with('success', 'Item added from Wishlist');
+            $wishlist->items()->create([
+                'user_id' => $user->id,
+                'product_id' => $productId,
+                'wishlist_id' => $wishlist->id
+            ]);
+            return redirect()->back()->with('success', 'Item added to Wishlist');
         }
     }
 
@@ -89,7 +95,7 @@ class WishlistController extends Controller
         $user = auth()->user();
 
         // Find the wishlist for the user
-        $wishlist = Wishlists::where('user-_id', $user->id)->first();
+        $wishlist = Wishlists::where('user_id', $user->id)->first();
 
         // Optionally get the wishlist items of the wishlist if the wishlist exists
         $wishlistItems = optional($wishlist)->items;
@@ -114,7 +120,7 @@ class WishlistController extends Controller
             // Removes the item from the wishlist
             $wishlistItem->delete();
             // Otherwise, redirect back to the wishlist page with a success alert saying that an item has been removed from the wishlist
-            return redirect()->route('wishlist.show')->with('success', 'Item(s) removed from wishlist.');
+            return redirect()->route('wishlist.show')->with('success', 'Item removed from wishlist.');
         }
     }
 }

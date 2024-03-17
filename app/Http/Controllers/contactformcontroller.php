@@ -28,4 +28,29 @@ class ContactFormController extends Controller
         //one time message at the top
 }
 
+public function updateStatus(Request $request, $enquiryId) {
+    // Validate the request
+    $request->validate([
+        'newStatus' => 'required|in:New,In Process,Processed',
+    ]);
+
+    try {
+        // Retrieve the enquiry
+        $enquiry =  ContactForm::findOrFail($enquiryId);
+
+        // Update the status
+        $enquiry->status = $request->newStatus;
+        $enquiry->save();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Enquiry status updated successfully');
+    } catch (\Exception $e) {
+        // Handle the exception, perhaps log it
+        return redirect()->back()->with('failed', 'Enquiry status not updated');
+    }
+}
+
+
+
+
 }

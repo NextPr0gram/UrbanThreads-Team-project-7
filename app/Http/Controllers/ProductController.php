@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\Reviews;
+use App\Models\Review;
+use App\Models\Wishlists;
 
 
 /**
@@ -82,7 +83,7 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)->firstOrFail(); // Get the product with the slug
         $variations = $product->variations; // Get the variations of the product
 
-        $reviews = Reviews::where('product_id', $product->id)->get(); // Fetch reviews for the specified product ID
+        $reviews = Review::where('product_id', $product->id)->get(); // Fetch reviews for the specified product ID
 
         //Set to 0 for items where reviews are non existent
 
@@ -104,7 +105,7 @@ class ProductController extends Controller
         $threeStarPercentage = round($reviews->where('rating', 3)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 3 star ratings
         $twoStarPercentage = round($reviews->where('rating', 2)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 2 star ratings
         $oneStarPercentage = round($reviews->where('rating', 1)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 1 star ratings
-         } 
+         }
 
          // Pass the product to the view with the variations (sizes) and the reviews associated with it
         return view('products.show', compact('product', 'variations', 'reviews', 'averageRating', 'fiveStarPercentage', 'fourStarPercentage', 'threeStarPercentage', 'twoStarPercentage', 'oneStarPercentage', 'totalProductReviews'));

@@ -110,12 +110,37 @@
                 @foreach ($products as $product)
                     <div class="mb-4">
                         <a href="{{ route('show', ['slug' => $product->slug]) }}">
-                            <x-products-card image='{{ $product->image }}' title='{{ $product->name }}'
-                                price='£{{ $product->selling_price }}'>
-                                <x-slot name="route">
-                                    {{ route('wishlist.add', ['productId' => $product->id]) }}
-                                </x-slot>
-                            </x-products-card>
+                            <div
+                                class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-50 w-fit hover:bg-neutral-20 {{-- hover:outline hover:outline-3 hover:outline-neutral-20 --}}">
+                                <div class="w-64 aspect-auto p-2">
+                                    {{-- * The placeholder for the image of the product --}}
+                                    <img class="w-64 aspect-auto rounded-lg" src="{{ $product->image }}" alt="">
+                                </div>
+
+                                <div class="px-2 py-5">
+                                    {{-- * The placeholders for the product name and price --}}
+                                    <div class="flex flex-row justify-between">
+                                        <h1 class="font-formula1-light text-lg">{{ $product->name }}</h1>
+                                        {{-- Heart Button to Add to Wishlist --}}
+                                        <form action="{{ route('wishlist.add', ['productId' => $product->id]) }}"
+                                            method="post" class="flex">
+                                            @csrf
+                                            @if ($product->inWishlist())
+                                                <button type="submit">
+                                                    <img src="{{ asset('icons/utility/heart-default.svg') }}"
+                                                        class="w-6 h-5" alt="">
+                                                </button>
+                                            @else
+                                                <button type="submit">
+                                                    <img src="{{ asset('icons/utility/heart-hover.svg') }}"
+                                                        class="w-6 h-5" alt="">
+                                                </button>
+                                            @endif
+                                        </form>
+                                    </div>
+                                    <p class="font-formula1 text-lg">{{ $product->selling_price }}</p>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach

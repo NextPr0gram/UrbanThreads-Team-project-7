@@ -14,8 +14,9 @@
     <x-sidebar-item title="Customer Enquiries" href="admin.customer-enquiries-view" />
     <x-sidebar-item title="Orders" href="admin.orders-view" />
 
-    {{-- lower part of the sidebar --}}
+    {{-- lower part of the sidebar for returning to main website and logging out --}}
     <div class="flex flex-col grow justify-end">
+        <x-sidebar-item title="Return to UrbanThreads" href="home" />
         <x-sidebar-item forLogout />
     </div>
 

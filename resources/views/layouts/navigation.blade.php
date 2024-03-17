@@ -1,4 +1,6 @@
 {{-- Secondary nav bar on top of the header --}}
+
+
 {{-- <nav class="flex justify-end items-center px-4 mx-auto h-9 text-base max-w-8xl sm:px-6 lg:px-8">
     <a class="pr-2" href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
@@ -124,28 +126,28 @@
                         </div>
                     </div>
 
-                        {{-- Wishlist Button --}}
-                        <a href="{{ route('wishlist.show') }}" class="flex-none px-2">
-                            <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
-                        </a>
+                    {{-- Wishlist Button --}}
+                    <a href="{{ route('wishlist.show') }}" class="flex-none px-2">
+                        <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
+                    </a>
 
-                        {{-- Shopping cart button --}}
-                        <a href="{{ route('basket.show') }}" class="flex-none px-2">
-                            <img src="{{ asset('icons/utility/shopping-cart-dark.svg') }}" alt="">
-                        </a>
+                    {{-- Shopping cart button --}}
+                    <a href="{{ route('basket.show') }}" class="flex-none px-2">
+                        <img src="{{ asset('icons/utility/shopping-cart-dark.svg') }}" alt="">
+                    </a>
 
-                        {{-- Checkout button --}}
-                        <a href="{{ route('checkout') }}"><x-secondary-button title="Checkout"
-                                class="hidden flex-shrink-0 mx-2 md:block">
-                                Checkout
-                            </x-secondary-button></a>
-                    </div>
-
+                    {{-- Checkout button --}}
+                    <a href="{{ route('checkout') }}"><x-secondary-button title="Checkout"
+                            class="hidden flex-shrink-0 mx-2 md:block">
+                            Checkout
+                        </x-secondary-button></a>
                 </div>
 
+            </div>
 
-                <!-- Hamburger -->
-                {{-- <div class="flex items-center -me-2 sm:hidden">
+
+            <!-- Hamburger -->
+            {{-- <div class="flex items-center -me-2 sm:hidden">
                 <button @click="open = ! open" class="inline-flex justify-center items-center p-2 text-gray-400 rounded-md transition duration-150 ease-in-out dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -153,76 +155,67 @@
                     </svg>
                 </button>
             </div> --}}
-            </div>
         </div>
-        <div x-show="showMenu" @click.away="showMenu = false" class="mt-2 md:hidden">
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Home</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">About</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Services</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Contact</a>
-        </div>
+    </div>
+    <div x-show="showMenu" @click.away="showMenu = false" class="mt-2 md:hidden">
+        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Home</a>
+        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">About</a>
+        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Services</a>
+        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Contact</a>
+    </div>
 
-        <!-- Responsive account navigation menu -->
-        <div :class="{ 'block': open, 'hidden': !open }"
-            class="hidden overflow-hidden transition-all duration-300 ease-in-out sm:hidden">
-            {{-- <div class="pt-2 pb-3 space-y-1">
+    <!-- Responsive account navigation menu -->
+    <div :class="{ 'block': open, 'hidden': !open }"
+        class="hidden overflow-hidden transition-all duration-300 ease-in-out sm:hidden">
+        {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
         </x-responsive-nav-link>
     </div> --}}
 
-            <!-- Responsive Settings Options -->
-            <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
+        <!-- Responsive Settings Options -->
+        <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
+            <div class="mt-3 space-y-1">
                 @auth
                     <div class="px-4">
-                        <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                        <div class="text-base font-medium text-gray-800 dark:text-gray-200">Hey
+                            {{ Auth::user()->name }}!
+                        </div>
                         <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
                     </div>
-                @endauth
-                <div class="mt-3 space-y-1">
-                    @auth
-                        <div class="px-4">
-                            <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}
-                            </div>
-                            <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
-                        </div>
-                    @endauth
-                    <div class="mt-3 space-y-1">
-                        @auth
-                            @if (Auth::user()->admin == '1')
-                                <x-responsive-nav-link :href="route('admin.dashboard')">
-                                    Go To Admin Dashboard
-                                </x-responsive-nav-link>
-                            @endif
-                            <x-responsive-nav-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
-                            </x-responsive-nav-link>
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                    @if (Auth::user()->admin == '1')
+                        <x-responsive-nav-link :href="route('admin.dashboard')">
+                            Go To Admin Dashboard
+                        </x-responsive-nav-link>
+                    @endif
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                                <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                        <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
                             this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
-                            </form>
-                        @else
-                            <x-responsive-nav-link :href="route('login')">
-                                Login
-                            </x-responsive-nav-link>
-                            <x-responsive-nav-link :href="route('register')">
-                                Register
-                            </x-responsive-nav-link>
-                        @endauth
-                    </div>
-                </div>
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @else
+                    <x-responsive-nav-link :href="route('login')">
+                        Login
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('register')">
+                        Register
+                    </x-responsive-nav-link>
+                @endauth
             </div>
+        </div>
 </nav>
 
 {{-- Secondary nav bar at the bottom of the header --}}
-<div class="bg-navy-blue font-lexend-deca">
-    <nav class="flex justify-center items-center h-9 text-base">
+<div class="bg-primary-300 font-lexend-deca">
+    <nav class="flex justify-center items-center h-9 text-base text-default-white">
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
             href="{{ route('hoodies') }}">Hoodies</a>
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
@@ -234,4 +227,11 @@
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
             href="{{ route('accessories') }}">Accessories</a>
     </nav>
+</div>
+
+{{-- Banner under navbar --}}
+<div class="grid grid-cols-3 bg-secondary-300 w-full text-center py-3 text-base font-bold">
+    <h1 class="max-sm:pl-3 font-formula1-light text-center text-white">Free delivery on all orders</h1>
+    <h1 class="font-formula1-light text-center text-white">10% off your first order</h1>
+    <h1 class="max-sm:pr-3 font-formula1-light text-center text-white">Free returns and replacements</h1>
 </div>
