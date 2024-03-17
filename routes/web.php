@@ -4,9 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\CheckoutController; 
+use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/orders', [OrderController::class, 'show'])->name('profile.orders');
     Route::get('/profile/orders/{id}', [OrderController::class, 'showSingleOrder'])->name('view-order');
     Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::get('/wishlist/test/add', [WishlistController::class, 'addToWishListTest']);
+    Route::get('/wishlist/test/remove', [WishlistController::class, 'removeFromWishListTest']);
+    Route::post('/wishlist/add/{productId}', [WishlistController::class, 'addToWishList'])
+        ->name('wishlist.add');
+    //? Route to remove a product from the user's basket
+    Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'removeFromWishList'])
+        ->name('wishlist.remove');
 });
 
 //? Route to show the user's basket

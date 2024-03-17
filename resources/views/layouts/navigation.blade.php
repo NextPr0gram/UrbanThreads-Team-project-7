@@ -1,4 +1,6 @@
 {{-- Secondary nav bar on top of the header --}}
+
+
 {{-- <nav class="flex justify-end items-center px-4 mx-auto h-9 text-base max-w-8xl sm:px-6 lg:px-8">
     <a class="pr-2" href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
