@@ -159,4 +159,5 @@ Route::middleware('auth')->group(function () {
 
 //Route for admin side: To update status of customer enquiries
 Route::put('enquiries/{enquiryId}/status', [ContactFormController ::class, 'updateStatus'])->name('status.update');
-
+//Route for admin side: To delete contact forms
+Route::delete('enquiries/{enquiryId}', [ContactFormController::class, 'deleteEnquiry'])->name('enquiry.delete');

@@ -11,13 +11,15 @@
                 <div class="rounded-lg border border-neutral-30 pl-4 pt-4 pr-4 h-full overflow-auto ">
                     <table class="table-auto w-full divide-y divide-neutral-20 text-base">
                         <thead>
-                            <tr class="text-left text-lg font-formula1">
+                           
+<tr class="text-left text-lg font-formula1">
                                 <th class="align-left">First Name</th>
                                 <th class="align-left">Last Name</th>
                                 <th class="text-left">Email</th>
                                 <th class="text-left">Subject</th>
                                 <th class="text-left">Message</th>
                                 <th class="text-left">Status</th>
+                                
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-20">
@@ -41,7 +43,16 @@
                 </select>
                 <!-- Hidden input field for enquiryId -->
                 <input type="hidden" name="enquiryId" value="{{ $customerEnquiry->id }}">
+                <!-- Example Filter Dropdown for Status -->
+
             </form>
+            <td class="text-left px-1">
+                <form id="delete-form-{{ $customerEnquiry->id }}" action="{{ route('enquiry.delete', ['enquiryId' => $customerEnquiry->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-4 rounded">Delete</button>
+                </form>
+            </td>
         </td>
     </tr>
 @endforeach
@@ -50,6 +61,8 @@
     function submitForm(enquiryId, newStatus) {
         document.getElementById('status-form-' + enquiryId).submit();
     }
+
+
 </script>
 
                         </tbody>
