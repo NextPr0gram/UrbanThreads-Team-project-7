@@ -30,7 +30,7 @@
                         {{ $order->items->count() }}
                     </x-slot>
                     <x-slot name="orderLink">
-                        {{ route('view-order', $order->id) }}
+                        {{ route('view-order', ['id' => $order->id]) }}
                     </x-slot>
                 </x-order-card>
             @endforeach

@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('title')
@@ -38,7 +37,7 @@
                             <div id="addProductForm" class="hidden z-50 absolute inset-0 flex justify-center items-center">
                                 <div
                                     class="max-w-[800px]  bg-default-white border border-neutral-30 rounded-lg px-4 py-5 animate-jump-in animate-duration-150 animate-ease-in">
-                                    <form id="" class="" action="">
+                                    <form id="" class="" action="{{ route('product.add') }}" method="POST">
                                         @csrf
                                         @method('POST')
                                         <div class="flex justify-between gap-x-12 pb-4">
@@ -47,35 +46,190 @@
                                         </div>
                                         <div class="flex w-full h-fit">
                                             <div
-
                                                 class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
-                                                <img id="addProductImageField" class="w-full h-full" src="" alt="">
-                                                <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
+                                                <img id="addProductImageField" class="w-full h-full" src=""
+                                                    alt="">
+                                                <input type="file" id="fileInput" accept="image/*"
+                                                    onchange="previewImage(event)">
                                             </div>
                                             <div class="w-full flex-1 pl-4 min-w-[12]">
-                                                <x-input-label for="name" class="pb-2" >Name</x-input-label>
+                                                <x-input-label for="name" class="pb-2">Name</x-input-label>
                                                 <x-text-input adminDashboard="true" type="text" id="addProductNameField"
-                                                    name="name" class="w-full " placeholder="Name" required/>
+                                                    name="name" class="w-full " placeholder="Name" required />
                                                 <x-input-label for="price" class="pb-2 pt-4">Price</x-input-label>
                                                 <x-text-input adminDashboard="true" type="number" id="addProductPriceField"
-                                                    name="price" class="w-full " placeholder="Price" required/>
+                                                    name="price" class="w-full " placeholder="Price" required />
                                             </div>
                                         </div>
+                                        <div class="flex justify-between w-full gap-2">
+                                            <div class="flex-1">
+                                                {{-- gender dropdown --}}
+                                                <input required type="hidden" id="genderOption" name="gender"
+                                                    value="">
+                                                <div class="relative" id="GenderDropdownButton">
+                                                    <x-input-label for="gender" class="pb-2 pt-4">Gender</x-input-label>
+                                                    <div id="genderButton" onclick="toggleGenderDropdown()"
+                                                        class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
+                                                        Gender
+                                                        <img id="genderUpArrow" src="/images/filter icons/Chevron Down.svg">
+                                                    </div>
 
-                                        <x-input-label id="addProductStockForSLabel" for="stockForS" class="pb-2 pt-4">Stock For
-                                            S</x-input-label>
-                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForSInput"
-                                            name="stockForS" class="w-full " placeholder="Stock For S" required/>
+                                                    <!-- this is the border for the dropdown options  -->
+                                                    <div id="genderDropdown"
+                                                        class="rounded-md border-neutral-60 hidden bg-white">
+                                                        <div
+                                                            class="absolute z-10 w-full bg-default-white  border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
+                                                            <!-- Dropdown content -->
+                                                            <x-dropdown-link id="Low to High"
+                                                                onclick="setGenderOption(1, 'Unisex')">Unisex</x-dropdown-link>
+                                                            <x-dropdown-link id="High to Low"
+                                                                onclick="setGenderOption(2, 'Male')">Male</x-dropdown-link>
+                                                            <x-dropdown-link id="Popularity"
+                                                                onclick="setGenderOption(3, 'Female')">Female</x-dropdown-link>
 
-                                        <x-input-label id="addProductStockForMLabel" for="stockForM" class="pb-2 pt-4">Stock For
-                                            M (optional)</x-input-label>
-                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForMInput"
-                                            name="stockForM" class="w-full " placeholder="Stock For M" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function toggleGenderDropdown() {
+                                                        let GenderDropdownButton = document.querySelector('#GenderDropdownButton');
+                                                        let genderUpArrow = document.querySelector('#genderUpArrow');
+                                                        let dropdown = document.querySelector('#genderDropdown');
+                                                        dropdown.classList.toggle("hidden");
+                                                        if (dropdown.classList.contains("hidden")) {
+                                                            genderUpArrow.src = "/images/filter icons/Chevron Down.svg";
+                                                        } else {
+                                                            genderUpArrow.src = "/images/filter icons/Vector.svg";
+                                                        }
+                                                    }
 
-                                        <x-input-label id="addProductStockForLLabel" for="stockForL" class="pb-2 pt-4">Stock For
-                                            L (optional)</x-input-label>
-                                        <x-text-input adminDashboard="true" type="number" id="addProductStockForLInput"
-                                            name="stockForL" class="w-full " placeholder="Stock For L" />
+                                                    function setGenderOption(id, name) {
+                                                        let button = document.querySelector('#genderButton');
+                                                        document.querySelector('#genderOption').value = id;
+                                                        button.innerText = name;
+                                                        toggleGenderDropdown(); // Close the dropdown after selecting an option
+                                                    }
+
+                                                    function reset() {
+                                                        document.getElementById("filter").reset();
+                                                        document.querySelector("#genderButton").textContent = "Options";
+                                                    }
+
+                                                    // Close dropdown when clicking outside
+                                                    document.addEventListener('click', function(event) {
+                                                        const GenderDropdownButton = document.getElementById('GenderDropdownButton');
+                                                        const dropdown = document.getElementById('genderDropdown');
+                                                        const isClickInside = GenderDropdownButton.contains(event.target);
+
+                                                        if (!isClickInside && !dropdown.classList.contains('hidden')) {
+                                                            toggleGenderDropdown();
+                                                        }
+                                                    });
+                                                </script>
+                                            </div>
+
+                                            <div class="flex-1">
+                                                {{-- category dropdown --}}
+                                                <input type="hidden" id="categoryOption" name="category" value="">
+                                                <div class="relative" id="categoryDropdownButton">
+                                                    <x-input-label for="category" class="pb-2 pt-4">Category</x-input-label>
+                                                    <div id="categoryButton" onclick="toggleCategoryDropdown()"
+                                                        class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
+                                                        Category
+                                                        <img id="categoryUpArrow"
+                                                            src="/images/filter icons/Chevron Down.svg">
+                                                    </div>
+
+                                                    <!-- this is the border for the dropdown options  -->
+                                                    <div id="categoryDropdown" class="rounded-md border-neutral-60 hidden ">
+                                                        <div
+                                                            class="absolute w-full bg-default-white  border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
+                                                            <!-- Dropdown content -->
+                                                            <x-dropdown-link id="hoodie"
+                                                                onclick="setCategoryOption(1, 'Hoodie')">Hoodie</x-dropdown-link>
+                                                            <x-dropdown-link id="t-shirt"
+                                                                onclick="setCategoryOption(2, 'T-shirt')">T-shirt</x-dropdown-link>
+                                                            <x-dropdown-link id="jacket"
+                                                                onclick="setCategoryOption(3, 'Jacket')">Jacket</x-dropdown-link>
+                                                            <x-dropdown-link id="trouser"
+                                                                onclick="setCategoryOption(4, 'Trouser')">Trouser</x-dropdown-link>
+                                                            <x-dropdown-link id="accessory"
+                                                                onclick="setCategoryOption(5, 'Accessory')">Accessory</x-dropdown-link>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function toggleCategoryDropdown() {
+                                                        let categoryDropdownButton = document.querySelector('#categoryDropdownButton');
+                                                        let categoryUpArrow = document.querySelector('#categoryUpArrow');
+                                                        let dropdown = document.querySelector('#categoryDropdown');
+                                                        dropdown.classList.toggle("hidden");
+                                                        if (dropdown.classList.contains("hidden")) {
+                                                            categoryUpArrow.src = "/images/filter icons/Chevron Down.svg";
+                                                        } else {
+                                                            categoryUpArrow.src = "/images/filter icons/Vector.svg";
+                                                        }
+                                                    }
+
+                                                    function setCategoryOption(id, name) {
+                                                        let button = document.querySelector('#categoryButton');
+                                                        document.querySelector('#categoryOption').value = id;
+                                                        button.innerText = name;
+                                                        toggleCategoryDropdown(); // Close the dropdown after selecting an option
+                                                    }
+
+                                                    function categortReset() {
+                                                        document.getElementById("filter").categortReset();
+                                                        document.querySelector("#button").textContent = "Options";
+                                                    }
+
+                                                    // Close dropdown when clicking outside
+                                                    document.addEventListener('click', function(event) {
+                                                        const categoryDropdownButton = document.getElementById('categoryDropdownButton');
+                                                        const dropdown = document.getElementById('categoryDropdown');
+                                                        const isClickInside = categoryDropdownButton.contains(event.target);
+
+                                                        if (!isClickInside && !dropdown.classList.contains('hidden')) {
+                                                            toggleCategoryDropdown();
+                                                        }
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <x-input-label for="tags-input-box" class="pb-2 pt-4">Tags</x-input-label>
+                                        <x-tags-input-box />
+                                        <div class="flex w-full items-end gap-2">
+                                            <div class="flex-1 flex flex-col justify-end">
+                                                <x-input-label id="addProductStockForSLabel" for="stockForS"
+                                                    class="pb-2 pt-4">Stock
+                                                    For
+                                                    S</x-input-label>
+                                                <x-text-input adminDashboard="true" type="number"
+                                                    id="addProductStockForSInput" name="stockForS" class="w-full "
+                                                    placeholder="Stock For S" required />
+                                            </div>
+
+                                            <div class="flex-1 flex flex-col justify-end">
+                                                <x-input-label id="addProductStockForMLabel" for="stockForM"
+                                                    class="pb-2 pt-4">Stock
+                                                    For
+                                                    M (optional)</x-input-label>
+                                                <x-text-input adminDashboard="true" type="number"
+                                                    id="addProductStockForMInput" name="stockForM" class="w-full "
+                                                    placeholder="Stock For M" />
+                                            </div>
+
+                                            <div class="flex-1 flex flex-col justify-end">
+                                                <x-input-label id="addProductStockForLLabel" for="stockForL"
+                                                    class="pb-2 pt-4">Stock
+                                                    For
+                                                    L (optional)</x-input-label>
+                                                <x-text-input adminDashboard="true" type="number"
+                                                    id="addProductStockForLInput" name="stockForL" class="w-full "
+                                                    placeholder="Stock For L" />
+                                            </div>
+                                        </div>
 
 
                                         <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
@@ -83,11 +237,9 @@
                                             name="description" class="text-base lg:grow w-full h-auto "
                                             placeholder="Write your description here" required />
 
-
-                                        <x-primary-button adminDashboard="true" id="addProductSaveChangesButton" type="submit"
-                                            class=" w-full mt-4 bottom-0 shrink-0">Save
+                                        <x-primary-button adminDashboard="true" id="addProductSaveChangesButton"
+                                            type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
                                             changes</x-primary-button>
-
                                     </form>
                                 </div>
                             </div>
@@ -102,7 +254,7 @@
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}')">
+                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
                                             More details
                                         </button>
                                     </td>
@@ -191,15 +343,18 @@
                         <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
                         <x-text-area adminDashboard="true" type="text" id="descriptionField" name="description"
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
-
-
-                        <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
-                            class=" w-full mt-4 bottom-0 shrink-0">Save
-                            changes</x-primary-button>
-
-
+                        <div class="flex justify-between gap-2">
+                            <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
+                                form="updateProductForm" class=" w-1/2 mt-4 bottom-0 shrink-0">Save
+                                changes</x-primary-button>
+                            <form id="deleteProductForm" action="" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <x-danger-button adminDashboard="true" onclick="" type="submit"
+                                    class="w-1/2 mt-4 bottom-0 shrink-0">Delete Product</x-danger-button>
+                            </form>
+                        </div>
                     </form>
-
                     <script>
                         function hideForm() {
                             let editDetailsForm = document.getElementById("editDetails");
@@ -233,14 +388,13 @@
 
     </div>
     <script>
-        function showDetails(image, name, price, variations, description, action) {
+        function showDetails(image, name, price, variations, description, action, action) {
 
             console.log(action);
             // Show menu
             let editDetailsForm = document.getElementById("editDetails");
             let formOverlay = document.getElementById("formOverlay");
             let productsTable = document.getElementById("productsTable");
-
 
             editDetails.classList.remove("translate-y-full");
             editDetails.classList.remove("lg:w-0");
@@ -266,6 +420,7 @@
             let descriptionField = document.getElementById("descriptionField");
             let imageField = document.getElementById("imageField");
             let updateProductForm = document.getElementById("updateProductForm");
+            let deleteProductForm = document.getElementById("deleteProductForm");
 
             title.innerHTML = name;
             nameField.value = name;
@@ -273,10 +428,7 @@
             descriptionField.value = description;
             imageField.src = image;
             updateProductForm.action = action;
-
-
-
-
+            deleteProductForm.action = action2;
 
             // Variations S
             let StockForSLabel = document.getElementById("StockForSLabel");

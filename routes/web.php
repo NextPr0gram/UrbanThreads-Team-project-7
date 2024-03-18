@@ -48,8 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [ProfileController::class, 'addOrUpdateAddress'])->name('profile.address');
     Route::get('/profile/orders', [OrderController::class, 'show'])->name('profile.orders');
-    Route::get('/profile/orders/{id}', [OrderController::class, 'showSingleOrder'])->name('view-order');
-    Route::delete('/profile/orders/{id}', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::get('/profile/orders/{id}/show', [OrderController::class, 'showSingleOrder'])->name('view-order');
+    Route::post('/profile/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('cancel-order');
+    Route::post('/profile/orders/{id}/return', [OrderController::class, 'return'])->name('return-order');
 });
 
 //? Route to show the user's wishlist
@@ -152,6 +153,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/orders-view', [AdminController::class, 'getAllOrders'])->name('admin.orders-view');
     Route::post('/processOrder/{orderId}', [AdminController::class, 'processOrder'])->name('order.process');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
+    Route::post('/addProduct/', [AdminController::class, 'addProduct'])->name('product.add');
+    Route::delete('/deleteProduct/{productId}', [AdminController::class, 'deleteProduct'])->name('product.delete');
 });
 
 //Route for admin side: To update status of customer enquiries

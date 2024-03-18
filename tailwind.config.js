@@ -10,6 +10,7 @@ export default {
             default: {
                 black: "rgba(0, 0, 0, 1)",
                 white: "rgba(255, 255, 255, 1)",
+                transparent: "transparent;"
             },
             danger: {
                 //red
@@ -118,8 +119,8 @@ export default {
             lg: "8px",
         },
         extend: {
-            backgroundImage: {
-                "background-image": "linear-gradient(to right top, #d6f2ff, #a8cee7, #80aad0, #5f86b8, #46629e, #39528c, #2d427a, #203369, #18315d, #162f50, #182c43, #1b2836)",
+            background: {
+                "gradient": "linear-gradient(50deg, rgba(0,53,102,1) 0%, rgba(134,32,201,1) 100%)",
             },
 
             maxWidth: {

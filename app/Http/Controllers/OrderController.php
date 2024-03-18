@@ -27,26 +27,40 @@ class OrderController extends Controller
         }
     }
 
-    //* Deletes an order if it has not been dispatched or delivered
+    //* Cancels an order if it has not been dispatched or delivered (status is checked in the view)
     public function cancel($id)
     {
         // Get the order if it exists
         $order = Order::findOrFail($id);
-        // If the order has been dispatched or delivered, redirect back with an error message
-        if ($order->status == 'dispatched' || $order->status == 'delivered') {
-            return redirect()->route('profile.orders')->with('error', 'You cannot delete an order that has been dispatched or delivered');
-        } else {
-            // Otherwise...
-            // Increment the stock of the products in the order
-            $orderItems = $order->items;
-            foreach ($orderItems as $orderItem) {
-                $orderItem->variation->increment('stock', $orderItem->quantity);
-            }
-            // Delete the order record
-            $order->delete();
-            // Redirect back with a success message
-            return redirect()->route('profile.orders')->with('success', 'Order cancelled successfully');
+        // Increment the stock of the products in the order
+        $orderItems = $order->items;
+        foreach ($orderItems as $orderItem) {
+            $orderItem->variation->increment('stock', $orderItem->quantity);
         }
+        // Change order status to Cancelled
+        $order->status = 'Cancelled';
+        // Save the order
+        $order->save();
+        // Redirect back with a success message
+        return redirect()->route('profile.orders')->with('success', 'Order cancelled successfully');
+    }
+
+    //* Allows a user to return an order
+    public function return($id)
+    {
+        // Get the order if it exists
+        $order = Order::findOrFail($id);
+        // Increment the stock of the products in the order
+        $orderItems = $order->items;
+        foreach ($orderItems as $orderItem) {
+            $orderItem->variation->increment('stock', $orderItem->quantity);
+        }
+        // Change order status to Returned
+        $order->status = 'Returned';
+        // Save the order
+        $order->save();
+        // Redirect back with a success message
+        return redirect()->route('profile.orders')->with('success', 'Order returned successfully');
     }
 
     //* Shows a single order

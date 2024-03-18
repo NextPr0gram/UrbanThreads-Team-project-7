@@ -22,6 +22,70 @@ class AdminController extends Controller
         return view('admin.products-view', ['products' => $products]); // Return the view and pass the products as a parameter
     }
 
+    public function addProduct(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:55',
+            'price' => 'required|string',
+            'gender' => 'required|numeric',
+            'category' => 'required|numeric',
+            'tags' => 'nullable|string',
+            'description' => 'required|string|max:1000',
+            'stockForS' => 'required|numeric',
+            'stockForM' => 'sometimes|numeric',
+            'stockForL' => 'sometimes|numeric',
+        ]);
+
+
+
+        // Create a new product
+        $product = new Product;
+        $product->image = "";
+        $product->name = $request->name;
+        $product->slug = strtolower($request->name);
+        $product->meta_title = strtolower($request->name);
+        $product->selling_price = $request->price;
+        $product->original_price = $request->price;
+        $product->c1_id = $request->gender;
+        $product->c2_id = $request->category;
+        $product->meta_keywords = $request->filled('tags') ? $request->tags : "";
+        $product->description = $request->description;
+        $product->meta_description = strtolower($request->description);
+        $product->save();
+
+
+        // Create the variations for the product
+        $variations = [
+            ['size' => 'Small', 'stock' => $request->stockForS],
+        ];
+        $product->variations()->create(['size' => 'Small', 'stock' => $request->stockForS]);
+
+        if ($request->filled('stockForM')) {
+            $variations[] = ['size' => 'Medium', 'stock' => $request->stockForM];
+            $product->variations()->create(['size' => 'Medium', 'stock' => $request->stockForM]);
+        }
+
+        if ($request->filled('stockForL')) {
+            $variations[] = ['size' => 'Large', 'stock' => $request->stockForL];
+            $product->variations()->create(['size' => 'Large', 'stock' => $request->stockForL]);
+        }
+
+        // Previous code
+        /* $product->variations()->createMany([
+
+            ['size' => 'Small', 'stock' => $request->stockForS],
+
+            ['size' => 'Medium', 'stock' => $request->stockForM],
+
+            ['size' => 'Large', 'stock' => $request->stockForL],
+
+        ]); */
+
+
+        return redirect()->back()->with('success', 'Product added successfully.');
+    }
+
     public function updateProduct(Request $request, $productId)
     {
 
@@ -67,7 +131,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Product updated successfully.');
     }
 
-
+    // Delete a product
+    public function deleteProduct($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $product->delete();
+        return redirect()->back()->with('success', 'Product deleted successfully.');
+    }
 
     // User accounts view
     public function getAllUsers()
@@ -100,12 +170,12 @@ class AdminController extends Controller
     public function processOrder($orderId)
     {
         $order = Order::findOrFail($orderId);
-        if ($order->status == 'placed') {
-            $order->status = 'processing';
-        } else if ($order->status == 'processing') {
-            $order->status = 'dispatched';
-        } else if ($order->status == 'dispatched') {
-            $order->status = 'delivered';
+        if ($order->status == 'Placed') {
+            $order->status = 'Processing';
+        } else if ($order->status == 'Processing') {
+            $order->status = 'Dispatched';
+        } else if ($order->status == 'Dispatched') {
+            $order->status = 'Delivered';
         }
         $order->save();
         return redirect()->back()->with('success', 'Order status updated successfully.');
