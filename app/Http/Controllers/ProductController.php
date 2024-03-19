@@ -116,10 +116,16 @@ class ProductController extends Controller
 
     public function searchForProduct(Request $request)
     {
+        // Validate the search query
+        $request->validate([
+            'search' => 'required|string|min:3'
+        ]);
+        // Sanitize the search query
         $search = $request->input('search');
+
         $products = Product::where('name', 'like', "%$search%")->get();
         if ($products->isEmpty()) {
-            return view('products', ['products' => $products, 'category' => 'No products found for ' . $search]);
+            return redirect()->back()->with('error', 'No products found for ' . $search);
         } else {
             return view('products', ['products' => $products, 'category' => 'Search Results for ' . $search]);
         }
