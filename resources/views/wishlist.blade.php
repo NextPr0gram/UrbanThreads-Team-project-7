@@ -13,10 +13,8 @@
     </x-slot>
 
     <!-- Main Container -->
-    <!-- <div class=""> -->
-    <!--   Wishlist Items Container -->
     <div class="grid grid-rows-1 mt-5 gap-10">
-        <!-- Item Container -->
+        <!-- Wishlist Items Container -->
         @foreach($wishlistItems as $item)
         <div class="w-10/12 mx-auto border-3 border-light-gray"> <!-- transition-all duration-300 ease-in-out hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray -->
 
@@ -69,6 +67,5 @@
         @endforeach
 
     </div>
-    <!-- </div> -->
 
 </x-app-layout>
