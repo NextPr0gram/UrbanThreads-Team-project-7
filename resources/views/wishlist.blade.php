@@ -45,29 +45,44 @@
                 </div>
             </div>
 
-            <div class="flex justify-end">
-                {{-- *Button to remove from the wishlist --}}
-                <form action="{{ route('wishlist.remove', $item->product->id) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" x-data="{ clicked: false }" @click="clicked = !clicked" class="px-4">
-                        <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                        <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                    </button>
-                </form>
-            </div>
+                <div class="pt-4 pl-4">
+                    {{-- *Button to remove from the wishlist --}}
+                    <form action="{{ route('wishlist.remove', $item->product->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" x-data="{ clicked: false }" @click="clicked = !clicked">
+                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
+                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
+                        </button>
+                    </form>
 
-            <div class="flex justify-end p-4 bg-white">
-                {{--* Button to add the product to the basket --}}
-                <form action="{{ route('basket.add', $item->product->id) }}" method="post">
-                    <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                </form>
-                {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
-            </div>
+                </div>
 
+                <div class="flex justify-end p-4 bg-white">
+                    {{--* Button to add the product to the basket --}}
+                    <form action="{{ route('basket.add', $item->product->id) }}" method="post">
+                        @csrf
+                        <x-select id="size" name="size" class="w-full" required>
+                            @foreach ($item->product->variations as $variation)
+                                <option value="{{ $variation->id }}">Size: {{ $variation->size }}
+                                    @if ($variation->stock <= 0)
+                                        - Out of stock
+                                    @elseif ($variation->stock < 10)
+                                        - Low stock ({{ $variation->stock }} left)
+                                    @else
+                                        - In stock
+                                    @endif
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
+                    </form>
+                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
+                </div>
+                
+            </div>
+            @endforeach
         </div>
-        @endforeach
-
     </div>
     <!-- </div> -->
 

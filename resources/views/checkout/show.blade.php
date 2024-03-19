@@ -100,18 +100,18 @@
                         <h1 class="text-lg font-bold">Payment Information</h1>
                         <div class="relative w-full">
                             <x-input-label for="card_number">Card Number</x-input-label>
-                            <x-text-input type="password" id="card_number" name="card_number"
+                            <x-text-input id="card_number" name="card_number"
                                 class="w-full text-sm shadow-sm" placeholder="1234 5678 9012 3456" />
                         </div>
                         <div class="flex flex-col sm:flex-row sm:space-x-6">
                             <div class="w-full">
-                                <x-input-label for="expiry_date">Expiry Date</x-input-label>
-                                <x-text-input type="password" id="expiry_date" name="expiry_date"
+                                <x-input-label for="expiry_date">Expiry Date (MM/YY)</x-input-label>
+                                <x-text-input id="expiry_date" name="expiry_date"
                                     class="w-full text-sm shadow-sm" placeholder="MM/YY" />
                             </div>
                             <div class="pt-6 w-full sm:pt-0">
                                 <x-input-label for="security_code">Security Code (CVC/CVV)</x-input-label>
-                                <x-text-input type="password" id="security_code" name="security_code"
+                                <x-text-input id="security_code" name="security_code"
                                     class="w-full text-sm shadow-sm" placeholder="123" />
                             </div>
                         </div>
