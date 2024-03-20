@@ -270,29 +270,53 @@ class AdminController extends Controller
         // Find the discount record
         $discount = Discount::findOrFail($discountId);
 
-        // Update the discount fields if they are filled
+        // Validate and update the discount fields if they are filled
         if ($request->filled('code')) {
             $discount->code = $request->code;
         }
 
-        if ($request->filled('type')) {
-            $discount->type = $request->type;
-        }
-
         if ($request->filled('value')) {
-            $discount->value = $request->value;
+            // Check if the discount value is more than 0
+            if ($request->value <= 0) {
+                if ($request->type === 'fixed') {
+                    return redirect()->back()->with('error', 'Fixed discount must be more than 0.');
+                } else {
+                    return redirect()->back()->with('error', 'Percentage discount must be more than 0.');
+                }
+            } else {
+                $discount->value = $request->value;
+            }
         }
 
         if ($request->filled('max_uses')) {
-            $discount->max_uses = $request->max_uses;
+            // Check if the max uses is more than 0
+            if ($request->max_uses <= 0) {
+                return redirect()->back()->with('error', 'Max uses must be more than 0.');
+            } else {
+                $discount->max_uses = $request->max_uses;
+            }
         }
 
         if ($request->filled('valid_from')) {
-            $discount->valid_from = $request->valid_from;
+            // Check if the valid from date is in the past
+            if ($request->valid_from < now()) {
+                return redirect()->back()->with('error', 'Valid From date cannot be in the past.');
+            } else if ($request->valid_from > $request->valid_to) {
+                return redirect()->back()->with('error', 'Valid From date cannot be after Valid To date.');
+            } else {
+                $discount->valid_from = $request->valid_from;
+            }
         }
 
         if ($request->filled('valid_to')) {
-            $discount->valid_to = $request->valid_to;
+            // Check if the valid to date is in the past
+            if ($request->valid_to < now()) {
+                return redirect()->back()->with('error', 'Valid To date cannot be in the past.');
+            } else if ($request->valid_from > $request->valid_to) {
+                return redirect()->back()->with('error', 'Valid To date cannot be before the Valid From date.');
+            } else {
+                $discount->valid_to = $request->valid_to;
+            }
         }
 
         // Save the discount record
