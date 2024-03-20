@@ -18,16 +18,19 @@
                     <h2 class="mb-6 text-lg font-formula1 text-neutral-30">Shop</h2>
                     <ul class="text-neutral-30">
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">T-shirts</a>
+                            <a href="{{ route('tshirts') }}" class="hover:underline">T-shirts</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Hoodies</a>
+                            <a href="{{ route('hoodies') }}" class="hover:underline">Hoodies</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Trousers</a>
+                            <a href="{{ route('trousers') }}" class="hover:underline">Trousers</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Shirts</a>
+                            <a href="{{ route('jackets') }}" class="hover:underline">Jackets</a>
+                        </li>
+                        <li class="mb-4">
+                            <a href="{{ route('accessories') }}" class="hover:underline">Accessories</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +44,7 @@
                             <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Order status</a>
+                            <a href="{{ route('profile.orders') }}" class="hover:underline">Order status</a>
                         </li>
                         <li class="mb-4">
                             <a href="#" class="hover:underline">Shipping</a>
