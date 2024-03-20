@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\contactForm;
 use app\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Discount;
 
 class AdminController extends Controller
 {
@@ -179,5 +180,138 @@ class AdminController extends Controller
         }
         $order->save();
         return redirect()->back()->with('success', 'Order status updated successfully.');
+    }
+
+    // Get all discounts
+    public function getAllDiscountCodes()
+    {
+        $discounts = Discount::all();
+        return view('admin.discounts-view', ['discounts' => $discounts]);
+    }
+
+    // Add a discount
+    public function addDiscount(Request $request)
+    {
+        // Validate each field individually to provide more specific error messages
+        // Check if the code is a string and unique
+        if (!is_string($request->code)) {
+            return redirect()->back()->with('error', 'Discount code must be a string.');
+        }
+        if (Discount::where('code', $request->code)->exists()) {
+            return redirect()->back()->with('error', 'Discount code must be unique.');
+        }
+        // Check if the discount value is a number
+        if (!is_numeric($request->value)) {
+            return redirect()->back()->with('error', 'Discount value must be a number.');
+        }
+        // Check if the max uses is a number
+        if ($request->filled('max_uses') && !is_numeric($request->max_uses)) {
+            return redirect()->back()->with('error', 'Max uses must be a number.');
+        }
+        // Check if the valid from date is a date
+        if ($request->filled('valid_from') && !strtotime($request->valid_from)) {
+            return redirect()->back()->with('error', 'Valid from date must be a date.');
+        }
+        // Check if the valid to date is a date
+        if ($request->filled('valid_to') && !strtotime($request->valid_to)) {
+            return redirect()->back()->with('error', 'Valid to date must be a date.');
+        }
+
+        // Check if the discount value is more than 0 and return an error if not depending on the type
+        if ($request->value <= 0) {
+            if ($request->type === 'fixed') {
+                return redirect()->back()->with('error', 'Fixed discount must be more than 0.');
+            } else {
+                return redirect()->back()->with('error', 'Percentage discount must be more than 0.');
+            }
+        }
+        // Check if the percentage discount is more than 100
+        if ($request->type === 'percentage' && $request->value > 100) {
+            return redirect()->back()->with('error', 'Percentage discount cannot be more than 100.');
+        }
+        // Check if the valid from date is after the valid to date
+        if ($request->filled('valid_from') && $request->filled('valid_to') && $request->valid_from > $request->valid_to) {
+            return redirect()->back()->with('error', 'Valid from date cannot be after valid to date.');
+        }
+        // Check if the max uses is less than or equal to 0
+        if ($request->filled('max_uses') && $request->max_uses <= 0) {
+            return redirect()->back()->with('error', 'Max uses must be more than 0.');
+        }
+        // Check if the valid from date is in the past
+        if ($request->filled('valid_from') && $request->valid_from < now()) {
+            return redirect()->back()->with('error', 'Valid from date cannot be in the past.');
+        }
+        // Check if the valid to date is in the past
+        if ($request->filled('valid_to') && $request->valid_to < now()) {
+            return redirect()->back()->with('error', 'Valid to date cannot be in the past.');
+        }
+        // Check if the valid to date is before the valid from date
+        if ($request->filled('valid_from') && $request->filled('valid_to') && $request->valid_from > $request->valid_to) {
+            return redirect()->back()->with('error', 'Valid from date cannot be after valid to date.');
+        }
+
+        // Create a new discount with the code and discount
+        $discount = new Discount;
+        $discount->code = $request->code;
+        $discount->type = $request->type;
+        $discount->value = $request->value;
+        $discount->uses = 0;
+        $discount->max_uses = $request->filled('max_uses') ? $request->max_uses : null;
+        $discount->valid_from = $request->filled('valid_from') ? $request->valid_from : null;
+        $discount->valid_to = $request->filled('valid_to') ? $request->valid_to : null;
+        $discount->save();
+        return redirect()->back()->with('success', 'Discount added successfully.');
+    }
+
+    // Update a discount
+    public function updateDiscount(Request $request, $discountId)
+    {
+
+        // Find the discount record
+        $discount = Discount::findOrFail($discountId);
+
+        // Update the discount fields if they are filled
+        if ($request->filled('code')) {
+            $discount->code = $request->code;
+        }
+
+        if ($request->filled('type')) {
+            $discount->type = $request->type;
+        }
+
+        if ($request->filled('value')) {
+            $discount->value = $request->value;
+        }
+
+        if ($request->filled('max_uses')) {
+            $discount->max_uses = $request->max_uses;
+        }
+
+        if ($request->filled('valid_from')) {
+            $discount->valid_from = $request->valid_from;
+        }
+
+        if ($request->filled('valid_to')) {
+            $discount->valid_to = $request->valid_to;
+        }
+
+        // Save the discount record
+        $discount->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Discount updated successfully.');
+    }
+
+    // Delete a discount
+    public function deleteDiscount($discountId)
+    {
+        // Find the discount record
+        $discount = Discount::findOrFail($discountId);
+
+        // Delete the discount record
+        $discount->delete();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Discount deleted successfully.');
     }
 }
