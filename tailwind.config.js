@@ -3,14 +3,18 @@ import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php", "./storage/framework/views/*.php", "./resources/views/**/*.blade.php"],
+    content: [
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+    ],
 
     theme: {
         colors: {
             default: {
                 black: "rgba(0, 0, 0, 1)",
                 white: "rgba(255, 255, 255, 1)",
-                transparent: "transparent;"
+                transparent: "transparent;",
             },
             danger: {
                 //red
@@ -86,9 +90,8 @@ export default {
             },
 
             gray: {
-               0:'rgba(239, 239, 240, 1)',
+                0: "rgba(239, 239, 240, 1)",
             },
-
         },
         fontFamily: {
             lexend: ["Lexend Deca", "sans-serif"],
@@ -100,6 +103,7 @@ export default {
             xs: "0.75rem", // Extra Small
             sm: "0.875rem", // Small
             base: "0.875rem", // Base
+            md: "1rem", // Medium
             lg: "1.25rem", // Large
             xl: "1.625rem", // Extra Large
             "2xl": "1.875rem", // 2 Extra Large
@@ -120,7 +124,8 @@ export default {
         },
         extend: {
             background: {
-                "gradient": "linear-gradient(50deg, rgba(0,53,102,1) 0%, rgba(134,32,201,1) 100%)",
+                gradient:
+                    "linear-gradient(50deg, rgba(0,53,102,1) 0%, rgba(134,32,201,1) 100%)",
             },
 
             maxWidth: {
