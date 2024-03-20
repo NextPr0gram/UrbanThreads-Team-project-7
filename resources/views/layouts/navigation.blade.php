@@ -21,7 +21,7 @@
                 </div>
                 {{-- Searchbar --}}
                 <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10" method="GET" action="{{ route('search') }}">
-                    <x-text-input name="search" class="w-full border-none outline-none" placeholder=""></x-text-input>
+                    <x-text-input name="search" class="w-full border-none outline-none" placeholder="Search Products"></x-text-input>
                     <button class="flex-none p-2 flex justify-center items-center" type="submit">
                         <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
                     </button>
