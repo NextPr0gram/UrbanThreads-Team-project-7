@@ -17,23 +17,23 @@
         <div class="border-3 border-light-gray">
 
             {{-- Flex Container for Wishlist Item --}}
-            <div class="flex flex-row items-center justify-between">
+            <div class="flex flex-row items-center justify-between p-4">
 
                 <div class="flex items-center">
                     {{-- Product Image --}}
-                    <div class="w-32 aspect-square p-4"> <!-- flex-shrink-0 -->
-                        <img class="w-32 aspect-square" src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" title="{{ $item->product->name }}">
+                    <div class="w-28 aspect-square">
+                        <img class="w-28 aspect-square" src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" title="{{ $item->product->name }}">
                     </div>
 
                     {{-- Product Details --}}
-                    <div class=" py-4 bg-white items-center"> <!-- flex-grow -->
+                    <div class="px-4 bg-white items-center">
                         <p class="text-base font-semibold">{{ $item->product->name }}</p>
                         <p>{{ $item->product->original_price }}</p>
                     </div>
                 </div>
 
                 {{-- Size Selector --}}
-                <div class="w-56 justify-center"> <!-- flex-shrink-0 -->
+                <div class="w-56 justify-center">
                     <x-select id="size" name="size" class="w-full" required>
                         @foreach ($item->product->variations as $variation)
                         <option value="{{ $variation->id }}">
@@ -43,16 +43,16 @@
                 </div>
 
                 {{-- Wishlist & Cart Action Buttons --}}
-                <div class="flex flex-col items-center justify-end p-4">
+                <div class="flex flex-col justify-end"> <!-- items-center -->
 
-                    {{-- Remove from Wishlist Button --}}
-                    <form action="{{ route('wishlist.remove', $item->product->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="px-4">
-                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" alt="Remove from Wishlist">
-                        </button>
-                    </form>
+                        {{-- Remove from Wishlist Button --}}
+                        <form action="{{ route('wishlist.remove', $item->product->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="px-4">
+                                <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" alt="">
+                            </button>
+                        </form>
 
                     {{-- Add to Cart Button --}}
                     <form action="{{ route('basket.add', $item->product->id) }}" method="post">
