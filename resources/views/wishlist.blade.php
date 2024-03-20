@@ -60,7 +60,7 @@
                             {{-- Add to Cart Button --}}
                             <div class="px-4">
                                 <form action="{{ route('basket.add', $item->product->id) }}" method="post" class="md:pt-4">
-                                    <x-secondary-button class="whitespace-nowrap">Add to basket</x-secondary-button>
+                                    <x-secondary-button class="whitespace-nowrap">Add to cart</x-secondary-button>
                                 </form>
                             </div>
                         </div>
