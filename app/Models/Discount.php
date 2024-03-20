@@ -13,16 +13,12 @@ class Discount extends Model
 
     protected $fillable = [
         'code',
-        'percentage',
+        'type',
+        'value',
         'uses',
         'max_uses',
         'valid_from',
         'valid_to'
-    ];
-
-    protected $casts = [
-        'valid_from' => 'datetime',
-        'valid_to' => 'datetime'
     ];
 
     public function findByCode(string $code)
