@@ -17,13 +17,18 @@ class OrderController extends Controller
         // Get the authenticated user
         $user = auth()->user();
         // Get the orders of the authenticated user
-        $orders = Order::where('user_id', $user->id)->get();
-        // If the user has orders, return the view with the orders
-        if ($orders) {
-            return view('profile.orders', compact('orders'));
+        if ($user) {
+            $orders = Order::where('user_id', $user->id)->get();
+            // If the user has orders, return the view with the orders
+            if ($orders) {
+                return view('profile.orders', compact('orders'));
+            } else {
+                // Otherwise, return the view with an error message
+                return view('profile.order-history')->with('error', 'You do not have any orders');
+            }
         } else {
-            // Otherwise, return the view with an error message
-            return view('profile.order-history')->with('error', 'You do not have any orders');
+            // If the user isn't authenticated, then redirect to the login page with an error message
+            return redirect()->route('login')->with('error', 'Login to view your basket');
         }
     }
 
