@@ -13,6 +13,7 @@
     <x-sidebar-item title="User Accounts" href="admin.user-accounts-view" />
     <x-sidebar-item title="Customer Enquiries" href="admin.customer-enquiries-view" />
     <x-sidebar-item title="Orders" href="admin.orders-view" />
+    <x-sidebar-item title="Discounts" href="admin.discounts-view" />
 
     {{-- lower part of the sidebar for returning to main website and logging out --}}
     <div class="flex flex-col grow justify-end">
