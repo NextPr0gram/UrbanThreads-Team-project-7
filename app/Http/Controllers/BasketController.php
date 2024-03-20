@@ -8,19 +8,20 @@ use App\Models\Discount;
 use App\Models\Product;
 use App\Models\BasketItem;
 use App\Models\ProductVariation;
+use App\Models\Order;
 
 /**
  ** Made by Kishan Jethwa
  */
 
 /**
-*? The basket controller is responsible for:
-*? showing the user's basket
-*? deleting the user's basket
-*? adding a product to the user's basket
-*? removing a product from the user's basket
-*? incrementing/decrementing the quantity of a product in the user's basket
-*? applying a discount to the user's basket
+ *? The basket controller is responsible for:
+ *? showing the user's basket
+ *? deleting the user's basket
+ *? adding a product to the user's basket
+ *? removing a product from the user's basket
+ *? incrementing/decrementing the quantity of a product in the user's basket
+ *? applying a discount to the user's basket
  */
 
 class BasketController extends Controller
@@ -37,7 +38,6 @@ class BasketController extends Controller
                 // Optionally get the basket items of the basket if the basket exists
                 $basketItems = optional($basket)->items;
                 $discountAmount = $basket->discount_amount;
-
                 //? If the basket has items, calculate the total price of the basket items and pass the basket items and total price to the basket view
                 if (count($basketItems) > 0) {
                     // Calculate the total price of the basket items
@@ -84,7 +84,8 @@ class BasketController extends Controller
     }
 
     //* Apply a discount to the user's basket
-    public function validateDiscount(Request $request) {
+    public function validateDiscount(Request $request)
+    {
         // Get the authenticated user
         $user = auth()->user();
         // Get the basket of the authenticated user
@@ -96,13 +97,22 @@ class BasketController extends Controller
             $discount = Discount::where('code', $discountCode)->first();
             // If the discount exists, apply the discount to the basket
             if ($discount) {
-                if($discount->uses >= $discount->max_uses) {
-                    //! Redirect to the basket and display an error message that the discount has been used the maximum number of times
-                    return redirect()->back()->with('error', 'Discount has been used the maximum number of times');
-                } else if($discount->valid_from > now() || $discount->valid_to < now()) {
-                    //! Redirect to the basket and display an error message that the discount is not valid
-                    return redirect()->back()->with('error', 'Discount is not valid');
-                } else if($basket->discount_amount > 0) {
+                // If the discount has a maximum number of uses, check if the discount has been used the maximum number of times
+                if ($discount->max_uses != null) {
+                    if ($discount->uses >= $discount->max_uses) {
+                        //! Redirect to the basket and display an error message that the discount has been used the maximum number of times
+                        return redirect()->back()->with('error', 'Discount has been used the maximum number of times');
+                    }
+                }
+                // If the discount has a valid from and valid to date, check if the current date is within the valid from and valid to date
+                else if ($discount->valid_from != null && $discount->valid_to != null) {
+                    if ($discount->valid_from > now() || $discount->valid_to < now()) {
+                        //! Redirect to the basket and display an error message that the discount is not valid
+                        return redirect()->back()->with('error', 'Discount is not valid');
+                    }
+                }
+                // Check if the discount has already been applied to the basket
+                else if ($basket->discount_amount > 0) {
                     //! Redirect to the basket and display an error message that the discount has already been applied
                     return redirect()->back()->with('error', 'Discount has already been applied');
                 } else {
@@ -111,11 +121,18 @@ class BasketController extends Controller
                 }
             }
             if ($discount) {
-                if($discount->type == 'fixed') {
+                if ($discountCode == "FIRSTORDER") {
+                    if (Order::where('user_id', $user->id)->count() > 0) {
+                        return redirect()->back()->with('error', 'You are not eligible for this discount');
+                    } else {
+                        $basket->discount_amount = $basket->total_amount * 0.10;
+                        $basket->save();
+                    }
+                } else if ($discount->type == 'fixed') {
                     $basket->discount_amount = $discount->value;
                     $basket->save();
-                } else if($discount->type == 'percentage') {
-                    $basket->discount_amount = $basket->total_amount * $discount->percentage;
+                } else if ($discount->type == 'percentage') {
+                    $basket->discount_amount = $basket->total_amount * $discount->value / 100;
                     $basket->save();
                 }
                 //* Redirect to the basket and display a success message that the discount was applied
@@ -130,7 +147,7 @@ class BasketController extends Controller
         }
     }
 
-        /**
+    /**
      * Add a product to the user's basket
      * If the user doesn't have a basket, create one
      * If the product is already in the basket, increment the quantity
@@ -153,7 +170,7 @@ class BasketController extends Controller
         // Get the variation of the product
         $variation = ProductVariation::findOrFail($request->input('size'));
 
-        if($variation->stock <= 0) {
+        if ($variation->stock <= 0) {
             return redirect()->back()->with('error', 'This variant of the product is out of stock.');
         }
 
@@ -243,7 +260,7 @@ class BasketController extends Controller
             ->first();
 
         // Check if the quantity of the basket item exceeds the stock of the product
-        if($basketItem->quantity >= $variation->stock) {
+        if ($basketItem->quantity >= $variation->stock) {
             // Redirect back without updating the quantity and show an error message
             return redirect()->back()->with('error', 'The quantity of the product cannot exceed the stock.');
         }
@@ -280,6 +297,8 @@ class BasketController extends Controller
         if ($basketItem) {
             // Update the quantity of the basket item
             $basketItem->quantity -= 1;
+            // Update the discount amount
+            
 
             if ($basketItem->quantity <= 0) {
                 // Remove the item from the basket if the quantity is zero or negative

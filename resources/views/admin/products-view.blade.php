@@ -347,13 +347,14 @@
                             <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
                                 form="updateProductForm" class=" w-1/2 mt-4 bottom-0 shrink-0">Save
                                 changes</x-primary-button>
-                            <form id="deleteProductForm" action="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <x-danger-button adminDashboard="true" onclick="" type="submit"
-                                    class="w-1/2 mt-4 bottom-0 shrink-0">Delete Product</x-danger-button>
-                            </form>
+                            <x-danger-button adminDashboard="true" onclick="" type="submit"
+                                form="deleteProductForm" class="w-1/2 mt-4 bottom-0 shrink-0">Delete
+                                Product</x-danger-button>
                         </div>
+                    </form>
+                    <form id="deleteProductForm" action="" method="POST">
+                        @csrf
+                        @method('DELETE')
                     </form>
                     <script>
                         function hideForm() {
@@ -382,13 +383,10 @@
                     </script>
                 </div>
             </div>
-
-
         </div>
-
     </div>
     <script>
-        function showDetails(image, name, price, variations, description, action, action) {
+        function showDetails(image, name, price, variations, description, action, action2) {
 
             console.log(action);
             // Show menu
