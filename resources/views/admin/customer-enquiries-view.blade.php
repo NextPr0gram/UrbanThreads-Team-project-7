@@ -25,14 +25,14 @@
                         <tbody class="divide-y divide-neutral-20">
 
                         @foreach ($customerEnquiries as $customerEnquiry)
-    <tr class="h-10">
-        <td class="align-left px-1">{{ $customerEnquiry->FirstName }}</td>
-        <td class="align-left px-1">{{ $customerEnquiry->LastName }}</td>
-        <td class="text-left px-1">{{ $customerEnquiry->email }}</td>
-        <td class="text-left px-1">{{ $customerEnquiry->subject }}</td>
-        <td class="text-left px-1">{{ $customerEnquiry->message }}</td>
-        <td class="text-left px-1">{{ $customerEnquiry->order_id }}</td>
-        <td class="text-left px-1">
+                        <tr class="h-10">
+                            <td class="align-left px-1">{{ $customerEnquiry->FirstName }}</td>
+                            <td class="align-left px-1">{{ $customerEnquiry->LastName }}</td>
+                            <td class="text-left px-1">{{ $customerEnquiry->email }}</td>
+                            <td class="text-left px-1">{{ $customerEnquiry->subject }}</td>
+                            <td class="text-left px-1">{{ $customerEnquiry->message }}</td>
+                            <td class="text-left px-1">{{ $customerEnquiry->order_id }}</td>
+                            <td class="text-left px-1">
         <form id="status-form-{{ $customerEnquiry->id }}" action="{{ route('status.update', ['enquiryId' => $customerEnquiry->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -43,14 +43,12 @@
                 </select>
                 <!-- Hidden input field for enquiryId -->
                 <input type="hidden" name="enquiryId" value="{{ $customerEnquiry->id }}">
-                <!-- Example Filter Dropdown for Status -->
-
             </form>
             <td class="text-left px-1">
                 <form id="delete-form-{{ $customerEnquiry->id }}" action="{{ route('enquiry.delete', ['enquiryId' => $customerEnquiry->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-4 rounded">Delete</button>
+                    <x-danger-button  type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-4 rounded">Delete</x-danger-button>
                 </form>
             </td>
         </td>
