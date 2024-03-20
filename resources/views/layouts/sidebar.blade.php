@@ -2,7 +2,7 @@
     class="hidden lg:hidden absolute w-full h-screen opacity-50 bg-default-black transition-all duration-150 ease-in-out">
 </div>
 <div id="sideBar"
-    class=" flex flex-col text-base absolute lg:static z-10 h-screen bg-secondary-500 w-3/4 lg:w-[232px] shrink-0 bg-white shadow-sm  px-4 py-4 -translate-x-full lg:translate-x-0 transition-all duration-150 ease-in-out rounded-r-lg lg:rounded-[0px]">
+    class="flex flex-col text-base absolute lg:static z-10 h-screen bg-secondary-500 w-3/4 lg:w-[232px] shrink-0 bg-white shadow-sm  px-4 py-4 -translate-x-full lg:translate-x-0 transition-all duration-150 ease-in-out rounded-r-lg lg:rounded-[0px]">
     <div class="pb-8 flex items-center justify-between lg:justify-center py-4 px-2">
         <h6 class="text-lg text-neutral-30 font-formula1">Views</h6>
         <img onclick="closeSideBar()" class="lg:hidden hover:cursor-pointer"
