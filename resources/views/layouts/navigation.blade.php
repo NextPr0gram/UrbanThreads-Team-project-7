@@ -288,6 +288,6 @@
 {{-- Banner under navbar --}}
 <div class="grid grid-cols-3 bg-secondary-300 w-full text-center py-3 text-base font-bold text-neutral-30">
     <h1 class="max-sm:pl-3 font-formula1-light text-center text-white">Free delivery on all orders</h1>
-    <h1 class="font-formula1-light text-center text-white">10% off your first order</h1>
+    <h1 class="font-formula1-light text-center text-white">10% off your first order with code FIRSTORDER</h1>
     <h1 class="max-sm:pr-3 font-formula1-light text-center text-white">Free returns and replacements</h1>
 </div>
