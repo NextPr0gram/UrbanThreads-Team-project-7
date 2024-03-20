@@ -151,10 +151,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
     Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
     Route::get('/admin/orders-view', [AdminController::class, 'getAllOrders'])->name('admin.orders-view');
+    Route::get('/admin/discount-codes-view', [AdminController::class, 'getAllDiscountCodes'])->name('admin.discounts-view');
     Route::post('/processOrder/{orderId}', [AdminController::class, 'processOrder'])->name('order.process');
     Route::post('/updateProduct/{productId}', [AdminController::class, 'updateProduct'])->name('product.update');
     Route::post('/addProduct/', [AdminController::class, 'addProduct'])->name('product.add');
     Route::delete('/deleteProduct/{productId}', [AdminController::class, 'deleteProduct'])->name('product.delete');
+    Route::post('/addDiscount/', [AdminController::class, 'addDiscount'])->name('discount.add');
+    Route::post('/updateDiscount/{discountId}', [AdminController::class, 'updateDiscount'])->name('discount.update');
+    Route::delete('/deleteDiscount/{discountId}', [AdminController::class, 'deleteDiscount'])->name('discount.delete');
 });
 
 //Route for admin side: To update status of customer enquiries
