@@ -42,7 +42,7 @@
                                 <span x-text="selected === '' ? 'Select size' : selected"></span>
                                 <img :src="open ? '{{ asset('icons/utility/dropdown-arrow-up.svg') }}' : '{{ asset('icons/utility/dropdown-arrow-down.svg') }}'" alt="Toggle Dropdown" class="w-4 h-4 ml-2">
                             </button>
-                            <div x-show="open" class="absolute w-52 rounded-md bg-white shadow-lg z-10">
+                            <div x-show="open" class="absolute w-42 md:w-64 xl:w-80 rounded-md bg-white shadow-lg z-10">
                                 <ul class="py-1 text-sm border-2 border-gray-0 rounded-md">
                                     @foreach ($item->product->variations as $variation)
                                     <li @click="selected = '{{ $variation->size }}'; open = false" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
