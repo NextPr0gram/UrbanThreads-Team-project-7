@@ -21,6 +21,12 @@ class Discount extends Model
         'valid_to'
     ];
 
+    // A basket can have a discount code
+    public function baskets()
+    {
+        return $this->hasMany(Basket::class);
+    }
+
     public function findByCode(string $code)
     {
         return $this->where('code', $code)->first();
