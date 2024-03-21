@@ -4,8 +4,8 @@
     ? and remove the product from the basket
     --}}
 
-<div class="flex items-center border-b-2 border-snow-white">
-    <img class="object-cover object-center m-2 h-16 sm:h-24 aspect-square border-3 border-bluish-purple"
+<div class="flex items-center border-2 border-neutral-50 rounded-lg mt-5">
+    <img class="object-cover object-center m-2 h-16 sm:h-24 aspect-square rounded-lg"
         src="{{ $image }}" {{--* This is the placeholder for the image link for the specific product fetched from the database --}}
         alt="" />
     <div class="flex flex-col p-4 w-full">
@@ -15,7 +15,7 @@
                 <p class="text-base text-left">Price: £{{ $price }}</p> {{--* This is the placeholder for the price of the product --}}
                 <p class="text-sm text-left">Size: {{ $size }}</p> {{--* This is the placeholder for the size of the product --}}
             </div>
-            <div class="flex">
+            <div class="flex rounded-lg border border-neutral-50">
                 {{ $counter }} {{--* This is the placeholder for the counter that allows for incrementing and decrementing the quantity of a product --}}
             </div>
             <div>

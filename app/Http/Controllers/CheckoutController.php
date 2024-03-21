@@ -44,10 +44,11 @@ class CheckoutController extends Controller
                         $discount = Discount::where('id', $basket->discount_id)->first();
                         $discountAmount = $basket->discount_amount;
                         $discountCode = $discount->code;
-                        return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount', 'discountCode')); //* Pass the basket items to the view as well as the total price
                     } else {
-                        return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount')); //* Pass the basket items to the view as well as the total price
+                        $discountAmount = 0;
+                        $discountCode = null;
                     }
+                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount', 'discountCode')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket

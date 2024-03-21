@@ -48,4 +48,15 @@ class Order extends Model
         }
         return $orderDetails;
     }
+
+    // Get total number of items in the order
+    public function getTotalItems()
+    {
+        $orderItems = $this->items;
+        $totalItems = 0;
+        foreach ($orderItems as $item) {
+            $totalItems += $item->quantity;
+        }
+        return $totalItems;
+    }
 }
