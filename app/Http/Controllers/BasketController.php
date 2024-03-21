@@ -41,6 +41,7 @@ class BasketController extends Controller
                 if (count($basketItems) > 0) {
                     // Calculate the total price of the basket items
                     $subTotal = $basket->calculateTotalAmount();
+                    $basket->total_amount = $subTotal;
                     // If there is a discount applied to the basket, calculate the discount amount
                     if ($basket->discount_id != null) {
                         // Get the discount
@@ -50,16 +51,20 @@ class BasketController extends Controller
                         if ($discount->type == 'fixed') {
                             $discountAmount = $discount->value;
                             // If the discount is a percentage discount, calculate the discount amount as a percentage of the total price
+                            $basket->discount_amount = $discountAmount;
+                            $basket->save();
                         } else if ($discount->type == 'percentage') {
                             $discountAmount = $subTotal * $discount->value / 100;
                             $basket->discount_amount = $discountAmount;
+                            $basket->save();
                         }
                     } else {
                         $discountCode = null;
                         $discountAmount = 0;
+                        $basket->save();
                     }
-                    $basket->save();
                     $totalAmount = $subTotal - $discountAmount;
+                    $basket->save();
                     return view('basket.show', compact('basketItems', 'subTotal', 'totalAmount', 'discountAmount', 'discountCode')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
