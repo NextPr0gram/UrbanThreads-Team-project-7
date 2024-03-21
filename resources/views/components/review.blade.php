@@ -1,4 +1,4 @@
-<div class="mt-10 grid-cols-2 flex max-sm:pr-5">
+<div class="flex justify-center items-center pt-16">
     <div
         class="bg-primary-50 rounded-lg bg-opacity-40 border-2 backdrop-blur-sm shadow-sd border-primary-50 shadow-gray mix-blend-darken bg-gray w-96 mx-auto md:flex md:flex-col md:w-full md:pl-7 md:pt-3">
         <div class="flex justify-between items-center pl-5 py-3">
