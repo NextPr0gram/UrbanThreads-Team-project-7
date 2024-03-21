@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $table = "orders"; // Table name
 
-    protected $fillable = ['user_id', 'total', 'address_id']; // The user id is a fillable field as it is required when creating an order
+    protected $fillable = ['user_id', 'total', 'address_id', 'discount_amount']; // The user id is a fillable field as it is required when creating an order
 
     // The order belongs to a user
     public function user()

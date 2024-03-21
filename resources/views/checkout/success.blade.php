@@ -50,6 +50,16 @@
                     <p class="text-lg font-medium text-gray-900">Order Status</p>
                     <p class="font-semibold text-lg text-gray-900">{{ $order->status }}</p>
                 </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-lg font-medium text-gray-900">Subtotal</p>
+                    <p class="font-semibold text-lg text-gray-900">£{{ $subTotal }}</p>
+                </div>
+                @if ($discountAmount > 0)
+                    <div class="flex justify-between items-center">
+                        <p class="text-lg font-medium text-gray-900">Discount</p>
+                        <p class="font-semibold text-lg text-gray-900">-£{{ $discountAmount }}</p>
+                    </div>
+                @endif
             </div>
             <div class="flex justify-between items-center mt-6">
                 <p class="text-2xl font-semibold text-gray-900">Total</p>

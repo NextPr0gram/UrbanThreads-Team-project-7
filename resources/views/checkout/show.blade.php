@@ -100,19 +100,19 @@
                         <h1 class="text-lg font-bold">Payment Information</h1>
                         <div class="relative w-full">
                             <x-input-label for="card_number">Card Number</x-input-label>
-                            <x-text-input id="card_number" name="card_number"
-                                class="w-full text-sm shadow-sm" placeholder="1234 5678 9012 3456" />
+                            <x-text-input id="card_number" name="card_number" class="w-full text-sm shadow-sm"
+                                placeholder="1234 5678 9012 3456" />
                         </div>
                         <div class="flex flex-col sm:flex-row sm:space-x-6">
                             <div class="w-full">
                                 <x-input-label for="expiry_date">Expiry Date (MM/YY)</x-input-label>
-                                <x-text-input id="expiry_date" name="expiry_date"
-                                    class="w-full text-sm shadow-sm" placeholder="MM/YY" />
+                                <x-text-input id="expiry_date" name="expiry_date" class="w-full text-sm shadow-sm"
+                                    placeholder="MM/YY" />
                             </div>
                             <div class="pt-6 w-full sm:pt-0">
                                 <x-input-label for="security_code">Security Code (CVC/CVV)</x-input-label>
-                                <x-text-input id="security_code" name="security_code"
-                                    class="w-full text-sm shadow-sm" placeholder="123" />
+                                <x-text-input id="security_code" name="security_code" class="w-full text-sm shadow-sm"
+                                    placeholder="123" />
                             </div>
                         </div>
                         <div class="relative">
@@ -137,10 +137,12 @@
                             <p class="text-sm font-medium text-gray-900">Subtotal</p>
                             <p class="font-semibold text-gray-900">£{{ $subTotal }}</p>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <p class="text-sm font-medium text-gray-900">Discount</p>
-                            <p class="font-semibold text-gray-900">£{{ $discountAmount }}</p>
-                        </div>
+                        @if ($discountAmount > 0)
+                            <div class="flex justify-between items-center">
+                                <p class="text-sm font-medium text-gray-900">Discount - {{$discountCode}}</p>
+                                <p class="font-semibold text-gray-900">-£{{ $discountAmount }}</p>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex justify-between items-center mt-6">
                         <p class="text-2xl font-semibold text-gray-900">Total</p>
