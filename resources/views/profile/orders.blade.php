@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Orders') }}
         </h2>
-        <p class="text-gray-500 text-lg font-lexend">This page allows you to view the orders you have placed. You can
+        <p class="text-gray-500 text-lg font-lexend max-sm:text-base">This page allows you to view the orders you have placed. You can
             also check the status of an order and cancel it if it hasn't been dispatched yet.</p>
     </x-slot>
 
@@ -27,7 +27,7 @@
                         {{ $order->total }}
                     </x-slot>
                     <x-slot name="itemsInOrder">
-                        {{ $order->items->count() }}
+                        {{ $order->getTotalItems() }}
                     </x-slot>
                     <x-slot name="orderLink">
                         {{ route('view-order', ['id' => $order->id]) }}
