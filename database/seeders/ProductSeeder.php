@@ -18,8 +18,8 @@ class ProductSeeder extends Seeder
         DB::table('products')->insert([
             //* Hoodies
             [
-                'c1_id' => 2, //MALE PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 2, // MALE PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Cool Hoodie',
                 'slug' => 'cool-hoodie',
                 'description' => 'This is a cool hoodie.',
@@ -33,8 +33,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 3, //FEMALE PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 3, // FEMALE PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Comfy Hoodie',
                 'slug' => 'comfy-hoodie',
                 'description' => 'This is a comfy hoodie with fleece.',
@@ -48,8 +48,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 2, //MALE PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 2, // MALE PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Sporty Hoodie',
                 'slug' => 'sporty-hoodie',
                 'description' => 'This is a sporty hoodie.',
@@ -63,8 +63,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 1, //UNISEX PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 1, // UNISEX PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Oversized Hoodie',
                 'slug' => 'oversized-hoodie',
                 'description' => 'This is a oversized hoodie.',
@@ -78,8 +78,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 2, //MALE PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 2, // MALE PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Slim-fit Hoodie',
                 'slug' => 'slim-fit-hoodie',
                 'description' => 'This is a slim-fit hoodie.',
@@ -93,8 +93,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 3, //FEMALE PRODUCT
-                'c2_id' => 1, //Hoodie
+                'c1_id' => 3, // FEMALE PRODUCT
+                'c2_id' => 1, // Hoodie
                 'name' => 'Winter Hoodie',
                 'slug' => 'winter-hoodie',
                 'description' => 'This is a winter hoodie.',
