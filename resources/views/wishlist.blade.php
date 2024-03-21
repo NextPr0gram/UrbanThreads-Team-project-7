@@ -12,7 +12,7 @@
     {{-- Main Container --}}
     <div class="container mx-auto">
         <div class="flex justify-center">
-            <div class="grid grid-rows-1 mt-5 gap-10 md:w-[900px] xl:w-[1200px]">
+            <div class="grid grid-rows-1 mt-5 gap-10 md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]">
 
                 {{-- Wishlist Items Container --}}
                 @foreach($wishlistItems as $item)
@@ -38,7 +38,7 @@
 
                         {{-- Size Selector --}}
                         <div x-data="{ open: false, selected: '' }" @click.away="open = false" class="relative text-neutral-900">
-                            <button @click="open = !open" class="flex justify-between items-center w-32 text-left px-2 py-1 bg-white border-2 border-gray-0 rounded-md md:px-4 md:py-2 md:w-52">
+                            <button @click="open = !open" class="flex justify-between items-center w-full md:w-64 xl:w-80 2xl:w-80 text-left px-2 py-1 bg-white border-2 border-gray-0 rounded-md md:px-4 md:py-2">
                                 <span x-text="selected === '' ? 'Select size' : selected"></span>
                                 <img :src="open ? '{{ asset('icons/utility/dropdown-arrow-up.svg') }}' : '{{ asset('icons/utility/dropdown-arrow-down.svg') }}'" alt="Toggle Dropdown" class="w-4 h-4 ml-2">
                             </button>
@@ -65,7 +65,7 @@
                             </form>
 
                             {{-- Add to Cart Button --}}
-                            <div class="px-4">
+                            <div class="md:px-4">
                                 <form action="{{ route('basket.add', $item->product->id) }}" method="post" class="md:pt-4">
                                     <x-secondary-button class="whitespace-nowrap">Add to cart</x-secondary-button>
                                 </form>
