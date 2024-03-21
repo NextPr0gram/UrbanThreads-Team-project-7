@@ -37,26 +37,28 @@
                         <x-slot name="counter">
                             {{-- * This is the form that allows the button inside the form perform a post request that decrements the quantity
                              * of the basket item inside the user's basket --}}
-                        <form action="{{ route('decrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
-                            method="post">
-                            @csrf
-                            {{-- * This is a button that allows for decrementing the quantity --}}
-                            <button
-                                class="mr-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">-</button>
-                        </form>
-                        {{-- * The quantity of the basket item is fetched from the basket item record in the basket items table
+                            <form
+                                action="{{ route('decrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
+                                method="post">
+                                @csrf
+                                {{-- * This is a button that allows for decrementing the quantity --}}
+                                <button
+                                    class="mr-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">-</button>
+                            </form>
+                            {{-- * The quantity of the basket item is fetched from the basket item record in the basket items table
                              * It is updated whenever the buttons for incrementing and decrementing the quantity are clicked --}}
                             <span class="flex items-center font-bold">{{ $item->quantity }}</span>
                             {{-- * This is the form that allows the button inside the form perform a post request that increments the quantity
                              * of the basket item inside the user's basket --}}
-                        <form action="{{ route('incrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
-                            method="post">
-                            @csrf
-                            {{-- * This is a button that allows for incrementing the quantity --}}
-                            <button
-                                class="ml-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">+</button>
-                        </form>
-                    </x-slot>
+                            <form
+                                action="{{ route('incrementQuantity', ['productId' => $item->product->id, 'variationId' => $item->variation->id]) }}"
+                                method="post">
+                                @csrf
+                                {{-- * This is a button that allows for incrementing the quantity --}}
+                                <button
+                                    class="ml-3 w-8 h-8 font-bold text-black bg-transparent border border-black squared">+</button>
+                            </form>
+                        </x-slot>
 
                         {{-- * The price of the basket item is placed in the price placeholder --}}
                         <x-slot name="price">
@@ -105,13 +107,25 @@
                         <div class="text-sm font-medium text-black font-lexend-deca">Subtotal</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">£{{ $subTotal }}
+                        <div class="text-sm font-medium text-black font-lexend-deca subtotal-value">
+                            £{{ $subTotal }}
                         </div>
                     </div>
                 </div>
                 <div class="flex justify-between items-center self-stretch px-4 h-12 border-b-2 border-snow-white">
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-medium text-black font-lexend-deca">Discount</div>
+                        @if ($discountAmount > 0)
+                            <div class="text-sm font-medium text-black font-lexend-deca">
+                                Discount - {{ $discountCode }}
+                            </div>
+                            <form name="deleteDiscount" method="POST" action="{{ route('discount.remove') }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-danger-300">Remove</button>
+                            </form>
+                        @else
+                            <div class="text-sm font-medium text-black font-lexend-deca">Discount</div>
+                        @endif
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
                         <div class="text-sm font-medium text-black font-lexend-deca">£{{ $discountAmount }}</div>
@@ -122,7 +136,8 @@
                         <div class="text-sm font-bold text-black font-lexend-deca">Total</div>
                     </div>
                     <div class="flex gap-2.5 justify-center items-center px-2 py-2">
-                        <div class="text-sm font-bold text-black font-lexend-deca total-value">£{{ $totalAmount }}</div>
+                        <div class="text-sm font-bold text-black font-lexend-deca total-value">£{{ $totalAmount }}
+                        </div>
                     </div>
                 </div>
 

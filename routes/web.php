@@ -80,6 +80,8 @@ Route::post('/basket/decrement/{productId}/{variationId}', [BasketController::cl
     ->name('decrementQuantity');
 //? Route to perform discount code validation
 Route::post('/basket/discount', [BasketController::class, 'validateDiscount'])->name('discount');
+//? Route to remove a discount code from the basket
+Route::delete('/basket/discount', [BasketController::class, 'removeDiscount'])->name('discount.remove');
 
 Route::mailPreview();
 
