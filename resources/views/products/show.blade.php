@@ -8,7 +8,7 @@
             </div>
             <div class="xl:px-20 max-sm:px-5 py-10">
                 <div class="mb-10">
-                    <h1 class="text-4xl font-formula1 text-primary-300">{{ $product->name }}</h1>
+                    <h1 class="text-2xl font-formula1 text-primary-300">{{ $product->name }}</h1>
                     <p class="mt-4 text-lg font-bold font-lexend">£{{ $product->selling_price }}</p>
                 </div>
                 <div class="mb-10">

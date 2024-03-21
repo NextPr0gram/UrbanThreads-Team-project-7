@@ -296,7 +296,7 @@ class ProductSeeder extends Seeder
             [
                 'c1_id' => 2, // MALE PRODUCT
                 'c2_id' => 4, // Trousers
-                'name' => 'Streamline Straight Leg Trousers',
+                'name' => 'Streamline Leg Trousers',
                 'slug' => 'straight-leg-trousers',
                 'description' => 'Timeless and versatile, offering a sleek silhouette suitable for any occasion.',
                 'original_price' => '45.00',
