@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('title')
-    User Accounts
+    <div class="flex items-center">
+        <div class="flex-1 text-left pl-10 lg:pl-0">User Accounts</div>
+    </div>
 @endsection
 
 @section('content')
