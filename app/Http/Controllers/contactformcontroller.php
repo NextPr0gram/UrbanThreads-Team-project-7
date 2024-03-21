@@ -50,6 +50,21 @@ public function updateStatus(Request $request, $enquiryId) {
     }
 }
 
+public function deleteEnquiry($enquiryId) {
+    try {
+        // Retrieve the enquiry
+        $enquiry = ContactForm::findOrFail($enquiryId);
+
+        // Delete the enquiry
+        $enquiry->delete();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Enquiry deleted successfully');
+    } catch (\Exception $e) {
+        // Handle the exception, perhaps log it
+        return redirect()->back()->with('failed', 'Failed to delete enquiry');
+    }
+}
 
 
 

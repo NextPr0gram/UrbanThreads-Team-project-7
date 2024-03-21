@@ -12,7 +12,7 @@
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
@@ -20,13 +20,69 @@
                     </a>
                 </div>
                 {{-- Searchbar --}}
-                <form class="flex px-0 my-auto md:px-8" method="GET" action="{{ route('search') }}">
-                    <x-text-input name="search" class="hidden w-full md:block"></x-text-input>
-                    <button class="flex-none px-2" type="submit">
-                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" alt="">
+                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10" method="GET" action="{{ route('search') }}">
+                    <x-text-input name="search" class="w-full border-none outline-none" placeholder="Search Products"></x-text-input>
+                    <button class="flex-none p-2 flex justify-center items-center" type="submit">
+                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
                     </button>
                 </form>
+                {{-- Mobile Nav Icon --}}
+                <button id="mobileNavToggle" type="button" class="ml-5 aspect-square h-10 flex md:hidden items-center justify-center">
+                    <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center" alt="">
+                </button>
             </div>
+
+            {{-- Mobile Nav Modal --}}
+            <div id="mobileNavModal" class="fixed inset-0 z-10 transition-transform translate-x-full ease-[ease]">
+
+                {{-- Mobile Nav Content --}}
+                <div class="bg-white h-full w-fit p-5 pt-7 absolute top-0 right-0 bottom-0 rounded-l-[8px]">
+
+                    <div class="flex gap-5">
+
+                        {{-- Mobile Searchbar --}}
+                        <form class="flex items-center my-auto border-2 rounded-md border-[#003566] h-10" method="GET" action="{{ route('search') }}">
+                            <x-text-input name="search" class="w-full border-none outline-none" placeholder=""></x-text-input>
+                            <button class="flex-none p-2 flex justify-center items-center" type="submit">
+                                <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
+                            </button>
+                        </form>
+
+                        {{-- Mobile Close Button --}}
+                        <button id="mobileNavClose" type="button" class="text-2xl font-semibold">&times;</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <script>
+                const mobileNavToggle = document.querySelector('#mobileNavToggle')
+                const mobileNavModal = document.querySelector('#mobileNavModal')
+                const mobileNavClose = document.querySelector('#mobileNavClose')
+
+                let mobileNavActive = false
+
+                const toggleMobileNav = () => {
+                    mobileNavActive = !mobileNavActive
+                    console.log('Toggled mobile nav', mobileNavActive)
+                    if (mobileNavActive) {
+                        mobileNavModal.classList.remove('translate-x-full')
+                    } else {
+                        mobileNavModal.classList.add('translate-x-full')
+                    }
+                }
+
+                mobileNavToggle.addEventListener('click', (event) => {
+                    toggleMobileNav()
+                })
+
+                mobileNavClose.addEventListener('click', (event) => {
+                    toggleMobileNav()
+                })
+            </script>
+
 
             {{-- right side nav-items account, wishlist, cart buttons... --}}
             <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
@@ -232,6 +288,6 @@
 {{-- Banner under navbar --}}
 <div class="grid grid-cols-3 bg-secondary-300 w-full text-center py-3 text-base font-bold text-neutral-30">
     <h1 class="max-sm:pl-3 font-formula1-light text-center text-white">Free delivery on all orders</h1>
-    <h1 class="font-formula1-light text-center text-white">10% off your first order</h1>
+    <h1 class="font-formula1-light text-center text-white">10% off your first order with code FIRSTORDER</h1>
     <h1 class="max-sm:pr-3 font-formula1-light text-center text-white">Free returns and replacements</h1>
 </div>

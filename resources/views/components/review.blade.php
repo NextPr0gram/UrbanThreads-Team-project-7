@@ -5,17 +5,21 @@
             <h1 class="font-formula1 text-black mb-2 mt-2 text-lg"> Reviews </h1>
         </div>
 
-        <div class="grid grid-cols-2 max-sm:grid-cols-1 pl-5 pb-5 gap-x-5">
-            <div class="justify-items-stretch items-center max-sm:px-5 lg:pr-96 max-sm:flex">
-                <div class="grid grid-rows-2 grid-cols-2 pb-6 items-center">
-                    <p class="font-formula1 text-6xl text-primary-300">{{ $productRating }}</p>
-                    <div class="col-span-1">
-                        <x-bladewind.rating name="product-rating" rating="{{ $productRating }}" clickable="false" />
-                        <p class="font-lexand text-xs text-primary-300"> {{ $totalProductReviews }} Reviews </p>
+        <div class="grid grid-cols-2 max-md:grid-cols-1 pb-5 px-5">
+            <div class="grid grid-cols-2 pb-6 items-center max-md:grid-cols-1">
+                <div class="flex flex-col content-center">
+                    <div class="flex flex-row max-sm:flex-col justify-between max-md:gap-5 max-md:items-center">
+                        <p class="font-formula1 text-6xl text-primary-300 pt-3">{{ $productRating }}</p>
+                        <div class="flex-col max-md:flex max-md:flex-col max-md:gap-3 items-center max-md:mt-5">
+                            <x-bladewind.rating name="product-rating" rating="{{ $productRating }}" clickable="false"
+                                class="text-center" />
+                            <p class="font-lexend text-base text-primary-300"> {{ $totalProductReviews }}
+                                Reviews </p>
+                        </div>
                     </div>
-                    <x-primary-button class="col-span-2 w-full items-center mt-5"
-                        onclick="showModal('review-modal')">Write A
-                        Review</x-primary-button>
+                    <x-primary-button class="w-full mt-5" onclick="showModal('review-modal')">
+                        Write A Review
+                    </x-primary-button>
                 </div>
             </div>
 

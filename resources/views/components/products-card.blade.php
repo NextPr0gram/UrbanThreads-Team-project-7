@@ -5,7 +5,7 @@
     --}}
 
 <div
-    class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-50 w-fit hover:bg-neutral-20 {{-- hover:outline hover:outline-3 hover:outline-neutral-20 --}}">
+    class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-50 w-fit hover:bg-neutral-20">
     <div class="w-64 aspect-auto p-2">
         {{-- * The placeholder for the image of the product --}}
         <img class="w-64 aspect-auto rounded-lg" src="{{ $image }}" alt="">

@@ -5,70 +5,73 @@
     --}}
 
 <x-app-layout>
-
     <x-slot name="header">
-        <h2 class="">
-            Wishlist
-        </h2>
+        <h2>Wishlist</h2>
     </x-slot>
 
-    <!-- Main Container -->
-    <div class="flex justify-center">
-        <!--   Wishlist Items Container -->
-        <div class="grid grid-cols-1 gap-20 mt-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            <!-- Item Container -->
-            @foreach($wishlistItems as $item)
-            <div class="transition-all duration-300 ease-in-out border-3 border-light-gray w-fit hover:border-bluish-purple hover:outline hover:outline-4 hover:outline-light-gray">
-                <div class="w-64 aspect-square">
-                    {{--* The placeholder for the image of the product --}}
-                    <img class="w-64 aspect-square" src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" title="{{ $item->product->name }}">
-                </div>
+    {{-- Main Container --}}
+    <div class="container mx-auto">
+        <div class="flex justify-center">
+            <div class="grid grid-rows-1 mt-5 gap-10 md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[1200px]">
 
-                
-                <div class="px-4 py-4 bg-white">
-                    {{--* The placeholders for the product name, price and availability --}}
-                    <p class="text-base font-formula1">{{ $item->product->name }}</p>
-                    <p>{{ $item->product->original_price }}</p>
-                </div>
+                {{-- Wishlist Items Container --}}
+                @foreach ($wishlistItems as $item)
+                    <div class="border-2 border-neutral-50 rounded-lg">
 
-                <div class="pt-4 pl-4">
-                    {{-- *Button to remove from the wishlist --}}
-                    <form action="{{ route('wishlist.remove', $item->product->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" x-data="{ clicked: false }" @click="clicked = !clicked">
-                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" :class="{ 'hidden': clicked }" alt="">
-                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" x-show="clicked" alt="">
-                        </button>
-                    </form>
+                        {{-- Flex Container for Wishlist Item --}}
+                        <div class="flex flex-col md:flex-row items-center justify-between p-4 gap-4">
 
-                </div>
+                            <div class="flex flex-col md:flex-row items-center w-full md:w-auto">
+                                {{-- Product Image --}}
+                                <div class="w-24 aspect-square">
+                                    <img class="w-24 aspect-square rounded-md" src="{{ asset($item->product->image) }}"
+                                        alt="{{ $item->product->name }}" title="{{ $item->product->name }}">
+                                </div>
 
-                <div class="flex justify-end p-4 bg-white">
-                    {{--* Button to add the product to the basket --}}
-                    <form action="{{ route('basket.add', $item->product->id) }}" method="post">
-                        @csrf
-                        <x-select id="size" name="size" class="w-full" required>
-                            @foreach ($item->product->variations as $variation)
-                                <option value="{{ $variation->id }}">Size: {{ $variation->size }}
-                                    @if ($variation->stock <= 0)
-                                        - Out of stock
-                                    @elseif ($variation->stock < 10)
-                                        - Low stock ({{ $variation->stock }} left)
-                                    @else
-                                        - In stock
-                                    @endif
-                                </option>
-                            @endforeach
-                        </x-select>
-                        <x-primary-button class="" href={{ $productLink }}>Add to cart</x-primary-button>
-                    </form>
-                    {{--? The $productLink variable is the placeholder for the link to the product page of the specific product --}}
-                </div>
-                
+                                {{-- Product Details --}}
+                                <div class="pt-2 md:px-4 items-center">
+                                    <div class="text-center md:text-left">
+                                        <p class="text-lg font-lexend-bold">{{ $item->product->name }}</p>
+                                        <p class="text-md font-lexend">£{{ $item->product->selling_price }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="addToBasket" class="flex justify-center items-center gap-4 max-sm:flex-col w-auto md:w-1/2"
+                                action="{{ route('basket.add', ['productId' => $item->product->id]) }}" method="post">
+                                @csrf
+                                @method('POST')
+                                {{-- Size Selector --}}
+                                <x-select id="size" name="size" class="w-3/6 max-sm:w-full" required>
+                                    @foreach ($item->product->variations as $variation)
+                                        <option value="{{ $variation->id }}">Size: {{ $variation->size }}
+                                            @if ($variation->stock <= 0)
+                                                - Out of stock
+                                            @elseif ($variation->stock < 10)
+                                                - Low stock ({{ $variation->stock }} left)
+                                            @else
+                                                - In stock
+                                            @endif
+                                        </option>
+                                    @endforeach
+                                </x-select>
+                                <x-secondary-button type="submit" class="w-2/6 max-sm:w-full">
+                                    Add to Basket
+                                </x-secondary-button>
+                            </form>
+                            {{-- Remove from Wishlist Button --}}
+                            <form id="removeFromWishlist" action="{{ route('wishlist.remove', $item->product->id) }}"
+                                method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="mx-4">
+                                    <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-6"
+                                        alt="">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
-
 </x-app-layout>

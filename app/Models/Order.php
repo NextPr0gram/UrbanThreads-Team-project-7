@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $table = "orders"; // Table name
 
-    protected $fillable = ['user_id', 'total', 'address_id']; // The user id is a fillable field as it is required when creating an order
+    protected $fillable = ['user_id', 'total', 'address_id', 'discount_amount']; // The user id is a fillable field as it is required when creating an order
 
     // The order belongs to a user
     public function user()
@@ -36,14 +36,27 @@ class Order extends Model
     {
         $orderItems = $this->items;
         $orderDetails = "";
+        $itemCounter = 1;
         foreach ($orderItems as $item) {
-            $orderDetails .= "Item " . $item->id . ":<br>";
+            $orderDetails .= "Item " . $itemCounter . ":<br>";
             $orderDetails .= "Product: " . $item->product->name . "<br>";
             $orderDetails .= "Variation: " . $item->variation->size . "<br>";
             $orderDetails .= "Quantity: " . $item->quantity . "<br>";
             $orderDetails .= "Price: " . $item->product->selling_price . "<br>";
             $orderDetails .= "<br>";
+            $itemCounter++;
         }
         return $orderDetails;
+    }
+
+    // Get total number of items in the order
+    public function getTotalItems()
+    {
+        $orderItems = $this->items;
+        $totalItems = 0;
+        foreach ($orderItems as $item) {
+            $totalItems += $item->quantity;
+        }
+        return $totalItems;
     }
 }

@@ -9,33 +9,39 @@
     <!-- Header Container -->
     <x-slot name="header">
         Order ID: {{ $order->id }}
+        <div class="justify-center mt-2">
+            @switch($order->status)
+                @case('Placed')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order has been placed.</p>
+                @break
+
+                @case('Processing')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order is being processed.</p>
+                @break
+
+                @case('Dispatched')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order has been dispatched.</p>
+                @break
+
+                @case('Delivered')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order has been delivered.</p>
+                @break
+
+                @case('Returned')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order has been returned.</p>
+                @break
+
+                @case('Cancelled')
+                    <p class="text-neutral-500 text-lg font-lexend">Your order has been cancelled.</p>
+                @break
+            @endswitch
+        </div>
     </x-slot>
 
-    <div class="flex items-center justify-center pb-2 max-sm:mx-5">
-        @switch($order->status)
-            @case('Placed')
-                <p class="text-gray-500 text-lg font-lexend">Your order has been placed.</p>
-            @break
-
-            @case('Processing')
-                <p class="text-gray-500 text-lg font-lexend">Your order is being processed.</p>
-            @break
-
-            @case('Dispatched')
-                <p class="text-gray-500 text-lg font-lexend">Your order has been dispatched.</p>
-            @break
-
-            @case('Delivered')
-                <p class="text-gray-500 text-lg font-lexend">Your order has been delivered.</p>
-            @break
-        @endswitch
-    </div>
-
     <!-- Main Container -->
-    <div class="grid grid-rows-2 items-center mt-4 mx-10 space-y-8 md:flex-row md:justify-center">
+    <div class="grid grid-rows-2 items-center mx-10 md:flex-row md:justify-center gap-y-5">
         <!-- Order items container -->
-        <div
-            class="w-full max-w-[600px] gap-10 md:w-[1037px] p-5 max-sm:p-10 border-2 border-navy-blue backdrop-blur-sm">
+        <div class="w-full max-w-[600px] gap-5 md:w-[1037px] p-5 border-2 border-neutral-50 rounded-lg">
             {{-- * Loops through all basket items in the user's basket --}}
             @foreach ($order->items as $item)
                 <x-order-item>
@@ -57,21 +63,31 @@
                 </x-order-item>
             @endforeach
         </div>
-        <div class="w-full max-w-[600px] p-5 max-sm:p-10 border-2 border-navy-blue backdrop-blur-sm">
+        <div class="w-full max-w-[600px] p-5 border-2 border-neutral-50 rounded-lg">
             <!-- Total -->
-            <div class="py-2 mt-6 border-t border-b border-bluish-purple">
+            <div class="py-2 mt-6 border-t border-b border-primary-300 gap-y-5">
                 <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">Number of items</p>
-                    <p class="font-semibold text-lg text-gray-900">{{ $order->items->count() }}</p>
+                    <p class="text-base sm:text-lg font-medium text-gray-900">Number of items</p>
+                    <p class="font-semibold text-base sm:text-lg text-gray-900">{{ $order->getTotalItems() }}</p>
                 </div>
                 <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">Order Status</p>
-                    <p class="font-semibold text-lg text-gray-900">{{ $order->status }}</p>
+                    <p class="text-base sm:text-lg font-medium text-gray-900">Order Status</p>
+                    <p class="font-semibold text-base sm:text-lg text-gray-900">{{ $order->status }}</p>
                 </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-base sm:text-lg font-medium text-gray-900">Subtotal</p>
+                    <p class="font-semibold text-base sm:text-lg text-gray-900">£{{ $order->total + $order->discount_amount }}</p>
+                </div>
+                @if ($order->discount_amount > 0)
+                    <div class="flex justify-between items-center">
+                        <p class="text-base sm:text-lg font-medium text-gray-900">Discount</p>
+                        <p class="font-semibold text-base sm:text-lg text-gray-900">-£{{ $order->discount_amount }}</p>
+                    </div>
+                @endif
             </div>
             <div class="flex justify-between items-center mt-6">
-                <p class="text-2xl font-semibold text-gray-900">Total</p>
-                <p class="text-2xl font-semibold text-gray-900">£{{ $order->total }}</p>
+                <p class="text-lg sm:text-xl font-semibold text-gray-900">Total</p>
+                <p class="text-lg sm:text-xl font-semibold text-gray-900">£{{ $order->total }}</p>
             </div>
             <div class = "grid grid-flow-col items-center justify-center mt-6">
                 @if ($order->status === 'Placed' || $order->status === 'Processing')

@@ -23,13 +23,12 @@ return new class extends Migration
         Schema::create('discount_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->string('type');
+            $table->enum('type', ['fixed', 'percentage']);
             $table->decimal('value')->nullable();
-            $table->decimal('percentage')->nullable();
             $table->integer('uses')->default(0);
             $table->integer('max_uses')->nullable();
-            $table->dateTime('valid_from')->nullable();
-            $table->dateTime('valid_to')->nullable();
+            $table->date('valid_from')->nullable();
+            $table->date('valid_to')->nullable();
             $table->timestamps();
         });
     }

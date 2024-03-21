@@ -64,7 +64,8 @@
                                         <div class="flex justify-between w-full gap-2">
                                             <div class="flex-1">
                                                 {{-- gender dropdown --}}
-                                                <input required type="hidden" id="genderOption" name="gender" value="">
+                                                <input required type="hidden" id="genderOption" name="gender"
+                                                    value="">
                                                 <div class="relative" id="GenderDropdownButton">
                                                     <x-input-label for="gender" class="pb-2 pt-4">Gender</x-input-label>
                                                     <div id="genderButton" onclick="toggleGenderDropdown()"
@@ -236,11 +237,9 @@
                                             name="description" class="text-base lg:grow w-full h-auto "
                                             placeholder="Write your description here" required />
 
-
                                         <x-primary-button adminDashboard="true" id="addProductSaveChangesButton"
                                             type="submit" class=" w-full mt-4 bottom-0 shrink-0">Save
                                             changes</x-primary-button>
-
                                     </form>
                                 </div>
                             </div>
@@ -255,7 +254,7 @@
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}')">
+                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
                                             More details
                                         </button>
                                     </td>
@@ -344,15 +343,19 @@
                         <x-input-label for="description" class="pb-2 pt-4 ">Description</x-input-label>
                         <x-text-area adminDashboard="true" type="text" id="descriptionField" name="description"
                             class="text-base lg:grow w-full h-auto " placeholder="Write your description here" required />
-
-
-                        <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
-                            class=" w-full mt-4 bottom-0 shrink-0">Save
-                            changes</x-primary-button>
-
-
+                        <div class="flex justify-between gap-2">
+                            <x-primary-button adminDashboard="true" id="saveChangesButton" type="submit"
+                                form="updateProductForm" class=" w-1/2 mt-4 bottom-0 shrink-0">Save
+                                changes</x-primary-button>
+                            <x-danger-button adminDashboard="true" onclick="" type="submit"
+                                form="deleteProductForm" class="w-1/2 mt-4 bottom-0 shrink-0">Delete
+                                Product</x-danger-button>
+                        </div>
                     </form>
-
+                    <form id="deleteProductForm" action="" method="POST">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                     <script>
                         function hideForm() {
                             let editDetailsForm = document.getElementById("editDetails");
@@ -380,20 +383,16 @@
                     </script>
                 </div>
             </div>
-
-
         </div>
-
     </div>
     <script>
-        function showDetails(image, name, price, variations, description, action) {
+        function showDetails(image, name, price, variations, description, action, action2) {
 
             console.log(action);
             // Show menu
             let editDetailsForm = document.getElementById("editDetails");
             let formOverlay = document.getElementById("formOverlay");
             let productsTable = document.getElementById("productsTable");
-
 
             editDetails.classList.remove("translate-y-full");
             editDetails.classList.remove("lg:w-0");
@@ -419,6 +418,7 @@
             let descriptionField = document.getElementById("descriptionField");
             let imageField = document.getElementById("imageField");
             let updateProductForm = document.getElementById("updateProductForm");
+            let deleteProductForm = document.getElementById("deleteProductForm");
 
             title.innerHTML = name;
             nameField.value = name;
@@ -426,10 +426,7 @@
             descriptionField.value = description;
             imageField.src = image;
             updateProductForm.action = action;
-
-
-
-
+            deleteProductForm.action = action2;
 
             // Variations S
             let StockForSLabel = document.getElementById("StockForSLabel");
