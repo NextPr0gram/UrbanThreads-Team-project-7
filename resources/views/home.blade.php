@@ -28,17 +28,17 @@
         Featured Products
     </h1>
     <div class="grid grid-cols-3 grid-rows-1 gap-3 pb-12 h-96">
-        <a class="bg-[url('/images/product-images/hoodies/comfy-hoodie.png')] bg-center">
+        <a class="bg-[url('/images/product-images/hoodies/comfy-hoodie.png')] bg-center" href="{{ route('show', ['slug' => 'comfy-hoodie']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Comfy hoodie
             </h3>
         </a>
-        <a class="bg-[url('/images/product-images/trousers/chinos.png')] bg-center">
+        <a class="bg-[url('/images/product-images/trousers/chinos.png')] bg-center" href="{{ route('show', ['slug' => 'chinos']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Chinos
             </h3>
         </a>
-        <a class="bg-[url('/images/product-images/t-shirt/boxy-t-shirt.png')] bg-center">
+        <a class="bg-[url('/images/product-images/t-shirt/boxy-t-shirt.png')] bg-center" href="{{ route('show', ['slug' => 'boxy-t-shirt']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Boxy T-shirt
             </h3>
