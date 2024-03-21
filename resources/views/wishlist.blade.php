@@ -37,14 +37,21 @@
                         </div>
 
                         {{-- Size Selector --}}
-                        <div class="flex justify-center">
-                            <x-select id="size" name="size" class="w-full appearance-none bg-white bg-clip-padding border border-neutral-900 rounded-md shadow-sm px-2 py-1 text-sm pr-8 leading-tight focus:outline-none focus:ring-2 focus:border-transparent md:px-5 md:py-2 md:text-md" required>
-                                @foreach ($item->product->variations as $variation)
-                                <option value="{{ $variation->id }}">
-                                    Size: {{ $variation->size }} @if ($variation->stock <= 0) - Out of stock @elseif ($variation->stock < 10) - Low stock ({{ $variation->stock }} left) @else - In stock @endif </option>
-                                            @endforeach
-                            </x-select>
+                        <div x-data="{ open: false, selected: '' }" @click.away="open = false" class="relative text-neutral-900">
+                            <button @click="open = !open" class="flex justify-between items-center w-32 text-left px-2 py-1 bg-white border-2 border-gray-0 rounded-md md:px-4 md:py-2 md:w-52">
+                                <span x-text="selected === '' ? 'Select size' : selected"></span>
+                                <img :src="open ? '{{ asset('icons/utility/dropdown-arrow-up.svg') }}' : '{{ asset('icons/utility/dropdown-arrow-down.svg') }}'" alt="Toggle Dropdown" class="w-4 h-4 ml-2">
+                            </button>
+                            <div x-show="open" class="absolute w-52 rounded-md bg-white shadow-lg z-10">
+                                <ul class="py-1 text-sm border-2 border-gray-0 rounded-md">
+                                    @foreach ($item->product->variations as $variation)
+                                    <li @click="selected = '{{ $variation->size }}'; open = false" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        Size: {{ $variation->size }} @if ($variation->stock <= 0) - Out of stock @elseif ($variation->stock < 10) - Low stock ({{ $variation->stock }} left) @else - In stock @endif </li>
+                                                @endforeach
+                                </ul>
+                            </div>
                         </div>
+
 
                         {{-- Wishlist & Cart Action Buttons --}}
                         <div class="flex flex-row items-center md:flex-col md:items-end">
