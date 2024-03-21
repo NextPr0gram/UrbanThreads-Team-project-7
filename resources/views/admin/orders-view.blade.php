@@ -46,7 +46,7 @@
                                     </td>
                                     <td class="text-right">
                                         <button class="underline" id="viewOrderButton"
-                                            onclick="showDetails('{{ $order->getOrderDetails() }}',  '{{ $order->total }}', '{{ $order->status }}', '{{ route('order.process', ['orderId' => $order->id]) }}')">
+                                            onclick="showDetails('{{ $order->getOrderDetails() }}',  {{ $order->total }}, '{{ $order->status }}', {{ $order->discount_amount }}, '{{ route('order.process', ['orderId' => $order->id]) }}')">
                                             View Order
                                         </button>
                                     </td>
@@ -85,20 +85,28 @@
                         }
                     </style>
 
-                    {{-- Title and cancel button --}}
-
                     <form id="processOrderForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action="" method="POST">
                         @csrf
                         @method('POST')
 
+                        {{-- Order details --}}
                         <div class="flex justify-between">
                             <h1 id="title" class="font-formula1 text-lg">Order Details</h1>
                             <button type="button" onclick="hideForm()">Cancel</button>
                         </div>
-                        {{-- image, name and price fields --}}
+
                         <div class="w-full h-fit gap-2 py-5">
                             <p class="text-lg font-formula1">Items</p>
                             <p id="order-items" class="font-lexend"></p>
+                        </div>
+
+                        <div class="flex justify-between w-full h-fit text-lg">
+                            <p class="font-formula1">Subtotal</p>
+                            <p id="order-subtotal" class="font-lexend"></p>
+                        </div>
+                        <div class="flex justify-between w-full h-fit text-lg" id="discount">
+                            <p class="font-formula1">Discount</p>
+                            <p id="order-discount" class="font-lexend"></p>
                         </div>
                         <div class="flex justify-between w-full h-fit text-lg">
                             <p class="font-formula1">Total</p>
@@ -140,7 +148,7 @@
 
     </div>
     <script>
-        function showDetails(items, total, status, action) {
+        function showDetails(items, total, status, discount, action) {
 
             console.log(action);
             // Show menu
@@ -165,12 +173,23 @@
 
             // Update fields: items, total, status, action
             let itemsField = document.getElementById("order-items");
+            let subTotalField = document.getElementById("order-subtotal");
+            let discountDiv = document.getElementById("discount");
+            let discountField = document.getElementById("order-discount");
             let totalField = document.getElementById("order-total");
             let statusField = document.getElementById("order-status");
             let processOrderForm = document.getElementById("processOrderForm");
 
             itemsField.innerHTML = items;
-            totalField.innerHTML = total;
+            if (discount == 0) {
+                subTotalField.innerHTML = "£" + total;
+                discountDiv.classList.add("hidden");
+            } else {
+                subTotalField.innerHTML = "£" + (total + discount);
+                discountField.innerHTML = "£" + discount;
+                discountDiv.classList.remove("hidden");
+            }
+            totalField.innerHTML = "£" + total;
             statusField.innerHTML = status;
             processOrderForm.action = action;
 

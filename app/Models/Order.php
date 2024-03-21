@@ -36,13 +36,15 @@ class Order extends Model
     {
         $orderItems = $this->items;
         $orderDetails = "";
+        $itemCounter = 1;
         foreach ($orderItems as $item) {
-            $orderDetails .= "Item " . $item->id . ":<br>";
+            $orderDetails .= "Item " . $itemCounter . ":<br>";
             $orderDetails .= "Product: " . $item->product->name . "<br>";
             $orderDetails .= "Variation: " . $item->variation->size . "<br>";
             $orderDetails .= "Quantity: " . $item->quantity . "<br>";
             $orderDetails .= "Price: " . $item->product->selling_price . "<br>";
             $orderDetails .= "<br>";
+            $itemCounter++;
         }
         return $orderDetails;
     }
