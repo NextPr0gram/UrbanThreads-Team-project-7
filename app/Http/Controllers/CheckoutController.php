@@ -67,21 +67,21 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request)
     {
         //* Checkout form validation
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('checkoutValidation',[
             // Name fields
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             // Address fields
-            'address_line_1' => 'required',
-            'address_line_2' => 'nullable',
-            'county' => 'required',
-            'city' => 'required',
-            'postcode' => 'required',
+            'address_line_1' => 'required|string',
+            'address_line_2' => 'nullable|string',
+            'county' => 'required|string',
+            'city' => 'required|string',
+            'postcode' => 'required|string',
             // Payment fields
             'card_number' => 'required|digits:16',
-            'expiry_date' => 'required|date_format:m/y',
+            'expiry_date' => 'required|after_or_equal:today|date_format:m/y',
             'security_code' => 'required|digits:3',
-            'cardholder_name' => 'required'
+            'cardholder_name' => 'required|string',
         ]);
 
         // Get the authenticated user
