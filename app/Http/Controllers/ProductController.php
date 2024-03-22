@@ -97,22 +97,19 @@ class ProductController extends Controller
 
         //Calculations only execute if reviews are existent
         if ($reviews->isNotEmpty()) {
-        $averageRating = $reviews->avg('rating'); // Calculate the average rating of the product
-        $averageRating = round($averageRating, 2); // Round the average rating to 2 decimal places
-        $totalProductReviews = $reviews->count(); // Get the total number of reviews for the product
-        $fiveStarPercentage = round($reviews->where('rating', 5)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 5 star ratings
-        $fourStarPercentage = round($reviews->where('rating', 4)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 4 star ratings
-        $threeStarPercentage = round($reviews->where('rating', 3)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 3 star ratings
-        $twoStarPercentage = round($reviews->where('rating', 2)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 2 star ratings
-        $oneStarPercentage = round($reviews->where('rating', 1)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 1 star ratings
-         }
+            $averageRating = $reviews->avg('rating'); // Calculate the average rating of the product
+            $averageRating = round($averageRating, 2); // Round the average rating to 2 decimal places
+            $totalProductReviews = $reviews->count(); // Get the total number of reviews for the product
+            $fiveStarPercentage = round($reviews->where('rating', 5)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 5 star ratings
+            $fourStarPercentage = round($reviews->where('rating', 4)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 4 star ratings
+            $threeStarPercentage = round($reviews->where('rating', 3)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 3 star ratings
+            $twoStarPercentage = round($reviews->where('rating', 2)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 2 star ratings
+            $oneStarPercentage = round($reviews->where('rating', 1)->count() / $reviews->count() * 100, 2); // Calculate the percentage of 1 star ratings
+        }
 
-         // Pass the product to the view with the variations (sizes) and the reviews associated with it
+        // Pass the product to the view with the variations (sizes) and the reviews associated with it
         return view('products.show', compact('product', 'variations', 'reviews', 'averageRating', 'fiveStarPercentage', 'fourStarPercentage', 'threeStarPercentage', 'twoStarPercentage', 'oneStarPercentage', 'totalProductReviews'));
-
-
-
-}
+    }
 
     public function searchForProduct(Request $request)
     {
@@ -127,7 +124,7 @@ class ProductController extends Controller
         if ($products->isEmpty()) {
             return redirect()->back()->with('error', 'No products found for ' . $search);
         } else {
-            return view('products', ['products' => $products, 'category' => 'Search Results for ' . $search]);
+            return view('search-products', ['products' => $products, 'category' => 'Search Results for ' . $search]);
         }
     }
 }

@@ -10,31 +10,26 @@
     <!-- ALL OF THE BELOW IS FOR THE FILTER -->
     <form id="filter" action="{{ route('sort', ['category' => $category]) }}" method="GET">
         <input type="hidden" id="sortOption" name="sort" value="">
-        <div
-            class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem] justify-center">
+        <div class="flex flex-wrap md:flex-nowrap items-start space-x-6 mt-5 mb-12 sm:mb-24 min-h-[30rem] justify-center">
             <div class="flex flex-nowrap">
-                <div
-                    class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left mt-5">
+                <div class="p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg inline-block mb-4 flex-col object-left mt-5">
 
                     <div class="relative" id="dropdownButton">
                         <x-input-label for="sort" class="pb-2">Sort</x-input-label>
-                        <div id="button" onclick="toggleDropdown()"
-                            class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex ">
+                        <div id="button" onclick="toggleDropdown()" class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex ">
                             Options
-                            <img id="upArrow" src="../../public/images/filter icons/Chevron Down.svg" class="ml-2">
+                            <img id="upArrow" src="../../../images/filter icons/Chevron Down.svg" class="ml-2">
                         </div>
 
                         <!-- this is the border for the dropdown options  -->
                         <div id="dropdown" class="rounded-md border-neutral-60 hidden ">
-                            <div
-                                class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
+                            <div class="bg-white bg-opacity-40 border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
                                 <!-- Dropdown content -->
                                 <x-dropdown-link id="Low to High" onclick="setSortOption('Low to High')">Low to
                                     High</x-dropdown-link>
                                 <x-dropdown-link id="High to Low" onclick="setSortOption('High to Low')">High to
                                     low</x-dropdown-link>
-                                <x-dropdown-link id="Popularity"
-                                    onclick="setSortOption('Popularity')">Popularity</x-dropdown-link>
+                                <x-dropdown-link id="Popularity" onclick="setSortOption('Popularity')">Popularity</x-dropdown-link>
 
                             </div>
                         </div>
@@ -72,10 +67,10 @@
                             let upArrow = document.querySelector('#upArrow');
                             dropdown.classList.toggle("hidden");
                             if (dropdown.classList.contains("hidden")) {
-                                upArrow.src = "../../public/images/filter icons/Chevron Down.svg";
+                                upArrow.src = "../../../images/filter icons/Chevron Down.svg";
 
                             } else {
-                                upArrow.src = "../../public/images/filter icons/Vector.svg";
+                                upArrow.src = "../../../public/images/filter icons/Vector.svg";
                             }
                         }
 
@@ -108,41 +103,37 @@
                     * which allows the user to add the product to their basket
                     --}}
                 @foreach ($products as $product)
-                    <div class="mb-4 text-neutral-900">
-                        <a href="{{ route('show', ['slug' => $product->slug]) }}">
-                            <div
-                                class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-30 hover:border-primary-300 w-fit hover:bg-neutral-20 {{-- hover:outline hover:outline-3 hover:outline-neutral-20 --}}">
-                                <div class="w-64 aspect-auto p-2">
-                                    {{-- * The placeholder for the image of the product --}}
-                                    <img class="w-64 aspect-auto rounded-lg" src="..{{ $product->image }}" alt="">
-                                </div>
-
-                                <div class="px-2 py-2">
-                                    {{-- * The placeholders for the product name and price --}}
-                                    <div class="flex flex-row justify-between">
-                                        <h1 class="text-base">{{ $product->name }}</h1>
-                                        {{-- Heart Button to Add to Wishlist --}}
-                                        <form action="{{ route('wishlist.add', ['productId' => $product->id]) }}"
-                                            method="post" class="flex">
-                                            @csrf
-                                            @if ($product->inWishlist())
-                                                <button type="submit">
-                                                    <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                        class="w-6 h-5" alt="">
-                                                </button>
-                                            @else
-                                                <button type="submit">
-                                                    <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                        class="w-6 h-5" alt="">
-                                                </button>
-                                            @endif
-                                        </form>
-                                    </div>
-                                    <p class="font-formula1 text-lg">{{ $product->selling_price }}</p>
-                                </div>
+                <div class="mb-4 text-neutral-900">
+                    <a href="{{ route('show', ['slug' => $product->slug]) }}">
+                        <div class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-30 hover:border-primary-300 w-fit hover:bg-neutral-20 {{-- hover:outline hover:outline-3 hover:outline-neutral-20 --}}">
+                            <div class="w-64 aspect-auto p-2">
+                                {{-- * The placeholder for the image of the product --}}
+                                <img class="w-64 aspect-auto rounded-lg" src="../public{{ $product->image }}" alt="">
                             </div>
-                        </a>
-                    </div>
+
+                            <div class="px-2 py-2">
+                                {{-- * The placeholders for the product name and price --}}
+                                <div class="flex flex-row justify-between">
+                                    <h1 class="text-base">{{ $product->name }}</h1>
+                                    {{-- Heart Button to Add to Wishlist --}}
+                                    <form action="{{ route('wishlist.add', ['productId' => $product->id]) }}" method="post" class="flex">
+                                        @csrf
+                                        @if ($product->inWishlist())
+                                        <button type="submit">
+                                            <img src="{{ asset('icons/utility/heart-default.svg') }}" class="w-6 h-5" alt="">
+                                        </button>
+                                        @else
+                                        <button type="submit">
+                                            <img src="{{ asset('icons/utility/heart-hover.svg') }}" class="w-6 h-5" alt="">
+                                        </button>
+                                        @endif
+                                    </form>
+                                </div>
+                                <p class="font-formula1 text-lg">{{ $product->selling_price }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
             </div>
         </div>

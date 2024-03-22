@@ -46,7 +46,7 @@
             @foreach ($order->items as $item)
                 <x-order-item>
                     <x-slot name="productImage">
-                        {{ $item->product->image }}
+                        /../..{{ $item->product->image }}
                     </x-slot>
                     <x-slot name="productName">
                         {{ $item->product->name }}

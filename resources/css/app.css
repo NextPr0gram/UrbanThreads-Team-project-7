@@ -1,20 +1,20 @@
 @font-face {
     font-family: 'Lexend Deca';
-    src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
+    src: url('../../../public/fonts/LexendDeca-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Lexend Deca Bold';
-    src: url('/fonts/LexendDeca-Bold.ttf') format('truetype');
+    src: url('../../../public/fonts/LexendDeca-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Formula1 Display Bold';
-    src: url('/fonts/Formula1-Bold_web_0.ttf') format('truetype');
+    src: url('../../../public/fonts/Formula1-Bold_web_0.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -25,37 +25,38 @@
 
 @font-face {
     font-family: 'Lexend Deca';
-    src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
+    src: url('../../../public/fonts/LexendDeca-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Lexend Deca Bold';
-    src: url('/fonts/LexendDeca-Bold.ttf') format('truetype');
+    src: url('../../../public/fonts/LexendDeca-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Formula1 Display Bold';
-    src: url('/fonts/Formula1-Bold_web_0.ttf') format('truetype');
+    src: url('../../../public/fonts/Formula1-Bold_web_0.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
-.likeButton{/*Default Non filled button*/
+.likeButton {
+    /*Default Non filled button*/
     width: 25px;
     height: 20px;
-  background-image: url('icons/utility/heart-hover.svg');
-  background-size: cover;
-  background-position: center;
+    background-image: url('icons/utility/heart-hover.svg');
+    background-size: cover;
+    background-position: center;
 }
+
 .liked {
 
     width: 25px;
     height: 20px;
-  background-image: url('icons/utility/heart-default.svg');
-  background-size: cover;
+    background-image: url('icons/utility/heart-default.svg');
+    background-size: cover;
 }
-
