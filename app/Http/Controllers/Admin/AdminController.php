@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\contactForm;
+use App\Models\ContactForm;
 use app\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Discount;
@@ -153,7 +153,7 @@ class AdminController extends Controller
     public function getAllCustomerEnquiries()
     {
 
-        $customerEnquiries = contactForm::all();
+        $customerEnquiries = ContactForm::all();
         return view('admin.customer-enquiries-view', ['customerEnquiries' => $customerEnquiries]);
     }
 
