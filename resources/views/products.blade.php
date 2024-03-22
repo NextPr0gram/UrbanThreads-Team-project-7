@@ -21,7 +21,7 @@
                         <div id="button" onclick="toggleDropdown()"
                             class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex ">
                             Options
-                            <img id="upArrow" src="../../public/images/filter icons/Chevron Down.svg" class="ml-2">
+                            <img id="upArrow" src="../images/filter icons/Chevron Down.svg" class="ml-2">
                         </div>
 
                         <!-- this is the border for the dropdown options  -->
@@ -72,10 +72,10 @@
                             let upArrow = document.querySelector('#upArrow');
                             dropdown.classList.toggle("hidden");
                             if (dropdown.classList.contains("hidden")) {
-                                upArrow.src = "../../public/images/filter icons/Chevron Down.svg";
+                                upArrow.src = "../images/filter icons/Chevron Down.svg";
 
                             } else {
-                                upArrow.src = "../../public/images/filter icons/Vector.svg";
+                                upArrow.src = "../images/filter icons/Vector.svg";
                             }
                         }
 

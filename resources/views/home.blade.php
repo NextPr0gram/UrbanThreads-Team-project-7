@@ -28,17 +28,17 @@
     </h1>
     <div class="grid grid-cols-3 grid-rows-1 gap-3 pb-12 h-96">
         <a class="bg-[url('../../../public/images/product-images/hoodies/comfy-hoodie.png')] bg-center" href="{{ route('show', ['slug' => 'cozy-comfort-hoodie']) }}">
-            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4">
+            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4 max-sm:p-0">
                 CozyComfort Hoodie
             </h3>
         </a>
         <a class="bg-[url('../../../public/images/product-images/trousers/cargos.png')] bg-center" href="{{ route('show', ['slug' => 'cargo-ready-cargos']) }}">
-            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4">
+            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4 max-sm:p-0">
                 CargoReady Cargos
             </h3>
         </a>
         <a class="bg-[url('../../../public/images/product-images/t-shirt/boxy-t-shirt.png')] bg-center" href="{{ route('show', ['slug' => 'street-smart-boxy-tee']) }}">
-            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4">
+            <h3 class="text-primary-300 text-xl max-sm:text-base bg-white bg-opacity-70 font-formula1 p-4 max-sm:p-0">
                 StreetSmart Boxy Tee
             </h3>
         </a>

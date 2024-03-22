@@ -1,16 +1,4 @@
 <footer class="sticky top-[100vh]">
-    <div class="flex justify-center py-16">
-        <div class="px-8"><a href="#"><img class="p-"
-                    src="{{ asset('icons/social-media/pinterest-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="#"><img class="p-"
-                    src="{{ asset('icons/social-media/facebook-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="#"><img class="p-"
-                    src="{{ asset('icons/social-media/instagram-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="#"><img class="p-"
-                    src="{{ asset('icons/social-media/youtube-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="#"><img class="p-"
-                    src="{{ asset('icons/social-media/tiktok-icon-dark.svg') }}" alt=""></a></div>
-    </div>
     <div class="bg-neutral-700">
         <div class="mx-auto w-full max-w-screen-xl">
             <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
