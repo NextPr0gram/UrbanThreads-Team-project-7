@@ -1,11 +1,11 @@
 <section >
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+        <h2 class="text-lg font-medium text-primary-500">
+            {{ __('Contact Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("Update your contact details here.") }}
         </p>
     </header>
 
@@ -49,7 +49,7 @@
 
         <div>
             <x-input-label for="mobile_number" :value="__('Mobile Number (+44)')" />
-            <x-text-input id="mobile_number" name="mobile_number" type="text" class="block mt-1 w-full" :value="old('mobile_number', $user->phone_number)" required autofocus autocomplete="mobile_number" />
+            <x-text-input id="mobile_number" name="mobile_number" type="text" class="block mt-1 w-full" :value="old('mobile_number', $user->phone_number)" autofocus autocomplete="mobile_number" />
             <x-input-error class="mt-2" :messages="$errors->get('mobile_number')" />
         </div>
 

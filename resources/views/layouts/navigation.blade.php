@@ -1,4 +1,6 @@
 {{-- Secondary nav bar on top of the header --}}
+
+
 {{-- <nav class="flex justify-end items-center px-4 mx-auto h-9 text-base max-w-8xl sm:px-6 lg:px-8">
     <a class="pr-2" href="">Store locator</a>
     <div class="w-1 h-5 bg-bluish-purple"></div>
@@ -10,34 +12,80 @@
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        {{-- <x-application-logo class="block mx-2 h-9" /> --}}
+                        <x-application-logo class="block mx-2 h-9" />
                     </a>
                 </div>
-
-
-
-                {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                        {{ __('Dashboard') }}
-                </x-nav- .0> --}}
+                {{-- Searchbar --}}
+                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10" method="GET" action="{{ route('search') }}">
+                    <x-text-input name="search" class="w-full border-none outline-none" placeholder="Search Products"></x-text-input>
+                    <button class="flex-none p-2 flex justify-center items-center" type="submit">
+                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
+                    </button>
+                </form>
+                {{-- Mobile Nav Icon --}}
+                <button id="mobileNavToggle" type="button" class="ml-5 aspect-square h-10 flex md:hidden items-center justify-center">
+                    <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center" alt="">
+                </button>
             </div>
+
+            {{-- Mobile Nav Modal --}}
+            <div id="mobileNavModal" class="fixed inset-0 z-10 transition-transform translate-x-full ease-[ease]">
+
+                {{-- Mobile Nav Content --}}
+                <div class="bg-white h-full w-fit p-5 pt-7 absolute top-0 right-0 bottom-0 rounded-l-[8px]">
+
+                    <div class="flex gap-5">
+
+                        {{-- Mobile Searchbar --}}
+                        <form class="flex items-center my-auto border-2 rounded-md border-[#003566] h-10" method="GET" action="{{ route('search') }}">
+                            <x-text-input name="search" class="w-full border-none outline-none" placeholder=""></x-text-input>
+                            <button class="flex-none p-2 flex justify-center items-center" type="submit">
+                                <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
+                            </button>
+                        </form>
+
+                        {{-- Mobile Close Button --}}
+                        <button id="mobileNavClose" type="button" class="text-2xl font-semibold">&times;</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <script>
+                const mobileNavToggle = document.querySelector('#mobileNavToggle')
+                const mobileNavModal = document.querySelector('#mobileNavModal')
+                const mobileNavClose = document.querySelector('#mobileNavClose')
+
+                let mobileNavActive = false
+
+                const toggleMobileNav = () => {
+                    mobileNavActive = !mobileNavActive
+                    console.log('Toggled mobile nav', mobileNavActive)
+                    if (mobileNavActive) {
+                        mobileNavModal.classList.remove('translate-x-full')
+                    } else {
+                        mobileNavModal.classList.add('translate-x-full')
+                    }
+                }
+
+                mobileNavToggle.addEventListener('click', (event) => {
+                    toggleMobileNav()
+                })
+
+                mobileNavClose.addEventListener('click', (event) => {
+                    toggleMobileNav()
+                })
+            </script>
+
 
             {{-- right side nav-items account, wishlist, cart buttons... --}}
             <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
-
-                {{-- Searchbar --}}
-                {{-- <form class="flex px-0 my-auto md:px-8" method="POST" action="">
-                    <x-text-input class="hidden w-full md:block"></x-text-input>
-                    <button title="Search" class="flex-none px-2">
-                        <img src="{{asset('icons/utility/search-icon-dark.svg')}}" alt="">
-                </button>
-
-                </form> --}}
-
-
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
@@ -83,14 +131,14 @@
                             </button>
                         </x-slot>
 
-
-
-
                         <x-slot name="content">
                             @auth
-                                <!-- Show profile and logout for authenticated users -->
+                                <!-- Show profile, orders and logout for authenticated users -->
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('profile.orders')">
+                                    {{ __('Orders') }}
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
@@ -121,11 +169,6 @@
 
                     <div x-data="{ showMenu: false }" class="relative">
 
-                        {{-- Button to Toggle the Wishlist Dropdown and Slide --}}
-                        <button @click="showMenu = !showMenu" title="Wishlist" class="flex-none px-2">
-                            <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
-                        </button>
-
                         {{-- Mobile Dark Overlay for Remaining 2/12 of the Width --}}
                         <div x-show="showMenu" class="sm:hidden fixed inset-0 bg-default-black opacity-50"></div>
 
@@ -136,116 +179,13 @@
                             x-transition:leave="transform transition-transform ease-in-out duration-500"
                             x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                             class="sm:hidden fixed h-screen w-10/12 top-0 right-0 pt-3 rounded-md shadow-md border border-solid border-neutral-30 bg-default-white md:flex md:flex-col md:right-20 md:w-96 md:h-auto md:mt-16 md:gap-3 md:rounded-lg">
-
-                            {{-- Wishlist Title Section --}}
-                            <div
-                                class="flex flex-grow justify-between py-4 px-4 items-center self-stretch text-neutral-900">
-                                <h3 class="font-formula1 text-lg not-italic font-medium leading-5 md:flex md:mx-auto">
-                                    Wishlist</h3>
-
-                                {{-- Button to Close the Mobile Wishlist --}}
-                                <button @click="showMenu = false" class="md:hidden">
-                                    <img src="{{ asset('icons/utility/cancel-icon.png') }}" class="w-10 h-10"
-                                        alt="">
-                                </button>
-                            </div>
-
-                            {{-- Wishlist Items Container --}}
-                            <div class="px-4 pb-6">
-
-                                {{-- Wishlist Item 1 Container --}}
-                                <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
-                                    {{-- Item 1 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 w-8/12 pl-4 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
-                                        </div>
-
-                                        {{-- Item 1 Right Container --}}
-                                        <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Wishlist Item 2 Container --}}
-                                <div class="flex flex-col py-4 border-b-2 stroke-2 border-neutral-30">
-
-                                    {{-- Item 2 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
-                                        </div>
-
-                                        {{-- Item 2 Right Container --}}
-                                        <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Wishlist Item 3 Container --}}
-                                <div class="pt-4">
-                                    {{-- Item 3 Left Container --}}
-                                    <div class="flex items-center justify-between">
-                                        <img src="#" alt=""
-                                            class="w-20 h-20 shrink-0 bg-primary-75 rounded-sm">
-
-                                        <div
-                                            class="flex flex-col font-lexend text-sm not-italic leading-4 pl-4 w-8/12 text-neutral-900">
-                                            <p class="font-bold pb-2">Item Name</p>
-                                            <p class="font-normal">£ 24.99</p>
-                                        </div>
-
-                                        {{-- Item 3 Right Container --}}
-                                        <div class="flex flex-col items-end">
-                                            <button class="group">
-                                                <img src="{{ asset('icons/utility/heart-default.svg') }}"
-                                                    class="w-6 h-5 group-hover:hidden" alt="Like Button">
-                                                <img src="{{ asset('icons/utility/heart-hover.svg') }}"
-                                                    class="w-6 h-5 group-hover:block hidden" alt="Like Button Hover">
-                                            </button>
-                                            <x-secondary-button
-                                                class="font-lexend text-sm not-italic font-normal leading-4 mt-5 h-10 w-28 text-primary-300">Add
-                                                to cart</x-secondary-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-center underline text-neutral-100 pb-4">
-                                <a href="{{ route('wishlist') }}"
-                                    class="font-lexend text-sm not-italic font-normal leading-4">View all items</a>
-                            </div>
                         </div>
                     </div>
 
+                    {{-- Wishlist Button --}}
+                    <a href="{{ route('wishlist.show') }}" class="flex-none px-2">
+                        <img src="{{ asset('icons/utility/wishlist-icon-dark.svg') }}" alt="Wishlist button">
+                    </a>
 
                     {{-- Shopping cart button --}}
                     <a href="{{ route('basket.show') }}" class="flex-none px-2">
@@ -291,25 +231,29 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-gray-200 dark:border-gray-600">
-            @auth
-                <div class="px-4">
-                    <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                    <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
-            @endauth
             <div class="mt-3 space-y-1">
                 @auth
+                    <div class="px-4">
+                        <div class="text-base font-medium text-gray-800 dark:text-gray-200">Hey
+                            {{ Auth::user()->name }}!
+                        </div>
+                        <div class="text-base font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                    </div>
+                    @if (Auth::user()->admin == '1')
+                        <x-responsive-nav-link :href="route('admin.dashboard')">
+                            Go To Admin Dashboard
+                        </x-responsive-nav-link>
+                    @endif
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                            this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-responsive-nav-link>
                     </form>
@@ -323,12 +267,11 @@
                 @endauth
             </div>
         </div>
-    </div>
 </nav>
 
 {{-- Secondary nav bar at the bottom of the header --}}
-<div class="bg-navy-blue font-lexend-deca">
-    <nav class="flex justify-center items-center h-9 text-base">
+<div class="bg-neutral-700 font-lexend-deca">
+    <nav class="flex justify-center items-center h-9 text-base text-neutral-30">
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
             href="{{ route('hoodies') }}">Hoodies</a>
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
@@ -340,4 +283,11 @@
         <a class="flex items-center px-3 h-full transition-all duration-150 ease-in-out sm:px-10 text-snow-white hover:border-b-4"
             href="{{ route('accessories') }}">Accessories</a>
     </nav>
+</div>
+
+{{-- Banner under navbar --}}
+<div class="grid grid-cols-3 bg-secondary-300 w-full text-center py-3 text-base font-bold text-neutral-30">
+    <h1 class="max-sm:pl-3 font-formula1-light text-center text-white">Free delivery on all orders</h1>
+    <h1 class="font-formula1-light text-center text-white">10% off your first order with code FIRSTORDER</h1>
+    <h1 class="max-sm:pr-3 font-formula1-light text-center text-white">Free returns and replacements</h1>
 </div>
