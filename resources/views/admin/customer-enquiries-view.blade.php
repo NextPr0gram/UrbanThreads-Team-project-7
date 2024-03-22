@@ -50,7 +50,7 @@
                                 <form id="delete-form-{{ $customerEnquiry->id }}" action="{{ route('enquiry.delete', ['enquiryId' => $customerEnquiry->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <x-danger-button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-4 rounded">Delete</x-danger-button>
+                                    <x-danger-button type="submit">Delete</x-danger-button>
                                 </form>
                             </td>
                             </td>
