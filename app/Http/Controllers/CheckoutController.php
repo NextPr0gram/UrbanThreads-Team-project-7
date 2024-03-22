@@ -8,6 +8,7 @@ use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Discount;
+use App\Models\Product;
 
 /**
  ** Class CheckoutController
@@ -29,19 +30,25 @@ class CheckoutController extends Controller
                 $basketItems = optional($basket)->items;
 
                 if ($basketItems) {
-                    // Variable for the total price of the basket
-                    $totalAmount = $basket->total_amount;
-                    // Variable for the subtotal of the basket
-                    $subTotal = $totalAmount + $basket->discount_amount;
-                    // Variable for the discount amount of the basket
-                    $discountAmount = $basket->discount_amount;
-                    // Variable to keep track of the number of items in the basket (including the quantity of each item)
+                    // Calculate the sub total (total amount before discount)
+                    $subTotal = $basket->total_amount;
+                    // Calculate the total amount (total amount after discount)
+                    $totalAmount = $basket->total_amount - $basket->discount_amount;
+                    // Calculate the number of items in the basket
                     $itemCount = 0;
                     foreach ($basketItems as $basketItem) {
-                        // For each item in the basket, add the quantity to the item count
                         $itemCount += $basketItem->quantity;
                     }
-                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount')); //* Pass the basket items to the view as well as the total price
+                    // Get the discount amount
+                    if ($basket->discount_id != null) {
+                        $discount = Discount::where('id', $basket->discount_id)->first();
+                        $discountAmount = $basket->discount_amount;
+                        $discountCode = $discount->code;
+                    } else {
+                        $discountAmount = 0;
+                        $discountCode = null;
+                    }
+                    return view('checkout.show', compact('basketItems', 'subTotal', 'totalAmount', 'itemCount', 'discountAmount', 'discountCode')); //* Pass the basket items to the view as well as the total price
                 } else {
                     return redirect()->back()->with('error', 'You do not have any items in your basket');
                     //! Redirect to the previous page and displays an error message that the user does not have any items in their basket
@@ -83,17 +90,24 @@ class CheckoutController extends Controller
         $basket = Basket::where('user_id', $user->id)->first();
         // Get the items in the basket
         $basketItems = $basket->items;
+        // Calculate the sub total of the basket
+        $subTotal = $basket->total_amount;
         // Calculate the total amount of the order
-        $totalAmount = $basket->total_amount;
+        if ($basket->discount_amount > 0) {
+            $totalAmount = $basket->total_amount - $basket->discount_amount;
+            $discountAmount = $basket->discount_amount;
+        } else {
+            $totalAmount = $basket->total_amount;
+            $discountAmount = 0;
+        }
         $itemCount = 0;
         foreach ($basketItems as $basketItem) {
             $itemCount += $basketItem->quantity;
         }
-        // Get the address from the checkout form
-        $formAddress = $request->address_line1 . ', ' . $request->address_line2 . ', ' . $request->city . ', ' . $request->county . ', ' . $request->postcode;
+
         // Get the address from the database if it exists
-        $address = Address::where('address_line_1', $request->address_line1)
-            ->where('address_line_2', $request->address_line2)
+        $address = Address::where('address_line_1', $request->address_line_1)
+            ->where('address_line_2', $request->address_line_2)
             ->where('city', $request->city)
             ->where('county', $request->county)
             ->where('postcode', $request->postcode)
@@ -103,38 +117,57 @@ class CheckoutController extends Controller
             $addressId = $address->id;
             // Otherwise, create the address and get the ID of the address
         } else {
-            $address = Address::create([
+            $newAddress = Address::create([
                 'address_line_1' => $request->address_line_1,
                 'address_line_2' => $request->address_line_2,
                 'city' => $request->city,
                 'county' => $request->county,
                 'postcode' => $request->postcode,
             ]);
-            $addressId = $address->id;
+            $addressId = $newAddress->id;
         }
 
-        // Create an order
-        $newOrder = Order::create([
-            'user_id' => $user->id,
-            'total' => $totalAmount,
-            'address_id' => $addressId,
-        ]);
-        // Add each item in the basket to the order with the quantity
+        if ($basket->discount_amount > 0) {
+            // Create an order with the discount amount
+            $newOrder = Order::create([
+                'user_id' => $user->id,
+                'total' => $totalAmount,
+                'address_id' => $addressId,
+                'discount_amount' => $basket->discount_amount
+            ]);
+        } else {
+            // Create an order without the discount amount
+            $newOrder = Order::create([
+                'user_id' => $user->id,
+                'total' => $totalAmount,
+                'address_id' => $addressId,
+            ]);
+        }
+        // Iterate through the items in the basket
         foreach ($basketItems as $basketItem) {
+            // Create an order item for each item in the basket
             OrderItems::create([
                 'order_id' => $newOrder->id,
                 'product_id' => $basketItem->product_id,
                 'quantity' => $basketItem->quantity,
                 'variation_id' => $basketItem->variation_id
             ]);
+            // Decrement the stock of the variation by the quantity of the basket item
+            $basketItem->variation->decrement('stock', $basketItem->quantity);
+
+            //this finds the productID for the product which has been bought
+            $product = Product::findOrFail($basketItem->product_id);
+            //this increments the sales column for the item whihc has been bought
+            $product->increment('sales', $basketItem->quantity);
         }
         // Get the order that was just created
         $order = Order::where('id', $newOrder->id)->first();
         // Get the items in the order
         $orderItems = optional($order)->items;
+
         // Delete the basket
         $basket->delete();
         // Returns the page that tells the user that the order has been placed and sends the order items,  total amount and item count
-        return view('checkout.success', compact('orderItems', 'totalAmount', 'order', 'itemCount'));
+        return view('checkout.success', compact('orderItems', 'subTotal', 'totalAmount', 'order', 'itemCount', 'discountAmount'));
     }
 }

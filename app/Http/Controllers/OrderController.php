@@ -12,7 +12,8 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     //* Shows the user's orders
-    public function show() {
+    public function show()
+    {
         // Get the authenticated user
         $user = auth()->user();
         // Get the orders of the authenticated user
@@ -20,28 +21,59 @@ class OrderController extends Controller
             $orders = Order::where('user_id', $user->id)->get();
             // If the user has orders, return the view with the orders
             if ($orders) {
-                return view('order.show', compact('orders'));
+                return view('profile.orders', compact('orders'));
             } else {
-                // Otherwise, redirect back with an error message
-                return redirect()->back()->with('error', 'You do not have any orders');
+                // Otherwise, return the view with an error message
+                return view('profile.order-history')->with('error', 'You do not have any orders');
             }
         } else {
-            // If the user isn't authenticated, redirect to the login page with an error message
-            return redirect()->route('login')->with('error', 'Login to view your orders');
+            // If the user isn't authenticated, then redirect to the login page with an error message
+            return redirect()->route('login')->with('error', 'Login to view your basket');
         }
     }
 
-    //* Deletes an order if it has not been dispatched or delivered
-    public function cancel($id) {
+    //* Cancels an order if it has not been dispatched or delivered (status is checked in the view)
+    public function cancel($id)
+    {
         // Get the order if it exists
         $order = Order::findOrFail($id);
-        // If the order has been dispatched or delivered, redirect back with an error message
-        if($order->status == 'dispatched' || $order->status == 'delivered') {
-            return redirect()->back()->with('error', 'You cannot delete an order that has been dispatched or delivered');
-        } else {
-            // Otherwise, delete the order and redirect back with a success message
-            $order->delete();
-            return redirect()->back()->with('success', 'Order deleted successfully');
+        // Increment the stock of the products in the order
+        $orderItems = $order->items;
+        foreach ($orderItems as $orderItem) {
+            $orderItem->variation->increment('stock', $orderItem->quantity);
         }
+        // Change order status to Cancelled
+        $order->status = 'Cancelled';
+        // Save the order
+        $order->save();
+        // Redirect back with a success message
+        return redirect()->route('profile.orders')->with('success', 'Order cancelled successfully');
+    }
+
+    //* Allows a user to return an order
+    public function return($id)
+    {
+        // Get the order if it exists
+        $order = Order::findOrFail($id);
+        // Increment the stock of the products in the order
+        $orderItems = $order->items;
+        foreach ($orderItems as $orderItem) {
+            $orderItem->variation->increment('stock', $orderItem->quantity);
+        }
+        // Change order status to Returned
+        $order->status = 'Returned';
+        // Save the order
+        $order->save();
+        // Redirect back with a success message
+        return redirect()->route('profile.orders')->with('success', 'Order returned successfully');
+    }
+
+    //* Shows a single order
+    public function showSingleOrder($id)
+    {
+        // Get the order if it exists
+        $order = Order::findOrFail($id);
+        // Return the view with the order
+        return view('profile.view-order', compact('order'));
     }
 }

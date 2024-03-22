@@ -10,7 +10,7 @@ class ContactFormController extends Controller
  
     public function store(Request $request)
     {
-        //validates incoming requests data
+        //validates incoming requests data.
         $validatedData = $request->validate([
             'FirstName' => 'required|string|max:255',
             'LastName' => 'required|string|max:255',
@@ -27,5 +27,45 @@ class ContactFormController extends Controller
         return redirect('/home')->with('success', 'Contact form submitted successfully!');
         //one time message at the top
 }
+
+public function updateStatus(Request $request, $enquiryId) {
+    // Validate the request
+    $request->validate([
+        'newStatus' => 'required|in:New,In Process,Processed',
+    ]);
+
+    try {
+        // Retrieve the enquiry
+        $enquiry =  ContactForm::findOrFail($enquiryId);
+
+        // Update the status
+        $enquiry->status = $request->newStatus;
+        $enquiry->save();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Enquiry status updated successfully');
+    } catch (\Exception $e) {
+        // Handle the exception, perhaps log it
+        return redirect()->back()->with('failed', 'Enquiry status not updated');
+    }
+}
+
+public function deleteEnquiry($enquiryId) {
+    try {
+        // Retrieve the enquiry
+        $enquiry = ContactForm::findOrFail($enquiryId);
+
+        // Delete the enquiry
+        $enquiry->delete();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Enquiry deleted successfully');
+    } catch (\Exception $e) {
+        // Handle the exception, perhaps log it
+        return redirect()->back()->with('failed', 'Failed to delete enquiry');
+    }
+}
+
+
 
 }
