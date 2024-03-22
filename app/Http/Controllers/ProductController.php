@@ -120,7 +120,11 @@ class ProductController extends Controller
         // Sanitize the search query
         $search = $request->input('search');
 
-        $products = Product::where('name', 'like', "%$search%")->get();
+        // Search for products with the name, description or slug name containing the search query
+        $products = Product::where('name', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->orWhere('slug', 'like', '%' . $search . '%')
+            ->get();
         if ($products->isEmpty()) {
             return redirect()->back()->with('error', 'No products found for ' . $search);
         } else {
