@@ -20,15 +20,20 @@
                     </a>
                 </div>
                 {{-- Searchbar --}}
-                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10" method="GET" action="{{ route('search') }}">
-                    <x-text-input name="search" class="w-full border-none outline-none" placeholder="Search Products"></x-text-input>
+                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10"
+                    method="GET" action="{{ route('search') }}">
+                    <x-text-input name="search" class="w-full border-none outline-none"
+                        placeholder="Search Products"></x-text-input>
                     <button class="flex-none p-2 flex justify-center items-center" type="submit">
-                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
+                        <img src="{{ asset('icons/utility/search-icon-dark.svg') }}"
+                            class="object-cover object-center w-3/4" alt="">
                     </button>
                 </form>
                 {{-- Mobile Nav Icon --}}
-                <button id="mobileNavToggle" type="button" class="ml-5 aspect-square h-10 flex md:hidden items-center justify-center">
-                    <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center" alt="">
+                <button id="mobileNavToggle" type="button"
+                    class="ml-5 aspect-square h-10 flex md:hidden items-center justify-center">
+                    <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center"
+                        alt="">
                 </button>
             </div>
 
@@ -41,10 +46,13 @@
                     <div class="flex gap-5">
 
                         {{-- Mobile Searchbar --}}
-                        <form class="flex items-center my-auto border-2 rounded-md border-[#003566] h-10" method="GET" action="{{ route('search') }}">
-                            <x-text-input name="search" class="w-full border-none outline-none" placeholder=""></x-text-input>
+                        <form class="flex items-center my-auto border-2 rounded-md border-[#003566] h-10" method="GET"
+                            action="{{ route('search') }}">
+                            <x-text-input name="search" class="w-full border-none outline-none"
+                                placeholder=""></x-text-input>
                             <button class="flex-none p-2 flex justify-center items-center" type="submit">
-                                <img src="{{ asset('icons/utility/search-icon-dark.svg') }}" class="object-cover object-center w-3/4" alt="">
+                                <img src="{{ asset('icons/utility/search-icon-dark.svg') }}"
+                                    class="object-cover object-center w-3/4" alt="">
                             </button>
                         </form>
 
@@ -140,12 +148,10 @@
                                 <x-dropdown-link :href="route('profile.orders')">
                                     {{ __('Orders') }}
                                 </x-dropdown-link>
-
                                 <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form name="logoutForm" method="POST" action="{{ route('logout') }}">
                                     @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
+                                    <x-dropdown-link :href="route('logout')" form="logoutForm" class="w-full"
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                         {{ __('Log Out') }}
