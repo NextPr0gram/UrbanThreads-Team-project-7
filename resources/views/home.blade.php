@@ -30,17 +30,17 @@
     <div class="grid grid-cols-3 grid-rows-1 gap-3 pb-12 h-96">
         <a class="bg-[url('/images/product-images/hoodies/comfy-hoodie.png')] bg-center" href="{{ route('show', ['slug' => 'comfy-hoodie']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
-                Comfy hoodie
+                CozyComfort Hoodie
             </h3>
         </a>
-        <a class="bg-[url('/images/product-images/trousers/chinos.png')] bg-center" href="{{ route('show', ['slug' => 'chinos']) }}">
+        <a class="bg-[url('/images/product-images/trousers/cargos.png')] bg-center" href="{{ route('show', ['slug' => 'cargo-ready-cargos']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
-                Chinos
+                CargoReady Cargos
             </h3>
         </a>
-        <a class="bg-[url('/images/product-images/t-shirt/boxy-t-shirt.png')] bg-center" href="{{ route('show', ['slug' => 'boxy-t-shirt']) }}">
+        <a class="bg-[url('/images/product-images/t-shirt/boxy-t-shirt.png')] bg-center" href="{{ route('show', ['slug' => 'street-smart-boxy-tee']) }}">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
-                Boxy T-shirt
+                StreetSmart Boxy Tee
             </h3>
         </a>
     </div>
@@ -57,25 +57,25 @@
             </h3>1
         </a>
         <a href="{{ route('tshirts') }}"
-            class="row-start-2 bg-[url('/images/home-page/tshirt-category-image.png')] bg-cover bg-center">
+            class="row-start-2 bg-[url('/images/product-images/t-shirt/slim-fit-t-shirt.png')] bg-cover bg-center">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Tshirts
             </h3>
         </a>
         <a href="{{ route('trousers') }}"
-            class="row-start-2 bg-[url('/images/home-page/trousers-category-image.png')] bg-cover bg-center">
+            class="row-start-2 bg-[url('/images/product-images/trousers/joggers.png')] bg-cover bg-center">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Trousers
             </h3>3
         </a>
         <a href="{{ route('jackets') }}"
-            class="row-start-2 bg-[url('/images/home-page/jacket-category-image.png')] bg-cover bg-center">
+            class="row-start-2 bg-[url('/images/product-images/jackets/denim-jacket.png')] bg-cover bg-center">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Jackets
             </h3>
         </a>
         <a href="{{ route('accessories') }}"
-            class="col-span-3 row-start-3 bg-[url('/images/home-page/accessories-category-image.png')] bg-cover bg-center">
+            class="col-span-3 row-start-3 bg-[url('/images/product-images/accessories/aviator-glasses.png')] bg-cover bg-center">
             <h3 class="text-white text-xl  mix-blend-difference font-formula1 p-4">
                 Accessories
             </h3>
