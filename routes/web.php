@@ -145,7 +145,7 @@ Route::post('/reviews/add/{productId}', [ReviewController::class, 'store'])->nam
 Route::get('/sort/{category}', [FilterController::class, 'sort'])->name('sort');
 
 //? Routes for admin dashboard
-Route::middleware('auth')->group(function () {
+Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
@@ -164,6 +164,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route for admin side: To update status of customer enquiries
-Route::put('enquiries/{enquiryId}/status', [ContactFormController ::class, 'updateStatus'])->name('status.update');
+Route::put('enquiries/{enquiryId}/status', [ContactFormController::class, 'updateStatus'])->name('status.update');
 //Route for admin side: To delete contact forms
 Route::delete('enquiries/{enquiryId}', [ContactFormController::class, 'deleteEnquiry'])->name('enquiry.delete');

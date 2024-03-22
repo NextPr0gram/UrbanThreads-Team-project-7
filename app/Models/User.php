@@ -56,4 +56,10 @@ class User extends Authenticatable
         $address = $this->address;
         return $address->address_line_1 . ', ' . $address->address_line_2 . ', ' . $address->city . ', ' . $address->county . ', ' . $address->postcode;
     }
+
+    // Check if the user is an admin
+    public function isAdmin()
+    {
+        return $this->admin == 1;
+    }
 }
