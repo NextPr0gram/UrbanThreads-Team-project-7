@@ -9,6 +9,7 @@
             src="{{ asset('icons/admin-dashboard/cancel-icon.svg') }}" alt="" />
     </div>
 
+    <x-sidebar-item title="Dashboard" href="admin.dashboard" />
     <x-sidebar-item title="Products" href="admin.products-view" />
     <x-sidebar-item title="User Accounts" href="admin.user-accounts-view" />
     <x-sidebar-item title="Customer Enquiries" href="admin.customer-enquiries-view" />

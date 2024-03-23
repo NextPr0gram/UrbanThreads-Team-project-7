@@ -338,4 +338,28 @@ class AdminController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Discount deleted successfully.');
     }
+
+    public function getDashboardInfo()
+    {
+        $numberOfusers = User::count();
+        $numberOfProducts = Product::count();
+        $numberOfTotalOrders = Order::count();
+
+        $ordersPlaced = Order::where('status', 'Placed')->count();
+        $ordersProcessing = Order::where('status', 'Processing')->count();
+        $ordersDispatched = Order::where('status', 'Dispatched')->count();
+        $ordersDelivered = Order::where('status', 'Delivered')->count();
+        $ordersCancelled = Order::where('status', 'Cancelled')->count();
+        $ordersReturned = Order::where('status', 'Returned')->count();
+
+        $numberOfEnquiries = ContactForm::count();
+        $newEnquiries = ContactForm::where('status', 'New')->count();
+        $enquiriesProcessed = ContactForm::where('status', 'Processed')->count();
+
+
+
+        $customerEnquiries = ContactForm::all();
+        return view('admin.dashboard', [ 'numberOfusers' => $numberOfusers, 'numberOfProducts' => $numberOfProducts, 'numberOfTotalOrders' => $numberOfTotalOrders, 'ordersPlaced' => $ordersPlaced, 'ordersProcessing' => $ordersProcessing, 'ordersDispatched' => $ordersDispatched, 'ordersDelivered' => $ordersDelivered, 'ordersCancelled' => $ordersCancelled, 'ordersReturned' => $ordersReturned, 'numberOfEnquiries' => $numberOfEnquiries, 'newEnquiries' => $newEnquiries, 'enquiriesProcessed' => $enquiriesProcessed, 'customerEnquiries' => $customerEnquiries]);
+
+    }
 }
