@@ -146,9 +146,7 @@ Route::get('/sort/{category}', [FilterController::class, 'sort'])->name('sort');
 
 //? Routes for admin dashboard
 Route::middleware('auth.admin')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'getDashboardInfo'])->name('admin.dashboard');
     Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
     Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
     Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');

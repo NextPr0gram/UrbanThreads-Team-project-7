@@ -338,4 +338,11 @@ class AdminController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Discount deleted successfully.');
     }
+
+    public function getDashboardInfo()
+    {
+
+        $customerEnquiries = ContactForm::all();
+        return view('admin.dashboard', ['customerEnquiries' => $customerEnquiries]);
+    }
 }
