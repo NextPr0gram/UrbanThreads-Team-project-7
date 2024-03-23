@@ -17,7 +17,7 @@
 
             <!-- this is the image of people working -->
             <div class=" md:hidden w-full md:w-[700px]  aspect-square">
-                <img class="w-full h-auto " src="/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
+                <img class="w-full h-auto " src="../public/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
             </div>
 
             <!-- this is the contact details with icons and description -->
@@ -31,7 +31,7 @@
                     <div class="items-center">
                         <div class="flex items-center mb-4">
                             <div class="bg-neutral-30 p-3 rounded-md inline-block">
-                                <img class="w-6 h-6" src="/images/contact-us images/Location (1).svg" alt="location">
+                                <img class="w-6 h-6" src="../public/images/contact-us images/Location (1).svg" alt="location">
                             </div>
 
                             <!-- this is the text for the location -->
@@ -44,7 +44,7 @@
                         <!-- this is the icon for the phone  -->
                         <div class="flex items-center mb-4">
                             <div class="bg-neutral-30 p-3 rounded-md inline-block">
-                                <img class="w-6 h-6" src="/images/contact-us images/Phone (1).svg" alt="phone icon">
+                                <img class="w-6 h-6" src="../public/images/contact-us images/Phone (1).svg" alt="phone icon">
                             </div>
 
                             <!-- this is the text for the Phone number -->
@@ -58,7 +58,7 @@
                         <!-- this is the icon for the mail  -->
                         <div class="flex items-center ">
                             <div class="bg-neutral-30 p-3 rounded-md inline-block">
-                                <img class="w-6 h-6" src="/images/contact-us images/Mail-2.svg" alt="emai icon">
+                                <img class="w-6 h-6" src="../public/images/contact-us images/Mail-2.svg" alt="emai icon">
                             </div>
 
                             <!-- this is the text for the email address -->
@@ -121,7 +121,7 @@
 
              <!-- this is the second image which is hidden in the mobile setting  -->
              <div class="hidden md:block w-full md:mt-[-310px] md:mr-[-310px]">
-                 <img class="w-full h-auto" src="/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
+                 <img class="w-full h-auto" src="../public/images/contact-us images/teamwork 1.svg" alt="picture of people working in a team">
              </div>
 
              <!-- this is the ending div for the padding -->
