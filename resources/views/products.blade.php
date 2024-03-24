@@ -21,7 +21,7 @@
                         <div id="button" onclick="toggleDropdown()"
                             class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
                             Options
-                            <img id="upArrow" src="../images/filter icons/Chevron Down.svg">
+                            <img id="upArrow" src="/images/filter icons/Chevron Down.svg">
                         </div>
 
                         <!-- this is the border for the dropdown options  -->
@@ -72,10 +72,10 @@
                             let upArrow = document.querySelector('#upArrow');
                             dropdown.classList.toggle("hidden");
                             if (dropdown.classList.contains("hidden")) {
-                                upArrow.src = "../images/filter icons/Chevron Down.svg";
+                                upArrow.src = "/images/filter icons/Chevron Down.svg";
 
                             } else {
-                                upArrow.src = "../images/filter icons/Vector.svg";
+                                upArrow.src = "/images/filter icons/Vector.svg";
                             }
                         }
 
@@ -114,7 +114,7 @@
                                 class="transition-all rounded-lg duration-300 ease-in-out border-2 border-neutral-30 hover:border-primary-300 w-fit hover:bg-neutral-20 {{-- hover:outline hover:outline-3 hover:outline-neutral-20 --}}">
                                 <div class="w-64 aspect-auto p-2">
                                     {{-- * The placeholder for the image of the product --}}
-                                    <img class="w-64 aspect-auto rounded-lg" src="..{{ $product->image }}" alt="">
+                                    <img class="w-64 aspect-auto rounded-lg" src="{{ $product->image }}" alt="">
                                 </div>
 
                                 <div class="px-2 py-2">

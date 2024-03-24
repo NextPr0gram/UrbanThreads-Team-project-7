@@ -52,9 +52,9 @@
                                                     alt="">
                                                 <input class=" absolute top-0 left-0 z-10 w-full h-full opacity-0"
                                                     type="file" name="image" id="fileInput" accept="image/*"
-                                                    onchange="previewImage(event)">
+                                                    onchange="uploadImagePreview(event)">
                                                 <script>
-                                                    function previewImage(event) {
+                                                    function uploadImagePreview(event) {
                                                         let reader = new FileReader();
                                                         reader.onload = function() {
                                                             let addProductImage = document.getElementById('addProductImage');
@@ -261,13 +261,13 @@
                                 <tr class="h-10">
                                     <td class="align-middle flex items-center h-10  gap-4 ">
                                         <div class="w-6 aspect-square bg-primary-50 rounded-sm overflow-hidden"><img
-                                                src=../{{ $product->image }} alt="">
+                                                src={{ $product->image }} alt="">
                                         </div>{{ $product->name }}
                                     </td>
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails('../{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
+                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
                                             More details
                                         </button>
                                     </td>
@@ -315,8 +315,8 @@
 
                     {{-- Title and cancel button --}}
 
-                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" enctype="multipart/form-data" action=""
-                        method="POST">
+                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full"
+                        enctype="multipart/form-data" action="" method="POST">
                         @csrf
                         @method('POST')
 

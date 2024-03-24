@@ -6,7 +6,7 @@
 
 <div class="flex items-center border-2 border-neutral-50 rounded-lg mt-5">
     <img class="object-cover object-center m-2 h-16 sm:h-24 aspect-square rounded-lg"
-        src="../{{ $image }}" {{--* This is the placeholder for the image link for the specific product fetched from the database --}}
+        src="{{ $image }}" {{--* This is the placeholder for the image link for the specific product fetched from the database --}}
         alt="" />
     <div class="flex flex-col p-4 w-full">
         <div class="flex justify-between items-center max-w-lg lg:max-w-full">

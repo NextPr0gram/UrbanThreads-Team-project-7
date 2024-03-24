@@ -3,7 +3,7 @@
         <div class="flex flex-col border-2 w-fit lg:flex-row border-neutral-50 rounded-lg items-center">
             <div class="w-80 md:w-[30rem] aspect-square p-10">
                 <div>
-                    <img src="../../public{{ $product->image }}" alt="" class="rounded-lg">
+                    <img src="{{ $product->image }}" alt="" class="rounded-lg">
                 </div>
             </div>
             <div class="xl:px-20 px-5 py-10">
