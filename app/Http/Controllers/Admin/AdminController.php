@@ -30,7 +30,7 @@ class AdminController extends Controller
         $request->validate([
             'image' => 'image',
             'name' => 'required|string|max:55',
-            'price' => 'required|string',
+            'price' => 'required|decimal:0,2',
             'gender' => 'required|numeric',
             'category' => 'required|numeric',
             'tags' => 'nullable|string',
@@ -101,7 +101,7 @@ class AdminController extends Controller
         $request->validate([
             'image' => 'nullable|image',
             'name' => 'nullable|string|max:55',
-            'price' => 'nullable|string',
+            'price' => 'nullable|decimal:0,2',
             'description' => 'nullable|string|max:1000',
             'stockForS' => 'nullable|numeric',
             'stockForM' => 'nullable|numeric',
@@ -115,7 +115,6 @@ class AdminController extends Controller
             // Delete old image if it exists
             if ($product->image) {
                 Storage::disk('public_images')->delete('/images/' . $product->image);
-
             }
 
 
@@ -127,10 +126,7 @@ class AdminController extends Controller
             if ($image->storeAs('', $path, 'public_images')) {
                 // Set the product image attribute to the images path
                 $product->image = '/images/' . $path;
-
             }
-
-
         }
 
 
@@ -395,7 +391,6 @@ class AdminController extends Controller
 
 
         $customerEnquiries = ContactForm::all();
-        return view('admin.dashboard', [ 'numberOfusers' => $numberOfusers, 'numberOfProducts' => $numberOfProducts, 'numberOfTotalOrders' => $numberOfTotalOrders, 'ordersPlaced' => $ordersPlaced, 'ordersProcessing' => $ordersProcessing, 'ordersDispatched' => $ordersDispatched, 'ordersDelivered' => $ordersDelivered, 'ordersCancelled' => $ordersCancelled, 'ordersReturned' => $ordersReturned, 'numberOfEnquiries' => $numberOfEnquiries, 'newEnquiries' => $newEnquiries, 'enquiriesProcessed' => $enquiriesProcessed, 'customerEnquiries' => $customerEnquiries]);
-
+        return view('admin.dashboard', ['numberOfusers' => $numberOfusers, 'numberOfProducts' => $numberOfProducts, 'numberOfTotalOrders' => $numberOfTotalOrders, 'ordersPlaced' => $ordersPlaced, 'ordersProcessing' => $ordersProcessing, 'ordersDispatched' => $ordersDispatched, 'ordersDelivered' => $ordersDelivered, 'ordersCancelled' => $ordersCancelled, 'ordersReturned' => $ordersReturned, 'numberOfEnquiries' => $numberOfEnquiries, 'newEnquiries' => $newEnquiries, 'enquiriesProcessed' => $enquiriesProcessed, 'customerEnquiries' => $customerEnquiries]);
     }
 }
