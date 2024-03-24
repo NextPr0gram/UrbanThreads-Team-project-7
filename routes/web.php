@@ -129,12 +129,12 @@ Route::get('/search', [ProductController::class, 'searchForProduct'])->name('sea
 
 //? Route for contact-us page
 Route::get('/contact-us', function () {
-    return view('contact-us');
+    return view('/contact-us');
 })->name('contact-us');
 
 
 //Route to save form into database
-Route::post('/contact-us', [ContactFormController::class, 'store']);
+Route::post('/contact-us', [ContactFormController::class, 'store'])->name('contact-us.store');
 
 //Route to save reviews to database along with product Id associated to it
 Route::post('/reviews/add/{productId}', [ReviewController::class, 'store'])->name('reviews.add');
@@ -145,10 +145,8 @@ Route::post('/reviews/add/{productId}', [ReviewController::class, 'store'])->nam
 Route::get('/sort/{category}', [FilterController::class, 'sort'])->name('sort');
 
 //? Routes for admin dashboard
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+Route::middleware('auth.admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'getDashboardInfo'])->name('admin.dashboard');
     Route::get('/admin/products-view', [AdminController::class, 'getAllProducts'])->name('admin.products-view');
     Route::get('/admin/user-accounts-view', [AdminController::class, 'getAllUsers'])->name('admin.user-accounts-view');
     Route::get('/admin/customer-enquiries-view', [AdminController::class, 'getAllCustomerEnquiries'])->name('admin.customer-enquiries-view');
@@ -164,6 +162,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route for admin side: To update status of customer enquiries
-Route::put('enquiries/{enquiryId}/status', [ContactFormController ::class, 'updateStatus'])->name('status.update');
+Route::put('enquiries/{enquiryId}/status', [ContactFormController::class, 'updateStatus'])->name('status.update');
 //Route for admin side: To delete contact forms
 Route::delete('enquiries/{enquiryId}', [ContactFormController::class, 'deleteEnquiry'])->name('enquiry.delete');

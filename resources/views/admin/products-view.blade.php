@@ -248,13 +248,13 @@
                                 <tr class="h-10">
                                     <td class="align-middle flex items-center h-10  gap-4 ">
                                         <div class="w-6 aspect-square bg-primary-50 rounded-sm overflow-hidden"><img
-                                                src={{ $product->image }} alt="">
+                                                src=../{{ $product->image }} alt="">
                                         </div>{{ $product->name }}
                                     </td>
                                     <td class="text-center">{{ $product->totalStock }}</td>
                                     <td class="text-right">
                                         <button class="underline"
-                                            onclick="showDetails('{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
+                                            onclick="showDetails('../{{ $product->image }}',  '{{ $product->name }}', {{ $product->selling_price }}, {{ $product->variations }}, '{{ $product->description }}', '{{ route('product.update', ['productId' => $product->id]) }}', '{{ route('product.delete', ['productId' => $product->id]) }}')">
                                             More details
                                         </button>
                                     </td>

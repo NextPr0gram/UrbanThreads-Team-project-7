@@ -3,7 +3,7 @@
         <div class="flex flex-col border-2 w-fit lg:flex-row border-neutral-50 rounded-lg items-center">
             <div class="w-80 md:w-[30rem] aspect-square p-10">
                 <div>
-                    <img src="{{ $product->image }}" alt="" class="rounded-lg">
+                    <img src="../../public{{ $product->image }}" alt="" class="rounded-lg">
                 </div>
             </div>
             <div class="xl:px-20 max-sm:px-5 py-10">
@@ -22,16 +22,9 @@
 
                     <x-select id="size" name="size" class="w-full" required>
                         @foreach ($variations as $variation)
-                            <option value="{{ $variation->id }}">Size: {{ $variation->size }}
-                                @if ($variation->stock <= 0)
-                                    - Out of stock
-                                @elseif ($variation->stock < 10)
-                                    - Low stock ({{ $variation->stock }} left)
-                                @else
-                                    - In stock
-                                @endif
-                            </option>
-                        @endforeach
+                        <option value="{{ $variation->id }}">Size: {{ $variation->size }}
+                            @if ($variation->stock <= 0) - Out of stock @elseif ($variation->stock < 10) - Low stock ({{ $variation->stock }} left) @else - In stock @endif </option>
+                                    @endforeach
                     </x-select>
 
                     <x-secondary-button class="px-5 w-full mt-5">Add to Basket</x-secondary-button>
@@ -55,7 +48,7 @@
     </x-write-review>
     <div class="flex flex-col pl-2">
         @foreach ($reviews as $review)
-            <x-users-reviews :review="$review" />
+        <x-users-reviews :review="$review" />
         @endforeach
     </div>
 </x-app-layout>

@@ -33,8 +33,8 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()->uncompromised()],
-            // Ensures that the password is at least 8 characters long, contains at least one uppercase letter, one number, and one special character, and has not been compromised in a data breach.
+            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()],
+            // Ensures that the password is at least 8 characters long, contains at least one uppercase letter, one number, and one special character.
         ]);
 
         $user = User::create([

@@ -59,31 +59,31 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function addOrUpdateAddress(Request $request)
+    public function addOrUpdateAddress(Request $request): RedirectResponse
     {
         // Validation rules for the address
-        $addressValidation = [
-            'address_line_1' => 'required',
-            'address_line_2' => 'nullable',
-            'city' => 'required',
-            'county' => 'required',
-            'postcode' => 'required',
-        ];
+        $validated = $request->validateWithBag('updateAddress', [
+            'address_line_1' => 'required|string',
+            'address_line_2' => 'nullable|string',
+            'city' => 'required|string',
+            'county' => 'required|string',
+            'postcode' => 'required|string',
+        ]);
         // Get the user and their address
         $user = auth()->user();
         $address = $user->address;
         // If the user already has an address then update it
         if ($address) {
-            $address->update($request->validate($addressValidation));
+            $address->update($validated);
         } else {
             // Otherwise create a new address
-            $address = Address::create($request->validate($addressValidation));
+            $address = Address::create($validated);
         }
         // Update the user's address_id
         $user->address_id = $address->id;
         // Save the user
         $request->user()->save();
         // Redirect back to the profile page
-        return Redirect::route('profile.edit')->with('status', 'address-updated');
+        return back()->with('status', 'address-updated');
     }
 }
