@@ -1,15 +1,10 @@
 <footer class="sticky top-[100vh]">
     <div class="flex justify-center py-16">
-        <div class="px-8"><a href="https://www.pinterest.co.uk" target=”_blank”><img class="p-"
-                    src="{{ asset('icons/social-media/pinterest-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="https://www.facebook.com" target=”_blank”><img class="p-"
-                    src="{{ asset('icons/social-media/facebook-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="https://www.instagram.com" target=”_blank”><img class="p-"
-                    src="{{ asset('icons/social-media/instagram-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="https://www.youtube.com" target=”_blank”><img class="p-"
-                    src="{{ asset('icons/social-media/youtube-icon-dark.svg') }}" alt=""></a></div>
-        <div class="px-8"><a href="https://www.tiktok.com" target=”_blank”><img class="p-"
-                    src="{{ asset('icons/social-media/tiktok-icon-dark.svg') }}" alt=""></a></div>
+        <div class="px-8"><a href="https://www.pinterest.co.uk" target=”_blank”><img class="p-" src="{{ asset('icons/social-media/pinterest-icon-dark.svg') }}" alt=""></a></div>
+        <div class="px-8"><a href="https://www.facebook.com" target=”_blank”><img class="p-" src="{{ asset('icons/social-media/facebook-icon-dark.svg') }}" alt=""></a></div>
+        <div class="px-8"><a href="https://www.instagram.com" target=”_blank”><img class="p-" src="{{ asset('icons/social-media/instagram-icon-dark.svg') }}" alt=""></a></div>
+        <div class="px-8"><a href="https://www.youtube.com" target=”_blank”><img class="p-" src="{{ asset('icons/social-media/youtube-icon-dark.svg') }}" alt=""></a></div>
+        <div class="px-8"><a href="https://www.tiktok.com" target=”_blank”><img class="p-" src="{{ asset('icons/social-media/tiktok-icon-dark.svg') }}" alt=""></a></div>
     </div>
     <div class="bg-neutral-700">
         <div class="mx-auto w-full max-w-screen-xl">
@@ -44,13 +39,10 @@
                             <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                         </li>
                         <li class="mb-4">
-                            <a href="{{ route('profile.orders') }}" class="hover:underline">Order status</a>
+                            <a href="{{ route('profile.orders') }}" class="hover:underline">Orders</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Shipping</a>
-                        </li>
-                        <li class="mb-4">
-                            <a href="#" class="hover:underline">Give us feedback</a>
+                            <a href="{{ route('contact-us') }}" class="hover:underline">Give us feedback</a>
                         </li>
                     </ul>
                 </div>
@@ -75,13 +67,10 @@
                     <h2 class="mb-6 text-lg font-formula1 text-neutral-30">Our Apps</h2>
                     <ul class="text-neutral-30">
                         <li class="mb-4">
-                            <a href="https://play.google.com/store/apps?gl=GB" target=”_blank”
-                                class="hover:underline"><img class="h-9"
-                                    src="{{ asset('images/playstore-app.svg') }}" alt=""></a>
+                            <a href="https://play.google.com/store/apps?gl=GB" target=”_blank” class="hover:underline"><img class="h-9" src="{{ asset('images/playstore-app.svg') }}" alt=""></a>
                         </li>
                         <li class="mb-4">
-                            <a href="https://www.apple.com/uk/store" class="hover:underline" target=”_blank”><img class="h-9"
-                                    src="{{ asset('images/appstore-app.svg') }}" alt=""></a>
+                            <a href="https://www.apple.com/uk/store" class="hover:underline" target=”_blank”><img class="h-9" src="{{ asset('images/appstore-app.svg') }}" alt=""></a>
                         </li>
                     </ul>
                 </div>

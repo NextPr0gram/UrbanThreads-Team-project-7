@@ -16,7 +16,7 @@
 
                     <div class="relative" id="dropdownButton">
                         <x-input-label for="sort" class="pb-2">Sort</x-input-label>
-                        <div id="button" onclick="toggleDropdown()" class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex ">
+                        <div id="button" onclick="toggleDropdown()" class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
                             Options
                             <img id="upArrow" src="../public/images/filter icons/Chevron Down.svg" class="ml-2">
                         </div>

@@ -132,14 +132,11 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
 
-
 //Route to save form into database
-Route::post('/contact-us', [ContactFormController::class, 'store']);
+Route::post('/contact-us/store/', [ContactFormController::class, 'store'])->name('contact-us.store');
 
 //Route to save reviews to database along with product Id associated to it
 Route::post('/reviews/add/{productId}', [ReviewController::class, 'store'])->name('reviews.add');
-
-//! Removed route to show product reviews as it is now shown on the product page through the showProduct method in the ProductController (show route)
 
 //this is the route for the filterController to sort the products
 Route::get('/sort/{category}', [FilterController::class, 'sort'])->name('sort');

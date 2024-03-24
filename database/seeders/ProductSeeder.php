@@ -155,7 +155,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 1, // UNISEX PRODUCT
+                'c1_id' => 3, // FEMALE PRODUCT
                 'c2_id' => 2, // T-shirt
                 'name' => 'UrbanEase Oversize Tee',
                 'slug' => 'urbanease-oversized-t-shirt',
@@ -446,7 +446,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 1, // MALE PRODUCT
+                'c1_id' => 1, // UNISEX PRODUCT
                 'c2_id' => 5, // Accessories
                 'name' => 'Sunshine Aviators',
                 'slug' => 'sunshine-aviators',
@@ -461,7 +461,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'c1_id' => 3, // FEMALE PRODUCT
+                'c1_id' => 1, // UNISEX PRODUCT
                 'c2_id' => 5, // Accessories
                 'name' => 'SockEssentials',
                 'slug' => 'sock-essentials',

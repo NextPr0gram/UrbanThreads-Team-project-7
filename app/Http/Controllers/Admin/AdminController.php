@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\ContactForm;
-use app\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Discount;
 use Illuminate\Support\Facades\Storage;
