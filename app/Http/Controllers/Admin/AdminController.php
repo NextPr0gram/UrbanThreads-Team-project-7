@@ -9,6 +9,7 @@ use App\Models\ContactForm;
 use app\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Discount;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -27,22 +28,39 @@ class AdminController extends Controller
     {
         // Validate the request
         $request->validate([
+            'image' => 'image',
             'name' => 'required|string|max:55',
             'price' => 'required|string',
             'gender' => 'required|numeric',
             'category' => 'required|numeric',
             'tags' => 'nullable|string',
             'description' => 'required|string|max:1000',
-            'stockForS' => 'required|numeric',
-            'stockForM' => 'sometimes|numeric',
-            'stockForL' => 'sometimes|numeric',
         ]);
 
 
 
         // Create a new product
         $product = new Product;
-        $product->image = "";
+
+        // Check if the request has an image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image'); // Get the image from the request
+            $path = $image->getClientOriginalName(); // You can customize the filename if needed
+
+            // Store the image in the public/images directory
+            if ($image->storeAs('', $path, 'public_images')) {
+                // Set the product image attribute to the images path
+                $product->image = '/images/' . $path;
+            } else {
+                // Handle the case when image upload fails
+                return redirect()->back()->with('error', 'Failed to upload image.');
+            }
+        } else {
+            // Handle the case when no image is uploaded
+            return redirect()->back()->with('error', 'No image uploaded.');
+        }
+
+
         $product->name = $request->name;
         $product->slug = strtolower($request->name);
         $product->meta_title = strtolower($request->name);
@@ -56,32 +74,20 @@ class AdminController extends Controller
         $product->save();
 
 
-        // Create the variations for the product
-        $variations = [
-            ['size' => 'Small', 'stock' => $request->stockForS],
-        ];
-        $product->variations()->create(['size' => 'Small', 'stock' => $request->stockForS]);
+
+
+        if ($request->filled('stockForS')) {
+            $product->variations()->create(['size' => 'Small', 'stock' => $request->stockForS]);
+        }
 
         if ($request->filled('stockForM')) {
-            $variations[] = ['size' => 'Medium', 'stock' => $request->stockForM];
             $product->variations()->create(['size' => 'Medium', 'stock' => $request->stockForM]);
         }
 
         if ($request->filled('stockForL')) {
-            $variations[] = ['size' => 'Large', 'stock' => $request->stockForL];
             $product->variations()->create(['size' => 'Large', 'stock' => $request->stockForL]);
         }
 
-        // Previous code
-        /* $product->variations()->createMany([
-
-            ['size' => 'Small', 'stock' => $request->stockForS],
-
-            ['size' => 'Medium', 'stock' => $request->stockForM],
-
-            ['size' => 'Large', 'stock' => $request->stockForL],
-
-        ]); */
 
 
         return redirect()->back()->with('success', 'Product added successfully.');
@@ -93,6 +99,7 @@ class AdminController extends Controller
 
         // only validate fields that the client provides
         $request->validate([
+            'image' => 'nullable|image',
             'name' => 'nullable|string|max:55',
             'price' => 'nullable|string',
             'description' => 'nullable|string|max:1000',
@@ -102,6 +109,32 @@ class AdminController extends Controller
         ]);
 
         $product = Product::findOrFail($productId);
+
+
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($product->image) {
+                Storage::disk('public_images')->delete('/images/' . $product->image);
+
+            }
+
+
+
+            $image = $request->file('image'); // Get the image from the request
+            $path = $image->getClientOriginalName(); // You can customize the filename if needed
+
+            // Store the image in the public/images directory
+            if ($image->storeAs('', $path, 'public_images')) {
+                // Set the product image attribute to the images path
+                $product->image = '/images/' . $path;
+
+            }
+
+
+        }
+
+
+
 
         if ($request->filled('name')) {
             $product->name = $request->name;
@@ -136,6 +169,9 @@ class AdminController extends Controller
     public function deleteProduct($productId)
     {
         $product = Product::findOrFail($productId);
+        if ($product->image) {
+            Storage::disk('public_images')->delete('/images/' . $product->image);
+        }
         $product->delete();
         return redirect()->back()->with('success', 'Product deleted successfully.');
     }

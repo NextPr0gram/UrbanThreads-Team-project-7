@@ -37,7 +37,8 @@
                             <div id="addProductForm" class="hidden z-50 absolute inset-0 flex justify-center items-center">
                                 <div
                                     class="max-w-[800px]  bg-default-white border border-neutral-30 rounded-lg px-4 py-5 animate-jump-in animate-duration-150 animate-ease-in">
-                                    <form id="" class="" action="{{ route('product.add') }}" method="POST">
+                                    <form id="" class="" action="{{ route('product.add') }}"
+                                        enctype="multipart/form-data" method="POST">
                                         @csrf
                                         @method('POST')
                                         <div class="flex justify-between gap-x-12 pb-4">
@@ -46,11 +47,22 @@
                                         </div>
                                         <div class="flex w-full h-fit">
                                             <div
-                                                class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
-                                                <img id="addProductImageField" class="w-full h-full" src=""
+                                                class="relative grid bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
+                                                <img id="addProductImage" class="w-full self-center" src=""
                                                     alt="">
-                                                <input type="file" id="fileInput" accept="image/*"
+                                                <input class=" absolute top-0 left-0 z-10 w-full h-full opacity-0"
+                                                    type="file" name="image" id="fileInput" accept="image/*"
                                                     onchange="previewImage(event)">
+                                                <script>
+                                                    function previewImage(event) {
+                                                        let reader = new FileReader();
+                                                        reader.onload = function() {
+                                                            let addProductImage = document.getElementById('addProductImage');
+                                                            addProductImage.src = reader.result;
+                                                        }
+                                                        reader.readAsDataURL(event.target.files[0]);
+                                                    }
+                                                </script>
                                             </div>
                                             <div class="w-full flex-1 pl-4 min-w-[12]">
                                                 <x-input-label for="name" class="pb-2">Name</x-input-label>
@@ -141,7 +153,8 @@
                                                     </div>
 
                                                     <!-- this is the border for the dropdown options  -->
-                                                    <div id="categoryDropdown" class="rounded-md border-neutral-60 hidden ">
+                                                    <div id="categoryDropdown"
+                                                        class="rounded-md border-neutral-60 hidden ">
                                                         <div
                                                             class="absolute w-full bg-default-white  border-solid border-l border-r border-b border-neutral-60 rounded-bl-sm rounded-br-sm flex flex-col">
                                                             <!-- Dropdown content -->
@@ -302,7 +315,7 @@
 
                     {{-- Title and cancel button --}}
 
-                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" action=""
+                    <form id="updateProductForm" class="p-0 m-0 lg:flex lg:flex-col lg:h-full" enctype="multipart/form-data" action=""
                         method="POST">
                         @csrf
                         @method('POST')
@@ -314,8 +327,20 @@
                         {{-- image, name and price fields --}}
                         <div class="flex w-full h-fit">
                             <div
-                                class="bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
-                                <img id="imageField" class="w-full h-full" src="" alt="">
+                                class="relative bg-primary-50 aspect-square w-[9.375rem] sm:w-[9.625rem] md:w-[10.125rem]  rounded-md flex-initial overflow-hidden">
+                                <img id="imageField" class="w-full self-center" src="" alt="">
+                                <input class=" absolute top-0 left-0 z-10 w-full h-full opacity-0" type="file"
+                                    name="image" id="fileInput" accept="image/*" onchange="previewImage(event)">
+                                <script>
+                                    function previewImage(event) {
+                                        let reader = new FileReader();
+                                        reader.onload = function() {
+                                            let imageField = document.getElementById('imageField');
+                                            imageField.src = reader.result;
+                                        }
+                                        reader.readAsDataURL(event.target.files[0]);
+                                    }
+                                </script>
                             </div>
                             <div class="w-full flex-1 pl-4 min-w-[12]">
                                 <x-input-label for="name" class="pb-2">Name</x-input-label>
