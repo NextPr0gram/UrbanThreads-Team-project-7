@@ -132,9 +132,8 @@ Route::get('/contact-us', function () {
     return view('/contact-us');
 })->name('contact-us');
 
-
 //Route to save form into database
-Route::post('/contact-us', [ContactFormController::class, 'store'])->name('contact-us.store');
+Route::post('/contact-us/store', [ContactFormController::class, 'store'])->name('contact-us.store');
 
 //Route to save reviews to database along with product Id associated to it
 Route::post('/reviews/add/{productId}', [ReviewController::class, 'store'])->name('reviews.add');
