@@ -44,10 +44,7 @@
                             <a href="{{ route('about-us') }}" class="hover:underline">About us</a>
                         </li>
                         <li class="mb-4">
-                            <a href="{{ route('profile.orders') }}" class="hover:underline">Order status</a>
-                        </li>
-                        <li class="mb-4">
-                            <a href="{{ route('profile.orders') }}" class="hover:underline">Shipping</a>
+                            <a href="{{ route('profile.orders') }}" class="hover:underline">Orders</a>
                         </li>
                         <li class="mb-4">
                             <a href="{{ route('contact-us') }}" class="hover:underline">Give us feedback</a>
