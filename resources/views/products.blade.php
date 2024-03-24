@@ -21,7 +21,7 @@
                         <div id="button" onclick="toggleDropdown()"
                             class="border-solid border-neutral-60 border-[1px] px-5 py-2 rounded-sm cursor-pointer flex justify-between">
                             Options
-                            <img id="upArrow" src="/images/filter icons/Chevron Down.svg">
+                            <img id="upArrow" src="../images/filter icons/Chevron Down.svg">
                         </div>
 
                         <!-- this is the border for the dropdown options  -->
