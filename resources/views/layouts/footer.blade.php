@@ -47,10 +47,10 @@
                             <a href="{{ route('profile.orders') }}" class="hover:underline">Order status</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Shipping</a>
+                            <a href="{{ route('profile.orders') }}" class="hover:underline">Shipping</a>
                         </li>
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Give us feedback</a>
+                            <a href="{{ route('contact-us') }}" class="hover:underline">Give us feedback</a>
                         </li>
                     </ul>
                 </div>
