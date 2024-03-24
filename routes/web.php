@@ -129,7 +129,7 @@ Route::get('/search', [ProductController::class, 'searchForProduct'])->name('sea
 
 //? Route for contact-us page
 Route::get('/contact-us', function () {
-    return view('contact-us');
+    return view('/contact-us');
 })->name('contact-us');
 
 

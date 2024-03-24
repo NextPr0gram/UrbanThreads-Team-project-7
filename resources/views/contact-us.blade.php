@@ -77,8 +77,8 @@
             <!-- this is the contact form which will be submitted by the customer -->
             <div class="py-5 "> </div>
             <div class="w-full sm:pt-0 ">
-                <!--Begin outline of form to be submitted-->
-<form action="/contact-us" method = "POST">
+                <!--./to define end point to url-->
+<form action="./contact-us" method = "POST">
     @csrf    
                 <h2 class="py-5 text-lg font-formula1 md:w-[700px] pt-8">Contact Form</h2>
                 <div class="w-full  p-4 bg-white bg-opacity-40 border-solid border-neutral-30 border-2 rounded-lg ">
