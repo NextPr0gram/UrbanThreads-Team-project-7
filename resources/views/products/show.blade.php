@@ -1,12 +1,12 @@
 <x-app-layout>
-    <div class="flex mt-10">
+    <div class="flex mt-10 justify-center">
         <div class="flex flex-col border-2 w-fit lg:flex-row border-neutral-50 rounded-lg items-center">
             <div class="w-80 md:w-[30rem] aspect-square p-10">
                 <div>
                     <img src="../../public{{ $product->image }}" alt="" class="rounded-lg">
                 </div>
             </div>
-            <div class="xl:px-20 max-sm:px-5 py-10">
+            <div class="xl:px-20 px-5 py-10">
                 <div class="mb-10">
                     <h1 class="text-2xl font-formula1 text-primary-300">{{ $product->name }}</h1>
                     <p class="mt-4 text-lg font-bold font-lexend">£{{ $product->selling_price }}</p>

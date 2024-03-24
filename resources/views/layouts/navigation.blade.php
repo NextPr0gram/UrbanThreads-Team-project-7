@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 {{-- Searchbar --}}
-                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-[#003566] h-10 ml-10"
+                <form class="hidden md:flex items-center my-auto border-2 rounded-md border-primary-300 h-10 ml-10"
                     method="GET" action="{{ route('search') }}">
                     <x-text-input name="search" class="w-full border-none outline-none"
                         placeholder="Search Products"></x-text-input>
@@ -91,21 +91,18 @@
                 })
             </script>
 
-
             {{-- right side nav-items account, wishlist, cart buttons... --}}
             <div class="flex flex-grow justify-end {{-- md:justify-between --}} items-center">
 
                 {{-- account dropdown button with icon and text --}}
                 <div class="flex items-center">
-                    @auth
-                        @if (Auth::user()->admin == '1')
-                            <a href="{{ route('admin.dashboard') }}">
-                                <x-secondary-button class="hidden flex-shrink-0 mx-2 md:block">
-                                    Go To Admin Dashboard
-                                </x-secondary-button>
-                            </a>
-                        @endif
-                    @endauth
+                    @if (Auth::user()->admin == '1')
+                        <a href="{{ route('admin.dashboard') }}">
+                            <x-secondary-button class="hidden my-auto mx-2 md:block ">
+                                Admin Dashboard
+                            </x-secondary-button>
+                        </a>
+                    @endif
                     {{-- Account button mobile --}}
                     <button @click="open = ! open" title="Account"
                         class="flex flex-shrink-0 items-center px-2 sm:hidden text-bluish-purple">
@@ -119,7 +116,6 @@
                     </button>
                     {{-- Account button --}}
                     <x-dropdown align="right" width="48" class="">
-
                         <x-slot name="trigger">
                             <button
                                 class="hidden items-center pr-2 text-base sm:inline-flex text-bluish-purple hover:underline">
@@ -253,6 +249,9 @@
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('profile.orders')">
+                        {{ __('Orders') }}
+                    </x-responsive-nav-link>
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -294,6 +293,7 @@
 {{-- Banner under navbar --}}
 <div class="grid grid-cols-3 bg-secondary-300 w-full text-center py-3 text-base font-bold text-neutral-30">
     <h1 class="max-sm:pl-3 font-formula1-light text-center text-white align-middle">Free delivery on all orders</h1>
-    <h1 class="font-formula1-light text-center text-white align-middle">10% off your first order with code FIRSTORDER</h1>
+    <h1 class="font-formula1-light text-center text-white align-middle">10% off your first order with code FIRSTORDER
+    </h1>
     <h1 class="max-sm:pr-3 font-formula1-light text-center text-white align-middle">Free returns and replacements</h1>
 </div>
