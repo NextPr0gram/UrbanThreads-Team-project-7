@@ -46,7 +46,7 @@
                                     </td>
                                     <td class="text-right">
                                         <button class="underline" id="viewOrderButton"
-                                            onclick="showDetails('{{ $order->getOrderDetails() }}',  {{ $order->total }}, '{{ $order->status }}', {{ $order->discount_amount }}, '{{ route('order.process', ['orderId' => $order->id]) }}')">
+                                            onclick="showDetails('{{ $order->getOrderItems() }}',  {{ $order->total }}, '{{ $order->status }}', {{ $order->discount_amount }}, '{{ $order->getShippingInfo() }}', '{{ route('order.process', ['orderId' => $order->id]) }}')">
                                             View Order
                                         </button>
                                     </td>
@@ -95,9 +95,14 @@
                             <button type="button" onclick="hideForm()">Cancel</button>
                         </div>
 
-                        <div class="w-full h-fit gap-2 py-5">
+                        <div class="w-full h-fit gap-2 pt-5">
                             <p class="text-lg font-formula1">Items</p>
                             <p id="order-items" class="font-lexend"></p>
+                        </div>
+
+                        <div class="w-full h-fit gap-2 pb-5">
+                            <p class="text-lg font-formula1">Shipping Address</p>
+                            <p id="order-address" class="font-lexend"></p>
                         </div>
 
                         <div class="flex justify-between w-full h-fit text-lg">
@@ -148,7 +153,7 @@
 
     </div>
     <script>
-        function showDetails(items, total, status, discount, action) {
+        function showDetails(items, total, status, discount, address, action) {
 
             console.log(action);
             // Show menu
@@ -173,6 +178,7 @@
 
             // Update fields: items, total, status, action
             let itemsField = document.getElementById("order-items");
+            let addressField = document.getElementById("order-address");
             let subTotalField = document.getElementById("order-subtotal");
             let discountDiv = document.getElementById("discount");
             let discountField = document.getElementById("order-discount");
@@ -181,6 +187,7 @@
             let processOrderForm = document.getElementById("processOrderForm");
 
             itemsField.innerHTML = items;
+            addressField.innerHTML = address;
             if (discount == 0) {
                 subTotalField.innerHTML = "£" + total;
                 discountDiv.classList.add("hidden");

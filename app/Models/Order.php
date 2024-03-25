@@ -31,8 +31,8 @@ class Order extends Model
         return $this->belongsTo(Address::class);
     }
 
-    // Get order details
-    public function getOrderDetails()
+    // Get order items
+    public function getOrderItems()
     {
         $orderItems = $this->items;
         $orderDetails = "";
@@ -58,5 +58,19 @@ class Order extends Model
             $totalItems += $item->quantity;
         }
         return $totalItems;
+    }
+
+    // Get the shipping information of the order
+    public function getShippingInfo()
+    {
+        $shippingInfo = "";
+        $shippingInfo .= "Address: " . $this->address->address_line_1 . "<br>";
+        if ($this->address->address_line_2) {
+            $shippingInfo .= "Address: " . $this->address->address_line_2 . "<br>";
+        }
+        $shippingInfo .= "City: " . $this->address->city . "<br>";
+        $shippingInfo .= "County: " . $this->address->county . "<br>";
+        $shippingInfo .= "Postcode: " . $this->address->postcode . "<br>";
+        return $shippingInfo;
     }
 }
