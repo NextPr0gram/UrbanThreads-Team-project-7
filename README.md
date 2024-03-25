@@ -36,17 +36,16 @@ Open XAMPP and start the Apache server and the MySQL server.
 - Enter `cd .\UrbanThreads-Team-project-7\`
 - Enter `composer i`
 - Enter `npm i`
-- Enter `php artisan migrate` and follow through the steps in the terminal.
 
 ### Run
 - Navigate to `C:\xampp\htdocs\UrbanThreads-Team-project-7`
-- Open terminal
-- Enter `npm run dev`
-- Enter `php artisan serve` and it will return a link, press Ctrl + Click on the link to open the website and voilà!
+- Open two terminal tabs/windows
+- Enter `npm run dev` in one
+- Enter `php artisan serve` in the other. It will return a link, press Ctrl + Click on the link to open the website and voilà!
 
-### Database
-- Enter `php artisan migrate`, this creates the databse and tables.
-- Enter `php artisan db:seed --class=DatabaseSeeder` this fills the tables with records
+### Database Initialisation
+- Enter `php artisan migrate`. This creates the databse and tables.
+- Enter `php artisan db:seed`. This fills the tables with products, categories and any other records that are necessary for the website to function properly.
 
 ## Author
 
